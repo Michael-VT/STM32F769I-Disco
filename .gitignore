@@ -1,0 +1,7 @@
+Debug/
+*.o
+*.cu
+*.cyclo
+*.d
+*.list
+*.mk
