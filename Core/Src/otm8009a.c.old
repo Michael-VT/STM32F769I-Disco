@@ -18,7 +18,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "otm8009a.h"
+#include <otm8009a.h.old>
 
 /** @addtogroup BSP
   * @{
@@ -417,6 +417,13 @@ uint8_t OTM8009A_Init(uint32_t ColorCoding, uint32_t orientation)
 
   /* Send Command Display On */
   DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData44);
+
+  /* Включаем подсветку (TIM1-CH3 на PI9) — без этого экран тёмный! */
+//  BSP_LCD_SetBacklight(100);   // 100% яркость
+
+  /* Включаем TE (Tearing Effect) — без этого часто экран остаётся тёмным */
+  uint8_t te_on[] = { 0x00, 0x00, 0x05, 0x35, 0x00 };  // TEON
+  DSI_IO_WriteCmd(5, te_on);
 
   /* NOP command */
   DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData1);

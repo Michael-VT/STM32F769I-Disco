@@ -77,6 +77,7 @@ EndDependencies */
 #include "nt35510.h"
 #include "stm32f769i_discovery.h"
 #include "stm32f769i_discovery_lcd.h"
+#include "stm32f769i_discovery_sdram.h"
 #include "fonts.h"
 
 
@@ -473,6 +474,43 @@ uint8_t BSP_LCD_InitEx(LCD_OrientationTypeDef orientation)
   hltdc_discovery.Init.Backcolor.Red = 0;
   hltdc_discovery.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
   hltdc_discovery.Instance = LTDC;
+  /* Grock Said to do that Start */
+  /* Configure the DMA2D default color */
+  LTDC_HandleTypeDef  hltdc_discovery;
+  hltdc_discovery.LayerCfg[ActiveLayer].Alpha = 255;
+  hltdc_discovery.LayerCfg[ActiveLayer].Alpha0 = 255;
+  hltdc_discovery.LayerCfg[ActiveLayer].Backcolor.Blue = 0;
+  hltdc_discovery.LayerCfg[ActiveLayer].Backcolor.Green = 0;
+  hltdc_discovery.LayerCfg[ActiveLayer].Backcolor.Red = 0;
+  hltdc_discovery.LayerCfg[ActiveLayer].BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
+  hltdc_discovery.LayerCfg[ActiveLayer].BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
+  hltdc_discovery.LayerCfg[ActiveLayer].ImageWidth  = 800;
+  hltdc_discovery.LayerCfg[ActiveLayer].ImageHeight = 480;
+  /* Grock Said to do that End */
+
+  /* init from Grok Start */
+  hltdc_discovery.Init.HorizontalSync = 40;     // ← было 40
+  hltdc_discovery.Init.VerticalSync   = 4;
+  hltdc_discovery.Init.AccumulatedHBP = 88;     // HSYNC + HBP
+  hltdc_discovery.Init.AccumulatedVBP = 32;     // VSYNC + VBP
+  hltdc_discovery.Init.AccumulatedActiveW = 888;   // ← ВОТ ЭТО ГЛАВНОЕ! Было 848
+  hltdc_discovery.Init.AccumulatedActiveW = 890;   // ← 800 + 88 = 888
+  hltdc_discovery.Init.AccumulatedActiveH = 512;
+  hltdc_discovery.Init.TotalWidth = 928;        // ← было 928 → оставляем
+  hltdc_discovery.Init.TotalHeigh = 525;
+
+  hltdc_discovery.Init.HorizontalSync     = 40;
+  hltdc_discovery.Init.VerticalSync       = 4;
+  hltdc_discovery.Init.AccumulatedHBP     = 88;   // 40 + 48
+  hltdc_discovery.Init.AccumulatedVBP     = 32;   // 4 + 28
+  hltdc_discovery.Init.AccumulatedActiveW = 888;  // 88 + 800
+  hltdc_discovery.Init.AccumulatedActiveH = 512;  // 32 + 480
+  hltdc_discovery.Init.TotalWidth         = 928;  // 888 + 40
+  hltdc_discovery.Init.TotalHeigh         = 525;
+  hltdc_discovery.Init.Backcolor.Blue     = 0;
+  hltdc_discovery.Init.Backcolor.Green    = 0;
+  hltdc_discovery.Init.Backcolor.Red      = 0;
+  /* init from Grok End */
 
   /* Get LTDC Configuration from DSI Configuration */
   HAL_LTDC_StructInitFromVideoConfig(&(hltdc_discovery), &(hdsivideo_handle));
@@ -689,7 +727,16 @@ uint8_t BSP_LCD_HDMIInitEx(uint8_t format)
   hltdc_discovery.Init.VSPolarity = LTDC_VSPOLARITY_AL;
   hltdc_discovery.Init.DEPolarity = LTDC_DEPOLARITY_AL;
   hltdc_discovery.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
-
+  /* init from Grok Start */
+  hltdc_discovery.Init.HorizontalSync = 40;     // ← было 40
+  hltdc_discovery.Init.VerticalSync   = 4;
+  hltdc_discovery.Init.AccumulatedHBP = 88;     // HSYNC + HBP
+  hltdc_discovery.Init.AccumulatedVBP = 32;     // VSYNC + VBP
+  hltdc_discovery.Init.AccumulatedActiveW = 888;   // ← ВОТ ЭТО ГЛАВНОЕ! Было 848
+  hltdc_discovery.Init.AccumulatedActiveH = 512;
+  hltdc_discovery.Init.TotalWidth = 928;        // ← было 928 → оставляем
+  hltdc_discovery.Init.TotalHeigh = 525;
+  /* init from Grok End */
   /* Initialize & Start the LTDC */  
   HAL_LTDC_Init(&hltdc_discovery);
 

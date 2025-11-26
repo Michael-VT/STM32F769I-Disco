@@ -17,6 +17,13 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+//#include "../Components/otm8009a/otm8009a.h"
+#include "../../Drivers/BSP/Components/otm8009a/otm8009a.h"
+//#include "otm8009a.h"
+#include "../../Drivers/BSP/Components/otm8009a/otm8009a.h"
+#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery.h"
+#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_lcd.h"
+#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.h"
 #include "main.h"
 #include "cmsis_os.h"
 #include "usb_device.h"
@@ -26,11 +33,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
-#include "stm32f769i_discovery_lcd.h"
-#include "stm32f769i_discovery_sdram.h"
-#include "stm32f769i_discovery.h"     // ← ЭТА СТРОКА КРИТИЧЕСКИ ВАЖНА!
-#include "otm8009a.h"
-
+//#include <stm32f769i_discovery.h>
+//#include <stm32f769i_discovery_lcd>
+//#include <stm32f769i_discovery_sdram.h>
+#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_ts.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -107,7 +113,6 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -124,7 +129,14 @@ int main(void)
   MX_FMC_Init();
   MX_DSIHOST_DSI_Init();
   MX_I2C1_Init();
+
   /* USER CODE BEGIN 2 */
+  uint32_t ts_status = TS_OK;
+  uint8_t lcd_status = LCD_OK;
+  BSP_LCD_Init();
+  ts_status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
+  while(ts_status != LCD_OK);
+  while(lcd_status != LCD_OK);
 
   /* Эти три строки = всё, что нужно для дисплея на вашей плате */
 //  BSP_LCD_Init();           // полная инициализация OTM8009A + SDRAM Normal Mode
@@ -133,14 +145,27 @@ int main(void)
 //  BSP_LCD_Clear(LCD_COLOR_WHITE);
 //  BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
 //  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-
+  BSP_LCD_SetBrightness(100);
   BSP_LCD_Init();                    // ← теперь видит функцию
   BSP_LCD_LayerDefaultInit(0, 0xC0000000);
   BSP_LCD_SelectLayer(0);
-  BSP_LCD_Clear(LCD_COLOR_WHITE);
+//  BSP_LCD_Clear(LCD_COLOR_WHITE); // Grock
+  // Важно: в ARGB8888 белый цвет = 0xFFFFFFFF, а не 0xFFFF!
+  BSP_LCD_Clear(0xFFFFFFFF);  // вместо LCD_COLOR_WHITE
   BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
   BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
   BSP_LCD_DisplayStringAt(0, 10, (uint8_t*)"Hello from FreeRTOS!", CENTER_MODE);
+
+  // Инициализация дисплея (как раньше)
+  BSP_SDRAM_Init();
+  HAL_Delay(100);
+  BSP_LCD_Init();
+  BSP_LCD_LayerDefaultInit(0, SDRAM_DEVICE_ADDR);
+  BSP_LCD_SelectLayer(0);
+  TIM_HandleTypeDef        htim1;
+  // Включаем PWM подсветку (TIM1-CH3N на PI9)
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);  // Запуск PWM
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 500);  // 50% яркость (измените на 999 для 100%)
 
   /* USER CODE END 2 */
 
@@ -486,7 +511,8 @@ static void MX_LTDC_Init(void)
   pLayerCfg.WindowX1 = 800;
   pLayerCfg.WindowY0 = 0;
   pLayerCfg.WindowY1 = 480;
-  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
+//  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
+  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
   pLayerCfg.Alpha = 255;
   pLayerCfg.Alpha0 = 0;
   pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
@@ -497,6 +523,8 @@ static void MX_LTDC_Init(void)
   pLayerCfg.Backcolor.Blue = 0;
   pLayerCfg.Backcolor.Green = 0;
   pLayerCfg.Backcolor.Red = 0;
+
+
   if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
   {
     Error_Handler();

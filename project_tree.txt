@@ -1,0 +1,603 @@
+.
+├── Core
+│   ├── Inc
+│   │   ├── FreeRTOSConfig.h
+│   │   ├── main.h
+│   │   ├── nt35510.h.old
+│   │   ├── otm8009a.h.old
+│   │   ├── stm32f769i_discovery.h.old
+│   │   ├── stm32f769i_discovery_lcd.h.old
+│   │   ├── stm32f769i_discovery_sdram.h.old
+│   │   ├── stm32f7xx_hal_conf.h
+│   │   └── stm32f7xx_it.h
+│   ├── Src
+│   │   ├── freertos.c
+│   │   ├── main.c
+│   │   ├── nt35510.c.old
+│   │   ├── otm8009a.c.old
+│   │   ├── stm32f769i_discovery.c.old
+│   │   ├── stm32f769i_discovery_lcd.c.old
+│   │   ├── stm32f769i_discovery_sdram.c.old
+│   │   ├── stm32f7xx_hal_msp.c
+│   │   ├── stm32f7xx_hal_timebase_tim.c
+│   │   ├── stm32f7xx_it.c
+│   │   ├── syscalls.c
+│   │   ├── sysmem.c
+│   │   └── system_stm32f7xx.c
+│   └── Startup
+│       └── startup_stm32f769nihx.s
+├── Debug
+│   ├── Core
+│   │   ├── Src
+│   │   │   ├── freertos.cyclo
+│   │   │   ├── freertos.d
+│   │   │   ├── freertos.o
+│   │   │   ├── freertos.su
+│   │   │   ├── main.cyclo
+│   │   │   ├── main.d
+│   │   │   ├── main.su
+│   │   │   ├── stm32f7xx_hal_msp.cyclo
+│   │   │   ├── stm32f7xx_hal_msp.d
+│   │   │   ├── stm32f7xx_hal_msp.o
+│   │   │   ├── stm32f7xx_hal_msp.su
+│   │   │   ├── stm32f7xx_hal_timebase_tim.cyclo
+│   │   │   ├── stm32f7xx_hal_timebase_tim.d
+│   │   │   ├── stm32f7xx_hal_timebase_tim.o
+│   │   │   ├── stm32f7xx_hal_timebase_tim.su
+│   │   │   ├── stm32f7xx_it.cyclo
+│   │   │   ├── stm32f7xx_it.d
+│   │   │   ├── stm32f7xx_it.o
+│   │   │   ├── stm32f7xx_it.su
+│   │   │   ├── subdir.mk
+│   │   │   ├── syscalls.cyclo
+│   │   │   ├── syscalls.d
+│   │   │   ├── syscalls.o
+│   │   │   ├── syscalls.su
+│   │   │   ├── sysmem.cyclo
+│   │   │   ├── sysmem.d
+│   │   │   ├── sysmem.o
+│   │   │   ├── sysmem.su
+│   │   │   ├── system_stm32f7xx.cyclo
+│   │   │   ├── system_stm32f7xx.d
+│   │   │   ├── system_stm32f7xx.o
+│   │   │   └── system_stm32f7xx.su
+│   │   └── Startup
+│   │       ├── startup_stm32f769nihx.d
+│   │       ├── startup_stm32f769nihx.o
+│   │       └── subdir.mk
+│   ├── Drivers
+│   │   ├── BSP
+│   │   │   ├── Components
+│   │   │   │   ├── adv7533
+│   │   │   │   │   ├── adv7533.cyclo
+│   │   │   │   │   ├── adv7533.d
+│   │   │   │   │   ├── adv7533.o
+│   │   │   │   │   ├── adv7533.su
+│   │   │   │   │   └── subdir.mk
+│   │   │   │   ├── ft6x06
+│   │   │   │   │   ├── ft6x06.cyclo
+│   │   │   │   │   ├── ft6x06.d
+│   │   │   │   │   ├── ft6x06.o
+│   │   │   │   │   ├── ft6x06.su
+│   │   │   │   │   └── subdir.mk
+│   │   │   │   ├── nt35510
+│   │   │   │   │   ├── nt35510.cyclo
+│   │   │   │   │   ├── nt35510.d
+│   │   │   │   │   ├── nt35510.o
+│   │   │   │   │   ├── nt35510.su
+│   │   │   │   │   └── subdir.mk
+│   │   │   │   ├── otm8009a
+│   │   │   │   │   ├── otm8009a.cyclo
+│   │   │   │   │   ├── otm8009a.d
+│   │   │   │   │   ├── otm8009a.o
+│   │   │   │   │   ├── otm8009a.su
+│   │   │   │   │   └── subdir.mk
+│   │   │   │   └── wm8994
+│   │   │   │       ├── subdir.mk
+│   │   │   │       ├── wm8994.cyclo
+│   │   │   │       ├── wm8994.d
+│   │   │   │       ├── wm8994.o
+│   │   │   │       └── wm8994.su
+│   │   │   └── STM32F769I-Discovery
+│   │   │       ├── stm32f769i_discovery.cyclo
+│   │   │       ├── stm32f769i_discovery.d
+│   │   │       ├── stm32f769i_discovery.o
+│   │   │       ├── stm32f769i_discovery.su
+│   │   │       ├── stm32f769i_discovery_eeprom.cyclo
+│   │   │       ├── stm32f769i_discovery_eeprom.d
+│   │   │       ├── stm32f769i_discovery_eeprom.o
+│   │   │       ├── stm32f769i_discovery_eeprom.su
+│   │   │       ├── stm32f769i_discovery_lcd.cyclo
+│   │   │       ├── stm32f769i_discovery_lcd.d
+│   │   │       ├── stm32f769i_discovery_lcd.o
+│   │   │       ├── stm32f769i_discovery_lcd.su
+│   │   │       ├── stm32f769i_discovery_sdram.cyclo
+│   │   │       ├── stm32f769i_discovery_sdram.d
+│   │   │       ├── stm32f769i_discovery_sdram.o
+│   │   │       ├── stm32f769i_discovery_sdram.su
+│   │   │       ├── stm32f769i_discovery_ts.cyclo
+│   │   │       ├── stm32f769i_discovery_ts.d
+│   │   │       ├── stm32f769i_discovery_ts.o
+│   │   │       ├── stm32f769i_discovery_ts.su
+│   │   │       └── subdir.mk
+│   │   └── STM32F7xx_HAL_Driver
+│   │       └── Src
+│   │           ├── stm32f7xx_hal.cyclo
+│   │           ├── stm32f7xx_hal.d
+│   │           ├── stm32f7xx_hal.o
+│   │           ├── stm32f7xx_hal.su
+│   │           ├── stm32f7xx_hal_cortex.cyclo
+│   │           ├── stm32f7xx_hal_cortex.d
+│   │           ├── stm32f7xx_hal_cortex.o
+│   │           ├── stm32f7xx_hal_cortex.su
+│   │           ├── stm32f7xx_hal_dma.cyclo
+│   │           ├── stm32f7xx_hal_dma.d
+│   │           ├── stm32f7xx_hal_dma.o
+│   │           ├── stm32f7xx_hal_dma.su
+│   │           ├── stm32f7xx_hal_dma2d.cyclo
+│   │           ├── stm32f7xx_hal_dma2d.d
+│   │           ├── stm32f7xx_hal_dma2d.o
+│   │           ├── stm32f7xx_hal_dma2d.su
+│   │           ├── stm32f7xx_hal_dma_ex.cyclo
+│   │           ├── stm32f7xx_hal_dma_ex.d
+│   │           ├── stm32f7xx_hal_dma_ex.o
+│   │           ├── stm32f7xx_hal_dma_ex.su
+│   │           ├── stm32f7xx_hal_dsi.cyclo
+│   │           ├── stm32f7xx_hal_dsi.d
+│   │           ├── stm32f7xx_hal_dsi.o
+│   │           ├── stm32f7xx_hal_dsi.su
+│   │           ├── stm32f7xx_hal_exti.cyclo
+│   │           ├── stm32f7xx_hal_exti.d
+│   │           ├── stm32f7xx_hal_exti.o
+│   │           ├── stm32f7xx_hal_exti.su
+│   │           ├── stm32f7xx_hal_flash.cyclo
+│   │           ├── stm32f7xx_hal_flash.d
+│   │           ├── stm32f7xx_hal_flash.o
+│   │           ├── stm32f7xx_hal_flash.su
+│   │           ├── stm32f7xx_hal_flash_ex.cyclo
+│   │           ├── stm32f7xx_hal_flash_ex.d
+│   │           ├── stm32f7xx_hal_flash_ex.o
+│   │           ├── stm32f7xx_hal_flash_ex.su
+│   │           ├── stm32f7xx_hal_gpio.cyclo
+│   │           ├── stm32f7xx_hal_gpio.d
+│   │           ├── stm32f7xx_hal_gpio.o
+│   │           ├── stm32f7xx_hal_gpio.su
+│   │           ├── stm32f7xx_hal_i2c.cyclo
+│   │           ├── stm32f7xx_hal_i2c.d
+│   │           ├── stm32f7xx_hal_i2c.o
+│   │           ├── stm32f7xx_hal_i2c.su
+│   │           ├── stm32f7xx_hal_i2c_ex.cyclo
+│   │           ├── stm32f7xx_hal_i2c_ex.d
+│   │           ├── stm32f7xx_hal_i2c_ex.o
+│   │           ├── stm32f7xx_hal_i2c_ex.su
+│   │           ├── stm32f7xx_hal_ltdc.cyclo
+│   │           ├── stm32f7xx_hal_ltdc.d
+│   │           ├── stm32f7xx_hal_ltdc.o
+│   │           ├── stm32f7xx_hal_ltdc.su
+│   │           ├── stm32f7xx_hal_ltdc_ex.cyclo
+│   │           ├── stm32f7xx_hal_ltdc_ex.d
+│   │           ├── stm32f7xx_hal_ltdc_ex.o
+│   │           ├── stm32f7xx_hal_ltdc_ex.su
+│   │           ├── stm32f7xx_hal_nand.cyclo
+│   │           ├── stm32f7xx_hal_nand.d
+│   │           ├── stm32f7xx_hal_nand.o
+│   │           ├── stm32f7xx_hal_nand.su
+│   │           ├── stm32f7xx_hal_nor.cyclo
+│   │           ├── stm32f7xx_hal_nor.d
+│   │           ├── stm32f7xx_hal_nor.o
+│   │           ├── stm32f7xx_hal_nor.su
+│   │           ├── stm32f7xx_hal_pcd.cyclo
+│   │           ├── stm32f7xx_hal_pcd.d
+│   │           ├── stm32f7xx_hal_pcd.o
+│   │           ├── stm32f7xx_hal_pcd.su
+│   │           ├── stm32f7xx_hal_pcd_ex.cyclo
+│   │           ├── stm32f7xx_hal_pcd_ex.d
+│   │           ├── stm32f7xx_hal_pcd_ex.o
+│   │           ├── stm32f7xx_hal_pcd_ex.su
+│   │           ├── stm32f7xx_hal_pwr.cyclo
+│   │           ├── stm32f7xx_hal_pwr.d
+│   │           ├── stm32f7xx_hal_pwr.o
+│   │           ├── stm32f7xx_hal_pwr.su
+│   │           ├── stm32f7xx_hal_pwr_ex.cyclo
+│   │           ├── stm32f7xx_hal_pwr_ex.d
+│   │           ├── stm32f7xx_hal_pwr_ex.o
+│   │           ├── stm32f7xx_hal_pwr_ex.su
+│   │           ├── stm32f7xx_hal_rcc.cyclo
+│   │           ├── stm32f7xx_hal_rcc.d
+│   │           ├── stm32f7xx_hal_rcc.o
+│   │           ├── stm32f7xx_hal_rcc.su
+│   │           ├── stm32f7xx_hal_rcc_ex.cyclo
+│   │           ├── stm32f7xx_hal_rcc_ex.d
+│   │           ├── stm32f7xx_hal_rcc_ex.o
+│   │           ├── stm32f7xx_hal_rcc_ex.su
+│   │           ├── stm32f7xx_hal_sdram.cyclo
+│   │           ├── stm32f7xx_hal_sdram.d
+│   │           ├── stm32f7xx_hal_sdram.o
+│   │           ├── stm32f7xx_hal_sdram.su
+│   │           ├── stm32f7xx_hal_sram.cyclo
+│   │           ├── stm32f7xx_hal_sram.d
+│   │           ├── stm32f7xx_hal_sram.o
+│   │           ├── stm32f7xx_hal_sram.su
+│   │           ├── stm32f7xx_hal_tim.cyclo
+│   │           ├── stm32f7xx_hal_tim.d
+│   │           ├── stm32f7xx_hal_tim.o
+│   │           ├── stm32f7xx_hal_tim.su
+│   │           ├── stm32f7xx_hal_tim_ex.cyclo
+│   │           ├── stm32f7xx_hal_tim_ex.d
+│   │           ├── stm32f7xx_hal_tim_ex.o
+│   │           ├── stm32f7xx_hal_tim_ex.su
+│   │           ├── stm32f7xx_ll_fmc.cyclo
+│   │           ├── stm32f7xx_ll_fmc.d
+│   │           ├── stm32f7xx_ll_fmc.o
+│   │           ├── stm32f7xx_ll_fmc.su
+│   │           ├── stm32f7xx_ll_usb.cyclo
+│   │           ├── stm32f7xx_ll_usb.d
+│   │           ├── stm32f7xx_ll_usb.o
+│   │           ├── stm32f7xx_ll_usb.su
+│   │           └── subdir.mk
+│   ├── Middlewares
+│   │   ├── ST
+│   │   │   └── STM32_USB_Device_Library
+│   │   │       ├── Class
+│   │   │       │   └── CDC
+│   │   │       │       └── Src
+│   │   │       │           ├── subdir.mk
+│   │   │       │           ├── usbd_cdc.cyclo
+│   │   │       │           ├── usbd_cdc.d
+│   │   │       │           ├── usbd_cdc.o
+│   │   │       │           └── usbd_cdc.su
+│   │   │       └── Core
+│   │   │           └── Src
+│   │   │               ├── subdir.mk
+│   │   │               ├── usbd_core.cyclo
+│   │   │               ├── usbd_core.d
+│   │   │               ├── usbd_core.o
+│   │   │               ├── usbd_core.su
+│   │   │               ├── usbd_ctlreq.cyclo
+│   │   │               ├── usbd_ctlreq.d
+│   │   │               ├── usbd_ctlreq.o
+│   │   │               ├── usbd_ctlreq.su
+│   │   │               ├── usbd_ioreq.cyclo
+│   │   │               ├── usbd_ioreq.d
+│   │   │               ├── usbd_ioreq.o
+│   │   │               └── usbd_ioreq.su
+│   │   └── Third_Party
+│   │       └── FreeRTOS
+│   │           └── Source
+│   │               ├── CMSIS_RTOS_V2
+│   │               │   ├── cmsis_os2.cyclo
+│   │               │   ├── cmsis_os2.d
+│   │               │   ├── cmsis_os2.o
+│   │               │   ├── cmsis_os2.su
+│   │               │   └── subdir.mk
+│   │               ├── croutine.cyclo
+│   │               ├── croutine.d
+│   │               ├── croutine.o
+│   │               ├── croutine.su
+│   │               ├── event_groups.cyclo
+│   │               ├── event_groups.d
+│   │               ├── event_groups.o
+│   │               ├── event_groups.su
+│   │               ├── list.cyclo
+│   │               ├── list.d
+│   │               ├── list.o
+│   │               ├── list.su
+│   │               ├── portable
+│   │               │   ├── GCC
+│   │               │   │   └── ARM_CM7
+│   │               │   │       └── r0p1
+│   │               │   │           ├── port.cyclo
+│   │               │   │           ├── port.d
+│   │               │   │           ├── port.o
+│   │               │   │           ├── port.su
+│   │               │   │           └── subdir.mk
+│   │               │   └── MemMang
+│   │               │       ├── heap_4.cyclo
+│   │               │       ├── heap_4.d
+│   │               │       ├── heap_4.o
+│   │               │       ├── heap_4.su
+│   │               │       └── subdir.mk
+│   │               ├── queue.cyclo
+│   │               ├── queue.d
+│   │               ├── queue.o
+│   │               ├── queue.su
+│   │               ├── stream_buffer.cyclo
+│   │               ├── stream_buffer.d
+│   │               ├── stream_buffer.o
+│   │               ├── stream_buffer.su
+│   │               ├── subdir.mk
+│   │               ├── tasks.cyclo
+│   │               ├── tasks.d
+│   │               ├── tasks.o
+│   │               ├── tasks.su
+│   │               ├── timers.cyclo
+│   │               ├── timers.d
+│   │               ├── timers.o
+│   │               └── timers.su
+│   ├── USB_DEVICE
+│   │   ├── App
+│   │   │   ├── subdir.mk
+│   │   │   ├── usb_device.cyclo
+│   │   │   ├── usb_device.d
+│   │   │   ├── usb_device.o
+│   │   │   ├── usb_device.su
+│   │   │   ├── usbd_cdc_if.cyclo
+│   │   │   ├── usbd_cdc_if.d
+│   │   │   ├── usbd_cdc_if.o
+│   │   │   ├── usbd_cdc_if.su
+│   │   │   ├── usbd_desc.cyclo
+│   │   │   ├── usbd_desc.d
+│   │   │   ├── usbd_desc.o
+│   │   │   └── usbd_desc.su
+│   │   └── Target
+│   │       ├── subdir.mk
+│   │       ├── usbd_conf.cyclo
+│   │       ├── usbd_conf.d
+│   │       ├── usbd_conf.o
+│   │       └── usbd_conf.su
+│   ├── makefile
+│   ├── objects.list
+│   ├── objects.mk
+│   └── sources.mk
+├── Drivers
+│   ├── BSP
+│   │   ├── Components
+│   │   │   ├── Common
+│   │   │   │   ├── Release_Notes.html
+│   │   │   │   ├── accelero.h
+│   │   │   │   ├── audio.h
+│   │   │   │   ├── camera.h
+│   │   │   │   ├── epd.h
+│   │   │   │   ├── gyro.h
+│   │   │   │   ├── idd.h
+│   │   │   │   ├── io.h
+│   │   │   │   ├── lcd.h
+│   │   │   │   ├── magneto.h
+│   │   │   │   ├── ts.h
+│   │   │   │   └── tsensor.h
+│   │   │   ├── adv7533
+│   │   │   │   ├── Release_Notes.html
+│   │   │   │   ├── adv7533.c
+│   │   │   │   └── adv7533.h
+│   │   │   ├── ft6x06
+│   │   │   │   ├── Release_Notes.html
+│   │   │   │   ├── ft6x06.c
+│   │   │   │   └── ft6x06.h
+│   │   │   ├── nt35510
+│   │   │   │   ├── LICENSE.txt
+│   │   │   │   ├── Release_Notes.html
+│   │   │   │   ├── _htmresc
+│   │   │   │   │   ├── favicon.png
+│   │   │   │   │   ├── mini-st_2020.css
+│   │   │   │   │   └── st_logo_2020.png
+│   │   │   │   ├── nt35510.c
+│   │   │   │   └── nt35510.h
+│   │   │   ├── otm8009a
+│   │   │   │   ├── LICENSE.txt
+│   │   │   │   ├── Release_Notes.html
+│   │   │   │   ├── _htmresc
+│   │   │   │   │   ├── favicon.png
+│   │   │   │   │   ├── mini-st_2020.css
+│   │   │   │   │   └── st_logo_2020.png
+│   │   │   │   ├── otm8009a.c
+│   │   │   │   └── otm8009a.h
+│   │   │   └── wm8994
+│   │   │       ├── Release_Notes.html
+│   │   │       ├── wm8994.c
+│   │   │       └── wm8994.h
+│   │   └── STM32F769I-Discovery
+│   │       ├── stm32f769i_discovery.c
+│   │       ├── stm32f769i_discovery.h
+│   │       ├── stm32f769i_discovery_audio.c.old
+│   │       ├── stm32f769i_discovery_audio.h.old
+│   │       ├── stm32f769i_discovery_eeprom.c
+│   │       ├── stm32f769i_discovery_eeprom.h
+│   │       ├── stm32f769i_discovery_lcd.c
+│   │       ├── stm32f769i_discovery_lcd.h
+│   │       ├── stm32f769i_discovery_qspi.c.old
+│   │       ├── stm32f769i_discovery_qspi.h.old
+│   │       ├── stm32f769i_discovery_sd.c.old
+│   │       ├── stm32f769i_discovery_sd.h.old
+│   │       ├── stm32f769i_discovery_sdram.c
+│   │       ├── stm32f769i_discovery_sdram.h
+│   │       ├── stm32f769i_discovery_ts.c
+│   │       └── stm32f769i_discovery_ts.h
+│   ├── CMSIS
+│   │   ├── Device
+│   │   │   └── ST
+│   │   │       └── STM32F7xx
+│   │   │           ├── Include
+│   │   │           │   ├── stm32f769xx.h
+│   │   │           │   ├── stm32f7xx.h
+│   │   │           │   └── system_stm32f7xx.h
+│   │   │           ├── LICENSE.txt
+│   │   │           └── Source
+│   │   │               └── Templates
+│   │   ├── Include
+│   │   │   ├── cmsis_armcc.h
+│   │   │   ├── cmsis_armclang.h
+│   │   │   ├── cmsis_compiler.h
+│   │   │   ├── cmsis_gcc.h
+│   │   │   ├── cmsis_iccarm.h
+│   │   │   ├── cmsis_version.h
+│   │   │   ├── core_armv8mbl.h
+│   │   │   ├── core_armv8mml.h
+│   │   │   ├── core_cm0.h
+│   │   │   ├── core_cm0plus.h
+│   │   │   ├── core_cm1.h
+│   │   │   ├── core_cm23.h
+│   │   │   ├── core_cm3.h
+│   │   │   ├── core_cm33.h
+│   │   │   ├── core_cm4.h
+│   │   │   ├── core_cm7.h
+│   │   │   ├── core_sc000.h
+│   │   │   ├── core_sc300.h
+│   │   │   ├── mpu_armv7.h
+│   │   │   ├── mpu_armv8.h
+│   │   │   └── tz_context.h
+│   │   └── LICENSE.txt
+│   └── STM32F7xx_HAL_Driver
+│       ├── Inc
+│       │   ├── Legacy
+│       │   │   └── stm32_hal_legacy.h
+│       │   ├── stm32f7xx_hal.h
+│       │   ├── stm32f7xx_hal_cortex.h
+│       │   ├── stm32f7xx_hal_def.h
+│       │   ├── stm32f7xx_hal_dma.h
+│       │   ├── stm32f7xx_hal_dma2d.h
+│       │   ├── stm32f7xx_hal_dma_ex.h
+│       │   ├── stm32f7xx_hal_dsi.h
+│       │   ├── stm32f7xx_hal_exti.h
+│       │   ├── stm32f7xx_hal_flash.h
+│       │   ├── stm32f7xx_hal_flash_ex.h
+│       │   ├── stm32f7xx_hal_gpio.h
+│       │   ├── stm32f7xx_hal_gpio_ex.h
+│       │   ├── stm32f7xx_hal_i2c.h
+│       │   ├── stm32f7xx_hal_i2c_ex.h
+│       │   ├── stm32f7xx_hal_ltdc.h
+│       │   ├── stm32f7xx_hal_ltdc_ex.h
+│       │   ├── stm32f7xx_hal_nand.h
+│       │   ├── stm32f7xx_hal_nor.h
+│       │   ├── stm32f7xx_hal_pcd.h
+│       │   ├── stm32f7xx_hal_pcd_ex.h
+│       │   ├── stm32f7xx_hal_pwr.h
+│       │   ├── stm32f7xx_hal_pwr_ex.h
+│       │   ├── stm32f7xx_hal_rcc.h
+│       │   ├── stm32f7xx_hal_rcc_ex.h
+│       │   ├── stm32f7xx_hal_sdram.h
+│       │   ├── stm32f7xx_hal_sram.h
+│       │   ├── stm32f7xx_hal_tim.h
+│       │   ├── stm32f7xx_hal_tim_ex.h
+│       │   ├── stm32f7xx_ll_bus.h
+│       │   ├── stm32f7xx_ll_cortex.h
+│       │   ├── stm32f7xx_ll_dma.h
+│       │   ├── stm32f7xx_ll_dma2d.h
+│       │   ├── stm32f7xx_ll_exti.h
+│       │   ├── stm32f7xx_ll_fmc.h
+│       │   ├── stm32f7xx_ll_gpio.h
+│       │   ├── stm32f7xx_ll_i2c.h
+│       │   ├── stm32f7xx_ll_pwr.h
+│       │   ├── stm32f7xx_ll_rcc.h
+│       │   ├── stm32f7xx_ll_system.h
+│       │   ├── stm32f7xx_ll_usb.h
+│       │   └── stm32f7xx_ll_utils.h
+│       ├── LICENSE.txt
+│       └── Src
+│           ├── stm32f7xx_hal.c
+│           ├── stm32f7xx_hal_cortex.c
+│           ├── stm32f7xx_hal_dma.c
+│           ├── stm32f7xx_hal_dma2d.c
+│           ├── stm32f7xx_hal_dma_ex.c
+│           ├── stm32f7xx_hal_dsi.c
+│           ├── stm32f7xx_hal_exti.c
+│           ├── stm32f7xx_hal_flash.c
+│           ├── stm32f7xx_hal_flash_ex.c
+│           ├── stm32f7xx_hal_gpio.c
+│           ├── stm32f7xx_hal_i2c.c
+│           ├── stm32f7xx_hal_i2c_ex.c
+│           ├── stm32f7xx_hal_ltdc.c
+│           ├── stm32f7xx_hal_ltdc_ex.c
+│           ├── stm32f7xx_hal_nand.c
+│           ├── stm32f7xx_hal_nor.c
+│           ├── stm32f7xx_hal_pcd.c
+│           ├── stm32f7xx_hal_pcd_ex.c
+│           ├── stm32f7xx_hal_pwr.c
+│           ├── stm32f7xx_hal_pwr_ex.c
+│           ├── stm32f7xx_hal_rcc.c
+│           ├── stm32f7xx_hal_rcc_ex.c
+│           ├── stm32f7xx_hal_sdram.c
+│           ├── stm32f7xx_hal_sram.c
+│           ├── stm32f7xx_hal_tim.c
+│           ├── stm32f7xx_hal_tim_ex.c
+│           ├── stm32f7xx_ll_fmc.c
+│           └── stm32f7xx_ll_usb.c
+├── Middlewares
+│   ├── ST
+│   │   └── STM32_USB_Device_Library
+│   │       ├── Class
+│   │       │   └── CDC
+│   │       │       ├── Inc
+│   │       │       │   └── usbd_cdc.h
+│   │       │       └── Src
+│   │       │           └── usbd_cdc.c
+│   │       ├── Core
+│   │       │   ├── Inc
+│   │       │   │   ├── usbd_core.h
+│   │       │   │   ├── usbd_ctlreq.h
+│   │       │   │   ├── usbd_def.h
+│   │       │   │   └── usbd_ioreq.h
+│   │       │   └── Src
+│   │       │       ├── usbd_core.c
+│   │       │       ├── usbd_ctlreq.c
+│   │       │       └── usbd_ioreq.c
+│   │       └── LICENSE.txt
+│   └── Third_Party
+│       └── FreeRTOS
+│           └── Source
+│               ├── CMSIS_RTOS_V2
+│               │   ├── cmsis_os.h
+│               │   ├── cmsis_os2.c
+│               │   └── cmsis_os2.h
+│               ├── croutine.c
+│               ├── event_groups.c
+│               ├── include
+│               │   ├── FreeRTOS.h
+│               │   ├── StackMacros.h
+│               │   ├── croutine.h
+│               │   ├── deprecated_definitions.h
+│               │   ├── event_groups.h
+│               │   ├── list.h
+│               │   ├── message_buffer.h
+│               │   ├── mpu_prototypes.h
+│               │   ├── mpu_wrappers.h
+│               │   ├── portable.h
+│               │   ├── projdefs.h
+│               │   ├── queue.h
+│               │   ├── semphr.h
+│               │   ├── stack_macros.h
+│               │   ├── stream_buffer.h
+│               │   ├── task.h
+│               │   └── timers.h
+│               ├── list.c
+│               ├── portable
+│               │   ├── GCC
+│               │   │   └── ARM_CM7
+│               │   │       └── r0p1
+│               │   │           ├── port.c
+│               │   │           └── portmacro.h
+│               │   └── MemMang
+│               │       └── heap_4.c
+│               ├── queue.c
+│               ├── stream_buffer.c
+│               ├── tasks.c
+│               └── timers.c
+├── STM32F769NIHX_FLASH.ld
+├── STM32F769NIHX_RAM.ld
+├── TestF Debug.launch
+├── TestF.ioc
+├── TestF.ioc.txt
+├── USB_DEVICE
+│   ├── App
+│   │   ├── usb_device.c
+│   │   ├── usb_device.h
+│   │   ├── usbd_cdc_if.c
+│   │   ├── usbd_cdc_if.h
+│   │   ├── usbd_desc.c
+│   │   └── usbd_desc.h
+│   └── Target
+│       ├── usbd_conf.c
+│       └── usbd_conf.h
+├── Utilities
+│   ├── Fonts
+│   │   ├── font12.c
+│   │   ├── font16.c
+│   │   ├── font20.c
+│   │   ├── font24.c
+│   │   ├── font8.c
+│   │   └── fonts.h
+│   └── Log
+├── gitlog.txt
+├── project_tree.txt
+└── stm32f769i_discovery.c
+
+90 directories, 511 files

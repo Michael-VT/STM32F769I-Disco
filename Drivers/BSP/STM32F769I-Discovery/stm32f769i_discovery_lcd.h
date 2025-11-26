@@ -29,22 +29,19 @@
 /* Include LCD component Driver */
 
 /* Include OTM8009A LCD Driver IC driver code */
-#include "otm8009a.h"
+#include "../Components/otm8009a/otm8009a.h"
 /* Include NT35510 LCD Driver IC driver code */
-//#include "../Components/nt35510/nt35510.h"
+#include "../Components/nt35510/nt35510.h"
 /* Include ADV7533 HDMI Driver IC driver code */
-//#include "../Components/adv7533/adv7533.h"
+#include "../Components/adv7533/adv7533.h"
    
 /* Include SDRAM Driver */
-//#include "stm32f769i_discovery_sdram.h"
-//#include "stm32f769i_discovery.h"
+#include "stm32f769i_discovery_sdram.h"
+#include "stm32f769i_discovery.h"
 
-#include "fonts.h"
-#include "stm32f769i_discovery_lcd.h"
+#include "../../../Utilities/Fonts/fonts.h"
 
 #include <string.h> /* use of memset() */
-#include "stm32f7xx_hal.h"
-
 
 /** @addtogroup BSP
   * @{
