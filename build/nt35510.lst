@@ -1,0 +1,425 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"nt35510.c"
+  15              		.text
+  16              		.section	.rodata.NT35510_Init.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 55AA5208 		.ascii	"U\252R\010\001\360\000"
+  19      01F000
+  20 0007 00       		.align	2
+  21              	.LC5:
+  22 0008 01020202 		.ascii	"\001\002\002\002\270\000"
+  22      B800
+  23              		.section	.text.NT35510_Init,"ax",%progbits
+  24              		.align	1
+  25              		.global	NT35510_Init
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  30              	NT35510_Init:
+  31              		@ args = 0, pretend = 0, frame = 192
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 30B5     		push	{r4, r5, lr}
+  34 0002 B1B0     		sub	sp, sp, #196
+  35 0004 0446     		mov	r4, r0
+  36 0006 0D46     		mov	r5, r1
+  37 0008 7820     		movs	r0, #120
+  38 000a FFF7FEFF 		bl	NT35510_IO_Delay
+  39 000e A94B     		ldr	r3, .L8
+  40 0010 93E80300 		ldm	r3, {r0, r1}
+  41 0014 2E90     		str	r0, [sp, #184]
+  42 0016 ADF8BC10 		strh	r1, [sp, #188]	@ movhi
+  43 001a A74B     		ldr	r3, .L8+4
+  44 001c 2D93     		str	r3, [sp, #180]
+  45 001e A74B     		ldr	r3, .L8+8
+  46 0020 2C93     		str	r3, [sp, #176]
+  47 0022 A74B     		ldr	r3, .L8+12
+  48 0024 2B93     		str	r3, [sp, #172]
+  49 0026 A74B     		ldr	r3, .L8+16
+  50 0028 2A93     		str	r3, [sp, #168]
+  51 002a A74B     		ldr	r3, .L8+20
+  52 002c 2993     		str	r3, [sp, #164]
+  53 002e A74B     		ldr	r3, .L8+24
+  54 0030 2893     		str	r3, [sp, #160]
+  55 0032 40F2BF13 		movw	r3, #447
+  56 0036 ADF89C30 		strh	r3, [sp, #156]	@ movhi
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 2
+
+
+  57 003a A54B     		ldr	r3, .L8+28
+  58 003c 2693     		str	r3, [sp, #152]
+  59 003e A54B     		ldr	r3, .L8+32
+  60 0040 2593     		str	r3, [sp, #148]
+  61 0042 A54B     		ldr	r3, .L8+36
+  62 0044 2493     		str	r3, [sp, #144]
+  63 0046 A54B     		ldr	r3, .L8+40
+  64 0048 2393     		str	r3, [sp, #140]
+  65 004a A54B     		ldr	r3, .L8+44
+  66 004c 2293     		str	r3, [sp, #136]
+  67 004e 03F18073 		add	r3, r3, #16777216
+  68 0052 2193     		str	r3, [sp, #132]
+  69 0054 A34B     		ldr	r3, .L8+48
+  70 0056 1A46     		mov	r2, r3
+  71 0058 52F8041B 		ldr	r1, [r2], #4
+  72 005c ADF88010 		strh	r1, [sp, #128]	@ movhi
+  73 0060 090C     		lsrs	r1, r1, #16
+  74 0062 8DF88210 		strb	r1, [sp, #130]
+  75 0066 92E80300 		ldm	r2, {r0, r1}
+  76 006a 1E90     		str	r0, [sp, #120]
+  77 006c ADF87C10 		strh	r1, [sp, #124]	@ movhi
+  78 0070 DA68     		ldr	r2, [r3, #12]
+  79 0072 ADF87420 		strh	r2, [sp, #116]	@ movhi
+  80 0076 120C     		lsrs	r2, r2, #16
+  81 0078 8DF87620 		strb	r2, [sp, #118]
+  82 007c 40F2B632 		movw	r2, #950
+  83 0080 ADF87020 		strh	r2, [sp, #112]	@ movhi
+  84 0084 45F2B502 		movw	r2, #20661
+  85 0088 ADF86C20 		strh	r2, [sp, #108]	@ movhi
+  86 008c 1A69     		ldr	r2, [r3, #16]
+  87 008e ADF86820 		strh	r2, [sp, #104]	@ movhi
+  88 0092 120C     		lsrs	r2, r2, #16
+  89 0094 8DF86A20 		strb	r2, [sp, #106]
+  90 0098 934A     		ldr	r2, .L8+52
+  91 009a 92E80300 		ldm	r2, {r0, r1}
+  92 009e 1890     		str	r0, [sp, #96]
+  93 00a0 8DF86410 		strb	r1, [sp, #100]
+  94 00a4 4FF03C42 		mov	r2, #-1140850688
+  95 00a8 1792     		str	r2, [sp, #92]
+  96 00aa 904A     		ldr	r2, .L8+56
+  97 00ac 1692     		str	r2, [sp, #88]
+  98 00ae 4FF4DD72 		mov	r2, #442
+  99 00b2 ADF85420 		strh	r2, [sp, #84]	@ movhi
+ 100 00b6 3622     		movs	r2, #54
+ 101 00b8 ADF85020 		strh	r2, [sp, #80]	@ movhi
+ 102 00bc 03F11402 		add	r2, r3, #20
+ 103 00c0 92E80300 		ldm	r2, {r0, r1}
+ 104 00c4 1290     		str	r0, [sp, #72]
+ 105 00c6 8DF84C10 		strb	r1, [sp, #76]
+ 106 00ca 03F11C02 		add	r2, r3, #28
+ 107 00ce 92E80300 		ldm	r2, {r0, r1}
+ 108 00d2 1090     		str	r0, [sp, #64]
+ 109 00d4 8DF84410 		strb	r1, [sp, #68]
+ 110 00d8 46F23602 		movw	r2, #24630
+ 111 00dc ADF83C20 		strh	r2, [sp, #60]	@ movhi
+ 112 00e0 03F12402 		add	r2, r3, #36
+ 113 00e4 92E80300 		ldm	r2, {r0, r1}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 3
+
+
+ 114 00e8 0D90     		str	r0, [sp, #52]
+ 115 00ea 8DF83810 		strb	r1, [sp, #56]
+ 116 00ee 2C33     		adds	r3, r3, #44
+ 117 00f0 93E80300 		ldm	r3, {r0, r1}
+ 118 00f4 0B90     		str	r0, [sp, #44]
+ 119 00f6 8DF83010 		strb	r1, [sp, #48]
+ 120 00fa 3523     		movs	r3, #53
+ 121 00fc ADF82830 		strh	r3, [sp, #40]	@ movhi
+ 122 0100 1123     		movs	r3, #17
+ 123 0102 ADF82430 		strh	r3, [sp, #36]	@ movhi
+ 124 0106 2923     		movs	r3, #41
+ 125 0108 ADF82030 		strh	r3, [sp, #32]	@ movhi
+ 126 010c 47F65173 		movw	r3, #32593
+ 127 0110 ADF81C30 		strh	r3, [sp, #28]	@ movhi
+ 128 0114 42F65343 		movw	r3, #11347
+ 129 0118 ADF81830 		strh	r3, [sp, #24]	@ movhi
+ 130 011c 40F25523 		movw	r3, #597
+ 131 0120 ADF81430 		strh	r3, [sp, #20]	@ movhi
+ 132 0124 4FF65E73 		movw	r3, #65374
+ 133 0128 ADF81030 		strh	r3, [sp, #16]	@ movhi
+ 134 012c 2C23     		movs	r3, #44
+ 135 012e ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 136 0132 45F23A53 		movw	r3, #21818
+ 137 0136 ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 138 013a 47F23A73 		movw	r3, #30522
+ 139 013e ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 140 0142 2EA9     		add	r1, sp, #184
+ 141 0144 0520     		movs	r0, #5
+ 142 0146 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 143 014a 2DA9     		add	r1, sp, #180
+ 144 014c 0320     		movs	r0, #3
+ 145 014e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 146 0152 2CA9     		add	r1, sp, #176
+ 147 0154 0320     		movs	r0, #3
+ 148 0156 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 149 015a 2BA9     		add	r1, sp, #172
+ 150 015c 0320     		movs	r0, #3
+ 151 015e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 152 0162 2AA9     		add	r1, sp, #168
+ 153 0164 0320     		movs	r0, #3
+ 154 0166 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 155 016a 29A9     		add	r1, sp, #164
+ 156 016c 0320     		movs	r0, #3
+ 157 016e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 158 0172 28A9     		add	r1, sp, #160
+ 159 0174 0320     		movs	r0, #3
+ 160 0176 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 161 017a 27A9     		add	r1, sp, #156
+ 162 017c 0120     		movs	r0, #1
+ 163 017e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 164 0182 26A9     		add	r1, sp, #152
+ 165 0184 0320     		movs	r0, #3
+ 166 0186 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 167 018a 25A9     		add	r1, sp, #148
+ 168 018c 0320     		movs	r0, #3
+ 169 018e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 170 0192 24A9     		add	r1, sp, #144
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 4
+
+
+ 171 0194 0320     		movs	r0, #3
+ 172 0196 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 173 019a 23A9     		add	r1, sp, #140
+ 174 019c 0320     		movs	r0, #3
+ 175 019e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 176 01a2 22A9     		add	r1, sp, #136
+ 177 01a4 0320     		movs	r0, #3
+ 178 01a6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 179 01aa 21A9     		add	r1, sp, #132
+ 180 01ac 0320     		movs	r0, #3
+ 181 01ae FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 182 01b2 20A9     		add	r1, sp, #128
+ 183 01b4 0220     		movs	r0, #2
+ 184 01b6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 185 01ba 1EA9     		add	r1, sp, #120
+ 186 01bc 0520     		movs	r0, #5
+ 187 01be FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 188 01c2 1DA9     		add	r1, sp, #116
+ 189 01c4 0220     		movs	r0, #2
+ 190 01c6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 191 01ca 1CA9     		add	r1, sp, #112
+ 192 01cc 0120     		movs	r0, #1
+ 193 01ce FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 194 01d2 1BA9     		add	r1, sp, #108
+ 195 01d4 0120     		movs	r0, #1
+ 196 01d6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 197 01da 1AA9     		add	r1, sp, #104
+ 198 01dc 0220     		movs	r0, #2
+ 199 01de FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 200 01e2 18A9     		add	r1, sp, #96
+ 201 01e4 0420     		movs	r0, #4
+ 202 01e6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 203 01ea 17A9     		add	r1, sp, #92
+ 204 01ec 0320     		movs	r0, #3
+ 205 01ee FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 206 01f2 16A9     		add	r1, sp, #88
+ 207 01f4 0320     		movs	r0, #3
+ 208 01f6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 209 01fa 15A9     		add	r1, sp, #84
+ 210 01fc 0120     		movs	r0, #1
+ 211 01fe FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 212 0202 0AA9     		add	r1, sp, #40
+ 213 0204 0020     		movs	r0, #0
+ 214 0206 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 215 020a 01A9     		add	r1, sp, #4
+ 216 020c 0020     		movs	r0, #0
+ 217 020e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 218 0212 C820     		movs	r0, #200
+ 219 0214 FFF7FEFF 		bl	NT35510_IO_Delay
+ 220 0218 002D     		cmp	r5, #0
+ 221 021a 34D1     		bne	.L2
+ 222 021c 14A9     		add	r1, sp, #80
+ 223 021e 0120     		movs	r0, #1
+ 224 0220 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 225 0224 12A9     		add	r1, sp, #72
+ 226 0226 0420     		movs	r0, #4
+ 227 0228 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 5
+
+
+ 228 022c 10A9     		add	r1, sp, #64
+ 229 022e 0420     		movs	r0, #4
+ 230 0230 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 231              	.L3:
+ 232 0234 09A9     		add	r1, sp, #36
+ 233 0236 0020     		movs	r0, #0
+ 234 0238 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 235 023c 7820     		movs	r0, #120
+ 236 023e FFF7FEFF 		bl	NT35510_IO_Delay
+ 237 0242 6CB3     		cbz	r4, .L4
+ 238 0244 022C     		cmp	r4, #2
+ 239 0246 30D1     		bne	.L5
+ 240 0248 02A9     		add	r1, sp, #8
+ 241 024a 0120     		movs	r0, #1
+ 242 024c FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 243              	.L6:
+ 244 0250 07A9     		add	r1, sp, #28
+ 245 0252 0120     		movs	r0, #1
+ 246 0254 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 247 0258 06A9     		add	r1, sp, #24
+ 248 025a 0120     		movs	r0, #1
+ 249 025c FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 250 0260 05A9     		add	r1, sp, #20
+ 251 0262 0120     		movs	r0, #1
+ 252 0264 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 253 0268 04A9     		add	r1, sp, #16
+ 254 026a 0120     		movs	r0, #1
+ 255 026c FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 256 0270 08A9     		add	r1, sp, #32
+ 257 0272 0020     		movs	r0, #0
+ 258 0274 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 259 0278 03A9     		add	r1, sp, #12
+ 260 027a 0020     		movs	r0, #0
+ 261 027c FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 262 0280 0020     		movs	r0, #0
+ 263 0282 31B0     		add	sp, sp, #196
+ 264              		@ sp needed
+ 265 0284 30BD     		pop	{r4, r5, pc}
+ 266              	.L2:
+ 267 0286 0FA9     		add	r1, sp, #60
+ 268 0288 0120     		movs	r0, #1
+ 269 028a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 270 028e 0DA9     		add	r1, sp, #52
+ 271 0290 0420     		movs	r0, #4
+ 272 0292 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 273 0296 0BA9     		add	r1, sp, #44
+ 274 0298 0420     		movs	r0, #4
+ 275 029a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 276 029e C9E7     		b	.L3
+ 277              	.L4:
+ 278 02a0 01A9     		add	r1, sp, #4
+ 279 02a2 0120     		movs	r0, #1
+ 280 02a4 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 281 02a8 D2E7     		b	.L6
+ 282              	.L5:
+ 283 02aa 01A9     		add	r1, sp, #4
+ 284 02ac 0120     		movs	r0, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 6
+
+
+ 285 02ae FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 286 02b2 CDE7     		b	.L6
+ 287              	.L9:
+ 288              		.align	2
+ 289              	.L8:
+ 290 02b4 00000000 		.word	.LC0
+ 291 02b8 030303B0 		.word	-1341979901
+ 292 02bc 464646B6 		.word	-1236908474
+ 293 02c0 030303B1 		.word	-1325202685
+ 294 02c4 363636B7 		.word	-1221183946
+ 295 02c8 000002B2 		.word	-1308491776
+ 296 02cc 262626B8 		.word	-1205459418
+ 297 02d0 090909B3 		.word	-1291253495
+ 298 02d4 363636B9 		.word	-1187629514
+ 299 02d8 080808B5 		.word	-1257764856
+ 300 02dc 262626BA 		.word	-1171904986
+ 301 02e0 008000BC 		.word	-1140817920
+ 302 02e4 00000000 		.word	.LANCHOR0
+ 303 02e8 08000000 		.word	.LC5
+ 304 02ec 030000CC 		.word	-872415229
+ 306              		.section	.text.NT35510_DeInit,"ax",%progbits
+ 307              		.align	1
+ 308              		.global	NT35510_DeInit
+ 309              		.syntax unified
+ 310              		.thumb
+ 311              		.thumb_func
+ 313              	NT35510_DeInit:
+ 314              		@ args = 0, pretend = 0, frame = 8
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+ 316 0000 00B5     		push	{lr}
+ 317 0002 83B0     		sub	sp, sp, #12
+ 318 0004 2823     		movs	r3, #40
+ 319 0006 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 320 000a 1023     		movs	r3, #16
+ 321 000c ADF80030 		strh	r3, [sp]	@ movhi
+ 322 0010 01A9     		add	r1, sp, #4
+ 323 0012 0020     		movs	r0, #0
+ 324 0014 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 325 0018 7820     		movs	r0, #120
+ 326 001a FFF7FEFF 		bl	NT35510_IO_Delay
+ 327 001e 6946     		mov	r1, sp
+ 328 0020 0020     		movs	r0, #0
+ 329 0022 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 330 0026 0020     		movs	r0, #0
+ 331 0028 03B0     		add	sp, sp, #12
+ 332              		@ sp needed
+ 333 002a 5DF804FB 		ldr	pc, [sp], #4
+ 335              		.section	.text.NT35510_ReadID,"ax",%progbits
+ 336              		.align	1
+ 337              		.global	NT35510_ReadID
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	NT35510_ReadID:
+ 343              		@ args = 0, pretend = 0, frame = 8
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345 0000 00B5     		push	{lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 7
+
+
+ 346 0002 83B0     		sub	sp, sp, #12
+ 347 0004 0023     		movs	r3, #0
+ 348 0006 8DF80730 		strb	r3, [sp, #7]
+ 349 000a 0122     		movs	r2, #1
+ 350 000c 0DF10701 		add	r1, sp, #7
+ 351 0010 DB20     		movs	r0, #219
+ 352 0012 FFF7FEFF 		bl	DSI_IO_ReadCmd
+ 353 0016 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 354 001a 03B0     		add	sp, sp, #12
+ 355              		@ sp needed
+ 356 001c 5DF804FB 		ldr	pc, [sp], #4
+ 358              		.section	.rodata
+ 359              		.align	2
+ 360              		.set	.LANCHOR0,. + 0
+ 361              	.LC1:
+ 362 0000 0050BE   		.ascii	"\000P\276"
+ 363 0003 00       		.space	1
+ 364              	.LC2:
+ 365 0004 55AA5208 		.ascii	"U\252R\010\000\360"
+ 365      00F0
+ 366 000a 0000     		.space	2
+ 367              	.LC3:
+ 368 000c FC00B1   		.ascii	"\374\000\261"
+ 369 000f 00       		.space	1
+ 370              	.LC4:
+ 371 0010 0000B7   		.ascii	"\000\000\267"
+ 372 0013 00       		.space	1
+ 373              	.LC6:
+ 374 0014 000001DF 		.ascii	"\000\000\001\337*"
+ 374      2A
+ 375 0019 000000   		.space	3
+ 376              	.LC7:
+ 377 001c 0000031F 		.ascii	"\000\000\003\037+"
+ 377      2B
+ 378 0021 000000   		.space	3
+ 379              	.LC8:
+ 380 0024 0000031F 		.ascii	"\000\000\003\037*"
+ 380      2A
+ 381 0029 000000   		.space	3
+ 382              	.LC9:
+ 383 002c 000001DF 		.ascii	"\000\000\001\337+"
+ 383      2B
+ 384              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 nt35510.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:17     .rodata.NT35510_Init.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:24     .text.NT35510_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:30     .text.NT35510_Init:00000000 NT35510_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:290    .text.NT35510_Init:000002b4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:307    .text.NT35510_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:313    .text.NT35510_DeInit:00000000 NT35510_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:336    .text.NT35510_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:342    .text.NT35510_ReadID:00000000 NT35510_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cca1yoGO.s:359    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+NT35510_IO_Delay
+DSI_IO_WriteCmd
+DSI_IO_ReadCmd

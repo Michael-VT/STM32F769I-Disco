@@ -1,0 +1,1185 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"otm8009a.c"
+  15              		.text
+  16              		.section	.text.DSI_IO_WriteCmd,"ax",%progbits
+  17              		.align	1
+  18              		.weak	DSI_IO_WriteCmd
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	DSI_IO_WriteCmd:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 7047     		bx	lr
+  29              		.section	.text.DSI_IO_ReadCmd,"ax",%progbits
+  30              		.align	1
+  31              		.weak	DSI_IO_ReadCmd
+  32              		.syntax unified
+  33              		.thumb
+  34              		.thumb_func
+  36              	DSI_IO_ReadCmd:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 0020     		movs	r0, #0
+  41 0002 7047     		bx	lr
+  43              		.section	.text.OTM8009A_Init,"ax",%progbits
+  44              		.align	1
+  45              		.global	OTM8009A_Init
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  50              	OTM8009A_Init:
+  51              		@ args = 0, pretend = 0, frame = 8
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  54 0004 83B0     		sub	sp, sp, #12
+  55 0006 0090     		str	r0, [sp]
+  56 0008 0191     		str	r1, [sp, #4]
+  57 000a D74C     		ldr	r4, .L9
+  58 000c 2146     		mov	r1, r4
+  59 000e 0020     		movs	r0, #0
+  60 0010 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  61 0014 D549     		ldr	r1, .L9+4
+  62 0016 0320     		movs	r0, #3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 2
+
+
+  63 0018 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  64 001c D44D     		ldr	r5, .L9+8
+  65 001e 2946     		mov	r1, r5
+  66 0020 0020     		movs	r0, #0
+  67 0022 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  68 0026 D349     		ldr	r1, .L9+12
+  69 0028 0220     		movs	r0, #2
+  70 002a FFF7FEFF 		bl	DSI_IO_WriteCmd
+  71 002e 2946     		mov	r1, r5
+  72 0030 0020     		movs	r0, #0
+  73 0032 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  74 0036 D049     		ldr	r1, .L9+16
+  75 0038 0020     		movs	r0, #0
+  76 003a FFF7FEFF 		bl	DSI_IO_WriteCmd
+  77 003e 0A20     		movs	r0, #10
+  78 0040 FFF7FEFF 		bl	OTM8009A_IO_Delay
+  79 0044 CD49     		ldr	r1, .L9+20
+  80 0046 0020     		movs	r0, #0
+  81 0048 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  82 004c CC49     		ldr	r1, .L9+24
+  83 004e 0020     		movs	r0, #0
+  84 0050 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  85 0054 0A20     		movs	r0, #10
+  86 0056 FFF7FEFF 		bl	OTM8009A_IO_Delay
+  87 005a CA49     		ldr	r1, .L9+28
+  88 005c 0020     		movs	r0, #0
+  89 005e FFF7FEFF 		bl	DSI_IO_WriteCmd
+  90 0062 C949     		ldr	r1, .L9+32
+  91 0064 0020     		movs	r0, #0
+  92 0066 FFF7FEFF 		bl	DSI_IO_WriteCmd
+  93 006a C849     		ldr	r1, .L9+36
+  94 006c 0020     		movs	r0, #0
+  95 006e FFF7FEFF 		bl	DSI_IO_WriteCmd
+  96 0072 DFF80884 		ldr	r8, .L9+276
+  97 0076 4146     		mov	r1, r8
+  98 0078 0020     		movs	r0, #0
+  99 007a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 100 007e C449     		ldr	r1, .L9+40
+ 101 0080 0020     		movs	r0, #0
+ 102 0082 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 103 0086 C349     		ldr	r1, .L9+44
+ 104 0088 0020     		movs	r0, #0
+ 105 008a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 106 008e 2146     		mov	r1, r4
+ 107 0090 0020     		movs	r0, #0
+ 108 0092 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 109 0096 C049     		ldr	r1, .L9+48
+ 110 0098 0020     		movs	r0, #0
+ 111 009a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 112 009e BF4E     		ldr	r6, .L9+52
+ 113 00a0 3146     		mov	r1, r6
+ 114 00a2 0020     		movs	r0, #0
+ 115 00a4 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 116 00a8 BD49     		ldr	r1, .L9+56
+ 117 00aa 0020     		movs	r0, #0
+ 118 00ac FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 119 00b0 BC4F     		ldr	r7, .L9+60
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 3
+
+
+ 120 00b2 3946     		mov	r1, r7
+ 121 00b4 0020     		movs	r0, #0
+ 122 00b6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 123 00ba BB49     		ldr	r1, .L9+64
+ 124 00bc 0020     		movs	r0, #0
+ 125 00be FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 126 00c2 BA49     		ldr	r1, .L9+68
+ 127 00c4 0020     		movs	r0, #0
+ 128 00c6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 129 00ca B949     		ldr	r1, .L9+72
+ 130 00cc 0020     		movs	r0, #0
+ 131 00ce FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 132 00d2 B849     		ldr	r1, .L9+76
+ 133 00d4 0020     		movs	r0, #0
+ 134 00d6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 135 00da 4146     		mov	r1, r8
+ 136 00dc 0020     		movs	r0, #0
+ 137 00de FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 138 00e2 2146     		mov	r1, r4
+ 139 00e4 0020     		movs	r0, #0
+ 140 00e6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 141 00ea B349     		ldr	r1, .L9+80
+ 142 00ec 0220     		movs	r0, #2
+ 143 00ee FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 144 00f2 B249     		ldr	r1, .L9+84
+ 145 00f4 0020     		movs	r0, #0
+ 146 00f6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 147 00fa B149     		ldr	r1, .L9+88
+ 148 00fc 0020     		movs	r0, #0
+ 149 00fe FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 150 0102 B049     		ldr	r1, .L9+92
+ 151 0104 0020     		movs	r0, #0
+ 152 0106 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 153 010a AF49     		ldr	r1, .L9+96
+ 154 010c 0020     		movs	r0, #0
+ 155 010e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 156 0112 AE49     		ldr	r1, .L9+100
+ 157 0114 0020     		movs	r0, #0
+ 158 0116 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 159 011a AD49     		ldr	r1, .L9+104
+ 160 011c 0020     		movs	r0, #0
+ 161 011e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 162 0122 3146     		mov	r1, r6
+ 163 0124 0020     		movs	r0, #0
+ 164 0126 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 165 012a AA49     		ldr	r1, .L9+108
+ 166 012c 0020     		movs	r0, #0
+ 167 012e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 168 0132 3946     		mov	r1, r7
+ 169 0134 0020     		movs	r0, #0
+ 170 0136 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 171 013a A749     		ldr	r1, .L9+112
+ 172 013c 0020     		movs	r0, #0
+ 173 013e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 174 0142 A649     		ldr	r1, .L9+116
+ 175 0144 0020     		movs	r0, #0
+ 176 0146 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 4
+
+
+ 177 014a A549     		ldr	r1, .L9+120
+ 178 014c 0220     		movs	r0, #2
+ 179 014e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 180 0152 2946     		mov	r1, r5
+ 181 0154 0020     		movs	r0, #0
+ 182 0156 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 183 015a A249     		ldr	r1, .L9+124
+ 184 015c 0620     		movs	r0, #6
+ 185 015e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 186 0162 DFF81CA3 		ldr	r10, .L9+280
+ 187 0166 5146     		mov	r1, r10
+ 188 0168 0020     		movs	r0, #0
+ 189 016a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 190 016e 9E49     		ldr	r1, .L9+128
+ 191 0170 0E20     		movs	r0, #14
+ 192 0172 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 193 0176 DFF80C93 		ldr	r9, .L9+284
+ 194 017a 4946     		mov	r1, r9
+ 195 017c 0020     		movs	r0, #0
+ 196 017e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 197 0182 9A49     		ldr	r1, .L9+132
+ 198 0184 0E20     		movs	r0, #14
+ 199 0186 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 200 018a DFF8FC82 		ldr	r8, .L9+288
+ 201 018e 4146     		mov	r1, r8
+ 202 0190 0020     		movs	r0, #0
+ 203 0192 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 204 0196 9649     		ldr	r1, .L9+136
+ 205 0198 0A20     		movs	r0, #10
+ 206 019a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 207 019e 954F     		ldr	r7, .L9+140
+ 208 01a0 3946     		mov	r1, r7
+ 209 01a2 0020     		movs	r0, #0
+ 210 01a4 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 211 01a8 9349     		ldr	r1, .L9+144
+ 212 01aa 0020     		movs	r0, #0
+ 213 01ac FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 214 01b0 2946     		mov	r1, r5
+ 215 01b2 0020     		movs	r0, #0
+ 216 01b4 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 217 01b8 9049     		ldr	r1, .L9+148
+ 218 01ba 0A20     		movs	r0, #10
+ 219 01bc FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 220 01c0 DFF8C8B2 		ldr	fp, .L9+292
+ 221 01c4 5946     		mov	r1, fp
+ 222 01c6 0020     		movs	r0, #0
+ 223 01c8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 224 01cc 8C49     		ldr	r1, .L9+152
+ 225 01ce 0F20     		movs	r0, #15
+ 226 01d0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 227 01d4 5146     		mov	r1, r10
+ 228 01d6 0020     		movs	r0, #0
+ 229 01d8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 230 01dc 8949     		ldr	r1, .L9+156
+ 231 01de 0F20     		movs	r0, #15
+ 232 01e0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 233 01e4 4946     		mov	r1, r9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 5
+
+
+ 234 01e6 0020     		movs	r0, #0
+ 235 01e8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 236 01ec 8649     		ldr	r1, .L9+160
+ 237 01ee 0A20     		movs	r0, #10
+ 238 01f0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 239 01f4 4146     		mov	r1, r8
+ 240 01f6 0020     		movs	r0, #0
+ 241 01f8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 242 01fc 8349     		ldr	r1, .L9+164
+ 243 01fe 0F20     		movs	r0, #15
+ 244 0200 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 245 0204 3946     		mov	r1, r7
+ 246 0206 0020     		movs	r0, #0
+ 247 0208 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 248 020c 8049     		ldr	r1, .L9+168
+ 249 020e 0F20     		movs	r0, #15
+ 250 0210 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 251 0214 7F49     		ldr	r1, .L9+172
+ 252 0216 0020     		movs	r0, #0
+ 253 0218 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 254 021c 7E49     		ldr	r1, .L9+176
+ 255 021e 0A20     		movs	r0, #10
+ 256 0220 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 257 0224 7D49     		ldr	r1, .L9+180
+ 258 0226 0020     		movs	r0, #0
+ 259 0228 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 260 022c 7C49     		ldr	r1, .L9+184
+ 261 022e 0A20     		movs	r0, #10
+ 262 0230 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 263 0234 2946     		mov	r1, r5
+ 264 0236 0020     		movs	r0, #0
+ 265 0238 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 266 023c 7949     		ldr	r1, .L9+188
+ 267 023e 0A20     		movs	r0, #10
+ 268 0240 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 269 0244 5946     		mov	r1, fp
+ 270 0246 0020     		movs	r0, #0
+ 271 0248 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 272 024c 7649     		ldr	r1, .L9+192
+ 273 024e 0F20     		movs	r0, #15
+ 274 0250 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 275 0254 5146     		mov	r1, r10
+ 276 0256 0020     		movs	r0, #0
+ 277 0258 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 278 025c 7349     		ldr	r1, .L9+196
+ 279 025e 0F20     		movs	r0, #15
+ 280 0260 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 281 0264 4946     		mov	r1, r9
+ 282 0266 0020     		movs	r0, #0
+ 283 0268 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 284 026c 7049     		ldr	r1, .L9+200
+ 285 026e 0A20     		movs	r0, #10
+ 286 0270 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 287 0274 4146     		mov	r1, r8
+ 288 0276 0020     		movs	r0, #0
+ 289 0278 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 290 027c 6D49     		ldr	r1, .L9+204
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 6
+
+
+ 291 027e 0F20     		movs	r0, #15
+ 292 0280 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 293 0284 3946     		mov	r1, r7
+ 294 0286 0020     		movs	r0, #0
+ 295 0288 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 296 028c 6A49     		ldr	r1, .L9+208
+ 297 028e 0F20     		movs	r0, #15
+ 298 0290 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 299 0294 3146     		mov	r1, r6
+ 300 0296 0020     		movs	r0, #0
+ 301 0298 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 302 029c 6749     		ldr	r1, .L9+212
+ 303 029e 0020     		movs	r0, #0
+ 304 02a0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 305 02a4 6649     		ldr	r1, .L9+216
+ 306 02a6 0020     		movs	r0, #0
+ 307 02a8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 308 02ac 6549     		ldr	r1, .L9+220
+ 309 02ae 0020     		movs	r0, #0
+ 310 02b0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 311 02b4 6449     		ldr	r1, .L9+224
+ 312 02b6 0020     		movs	r0, #0
+ 313 02b8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 314 02bc 6349     		ldr	r1, .L9+228
+ 315 02be 0020     		movs	r0, #0
+ 316 02c0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 317 02c4 2146     		mov	r1, r4
+ 318 02c6 0020     		movs	r0, #0
+ 319 02c8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 320 02cc 6049     		ldr	r1, .L9+232
+ 321 02ce 0320     		movs	r0, #3
+ 322 02d0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 323 02d4 2146     		mov	r1, r4
+ 324 02d6 0020     		movs	r0, #0
+ 325 02d8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 326 02dc 2146     		mov	r1, r4
+ 327 02de 0020     		movs	r0, #0
+ 328 02e0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 329 02e4 5B49     		ldr	r1, .L9+236
+ 330 02e6 1020     		movs	r0, #16
+ 331 02e8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 332 02ec 2146     		mov	r1, r4
+ 333 02ee 0020     		movs	r0, #0
+ 334 02f0 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 335 02f4 5849     		ldr	r1, .L9+240
+ 336 02f6 1020     		movs	r0, #16
+ 337 02f8 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 338 02fc 5749     		ldr	r1, .L9+244
+ 339 02fe 0020     		movs	r0, #0
+ 340 0300 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 341 0304 7820     		movs	r0, #120
+ 342 0306 FFF7FEFF 		bl	OTM8009A_IO_Delay
+ 343 030a 009B     		ldr	r3, [sp]
+ 344 030c 002B     		cmp	r3, #0
+ 345 030e 00F0BF80 		beq	.L4
+ 346 0312 022B     		cmp	r3, #2
+ 347 0314 03D1     		bne	.L5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 7
+
+
+ 348 0316 5249     		ldr	r1, .L9+248
+ 349 0318 0020     		movs	r0, #0
+ 350 031a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 351              	.L5:
+ 352 031e 019B     		ldr	r3, [sp, #4]
+ 353 0320 012B     		cmp	r3, #1
+ 354 0322 00F0BA80 		beq	.L8
+ 355              	.L6:
+ 356 0326 4F49     		ldr	r1, .L9+252
+ 357 0328 0020     		movs	r0, #0
+ 358 032a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 359 032e 4E49     		ldr	r1, .L9+256
+ 360 0330 0020     		movs	r0, #0
+ 361 0332 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 362 0336 4D49     		ldr	r1, .L9+260
+ 363 0338 0020     		movs	r0, #0
+ 364 033a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 365 033e 4C49     		ldr	r1, .L9+264
+ 366 0340 0020     		movs	r0, #0
+ 367 0342 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 368 0346 4B49     		ldr	r1, .L9+268
+ 369 0348 0020     		movs	r0, #0
+ 370 034a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 371 034e 0649     		ldr	r1, .L9
+ 372 0350 0020     		movs	r0, #0
+ 373 0352 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 374 0356 4849     		ldr	r1, .L9+272
+ 375 0358 0020     		movs	r0, #0
+ 376 035a FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 377 035e 0020     		movs	r0, #0
+ 378 0360 03B0     		add	sp, sp, #12
+ 379              		@ sp needed
+ 380 0362 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 381              	.L10:
+ 382 0366 00BF     		.align	2
+ 383              	.L9:
+ 384 0368 00000000 		.word	ShortRegData1
+ 385 036c 00000000 		.word	lcdRegData1
+ 386 0370 00000000 		.word	ShortRegData2
+ 387 0374 00000000 		.word	lcdRegData2
+ 388 0378 00000000 		.word	ShortRegData3
+ 389 037c 00000000 		.word	ShortRegData4
+ 390 0380 00000000 		.word	ShortRegData5
+ 391 0384 00000000 		.word	ShortRegData6
+ 392 0388 00000000 		.word	ShortRegData7
+ 393 038c 00000000 		.word	ShortRegData8
+ 394 0390 00000000 		.word	ShortRegData10
+ 395 0394 00000000 		.word	ShortRegData11
+ 396 0398 00000000 		.word	ShortRegData12
+ 397 039c 00000000 		.word	ShortRegData13
+ 398 03a0 00000000 		.word	ShortRegData14
+ 399 03a4 00000000 		.word	ShortRegData15
+ 400 03a8 00000000 		.word	ShortRegData16
+ 401 03ac 00000000 		.word	ShortRegData17
+ 402 03b0 00000000 		.word	ShortRegData18
+ 403 03b4 00000000 		.word	ShortRegData19
+ 404 03b8 00000000 		.word	lcdRegData5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 8
+
+
+ 405 03bc 00000000 		.word	ShortRegData20
+ 406 03c0 00000000 		.word	ShortRegData21
+ 407 03c4 00000000 		.word	ShortRegData22
+ 408 03c8 00000000 		.word	ShortRegData23
+ 409 03cc 00000000 		.word	ShortRegData24
+ 410 03d0 00000000 		.word	ShortRegData25
+ 411 03d4 00000000 		.word	ShortRegData26
+ 412 03d8 00000000 		.word	ShortRegData27
+ 413 03dc 00000000 		.word	ShortRegData28
+ 414 03e0 00000000 		.word	lcdRegData6
+ 415 03e4 00000000 		.word	lcdRegData7
+ 416 03e8 00000000 		.word	lcdRegData8
+ 417 03ec 00000000 		.word	lcdRegData9
+ 418 03f0 00000000 		.word	lcdRegData10
+ 419 03f4 00000000 		.word	ShortRegData32
+ 420 03f8 00000000 		.word	ShortRegData46
+ 421 03fc 00000000 		.word	lcdRegData11
+ 422 0400 00000000 		.word	lcdRegData12
+ 423 0404 00000000 		.word	lcdRegData13
+ 424 0408 00000000 		.word	lcdRegData14
+ 425 040c 00000000 		.word	lcdRegData15
+ 426 0410 00000000 		.word	lcdRegData16
+ 427 0414 00000000 		.word	ShortRegData34
+ 428 0418 00000000 		.word	lcdRegData17
+ 429 041c 00000000 		.word	ShortRegData35
+ 430 0420 00000000 		.word	lcdRegData18
+ 431 0424 00000000 		.word	lcdRegData19
+ 432 0428 00000000 		.word	lcdRegData20
+ 433 042c 00000000 		.word	lcdRegData21
+ 434 0430 00000000 		.word	lcdRegData22
+ 435 0434 00000000 		.word	lcdRegData23
+ 436 0438 00000000 		.word	lcdRegData24
+ 437 043c 00000000 		.word	ShortRegData47
+ 438 0440 00000000 		.word	ShortRegData48
+ 439 0444 00000000 		.word	ShortRegData49
+ 440 0448 00000000 		.word	ShortRegData50
+ 441 044c 00000000 		.word	ShortRegData51
+ 442 0450 00000000 		.word	lcdRegData25
+ 443 0454 00000000 		.word	lcdRegData3
+ 444 0458 00000000 		.word	lcdRegData4
+ 445 045c 00000000 		.word	ShortRegData36
+ 446 0460 00000000 		.word	ShortRegData37
+ 447 0464 00000000 		.word	ShortRegData40
+ 448 0468 00000000 		.word	ShortRegData41
+ 449 046c 00000000 		.word	ShortRegData42
+ 450 0470 00000000 		.word	ShortRegData43
+ 451 0474 00000000 		.word	ShortRegData44
+ 452 0478 00000000 		.word	ShortRegData45
+ 453 047c 00000000 		.word	ShortRegData9
+ 454 0480 00000000 		.word	ShortRegData29
+ 455 0484 00000000 		.word	ShortRegData30
+ 456 0488 00000000 		.word	ShortRegData31
+ 457 048c 00000000 		.word	ShortRegData33
+ 458              	.L4:
+ 459 0490 0849     		ldr	r1, .L11
+ 460 0492 0020     		movs	r0, #0
+ 461 0494 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 9
+
+
+ 462 0498 41E7     		b	.L5
+ 463              	.L8:
+ 464 049a 0749     		ldr	r1, .L11+4
+ 465 049c 0020     		movs	r0, #0
+ 466 049e FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 467 04a2 0649     		ldr	r1, .L11+8
+ 468 04a4 0420     		movs	r0, #4
+ 469 04a6 FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 470 04aa 0549     		ldr	r1, .L11+12
+ 471 04ac 0420     		movs	r0, #4
+ 472 04ae FFF7FEFF 		bl	DSI_IO_WriteCmd
+ 473 04b2 38E7     		b	.L6
+ 474              	.L12:
+ 475              		.align	2
+ 476              	.L11:
+ 477 04b4 00000000 		.word	ShortRegData38
+ 478 04b8 00000000 		.word	ShortRegData39
+ 479 04bc 00000000 		.word	lcdRegData27
+ 480 04c0 00000000 		.word	lcdRegData28
+ 482              		.section	.text.OTM8009A_ReadID,"ax",%progbits
+ 483              		.align	1
+ 484              		.global	OTM8009A_ReadID
+ 485              		.syntax unified
+ 486              		.thumb
+ 487              		.thumb_func
+ 489              	OTM8009A_ReadID:
+ 490              		@ args = 0, pretend = 0, frame = 8
+ 491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 492 0000 00B5     		push	{lr}
+ 493 0002 83B0     		sub	sp, sp, #12
+ 494 0004 0023     		movs	r3, #0
+ 495 0006 8DF80730 		strb	r3, [sp, #7]
+ 496 000a 0122     		movs	r2, #1
+ 497 000c 0DF10701 		add	r1, sp, #7
+ 498 0010 DA20     		movs	r0, #218
+ 499 0012 FFF7FEFF 		bl	DSI_IO_ReadCmd
+ 500 0016 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 501 001a 03B0     		add	sp, sp, #12
+ 502              		@ sp needed
+ 503 001c 5DF804FB 		ldr	pc, [sp], #4
+ 505              		.global	ShortRegData51
+ 506              		.section	.rodata.ShortRegData51,"a"
+ 507              		.align	2
+ 510              	ShortRegData51:
+ 511 0000 C605     		.ascii	"\306\005"
+ 512              		.global	ShortRegData50
+ 513              		.section	.rodata.ShortRegData50,"a"
+ 514              		.align	2
+ 517              	ShortRegData50:
+ 518 0000 00B1     		.ascii	"\000\261"
+ 519              		.global	ShortRegData49
+ 520              		.section	.rodata.ShortRegData49,"a"
+ 521              		.align	2
+ 524              	ShortRegData49:
+ 525 0000 F506     		.ascii	"\365\006"
+ 526              		.global	ShortRegData48
+ 527              		.section	.rodata.ShortRegData48,"a"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 10
+
+
+ 528              		.align	2
+ 531              	ShortRegData48:
+ 532 0000 00B6     		.ascii	"\000\266"
+ 533              		.global	ShortRegData47
+ 534              		.section	.rodata.ShortRegData47,"a"
+ 535              		.align	2
+ 538              	ShortRegData47:
+ 539 0000 C566     		.ascii	"\305f"
+ 540              		.global	ShortRegData46
+ 541              		.section	.rodata.ShortRegData46,"a"
+ 542              		.align	2
+ 545              	ShortRegData46:
+ 546 0000 CF00     		.ascii	"\317\000"
+ 547              		.global	ShortRegData45
+ 548              		.section	.rodata.ShortRegData45,"a"
+ 549              		.align	2
+ 552              	ShortRegData45:
+ 553 0000 2C00     		.ascii	",\000"
+ 554              		.global	ShortRegData44
+ 555              		.section	.rodata.ShortRegData44,"a"
+ 556              		.align	2
+ 559              	ShortRegData44:
+ 560 0000 2900     		.ascii	")\000"
+ 561              		.global	ShortRegData43
+ 562              		.section	.rodata.ShortRegData43,"a"
+ 563              		.align	2
+ 566              	ShortRegData43:
+ 567 0000 5EFF     		.ascii	"^\377"
+ 568              		.global	ShortRegData42
+ 569              		.section	.rodata.ShortRegData42,"a"
+ 570              		.align	2
+ 573              	ShortRegData42:
+ 574 0000 5502     		.ascii	"U\002"
+ 575              		.global	ShortRegData41
+ 576              		.section	.rodata.ShortRegData41,"a"
+ 577              		.align	2
+ 580              	ShortRegData41:
+ 581 0000 532C     		.ascii	"S,"
+ 582              		.global	ShortRegData40
+ 583              		.section	.rodata.ShortRegData40,"a"
+ 584              		.align	2
+ 587              	ShortRegData40:
+ 588 0000 517F     		.ascii	"Q\177"
+ 589              		.global	ShortRegData39
+ 590              		.section	.rodata.ShortRegData39,"a"
+ 591              		.align	2
+ 594              	ShortRegData39:
+ 595 0000 3660     		.ascii	"6`"
+ 596              		.global	ShortRegData38
+ 597              		.section	.rodata.ShortRegData38,"a"
+ 598              		.align	2
+ 601              	ShortRegData38:
+ 602 0000 3A77     		.ascii	":w"
+ 603              		.global	ShortRegData37
+ 604              		.section	.rodata.ShortRegData37,"a"
+ 605              		.align	2
+ 608              	ShortRegData37:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 11
+
+
+ 609 0000 3A55     		.ascii	":U"
+ 610              		.global	ShortRegData36
+ 611              		.section	.rodata.ShortRegData36,"a"
+ 612              		.align	2
+ 615              	ShortRegData36:
+ 616 0000 1100     		.ascii	"\021\000"
+ 617              		.global	ShortRegData35
+ 618              		.section	.rodata.ShortRegData35,"a"
+ 619              		.align	2
+ 622              	ShortRegData35:
+ 623 0000 00F0     		.ascii	"\000\360"
+ 624              		.global	ShortRegData34
+ 625              		.section	.rodata.ShortRegData34,"a"
+ 626              		.align	2
+ 629              	ShortRegData34:
+ 630 0000 00E0     		.ascii	"\000\340"
+ 631              		.global	ShortRegData33
+ 632              		.section	.rodata.ShortRegData33,"a"
+ 633              		.align	2
+ 636              	ShortRegData33:
+ 637 0000 0090     		.ascii	"\000\220"
+ 638              		.global	ShortRegData32
+ 639              		.section	.rodata.ShortRegData32,"a"
+ 640              		.align	2
+ 643              	ShortRegData32:
+ 644 0000 00D0     		.ascii	"\000\320"
+ 645              		.global	ShortRegData31
+ 646              		.section	.rodata.ShortRegData31,"a"
+ 647              		.align	2
+ 650              	ShortRegData31:
+ 651 0000 00C0     		.ascii	"\000\300"
+ 652              		.global	ShortRegData30
+ 653              		.section	.rodata.ShortRegData30,"a"
+ 654              		.align	2
+ 657              	ShortRegData30:
+ 658 0000 00B0     		.ascii	"\000\260"
+ 659              		.global	ShortRegData29
+ 660              		.section	.rodata.ShortRegData29,"a"
+ 661              		.align	2
+ 664              	ShortRegData29:
+ 665 0000 00A0     		.ascii	"\000\240"
+ 666              		.global	ShortRegData28
+ 667              		.section	.rodata.ShortRegData28,"a"
+ 668              		.align	2
+ 671              	ShortRegData28:
+ 672 0000 00A6     		.ascii	"\000\246"
+ 673              		.global	ShortRegData27
+ 674              		.section	.rodata.ShortRegData27,"a"
+ 675              		.align	2
+ 678              	ShortRegData27:
+ 679 0000 C10E     		.ascii	"\301\016"
+ 680              		.global	ShortRegData26
+ 681              		.section	.rodata.ShortRegData26,"a"
+ 682              		.align	2
+ 685              	ShortRegData26:
+ 686 0000 C483     		.ascii	"\304\203"
+ 687              		.global	ShortRegData25
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 12
+
+
+ 688              		.section	.rodata.ShortRegData25,"a"
+ 689              		.align	2
+ 692              	ShortRegData25:
+ 693 0000 C583     		.ascii	"\305\203"
+ 694              		.global	ShortRegData24
+ 695              		.section	.rodata.ShortRegData24,"a"
+ 696              		.align	2
+ 699              	ShortRegData24:
+ 700 0000 0082     		.ascii	"\000\202"
+ 701              		.global	ShortRegData23
+ 702              		.section	.rodata.ShortRegData23,"a"
+ 703              		.align	2
+ 706              	ShortRegData23:
+ 707 0000 C01B     		.ascii	"\300\033"
+ 708              		.global	ShortRegData22
+ 709              		.section	.rodata.ShortRegData22,"a"
+ 710              		.align	2
+ 713              	ShortRegData22:
+ 714 0000 00A3     		.ascii	"\000\243"
+ 715              		.global	ShortRegData21
+ 716              		.section	.rodata.ShortRegData21,"a"
+ 717              		.align	2
+ 720              	ShortRegData21:
+ 721 0000 C533     		.ascii	"\3053"
+ 722              		.global	ShortRegData20
+ 723              		.section	.rodata.ShortRegData20,"a"
+ 724              		.align	2
+ 727              	ShortRegData20:
+ 728 0000 0094     		.ascii	"\000\224"
+ 729              		.global	ShortRegData19
+ 730              		.section	.rodata.ShortRegData19,"a"
+ 731              		.align	2
+ 734              	ShortRegData19:
+ 735 0000 0095     		.ascii	"\000\225"
+ 736              		.global	ShortRegData18
+ 737              		.section	.rodata.ShortRegData18,"a"
+ 738              		.align	2
+ 741              	ShortRegData18:
+ 742 0000 C501     		.ascii	"\305\001"
+ 743              		.global	ShortRegData17
+ 744              		.section	.rodata.ShortRegData17,"a"
+ 745              		.align	2
+ 748              	ShortRegData17:
+ 749 0000 0092     		.ascii	"\000\222"
+ 750              		.global	ShortRegData16
+ 751              		.section	.rodata.ShortRegData16,"a"
+ 752              		.align	2
+ 755              	ShortRegData16:
+ 756 0000 C108     		.ascii	"\301\010"
+ 757              		.global	ShortRegData15
+ 758              		.section	.rodata.ShortRegData15,"a"
+ 759              		.align	2
+ 762              	ShortRegData15:
+ 763 0000 00A1     		.ascii	"\000\241"
+ 764              		.global	ShortRegData14
+ 765              		.section	.rodata.ShortRegData14,"a"
+ 766              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 13
+
+
+ 769              	ShortRegData14:
+ 770 0000 C166     		.ascii	"\301f"
+ 771              		.global	ShortRegData13
+ 772              		.section	.rodata.ShortRegData13,"a"
+ 773              		.align	2
+ 776              	ShortRegData13:
+ 777 0000 0081     		.ascii	"\000\201"
+ 778              		.global	ShortRegData12
+ 779              		.section	.rodata.ShortRegData12,"a"
+ 780              		.align	2
+ 783              	ShortRegData12:
+ 784 0000 D94E     		.ascii	"\331N"
+ 785              		.global	ShortRegData11
+ 786              		.section	.rodata.ShortRegData11,"a"
+ 787              		.align	2
+ 790              	ShortRegData11:
+ 791 0000 C050     		.ascii	"\300P"
+ 792              		.global	ShortRegData10
+ 793              		.section	.rodata.ShortRegData10,"a"
+ 794              		.align	2
+ 797              	ShortRegData10:
+ 798 0000 00B4     		.ascii	"\000\264"
+ 799              		.global	ShortRegData9
+ 800              		.section	.rodata.ShortRegData9,"a"
+ 801              		.align	2
+ 804              	ShortRegData9:
+ 805 0000 C534     		.ascii	"\3054"
+ 806              		.global	ShortRegData8
+ 807              		.section	.rodata.ShortRegData8,"a"
+ 808              		.align	2
+ 811              	ShortRegData8:
+ 812 0000 0091     		.ascii	"\000\221"
+ 813              		.global	ShortRegData7
+ 814              		.section	.rodata.ShortRegData7,"a"
+ 815              		.align	2
+ 818              	ShortRegData7:
+ 819 0000 C5A9     		.ascii	"\305\251"
+ 820              		.global	ShortRegData6
+ 821              		.section	.rodata.ShortRegData6,"a"
+ 822              		.align	2
+ 825              	ShortRegData6:
+ 826 0000 00B1     		.ascii	"\000\261"
+ 827              		.global	ShortRegData5
+ 828              		.section	.rodata.ShortRegData5,"a"
+ 829              		.align	2
+ 832              	ShortRegData5:
+ 833 0000 C440     		.ascii	"\304@"
+ 834              		.global	ShortRegData4
+ 835              		.section	.rodata.ShortRegData4,"a"
+ 836              		.align	2
+ 839              	ShortRegData4:
+ 840 0000 008A     		.ascii	"\000\212"
+ 841              		.global	ShortRegData3
+ 842              		.section	.rodata.ShortRegData3,"a"
+ 843              		.align	2
+ 846              	ShortRegData3:
+ 847 0000 C430     		.ascii	"\3040"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 14
+
+
+ 848              		.global	ShortRegData2
+ 849              		.section	.rodata.ShortRegData2,"a"
+ 850              		.align	2
+ 853              	ShortRegData2:
+ 854 0000 0080     		.ascii	"\000\200"
+ 855              		.global	ShortRegData1
+ 856              		.section	.rodata.ShortRegData1,"a"
+ 857              		.align	2
+ 860              	ShortRegData1:
+ 861 0000 0000     		.space	2
+ 862              		.global	lcdRegData28
+ 863              		.section	.rodata.lcdRegData28,"a"
+ 864              		.align	2
+ 867              	lcdRegData28:
+ 868 0000 000001DF 		.ascii	"\000\000\001\337+"
+ 868      2B
+ 869              		.global	lcdRegData27
+ 870              		.section	.rodata.lcdRegData27,"a"
+ 871              		.align	2
+ 874              	lcdRegData27:
+ 875 0000 0000031F 		.ascii	"\000\000\003\037*"
+ 875      2A
+ 876              		.global	lcdRegData25
+ 877              		.section	.rodata.lcdRegData25,"a"
+ 878              		.align	2
+ 881              	lcdRegData25:
+ 882 0000 FFFFFFFF 		.ascii	"\377\377\377\377"
+ 883              		.global	lcdRegData24
+ 884              		.section	.rodata.lcdRegData24,"a"
+ 885              		.align	2
+ 888              	lcdRegData24:
+ 889 0000 26000000 		.ascii	"&\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 889      00000000 
+ 889      00000000 
+ 889      0000
+ 890 000e 00CC     		.ascii	"\000\314"
+ 891              		.global	lcdRegData23
+ 892              		.section	.rodata.lcdRegData23,"a"
+ 893              		.align	2
+ 896              	lcdRegData23:
+ 897 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000%\013\011"
+ 897      00000000 
+ 897      00000025 
+ 897      0B09
+ 898 000e 01CC     		.ascii	"\001\314"
+ 899              		.global	lcdRegData22
+ 900              		.section	.rodata.lcdRegData22,"a"
+ 901              		.align	2
+ 904              	lcdRegData22:
+ 905 0000 00250C0A 		.ascii	"\000%\014\012\002&\000\000\000\000\314"
+ 905      02260000 
+ 905      0000CC
+ 906              		.global	lcdRegData21
+ 907              		.section	.rodata.lcdRegData21,"a"
+ 908              		.align	2
+ 911              	lcdRegData21:
+ 912 0000 25000000 		.ascii	"%\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 15
+
+
+ 912      00000000 
+ 912      00000000 
+ 912      0000
+ 913 000e 00CC     		.ascii	"\000\314"
+ 914              		.global	lcdRegData20
+ 915              		.section	.rodata.lcdRegData20,"a"
+ 916              		.align	2
+ 919              	lcdRegData20:
+ 920 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000&\012\014"
+ 920      00000000 
+ 920      00000026 
+ 920      0A0C
+ 921 000e 02CC     		.ascii	"\002\314"
+ 922              		.global	lcdRegData19
+ 923              		.section	.rodata.lcdRegData19,"a"
+ 924              		.align	2
+ 927              	lcdRegData19:
+ 928 0000 0026090B 		.ascii	"\000&\011\013\001%\000\000\000\000\314"
+ 928      01250000 
+ 928      0000CC
+ 929              		.global	lcdRegData18
+ 930              		.section	.rodata.lcdRegData18,"a"
+ 931              		.align	2
+ 934              	lcdRegData18:
+ 935 0000 FFFFFFFF 		.ascii	"\377\377\377\377\377\377\377\377\377\377\313"
+ 935      FFFFFFFF 
+ 935      FFFFCB
+ 936              		.global	lcdRegData17
+ 937              		.section	.rodata.lcdRegData17,"a"
+ 938              		.align	2
+ 941              	lcdRegData17:
+ 942 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\313"
+ 942      00000000 
+ 942      0000CB
+ 943              		.global	lcdRegData16
+ 944              		.section	.rodata.lcdRegData16,"a"
+ 945              		.align	2
+ 948              	lcdRegData16:
+ 949 0000 00000000 		.ascii	"\000\000\000\000\000\000\004\004\004\004\004\000\000"
+ 949      00000404 
+ 949      04040400 
+ 949      00
+ 950 000d 0000CB   		.ascii	"\000\000\313"
+ 951              		.global	lcdRegData15
+ 952              		.section	.rodata.lcdRegData15,"a"
+ 953              		.align	2
+ 956              	lcdRegData15:
+ 957 0000 00040404 		.ascii	"\000\004\004\004\004\004\000\000\000\000\000\000\000"
+ 957      04040000 
+ 957      00000000 
+ 957      00
+ 958 000d 0000CB   		.ascii	"\000\000\313"
+ 959              		.global	lcdRegData14
+ 960              		.section	.rodata.lcdRegData14,"a"
+ 961              		.align	2
+ 964              	lcdRegData14:
+ 965 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\313"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 16
+
+
+ 965      00000000 
+ 965      0000CB
+ 966              		.global	lcdRegData13
+ 967              		.section	.rodata.lcdRegData13,"a"
+ 968              		.align	2
+ 971              	lcdRegData13:
+ 972 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 972      00000000 
+ 972      00000000 
+ 972      00
+ 973 000d 0000CB   		.ascii	"\000\000\313"
+ 974              		.global	lcdRegData12
+ 975              		.section	.rodata.lcdRegData12,"a"
+ 976              		.align	2
+ 979              	lcdRegData12:
+ 980 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 980      00000000 
+ 980      00000000 
+ 980      00
+ 981 000d 0000CB   		.ascii	"\000\000\313"
+ 982              		.global	lcdRegData11
+ 983              		.section	.rodata.lcdRegData11,"a"
+ 984              		.align	2
+ 987              	lcdRegData11:
+ 988 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\313"
+ 988      00000000 
+ 988      0000CB
+ 989              		.global	lcdRegData10
+ 990              		.section	.rodata.lcdRegData10,"a"
+ 991              		.align	2
+ 994              	lcdRegData10:
+ 995 0000 01012020 		.ascii	"\001\001  \000\000\001\002\000\000\317"
+ 995      00000102 
+ 995      0000CF
+ 996              		.global	lcdRegData9
+ 997              		.section	.rodata.lcdRegData9,"a"
+ 998              		.align	2
+ 1001              	lcdRegData9:
+ 1002 0000 1802033B 		.ascii	"\030\002\003;\000\000\000\030\001\003<\000\000\000\316"
+ 1002      00000018 
+ 1002      01033C00 
+ 1002      0000CE
+ 1003              		.global	lcdRegData8
+ 1004              		.section	.rodata.lcdRegData8,"a"
+ 1005              		.align	2
+ 1008              	lcdRegData8:
+ 1009 0000 18040339 		.ascii	"\030\004\0039\000\000\000\030\003\003:\000\000\000\316"
+ 1009      00000018 
+ 1009      03033A00 
+ 1009      0000CE
+ 1010              		.global	lcdRegData7
+ 1011              		.section	.rodata.lcdRegData7,"a"
+ 1012              		.align	2
+ 1015              	lcdRegData7:
+ 1016 0000 85010084 		.ascii	"\205\001\000\204\001\000\316"
+ 1016      0100CE
+ 1017              		.global	lcdRegData6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 17
+
+
+ 1018              		.section	.rodata.lcdRegData6,"a"
+ 1019              		.align	2
+ 1022              	lcdRegData6:
+ 1023 0000 0001B3   		.ascii	"\000\001\263"
+ 1024              		.global	lcdRegData5
+ 1025              		.section	.rodata.lcdRegData5,"a"
+ 1026              		.align	2
+ 1029              	lcdRegData5:
+ 1030 0000 7979D8   		.ascii	"yy\330"
+ 1031              		.global	lcdRegData4
+ 1032              		.section	.rodata.lcdRegData4,"a"
+ 1033              		.align	2
+ 1036              	lcdRegData4:
+ 1037 0000 00090F0E 		.ascii	"\000\011\017\016\007\020\013\012\004\007\013\010\017"
+ 1037      07100B0A 
+ 1037      04070B08 
+ 1037      0F
+ 1038 000d 100A01E2 		.ascii	"\020\012\001\342"
+ 1039              		.global	lcdRegData3
+ 1040              		.section	.rodata.lcdRegData3,"a"
+ 1041              		.align	2
+ 1044              	lcdRegData3:
+ 1045 0000 00090F0E 		.ascii	"\000\011\017\016\007\020\013\012\004\007\013\010\017"
+ 1045      07100B0A 
+ 1045      04070B08 
+ 1045      0F
+ 1046 000d 100A01E1 		.ascii	"\020\012\001\341"
+ 1047              		.global	lcdRegData2
+ 1048              		.section	.rodata.lcdRegData2,"a"
+ 1049              		.align	2
+ 1052              	lcdRegData2:
+ 1053 0000 8009FF   		.ascii	"\200\011\377"
+ 1054              		.global	lcdRegData1
+ 1055              		.section	.rodata.lcdRegData1,"a"
+ 1056              		.align	2
+ 1059              	lcdRegData1:
+ 1060 0000 800901FF 		.ascii	"\200\011\001\377"
+ 1061              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 otm8009a.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:17     .text.DSI_IO_WriteCmd:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:23     .text.DSI_IO_WriteCmd:00000000 DSI_IO_WriteCmd
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:30     .text.DSI_IO_ReadCmd:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:36     .text.DSI_IO_ReadCmd:00000000 DSI_IO_ReadCmd
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:44     .text.OTM8009A_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:50     .text.OTM8009A_Init:00000000 OTM8009A_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:384    .text.OTM8009A_Init:00000368 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:860    .rodata.ShortRegData1:00000000 ShortRegData1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1059   .rodata.lcdRegData1:00000000 lcdRegData1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:853    .rodata.ShortRegData2:00000000 ShortRegData2
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1052   .rodata.lcdRegData2:00000000 lcdRegData2
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:846    .rodata.ShortRegData3:00000000 ShortRegData3
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:839    .rodata.ShortRegData4:00000000 ShortRegData4
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:832    .rodata.ShortRegData5:00000000 ShortRegData5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:825    .rodata.ShortRegData6:00000000 ShortRegData6
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:818    .rodata.ShortRegData7:00000000 ShortRegData7
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:811    .rodata.ShortRegData8:00000000 ShortRegData8
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:797    .rodata.ShortRegData10:00000000 ShortRegData10
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:790    .rodata.ShortRegData11:00000000 ShortRegData11
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:783    .rodata.ShortRegData12:00000000 ShortRegData12
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:776    .rodata.ShortRegData13:00000000 ShortRegData13
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:769    .rodata.ShortRegData14:00000000 ShortRegData14
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:762    .rodata.ShortRegData15:00000000 ShortRegData15
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:755    .rodata.ShortRegData16:00000000 ShortRegData16
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:748    .rodata.ShortRegData17:00000000 ShortRegData17
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:741    .rodata.ShortRegData18:00000000 ShortRegData18
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:734    .rodata.ShortRegData19:00000000 ShortRegData19
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1029   .rodata.lcdRegData5:00000000 lcdRegData5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:727    .rodata.ShortRegData20:00000000 ShortRegData20
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:720    .rodata.ShortRegData21:00000000 ShortRegData21
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:713    .rodata.ShortRegData22:00000000 ShortRegData22
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:706    .rodata.ShortRegData23:00000000 ShortRegData23
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:699    .rodata.ShortRegData24:00000000 ShortRegData24
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:692    .rodata.ShortRegData25:00000000 ShortRegData25
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:685    .rodata.ShortRegData26:00000000 ShortRegData26
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:678    .rodata.ShortRegData27:00000000 ShortRegData27
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:671    .rodata.ShortRegData28:00000000 ShortRegData28
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1022   .rodata.lcdRegData6:00000000 lcdRegData6
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1015   .rodata.lcdRegData7:00000000 lcdRegData7
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1008   .rodata.lcdRegData8:00000000 lcdRegData8
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1001   .rodata.lcdRegData9:00000000 lcdRegData9
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:994    .rodata.lcdRegData10:00000000 lcdRegData10
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:643    .rodata.ShortRegData32:00000000 ShortRegData32
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:545    .rodata.ShortRegData46:00000000 ShortRegData46
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:987    .rodata.lcdRegData11:00000000 lcdRegData11
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:979    .rodata.lcdRegData12:00000000 lcdRegData12
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:971    .rodata.lcdRegData13:00000000 lcdRegData13
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:964    .rodata.lcdRegData14:00000000 lcdRegData14
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:956    .rodata.lcdRegData15:00000000 lcdRegData15
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:948    .rodata.lcdRegData16:00000000 lcdRegData16
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:629    .rodata.ShortRegData34:00000000 ShortRegData34
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:941    .rodata.lcdRegData17:00000000 lcdRegData17
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:622    .rodata.ShortRegData35:00000000 ShortRegData35
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:934    .rodata.lcdRegData18:00000000 lcdRegData18
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:927    .rodata.lcdRegData19:00000000 lcdRegData19
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 19
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:919    .rodata.lcdRegData20:00000000 lcdRegData20
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:911    .rodata.lcdRegData21:00000000 lcdRegData21
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:904    .rodata.lcdRegData22:00000000 lcdRegData22
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:896    .rodata.lcdRegData23:00000000 lcdRegData23
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:888    .rodata.lcdRegData24:00000000 lcdRegData24
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:538    .rodata.ShortRegData47:00000000 ShortRegData47
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:531    .rodata.ShortRegData48:00000000 ShortRegData48
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:524    .rodata.ShortRegData49:00000000 ShortRegData49
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:517    .rodata.ShortRegData50:00000000 ShortRegData50
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:510    .rodata.ShortRegData51:00000000 ShortRegData51
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:881    .rodata.lcdRegData25:00000000 lcdRegData25
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1044   .rodata.lcdRegData3:00000000 lcdRegData3
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1036   .rodata.lcdRegData4:00000000 lcdRegData4
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:615    .rodata.ShortRegData36:00000000 ShortRegData36
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:608    .rodata.ShortRegData37:00000000 ShortRegData37
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:587    .rodata.ShortRegData40:00000000 ShortRegData40
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:580    .rodata.ShortRegData41:00000000 ShortRegData41
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:573    .rodata.ShortRegData42:00000000 ShortRegData42
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:566    .rodata.ShortRegData43:00000000 ShortRegData43
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:559    .rodata.ShortRegData44:00000000 ShortRegData44
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:552    .rodata.ShortRegData45:00000000 ShortRegData45
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:804    .rodata.ShortRegData9:00000000 ShortRegData9
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:664    .rodata.ShortRegData29:00000000 ShortRegData29
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:657    .rodata.ShortRegData30:00000000 ShortRegData30
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:650    .rodata.ShortRegData31:00000000 ShortRegData31
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:636    .rodata.ShortRegData33:00000000 ShortRegData33
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:459    .text.OTM8009A_Init:00000490 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:477    .text.OTM8009A_Init:000004b4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:601    .rodata.ShortRegData38:00000000 ShortRegData38
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:594    .rodata.ShortRegData39:00000000 ShortRegData39
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:874    .rodata.lcdRegData27:00000000 lcdRegData27
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:867    .rodata.lcdRegData28:00000000 lcdRegData28
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:483    .text.OTM8009A_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:489    .text.OTM8009A_ReadID:00000000 OTM8009A_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:507    .rodata.ShortRegData51:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:514    .rodata.ShortRegData50:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:521    .rodata.ShortRegData49:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:528    .rodata.ShortRegData48:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:535    .rodata.ShortRegData47:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:542    .rodata.ShortRegData46:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:549    .rodata.ShortRegData45:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:556    .rodata.ShortRegData44:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:563    .rodata.ShortRegData43:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:570    .rodata.ShortRegData42:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:577    .rodata.ShortRegData41:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:584    .rodata.ShortRegData40:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:591    .rodata.ShortRegData39:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:598    .rodata.ShortRegData38:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:605    .rodata.ShortRegData37:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:612    .rodata.ShortRegData36:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:619    .rodata.ShortRegData35:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:626    .rodata.ShortRegData34:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:633    .rodata.ShortRegData33:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:640    .rodata.ShortRegData32:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:647    .rodata.ShortRegData31:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:654    .rodata.ShortRegData30:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:661    .rodata.ShortRegData29:00000000 $d
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 20
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:668    .rodata.ShortRegData28:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:675    .rodata.ShortRegData27:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:682    .rodata.ShortRegData26:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:689    .rodata.ShortRegData25:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:696    .rodata.ShortRegData24:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:703    .rodata.ShortRegData23:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:710    .rodata.ShortRegData22:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:717    .rodata.ShortRegData21:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:724    .rodata.ShortRegData20:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:731    .rodata.ShortRegData19:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:738    .rodata.ShortRegData18:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:745    .rodata.ShortRegData17:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:752    .rodata.ShortRegData16:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:759    .rodata.ShortRegData15:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:766    .rodata.ShortRegData14:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:773    .rodata.ShortRegData13:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:780    .rodata.ShortRegData12:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:787    .rodata.ShortRegData11:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:794    .rodata.ShortRegData10:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:801    .rodata.ShortRegData9:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:808    .rodata.ShortRegData8:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:815    .rodata.ShortRegData7:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:822    .rodata.ShortRegData6:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:829    .rodata.ShortRegData5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:836    .rodata.ShortRegData4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:843    .rodata.ShortRegData3:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:850    .rodata.ShortRegData2:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:857    .rodata.ShortRegData1:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:864    .rodata.lcdRegData28:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:871    .rodata.lcdRegData27:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:878    .rodata.lcdRegData25:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:885    .rodata.lcdRegData24:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:893    .rodata.lcdRegData23:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:901    .rodata.lcdRegData22:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:908    .rodata.lcdRegData21:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:916    .rodata.lcdRegData20:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:924    .rodata.lcdRegData19:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:931    .rodata.lcdRegData18:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:938    .rodata.lcdRegData17:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:945    .rodata.lcdRegData16:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:953    .rodata.lcdRegData15:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:961    .rodata.lcdRegData14:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:968    .rodata.lcdRegData13:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:976    .rodata.lcdRegData12:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:984    .rodata.lcdRegData11:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:991    .rodata.lcdRegData10:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:998    .rodata.lcdRegData9:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1005   .rodata.lcdRegData8:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1012   .rodata.lcdRegData7:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1019   .rodata.lcdRegData6:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1026   .rodata.lcdRegData5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1033   .rodata.lcdRegData4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1041   .rodata.lcdRegData3:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1049   .rodata.lcdRegData2:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1056   .rodata.lcdRegData1:00000000 $d
+
+UNDEFINED SYMBOLS
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 21
+
+
+OTM8009A_IO_Delay

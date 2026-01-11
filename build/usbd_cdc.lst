@@ -1,0 +1,864 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"usbd_cdc.c"
+  15              		.text
+  16              		.section	.text.USBD_CDC_EP0_RxReady,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	USBD_CDC_EP0_RxReady:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 10B5     		push	{r4, lr}
+  26 0002 D0F8D432 		ldr	r3, [r0, #724]
+  27 0006 03F1B002 		add	r2, r3, #176
+  28 000a 50F82240 		ldr	r4, [r0, r2, lsl #2]
+  29 000e 8CB1     		cbz	r4, .L3
+  30 0010 00EB8200 		add	r0, r0, r2, lsl #2
+  31 0014 4368     		ldr	r3, [r0, #4]
+  32 0016 7BB1     		cbz	r3, .L4
+  33 0018 94F80002 		ldrb	r0, [r4, #512]	@ zero_extendqisi2
+  34 001c FF28     		cmp	r0, #255
+  35 001e 0DD0     		beq	.L5
+  36 0020 9B68     		ldr	r3, [r3, #8]
+  37 0022 94F80122 		ldrb	r2, [r4, #513]	@ zero_extendqisi2
+  38 0026 2146     		mov	r1, r4
+  39 0028 9847     		blx	r3
+  40 002a FF23     		movs	r3, #255
+  41 002c 84F80032 		strb	r3, [r4, #512]
+  42 0030 0020     		movs	r0, #0
+  43              	.L2:
+  44 0032 10BD     		pop	{r4, pc}
+  45              	.L3:
+  46 0034 0320     		movs	r0, #3
+  47 0036 FCE7     		b	.L2
+  48              	.L4:
+  49 0038 0020     		movs	r0, #0
+  50 003a FAE7     		b	.L2
+  51              	.L5:
+  52 003c 0020     		movs	r0, #0
+  53 003e F8E7     		b	.L2
+  55              		.section	.text.USBD_CDC_GetDeviceQualifierDescriptor,"ax",%progbits
+  56              		.align	1
+  57              		.global	USBD_CDC_GetDeviceQualifierDescriptor
+  58              		.syntax unified
+  59              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 2
+
+
+  60              		.thumb_func
+  62              	USBD_CDC_GetDeviceQualifierDescriptor:
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66 0000 0A23     		movs	r3, #10
+  67 0002 0380     		strh	r3, [r0]	@ movhi
+  68 0004 0048     		ldr	r0, .L8
+  69 0006 7047     		bx	lr
+  70              	.L9:
+  71              		.align	2
+  72              	.L8:
+  73 0008 00000000 		.word	USBD_CDC_DeviceQualifierDesc
+  75              		.section	.text.USBD_CDC_GetOtherSpeedCfgDesc,"ax",%progbits
+  76              		.align	1
+  77              		.syntax unified
+  78              		.thumb
+  79              		.thumb_func
+  81              	USBD_CDC_GetOtherSpeedCfgDesc:
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  85 0002 0646     		mov	r6, r0
+  86 0004 0F4F     		ldr	r7, .L15
+  87 0006 8221     		movs	r1, #130
+  88 0008 3846     		mov	r0, r7
+  89 000a FFF7FEFF 		bl	USBD_GetEpDesc
+  90 000e 0546     		mov	r5, r0
+  91 0010 0121     		movs	r1, #1
+  92 0012 3846     		mov	r0, r7
+  93 0014 FFF7FEFF 		bl	USBD_GetEpDesc
+  94 0018 0446     		mov	r4, r0
+  95 001a 8121     		movs	r1, #129
+  96 001c 3846     		mov	r0, r7
+  97 001e FFF7FEFF 		bl	USBD_GetEpDesc
+  98 0022 0DB1     		cbz	r5, .L11
+  99 0024 1022     		movs	r2, #16
+ 100 0026 AA71     		strb	r2, [r5, #6]
+ 101              	.L11:
+ 102 0028 1CB1     		cbz	r4, .L12
+ 103 002a 4022     		movs	r2, #64
+ 104 002c 2271     		strb	r2, [r4, #4]
+ 105 002e 0022     		movs	r2, #0
+ 106 0030 6271     		strb	r2, [r4, #5]
+ 107              	.L12:
+ 108 0032 18B1     		cbz	r0, .L13
+ 109 0034 4022     		movs	r2, #64
+ 110 0036 0271     		strb	r2, [r0, #4]
+ 111 0038 0022     		movs	r2, #0
+ 112 003a 4271     		strb	r2, [r0, #5]
+ 113              	.L13:
+ 114 003c 4323     		movs	r3, #67
+ 115 003e 3380     		strh	r3, [r6]	@ movhi
+ 116 0040 0048     		ldr	r0, .L15
+ 117 0042 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 118              	.L16:
+ 119              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 3
+
+
+ 120              	.L15:
+ 121 0044 00000000 		.word	USBD_CDC_CfgDesc
+ 123              		.section	.text.USBD_CDC_GetFSCfgDesc,"ax",%progbits
+ 124              		.align	1
+ 125              		.syntax unified
+ 126              		.thumb
+ 127              		.thumb_func
+ 129              	USBD_CDC_GetFSCfgDesc:
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 133 0002 0646     		mov	r6, r0
+ 134 0004 0F4F     		ldr	r7, .L22
+ 135 0006 8221     		movs	r1, #130
+ 136 0008 3846     		mov	r0, r7
+ 137 000a FFF7FEFF 		bl	USBD_GetEpDesc
+ 138 000e 0546     		mov	r5, r0
+ 139 0010 0121     		movs	r1, #1
+ 140 0012 3846     		mov	r0, r7
+ 141 0014 FFF7FEFF 		bl	USBD_GetEpDesc
+ 142 0018 0446     		mov	r4, r0
+ 143 001a 8121     		movs	r1, #129
+ 144 001c 3846     		mov	r0, r7
+ 145 001e FFF7FEFF 		bl	USBD_GetEpDesc
+ 146 0022 0DB1     		cbz	r5, .L18
+ 147 0024 1022     		movs	r2, #16
+ 148 0026 AA71     		strb	r2, [r5, #6]
+ 149              	.L18:
+ 150 0028 1CB1     		cbz	r4, .L19
+ 151 002a 4022     		movs	r2, #64
+ 152 002c 2271     		strb	r2, [r4, #4]
+ 153 002e 0022     		movs	r2, #0
+ 154 0030 6271     		strb	r2, [r4, #5]
+ 155              	.L19:
+ 156 0032 18B1     		cbz	r0, .L20
+ 157 0034 4022     		movs	r2, #64
+ 158 0036 0271     		strb	r2, [r0, #4]
+ 159 0038 0022     		movs	r2, #0
+ 160 003a 4271     		strb	r2, [r0, #5]
+ 161              	.L20:
+ 162 003c 4323     		movs	r3, #67
+ 163 003e 3380     		strh	r3, [r6]	@ movhi
+ 164 0040 0048     		ldr	r0, .L22
+ 165 0042 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 166              	.L23:
+ 167              		.align	2
+ 168              	.L22:
+ 169 0044 00000000 		.word	USBD_CDC_CfgDesc
+ 171              		.section	.text.USBD_CDC_GetHSCfgDesc,"ax",%progbits
+ 172              		.align	1
+ 173              		.syntax unified
+ 174              		.thumb
+ 175              		.thumb_func
+ 177              	USBD_CDC_GetHSCfgDesc:
+ 178              		@ args = 0, pretend = 0, frame = 0
+ 179              		@ frame_needed = 0, uses_anonymous_args = 0
+ 180 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 4
+
+
+ 181 0002 0646     		mov	r6, r0
+ 182 0004 0F4F     		ldr	r7, .L29
+ 183 0006 8221     		movs	r1, #130
+ 184 0008 3846     		mov	r0, r7
+ 185 000a FFF7FEFF 		bl	USBD_GetEpDesc
+ 186 000e 0546     		mov	r5, r0
+ 187 0010 0121     		movs	r1, #1
+ 188 0012 3846     		mov	r0, r7
+ 189 0014 FFF7FEFF 		bl	USBD_GetEpDesc
+ 190 0018 0446     		mov	r4, r0
+ 191 001a 8121     		movs	r1, #129
+ 192 001c 3846     		mov	r0, r7
+ 193 001e FFF7FEFF 		bl	USBD_GetEpDesc
+ 194 0022 0DB1     		cbz	r5, .L25
+ 195 0024 1022     		movs	r2, #16
+ 196 0026 AA71     		strb	r2, [r5, #6]
+ 197              	.L25:
+ 198 0028 1CB1     		cbz	r4, .L26
+ 199 002a 0022     		movs	r2, #0
+ 200 002c 2271     		strb	r2, [r4, #4]
+ 201 002e 0222     		movs	r2, #2
+ 202 0030 6271     		strb	r2, [r4, #5]
+ 203              	.L26:
+ 204 0032 18B1     		cbz	r0, .L27
+ 205 0034 0022     		movs	r2, #0
+ 206 0036 0271     		strb	r2, [r0, #4]
+ 207 0038 0222     		movs	r2, #2
+ 208 003a 4271     		strb	r2, [r0, #5]
+ 209              	.L27:
+ 210 003c 4323     		movs	r3, #67
+ 211 003e 3380     		strh	r3, [r6]	@ movhi
+ 212 0040 0048     		ldr	r0, .L29
+ 213 0042 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 214              	.L30:
+ 215              		.align	2
+ 216              	.L29:
+ 217 0044 00000000 		.word	USBD_CDC_CfgDesc
+ 219              		.section	.text.USBD_CDC_DataOut,"ax",%progbits
+ 220              		.align	1
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	USBD_CDC_DataOut:
+ 226              		@ args = 0, pretend = 0, frame = 0
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228 0000 38B5     		push	{r3, r4, r5, lr}
+ 229 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 230 0006 B033     		adds	r3, r3, #176
+ 231 0008 50F82350 		ldr	r5, [r0, r3, lsl #2]
+ 232 000c 95B1     		cbz	r5, .L33
+ 233 000e 0446     		mov	r4, r0
+ 234 0010 FFF7FEFF 		bl	USBD_LL_GetRxDataSize
+ 235 0014 C5F80C02 		str	r0, [r5, #524]
+ 236 0018 D4F8D432 		ldr	r3, [r4, #724]
+ 237 001c B033     		adds	r3, r3, #176
+ 238 001e 04EB8304 		add	r4, r4, r3, lsl #2
+ 239 0022 6368     		ldr	r3, [r4, #4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 5
+
+
+ 240 0024 DB68     		ldr	r3, [r3, #12]
+ 241 0026 05F50371 		add	r1, r5, #524
+ 242 002a D5F80402 		ldr	r0, [r5, #516]
+ 243 002e 9847     		blx	r3
+ 244 0030 0020     		movs	r0, #0
+ 245              	.L32:
+ 246 0032 38BD     		pop	{r3, r4, r5, pc}
+ 247              	.L33:
+ 248 0034 0320     		movs	r0, #3
+ 249 0036 FCE7     		b	.L32
+ 251              		.section	.text.USBD_CDC_DataIn,"ax",%progbits
+ 252              		.align	1
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	USBD_CDC_DataIn:
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 0000 38B5     		push	{r3, r4, r5, lr}
+ 261 0002 D0F8C852 		ldr	r5, [r0, #712]
+ 262 0006 D0F8D432 		ldr	r3, [r0, #724]
+ 263 000a B033     		adds	r3, r3, #176
+ 264 000c 50F82340 		ldr	r4, [r0, r3, lsl #2]
+ 265 0010 84B3     		cbz	r4, .L38
+ 266 0012 01F00F03 		and	r3, r1, #15
+ 267 0016 03EB8302 		add	r2, r3, r3, lsl #2
+ 268 001a 00EB8202 		add	r2, r0, r2, lsl #2
+ 269 001e 5269     		ldr	r2, [r2, #20]
+ 270 0020 4AB1     		cbz	r2, .L37
+ 271 0022 03EBC30C 		add	ip, r3, r3, lsl #3
+ 272 0026 05EB8C05 		add	r5, r5, ip, lsl #2
+ 273 002a ED69     		ldr	r5, [r5, #28]
+ 274 002c B2FBF5FC 		udiv	ip, r2, r5
+ 275 0030 05FB1C22 		mls	r2, r5, ip, r2
+ 276 0034 92B1     		cbz	r2, .L41
+ 277              	.L37:
+ 278 0036 0023     		movs	r3, #0
+ 279 0038 C4F81432 		str	r3, [r4, #532]
+ 280 003c D0F8D432 		ldr	r3, [r0, #724]
+ 281 0040 B033     		adds	r3, r3, #176
+ 282 0042 00EB8300 		add	r0, r0, r3, lsl #2
+ 283 0046 4368     		ldr	r3, [r0, #4]
+ 284 0048 1B69     		ldr	r3, [r3, #16]
+ 285 004a ABB1     		cbz	r3, .L39
+ 286 004c 0A46     		mov	r2, r1
+ 287 004e 04F50471 		add	r1, r4, #528
+ 288 0052 D4F80802 		ldr	r0, [r4, #520]
+ 289 0056 9847     		blx	r3
+ 290 0058 0020     		movs	r0, #0
+ 291              	.L36:
+ 292 005a 38BD     		pop	{r3, r4, r5, pc}
+ 293              	.L41:
+ 294 005c 03EB8303 		add	r3, r3, r3, lsl #2
+ 295 0060 00EB8303 		add	r3, r0, r3, lsl #2
+ 296 0064 0024     		movs	r4, #0
+ 297 0066 5C61     		str	r4, [r3, #20]
+ 298 0068 2346     		mov	r3, r4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 6
+
+
+ 299 006a 2246     		mov	r2, r4
+ 300 006c FFF7FEFF 		bl	USBD_LL_Transmit
+ 301 0070 2046     		mov	r0, r4
+ 302 0072 F2E7     		b	.L36
+ 303              	.L38:
+ 304 0074 0320     		movs	r0, #3
+ 305 0076 F0E7     		b	.L36
+ 306              	.L39:
+ 307 0078 0020     		movs	r0, #0
+ 308 007a EEE7     		b	.L36
+ 310              		.section	.text.USBD_CDC_Setup,"ax",%progbits
+ 311              		.align	1
+ 312              		.syntax unified
+ 313              		.thumb
+ 314              		.thumb_func
+ 316              	USBD_CDC_Setup:
+ 317              		@ args = 0, pretend = 0, frame = 8
+ 318              		@ frame_needed = 0, uses_anonymous_args = 0
+ 319 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 320 0002 83B0     		sub	sp, sp, #12
+ 321 0004 D0F8D432 		ldr	r3, [r0, #724]
+ 322 0008 03F1B002 		add	r2, r3, #176
+ 323 000c 50F82270 		ldr	r7, [r0, r2, lsl #2]
+ 324 0010 0022     		movs	r2, #0
+ 325 0012 8DF80720 		strb	r2, [sp, #7]
+ 326 0016 ADF80420 		strh	r2, [sp, #4]	@ movhi
+ 327 001a 002F     		cmp	r7, #0
+ 328 001c 78D0     		beq	.L56
+ 329 001e 0446     		mov	r4, r0
+ 330 0020 0D46     		mov	r5, r1
+ 331 0022 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 332 0024 11F06006 		ands	r6, r1, #96
+ 333 0028 34D0     		beq	.L44
+ 334 002a 202E     		cmp	r6, #32
+ 335 002c 69D1     		bne	.L45
+ 336 002e EA88     		ldrh	r2, [r5, #6]
+ 337 0030 2AB3     		cbz	r2, .L46
+ 338 0032 11F0800F 		tst	r1, #128
+ 339 0036 0ED1     		bne	.L60
+ 340 0038 6B78     		ldrb	r3, [r5, #1]	@ zero_extendqisi2
+ 341 003a 87F80032 		strb	r3, [r7, #512]
+ 342 003e EA88     		ldrh	r2, [r5, #6]
+ 343 0040 3F2A     		cmp	r2, #63
+ 344 0042 1AD8     		bhi	.L57
+ 345 0044 D2B2     		uxtb	r2, r2
+ 346              	.L48:
+ 347 0046 87F80122 		strb	r2, [r7, #513]
+ 348 004a 3946     		mov	r1, r7
+ 349 004c 2046     		mov	r0, r4
+ 350 004e FFF7FEFF 		bl	USBD_CtlPrepareRx
+ 351 0052 0026     		movs	r6, #0
+ 352 0054 59E0     		b	.L43
+ 353              	.L60:
+ 354 0056 B033     		adds	r3, r3, #176
+ 355 0058 00EB8303 		add	r3, r0, r3, lsl #2
+ 356 005c 5B68     		ldr	r3, [r3, #4]
+ 357 005e 9B68     		ldr	r3, [r3, #8]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 7
+
+
+ 358 0060 3946     		mov	r1, r7
+ 359 0062 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 360 0064 9847     		blx	r3
+ 361 0066 EA88     		ldrh	r2, [r5, #6]
+ 362 0068 072A     		cmp	r2, #7
+ 363 006a 28BF     		it	cs
+ 364 006c 0722     		movcs	r2, #7
+ 365 006e 3946     		mov	r1, r7
+ 366 0070 2046     		mov	r0, r4
+ 367 0072 FFF7FEFF 		bl	USBD_CtlSendData
+ 368 0076 0026     		movs	r6, #0
+ 369 0078 47E0     		b	.L43
+ 370              	.L57:
+ 371 007a 4022     		movs	r2, #64
+ 372 007c E3E7     		b	.L48
+ 373              	.L46:
+ 374 007e B033     		adds	r3, r3, #176
+ 375 0080 00EB8303 		add	r3, r0, r3, lsl #2
+ 376 0084 5B68     		ldr	r3, [r3, #4]
+ 377 0086 9B68     		ldr	r3, [r3, #8]
+ 378 0088 0022     		movs	r2, #0
+ 379 008a 2946     		mov	r1, r5
+ 380 008c 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
+ 381 008e 9847     		blx	r3
+ 382 0090 0026     		movs	r6, #0
+ 383 0092 3AE0     		b	.L43
+ 384              	.L44:
+ 385 0094 6F78     		ldrb	r7, [r5, #1]	@ zero_extendqisi2
+ 386 0096 0B2F     		cmp	r7, #11
+ 387 0098 2ED8     		bhi	.L49
+ 388 009a DFE807F0 		tbb	[pc, r7]
+ 389              	.L51:
+ 390 009e 06       		.byte	(.L53-.L51)/2
+ 391 009f 36       		.byte	(.L43-.L51)/2
+ 392 00a0 2D       		.byte	(.L49-.L51)/2
+ 393 00a1 2D       		.byte	(.L49-.L51)/2
+ 394 00a2 2D       		.byte	(.L49-.L51)/2
+ 395 00a3 2D       		.byte	(.L49-.L51)/2
+ 396 00a4 2D       		.byte	(.L49-.L51)/2
+ 397 00a5 2D       		.byte	(.L49-.L51)/2
+ 398 00a6 2D       		.byte	(.L49-.L51)/2
+ 399 00a7 2D       		.byte	(.L49-.L51)/2
+ 400 00a8 15       		.byte	(.L52-.L51)/2
+ 401 00a9 24       		.byte	(.L50-.L51)/2
+ 402              		.p2align 1
+ 403              	.L53:
+ 404 00aa 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 405 00ae 032B     		cmp	r3, #3
+ 406 00b0 04D0     		beq	.L61
+ 407 00b2 2946     		mov	r1, r5
+ 408 00b4 FFF7FEFF 		bl	USBD_CtlError
+ 409 00b8 0326     		movs	r6, #3
+ 410 00ba 26E0     		b	.L43
+ 411              	.L61:
+ 412 00bc 0222     		movs	r2, #2
+ 413 00be 01A9     		add	r1, sp, #4
+ 414 00c0 FFF7FEFF 		bl	USBD_CtlSendData
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 8
+
+
+ 415 00c4 3E46     		mov	r6, r7
+ 416 00c6 20E0     		b	.L43
+ 417              	.L52:
+ 418 00c8 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 419 00cc 032B     		cmp	r3, #3
+ 420 00ce 04D0     		beq	.L62
+ 421 00d0 2946     		mov	r1, r5
+ 422 00d2 FFF7FEFF 		bl	USBD_CtlError
+ 423 00d6 0326     		movs	r6, #3
+ 424 00d8 17E0     		b	.L43
+ 425              	.L62:
+ 426 00da 0122     		movs	r2, #1
+ 427 00dc 0DF10701 		add	r1, sp, #7
+ 428 00e0 FFF7FEFF 		bl	USBD_CtlSendData
+ 429 00e4 11E0     		b	.L43
+ 430              	.L50:
+ 431 00e6 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 432 00ea 032B     		cmp	r3, #3
+ 433 00ec 0DD0     		beq	.L43
+ 434 00ee 2946     		mov	r1, r5
+ 435 00f0 FFF7FEFF 		bl	USBD_CtlError
+ 436 00f4 0326     		movs	r6, #3
+ 437 00f6 08E0     		b	.L43
+ 438              	.L49:
+ 439 00f8 2946     		mov	r1, r5
+ 440 00fa FFF7FEFF 		bl	USBD_CtlError
+ 441 00fe 0326     		movs	r6, #3
+ 442 0100 03E0     		b	.L43
+ 443              	.L45:
+ 444 0102 2946     		mov	r1, r5
+ 445 0104 FFF7FEFF 		bl	USBD_CtlError
+ 446 0108 0326     		movs	r6, #3
+ 447              	.L43:
+ 448 010a 3046     		mov	r0, r6
+ 449 010c 03B0     		add	sp, sp, #12
+ 450              		@ sp needed
+ 451 010e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 452              	.L56:
+ 453 0110 0326     		movs	r6, #3
+ 454 0112 FAE7     		b	.L43
+ 456              		.section	.text.USBD_CDC_DeInit,"ax",%progbits
+ 457              		.align	1
+ 458              		.syntax unified
+ 459              		.thumb
+ 460              		.thumb_func
+ 462              	USBD_CDC_DeInit:
+ 463              		@ args = 0, pretend = 0, frame = 0
+ 464              		@ frame_needed = 0, uses_anonymous_args = 0
+ 465 0000 38B5     		push	{r3, r4, r5, lr}
+ 466 0002 0446     		mov	r4, r0
+ 467 0004 8121     		movs	r1, #129
+ 468 0006 FFF7FEFF 		bl	USBD_LL_CloseEP
+ 469 000a 0025     		movs	r5, #0
+ 470 000c 84F83750 		strb	r5, [r4, #55]
+ 471 0010 0121     		movs	r1, #1
+ 472 0012 2046     		mov	r0, r4
+ 473 0014 FFF7FEFF 		bl	USBD_LL_CloseEP
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 9
+
+
+ 474 0018 84F87751 		strb	r5, [r4, #375]
+ 475 001c 8221     		movs	r1, #130
+ 476 001e 2046     		mov	r0, r4
+ 477 0020 FFF7FEFF 		bl	USBD_LL_CloseEP
+ 478 0024 84F84B50 		strb	r5, [r4, #75]
+ 479 0028 6564     		str	r5, [r4, #68]
+ 480 002a D4F8D432 		ldr	r3, [r4, #724]
+ 481 002e 03F1B002 		add	r2, r3, #176
+ 482 0032 54F82220 		ldr	r2, [r4, r2, lsl #2]
+ 483 0036 9AB1     		cbz	r2, .L64
+ 484 0038 B033     		adds	r3, r3, #176
+ 485 003a 04EB8303 		add	r3, r4, r3, lsl #2
+ 486 003e 5B68     		ldr	r3, [r3, #4]
+ 487 0040 5B68     		ldr	r3, [r3, #4]
+ 488 0042 9847     		blx	r3
+ 489 0044 D4F8D432 		ldr	r3, [r4, #724]
+ 490 0048 B033     		adds	r3, r3, #176
+ 491 004a 54F82300 		ldr	r0, [r4, r3, lsl #2]
+ 492 004e FFF7FEFF 		bl	free
+ 493 0052 D4F8D432 		ldr	r3, [r4, #724]
+ 494 0056 B033     		adds	r3, r3, #176
+ 495 0058 44F82350 		str	r5, [r4, r3, lsl #2]
+ 496 005c C4F8BC52 		str	r5, [r4, #700]
+ 497              	.L64:
+ 498 0060 0020     		movs	r0, #0
+ 499 0062 38BD     		pop	{r3, r4, r5, pc}
+ 501              		.section	.text.USBD_CDC_Init,"ax",%progbits
+ 502              		.align	1
+ 503              		.syntax unified
+ 504              		.thumb
+ 505              		.thumb_func
+ 507              	USBD_CDC_Init:
+ 508              		@ args = 0, pretend = 0, frame = 0
+ 509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 510 0000 70B5     		push	{r4, r5, r6, lr}
+ 511 0002 0446     		mov	r4, r0
+ 512 0004 4FF40770 		mov	r0, #540
+ 513 0008 FFF7FEFF 		bl	malloc
+ 514 000c 0028     		cmp	r0, #0
+ 515 000e 49D0     		beq	.L74
+ 516 0010 0546     		mov	r5, r0
+ 517 0012 4FF40772 		mov	r2, #540
+ 518 0016 0021     		movs	r1, #0
+ 519 0018 FFF7FEFF 		bl	memset
+ 520 001c D4F8D432 		ldr	r3, [r4, #724]
+ 521 0020 B033     		adds	r3, r3, #176
+ 522 0022 44F82350 		str	r5, [r4, r3, lsl #2]
+ 523 0026 C4F8BC52 		str	r5, [r4, #700]
+ 524 002a 237C     		ldrb	r3, [r4, #16]	@ zero_extendqisi2
+ 525 002c 002B     		cmp	r3, #0
+ 526 002e 41D1     		bne	.L69
+ 527 0030 4FF40073 		mov	r3, #512
+ 528 0034 0222     		movs	r2, #2
+ 529 0036 8121     		movs	r1, #129
+ 530 0038 2046     		mov	r0, r4
+ 531 003a FFF7FEFF 		bl	USBD_LL_OpenEP
+ 532 003e 0126     		movs	r6, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 10
+
+
+ 533 0040 84F83760 		strb	r6, [r4, #55]
+ 534 0044 4FF40073 		mov	r3, #512
+ 535 0048 0222     		movs	r2, #2
+ 536 004a 3146     		mov	r1, r6
+ 537 004c 2046     		mov	r0, r4
+ 538 004e FFF7FEFF 		bl	USBD_LL_OpenEP
+ 539 0052 84F87761 		strb	r6, [r4, #375]
+ 540 0056 1023     		movs	r3, #16
+ 541 0058 6364     		str	r3, [r4, #68]
+ 542              	.L70:
+ 543 005a 0823     		movs	r3, #8
+ 544 005c 0322     		movs	r2, #3
+ 545 005e 8221     		movs	r1, #130
+ 546 0060 2046     		mov	r0, r4
+ 547 0062 FFF7FEFF 		bl	USBD_LL_OpenEP
+ 548 0066 0123     		movs	r3, #1
+ 549 0068 84F84B30 		strb	r3, [r4, #75]
+ 550 006c 0026     		movs	r6, #0
+ 551 006e C5F80462 		str	r6, [r5, #516]
+ 552 0072 D4F8D432 		ldr	r3, [r4, #724]
+ 553 0076 B033     		adds	r3, r3, #176
+ 554 0078 04EB8303 		add	r3, r4, r3, lsl #2
+ 555 007c 5B68     		ldr	r3, [r3, #4]
+ 556 007e 1B68     		ldr	r3, [r3]
+ 557 0080 9847     		blx	r3
+ 558 0082 C5F81462 		str	r6, [r5, #532]
+ 559 0086 C5F81862 		str	r6, [r5, #536]
+ 560 008a D5F80422 		ldr	r2, [r5, #516]
+ 561 008e 62B3     		cbz	r2, .L72
+ 562 0090 257C     		ldrb	r5, [r4, #16]	@ zero_extendqisi2
+ 563 0092 1DBB     		cbnz	r5, .L71
+ 564 0094 4FF40073 		mov	r3, #512
+ 565 0098 0121     		movs	r1, #1
+ 566 009a 2046     		mov	r0, r4
+ 567 009c FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 568              	.L68:
+ 569 00a0 2846     		mov	r0, r5
+ 570 00a2 70BD     		pop	{r4, r5, r6, pc}
+ 571              	.L74:
+ 572 00a4 D4F8D432 		ldr	r3, [r4, #724]
+ 573 00a8 B033     		adds	r3, r3, #176
+ 574 00aa 0022     		movs	r2, #0
+ 575 00ac 44F82320 		str	r2, [r4, r3, lsl #2]
+ 576 00b0 0225     		movs	r5, #2
+ 577 00b2 F5E7     		b	.L68
+ 578              	.L69:
+ 579 00b4 4023     		movs	r3, #64
+ 580 00b6 0222     		movs	r2, #2
+ 581 00b8 8121     		movs	r1, #129
+ 582 00ba 2046     		mov	r0, r4
+ 583 00bc FFF7FEFF 		bl	USBD_LL_OpenEP
+ 584 00c0 0126     		movs	r6, #1
+ 585 00c2 84F83760 		strb	r6, [r4, #55]
+ 586 00c6 4023     		movs	r3, #64
+ 587 00c8 0222     		movs	r2, #2
+ 588 00ca 3146     		mov	r1, r6
+ 589 00cc 2046     		mov	r0, r4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 11
+
+
+ 590 00ce FFF7FEFF 		bl	USBD_LL_OpenEP
+ 591 00d2 84F87761 		strb	r6, [r4, #375]
+ 592 00d6 1023     		movs	r3, #16
+ 593 00d8 6364     		str	r3, [r4, #68]
+ 594 00da BEE7     		b	.L70
+ 595              	.L71:
+ 596 00dc 4023     		movs	r3, #64
+ 597 00de 0121     		movs	r1, #1
+ 598 00e0 2046     		mov	r0, r4
+ 599 00e2 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 600 00e6 0025     		movs	r5, #0
+ 601 00e8 DAE7     		b	.L68
+ 602              	.L72:
+ 603 00ea 0225     		movs	r5, #2
+ 604 00ec D8E7     		b	.L68
+ 606              		.section	.text.USBD_CDC_RegisterInterface,"ax",%progbits
+ 607              		.align	1
+ 608              		.global	USBD_CDC_RegisterInterface
+ 609              		.syntax unified
+ 610              		.thumb
+ 611              		.thumb_func
+ 613              	USBD_CDC_RegisterInterface:
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              		@ link register save eliminated.
+ 617 0000 39B1     		cbz	r1, .L77
+ 618 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 619 0006 B033     		adds	r3, r3, #176
+ 620 0008 00EB8300 		add	r0, r0, r3, lsl #2
+ 621 000c 4160     		str	r1, [r0, #4]
+ 622 000e 0020     		movs	r0, #0
+ 623 0010 7047     		bx	lr
+ 624              	.L77:
+ 625 0012 0320     		movs	r0, #3
+ 626 0014 7047     		bx	lr
+ 628              		.section	.text.USBD_CDC_SetTxBuffer,"ax",%progbits
+ 629              		.align	1
+ 630              		.global	USBD_CDC_SetTxBuffer
+ 631              		.syntax unified
+ 632              		.thumb
+ 633              		.thumb_func
+ 635              	USBD_CDC_SetTxBuffer:
+ 636              		@ args = 0, pretend = 0, frame = 0
+ 637              		@ frame_needed = 0, uses_anonymous_args = 0
+ 638              		@ link register save eliminated.
+ 639 0000 D0F8D432 		ldr	r3, [r0, #724]
+ 640 0004 B033     		adds	r3, r3, #176
+ 641 0006 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 642 000a 2BB1     		cbz	r3, .L80
+ 643 000c C3F80812 		str	r1, [r3, #520]
+ 644 0010 C3F81022 		str	r2, [r3, #528]
+ 645 0014 0020     		movs	r0, #0
+ 646 0016 7047     		bx	lr
+ 647              	.L80:
+ 648 0018 0320     		movs	r0, #3
+ 649 001a 7047     		bx	lr
+ 651              		.section	.text.USBD_CDC_SetRxBuffer,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 12
+
+
+ 652              		.align	1
+ 653              		.global	USBD_CDC_SetRxBuffer
+ 654              		.syntax unified
+ 655              		.thumb
+ 656              		.thumb_func
+ 658              	USBD_CDC_SetRxBuffer:
+ 659              		@ args = 0, pretend = 0, frame = 0
+ 660              		@ frame_needed = 0, uses_anonymous_args = 0
+ 661              		@ link register save eliminated.
+ 662 0000 D0F8D432 		ldr	r3, [r0, #724]
+ 663 0004 B033     		adds	r3, r3, #176
+ 664 0006 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 665 000a 1BB1     		cbz	r3, .L83
+ 666 000c C3F80412 		str	r1, [r3, #516]
+ 667 0010 0020     		movs	r0, #0
+ 668 0012 7047     		bx	lr
+ 669              	.L83:
+ 670 0014 0320     		movs	r0, #3
+ 671 0016 7047     		bx	lr
+ 673              		.section	.text.USBD_CDC_TransmitPacket,"ax",%progbits
+ 674              		.align	1
+ 675              		.global	USBD_CDC_TransmitPacket
+ 676              		.syntax unified
+ 677              		.thumb
+ 678              		.thumb_func
+ 680              	USBD_CDC_TransmitPacket:
+ 681              		@ args = 0, pretend = 0, frame = 0
+ 682              		@ frame_needed = 0, uses_anonymous_args = 0
+ 683 0000 08B5     		push	{r3, lr}
+ 684 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 685 0006 B033     		adds	r3, r3, #176
+ 686 0008 50F82320 		ldr	r2, [r0, r3, lsl #2]
+ 687 000c 8AB1     		cbz	r2, .L86
+ 688 000e D2F81432 		ldr	r3, [r2, #532]
+ 689 0012 0BB1     		cbz	r3, .L89
+ 690 0014 0120     		movs	r0, #1
+ 691              	.L85:
+ 692 0016 08BD     		pop	{r3, pc}
+ 693              	.L89:
+ 694 0018 0123     		movs	r3, #1
+ 695 001a C2F81432 		str	r3, [r2, #532]
+ 696 001e D2F81032 		ldr	r3, [r2, #528]
+ 697 0022 8362     		str	r3, [r0, #40]
+ 698 0024 D2F80822 		ldr	r2, [r2, #520]
+ 699 0028 8121     		movs	r1, #129
+ 700 002a FFF7FEFF 		bl	USBD_LL_Transmit
+ 701 002e 0020     		movs	r0, #0
+ 702 0030 F1E7     		b	.L85
+ 703              	.L86:
+ 704 0032 0320     		movs	r0, #3
+ 705 0034 EFE7     		b	.L85
+ 707              		.section	.text.USBD_CDC_ReceivePacket,"ax",%progbits
+ 708              		.align	1
+ 709              		.global	USBD_CDC_ReceivePacket
+ 710              		.syntax unified
+ 711              		.thumb
+ 712              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 13
+
+
+ 714              	USBD_CDC_ReceivePacket:
+ 715              		@ args = 0, pretend = 0, frame = 0
+ 716              		@ frame_needed = 0, uses_anonymous_args = 0
+ 717 0000 10B5     		push	{r4, lr}
+ 718 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 719 0006 B033     		adds	r3, r3, #176
+ 720 0008 50F82320 		ldr	r2, [r0, r3, lsl #2]
+ 721 000c 92B1     		cbz	r2, .L93
+ 722 000e 047C     		ldrb	r4, [r0, #16]	@ zero_extendqisi2
+ 723 0010 44B9     		cbnz	r4, .L92
+ 724 0012 4FF40073 		mov	r3, #512
+ 725 0016 D2F80422 		ldr	r2, [r2, #516]
+ 726 001a 0121     		movs	r1, #1
+ 727 001c FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 728              	.L91:
+ 729 0020 2046     		mov	r0, r4
+ 730 0022 10BD     		pop	{r4, pc}
+ 731              	.L92:
+ 732 0024 4023     		movs	r3, #64
+ 733 0026 D2F80422 		ldr	r2, [r2, #516]
+ 734 002a 0121     		movs	r1, #1
+ 735 002c FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 736 0030 0024     		movs	r4, #0
+ 737 0032 F5E7     		b	.L91
+ 738              	.L93:
+ 739 0034 0324     		movs	r4, #3
+ 740 0036 F3E7     		b	.L91
+ 742              		.section	.data.USBD_CDC_CfgDesc,"aw"
+ 743              		.align	2
+ 746              	USBD_CDC_CfgDesc:
+ 747 0000 09024300 		.ascii	"\011\002C\000\002\001\000\3002\011\004\000\000\001\002"
+ 747      020100C0 
+ 747      32090400 
+ 747      000102
+ 748 000f 02010005 		.ascii	"\002\001\000\005$\000\020\001\005$\001\000\001\004$"
+ 748      24001001 
+ 748      05240100 
+ 748      010424
+ 749 001e 02020524 		.ascii	"\002\002\005$\006\000\001\007\005\202\003\010\000\020"
+ 749      06000107 
+ 749      05820308 
+ 749      0010
+ 750 002c 09040100 		.ascii	"\011\004\001\000\002\012\000\000\000\007\005\001\002"
+ 750      020A0000 
+ 750      00070501 
+ 750      02
+ 751 0039 40000007 		.ascii	"@\000\000\007\005\201\002@\000\000"
+ 751      05810240 
+ 751      0000
+ 752              		.global	USBD_CDC
+ 753              		.section	.data.USBD_CDC,"aw"
+ 754              		.align	2
+ 757              	USBD_CDC:
+ 758 0000 00000000 		.word	USBD_CDC_Init
+ 759 0004 00000000 		.word	USBD_CDC_DeInit
+ 760 0008 00000000 		.word	USBD_CDC_Setup
+ 761 000c 00000000 		.word	0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 14
+
+
+ 762 0010 00000000 		.word	USBD_CDC_EP0_RxReady
+ 763 0014 00000000 		.word	USBD_CDC_DataIn
+ 764 0018 00000000 		.word	USBD_CDC_DataOut
+ 765 001c 00000000 		.word	0
+ 766 0020 00000000 		.word	0
+ 767 0024 00000000 		.word	0
+ 768 0028 00000000 		.word	USBD_CDC_GetHSCfgDesc
+ 769 002c 00000000 		.word	USBD_CDC_GetFSCfgDesc
+ 770 0030 00000000 		.word	USBD_CDC_GetOtherSpeedCfgDesc
+ 771 0034 00000000 		.word	USBD_CDC_GetDeviceQualifierDescriptor
+ 772              		.section	.data.USBD_CDC_DeviceQualifierDesc,"aw"
+ 773              		.align	2
+ 776              	USBD_CDC_DeviceQualifierDesc:
+ 777 0000 0A060002 		.ascii	"\012\006\000\002\000\000\000@\001\000"
+ 777      00000040 
+ 777      0100
+ 778              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbd_cdc.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:17     .text.USBD_CDC_EP0_RxReady:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:22     .text.USBD_CDC_EP0_RxReady:00000000 USBD_CDC_EP0_RxReady
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:56     .text.USBD_CDC_GetDeviceQualifierDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:62     .text.USBD_CDC_GetDeviceQualifierDescriptor:00000000 USBD_CDC_GetDeviceQualifierDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:73     .text.USBD_CDC_GetDeviceQualifierDescriptor:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:776    .data.USBD_CDC_DeviceQualifierDesc:00000000 USBD_CDC_DeviceQualifierDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:76     .text.USBD_CDC_GetOtherSpeedCfgDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:81     .text.USBD_CDC_GetOtherSpeedCfgDesc:00000000 USBD_CDC_GetOtherSpeedCfgDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:121    .text.USBD_CDC_GetOtherSpeedCfgDesc:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:746    .data.USBD_CDC_CfgDesc:00000000 USBD_CDC_CfgDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:124    .text.USBD_CDC_GetFSCfgDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:129    .text.USBD_CDC_GetFSCfgDesc:00000000 USBD_CDC_GetFSCfgDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:169    .text.USBD_CDC_GetFSCfgDesc:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:172    .text.USBD_CDC_GetHSCfgDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:177    .text.USBD_CDC_GetHSCfgDesc:00000000 USBD_CDC_GetHSCfgDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:217    .text.USBD_CDC_GetHSCfgDesc:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:220    .text.USBD_CDC_DataOut:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:225    .text.USBD_CDC_DataOut:00000000 USBD_CDC_DataOut
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:252    .text.USBD_CDC_DataIn:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:257    .text.USBD_CDC_DataIn:00000000 USBD_CDC_DataIn
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:311    .text.USBD_CDC_Setup:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:316    .text.USBD_CDC_Setup:00000000 USBD_CDC_Setup
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:390    .text.USBD_CDC_Setup:0000009e $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:402    .text.USBD_CDC_Setup:000000aa $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:457    .text.USBD_CDC_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:462    .text.USBD_CDC_DeInit:00000000 USBD_CDC_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:502    .text.USBD_CDC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:507    .text.USBD_CDC_Init:00000000 USBD_CDC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:607    .text.USBD_CDC_RegisterInterface:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:613    .text.USBD_CDC_RegisterInterface:00000000 USBD_CDC_RegisterInterface
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:629    .text.USBD_CDC_SetTxBuffer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:635    .text.USBD_CDC_SetTxBuffer:00000000 USBD_CDC_SetTxBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:652    .text.USBD_CDC_SetRxBuffer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:658    .text.USBD_CDC_SetRxBuffer:00000000 USBD_CDC_SetRxBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:674    .text.USBD_CDC_TransmitPacket:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:680    .text.USBD_CDC_TransmitPacket:00000000 USBD_CDC_TransmitPacket
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:708    .text.USBD_CDC_ReceivePacket:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:714    .text.USBD_CDC_ReceivePacket:00000000 USBD_CDC_ReceivePacket
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:743    .data.USBD_CDC_CfgDesc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:757    .data.USBD_CDC:00000000 USBD_CDC
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:754    .data.USBD_CDC:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s:773    .data.USBD_CDC_DeviceQualifierDesc:00000000 $d
+
+UNDEFINED SYMBOLS
+USBD_GetEpDesc
+USBD_LL_GetRxDataSize
+USBD_LL_Transmit
+USBD_CtlPrepareRx
+USBD_CtlSendData
+USBD_CtlError
+USBD_LL_CloseEP
+free
+malloc
+memset
+USBD_LL_OpenEP
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJHJ84j.s 			page 16
+
+
+USBD_LL_PrepareReceive

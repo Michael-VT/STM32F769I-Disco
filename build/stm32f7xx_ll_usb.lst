@@ -1,0 +1,2963 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f7xx_ll_usb.c"
+  15              		.text
+  16              		.section	.text.USB_CoreReset,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	USB_CoreReset:
+  23              		@ args = 0, pretend = 0, frame = 8
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 82B0     		sub	sp, sp, #8
+  27 0002 0023     		movs	r3, #0
+  28 0004 0193     		str	r3, [sp, #4]
+  29              	.L3:
+  30 0006 019B     		ldr	r3, [sp, #4]
+  31 0008 0133     		adds	r3, r3, #1
+  32 000a 0193     		str	r3, [sp, #4]
+  33 000c 019B     		ldr	r3, [sp, #4]
+  34 000e B3F1706F 		cmp	r3, #251658240
+  35 0012 1CD8     		bhi	.L7
+  36 0014 0369     		ldr	r3, [r0, #16]
+  37 0016 002B     		cmp	r3, #0
+  38 0018 F5DA     		bge	.L3
+  39 001a 0A23     		movs	r3, #10
+  40 001c 0193     		str	r3, [sp, #4]
+  41 001e 02E0     		b	.L4
+  42              	.L5:
+  43 0020 019B     		ldr	r3, [sp, #4]
+  44 0022 013B     		subs	r3, r3, #1
+  45 0024 0193     		str	r3, [sp, #4]
+  46              	.L4:
+  47 0026 019B     		ldr	r3, [sp, #4]
+  48 0028 002B     		cmp	r3, #0
+  49 002a F9D1     		bne	.L5
+  50 002c 0369     		ldr	r3, [r0, #16]
+  51 002e 43F00103 		orr	r3, r3, #1
+  52 0032 0361     		str	r3, [r0, #16]
+  53              	.L6:
+  54 0034 019B     		ldr	r3, [sp, #4]
+  55 0036 0133     		adds	r3, r3, #1
+  56 0038 0193     		str	r3, [sp, #4]
+  57 003a 019B     		ldr	r3, [sp, #4]
+  58 003c B3F1706F 		cmp	r3, #251658240
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 2
+
+
+  59 0040 08D8     		bhi	.L8
+  60 0042 0369     		ldr	r3, [r0, #16]
+  61 0044 13F0010F 		tst	r3, #1
+  62 0048 F4D1     		bne	.L6
+  63 004a 0020     		movs	r0, #0
+  64 004c 00E0     		b	.L2
+  65              	.L7:
+  66 004e 0320     		movs	r0, #3
+  67              	.L2:
+  68 0050 02B0     		add	sp, sp, #8
+  69              		@ sp needed
+  70 0052 7047     		bx	lr
+  71              	.L8:
+  72 0054 0320     		movs	r0, #3
+  73 0056 FBE7     		b	.L2
+  75              		.section	.text.USB_CoreInit,"ax",%progbits
+  76              		.align	1
+  77              		.global	USB_CoreInit
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	USB_CoreInit:
+  83              		@ args = 20, pretend = 16, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85 0000 84B0     		sub	sp, sp, #16
+  86 0002 10B5     		push	{r4, lr}
+  87 0004 0446     		mov	r4, r0
+  88 0006 03A8     		add	r0, sp, #12
+  89 0008 80E80E00 		stm	r0, {r1, r2, r3}
+  90 000c 9DF81130 		ldrb	r3, [sp, #17]	@ zero_extendqisi2
+  91 0010 012B     		cmp	r3, #1
+  92 0012 1FD1     		bne	.L11
+  93 0014 A36B     		ldr	r3, [r4, #56]
+  94 0016 23F48033 		bic	r3, r3, #65536
+  95 001a A363     		str	r3, [r4, #56]
+  96 001c E268     		ldr	r2, [r4, #12]
+  97 001e 184B     		ldr	r3, .L18
+  98 0020 1340     		ands	r3, r3, r2
+  99 0022 E360     		str	r3, [r4, #12]
+ 100 0024 E368     		ldr	r3, [r4, #12]
+ 101 0026 23F44013 		bic	r3, r3, #3145728
+ 102 002a E360     		str	r3, [r4, #12]
+ 103 002c 9DF81830 		ldrb	r3, [sp, #24]	@ zero_extendqisi2
+ 104 0030 012B     		cmp	r3, #1
+ 105 0032 0AD0     		beq	.L16
+ 106              	.L12:
+ 107 0034 2046     		mov	r0, r4
+ 108 0036 FFF7FEFF 		bl	USB_CoreReset
+ 109              	.L13:
+ 110 003a 9DF80E30 		ldrb	r3, [sp, #14]	@ zero_extendqisi2
+ 111 003e 012B     		cmp	r3, #1
+ 112 0040 14D0     		beq	.L17
+ 113              	.L14:
+ 114 0042 BDE81040 		pop	{r4, lr}
+ 115 0046 04B0     		add	sp, sp, #16
+ 116 0048 7047     		bx	lr
+ 117              	.L16:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 3
+
+
+ 118 004a E368     		ldr	r3, [r4, #12]
+ 119 004c 43F48013 		orr	r3, r3, #1048576
+ 120 0050 E360     		str	r3, [r4, #12]
+ 121 0052 EFE7     		b	.L12
+ 122              	.L11:
+ 123 0054 E368     		ldr	r3, [r4, #12]
+ 124 0056 43F04003 		orr	r3, r3, #64
+ 125 005a E360     		str	r3, [r4, #12]
+ 126 005c 2046     		mov	r0, r4
+ 127 005e FFF7FEFF 		bl	USB_CoreReset
+ 128 0062 A36B     		ldr	r3, [r4, #56]
+ 129 0064 43F48033 		orr	r3, r3, #65536
+ 130 0068 A363     		str	r3, [r4, #56]
+ 131 006a E6E7     		b	.L13
+ 132              	.L17:
+ 133 006c A368     		ldr	r3, [r4, #8]
+ 134 006e 43F00603 		orr	r3, r3, #6
+ 135 0072 A360     		str	r3, [r4, #8]
+ 136 0074 A368     		ldr	r3, [r4, #8]
+ 137 0076 43F02003 		orr	r3, r3, #32
+ 138 007a A360     		str	r3, [r4, #8]
+ 139 007c E1E7     		b	.L14
+ 140              	.L19:
+ 141 007e 00BF     		.align	2
+ 142              	.L18:
+ 143 0080 BFFFBDFF 		.word	-4325441
+ 145              		.section	.text.USB_SetTurnaroundTime,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	USB_SetTurnaroundTime
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ 152              	USB_SetTurnaroundTime:
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155              		@ link register save eliminated.
+ 156 0000 022A     		cmp	r2, #2
+ 157 0002 0AD0     		beq	.L32
+ 158 0004 0922     		movs	r2, #9
+ 159              	.L21:
+ 160 0006 C368     		ldr	r3, [r0, #12]
+ 161 0008 23F47053 		bic	r3, r3, #15360
+ 162 000c C360     		str	r3, [r0, #12]
+ 163 000e C368     		ldr	r3, [r0, #12]
+ 164 0010 43EA8223 		orr	r3, r3, r2, lsl #10
+ 165 0014 C360     		str	r3, [r0, #12]
+ 166 0016 0020     		movs	r0, #0
+ 167 0018 7047     		bx	lr
+ 168              	.L32:
+ 169 001a 204B     		ldr	r3, .L33
+ 170 001c 0B44     		add	r3, r3, r1
+ 171 001e 204A     		ldr	r2, .L33+4
+ 172 0020 9342     		cmp	r3, r2
+ 173 0022 29D9     		bls	.L23
+ 174 0024 1F4B     		ldr	r3, .L33+8
+ 175 0026 0B44     		add	r3, r3, r1
+ 176 0028 1F4A     		ldr	r2, .L33+12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 4
+
+
+ 177 002a 9342     		cmp	r3, r2
+ 178 002c 26D9     		bls	.L24
+ 179 002e 1F4B     		ldr	r3, .L33+16
+ 180 0030 0B44     		add	r3, r3, r1
+ 181 0032 1F4A     		ldr	r2, .L33+20
+ 182 0034 9342     		cmp	r3, r2
+ 183 0036 23D9     		bls	.L25
+ 184 0038 1E4B     		ldr	r3, .L33+24
+ 185 003a 0B44     		add	r3, r3, r1
+ 186 003c 1E4A     		ldr	r2, .L33+28
+ 187 003e 9342     		cmp	r3, r2
+ 188 0040 20D3     		bcc	.L26
+ 189 0042 1E4B     		ldr	r3, .L33+32
+ 190 0044 0B44     		add	r3, r3, r1
+ 191 0046 1E4A     		ldr	r2, .L33+36
+ 192 0048 9342     		cmp	r3, r2
+ 193 004a 1DD9     		bls	.L27
+ 194 004c 1D4B     		ldr	r3, .L33+40
+ 195 004e 0B44     		add	r3, r3, r1
+ 196 0050 1D4A     		ldr	r2, .L33+44
+ 197 0052 9342     		cmp	r3, r2
+ 198 0054 1AD3     		bcc	.L28
+ 199 0056 1D4B     		ldr	r3, .L33+48
+ 200 0058 0B44     		add	r3, r3, r1
+ 201 005a 1D4A     		ldr	r2, .L33+52
+ 202 005c 9342     		cmp	r3, r2
+ 203 005e 17D3     		bcc	.L29
+ 204 0060 1C4B     		ldr	r3, .L33+56
+ 205 0062 0B44     		add	r3, r3, r1
+ 206 0064 1C4A     		ldr	r2, .L33+60
+ 207 0066 9342     		cmp	r3, r2
+ 208 0068 14D3     		bcc	.L30
+ 209 006a 1C4B     		ldr	r3, .L33+64
+ 210 006c 0B44     		add	r3, r3, r1
+ 211 006e 1C4A     		ldr	r2, .L33+68
+ 212 0070 9342     		cmp	r3, r2
+ 213 0072 11D2     		bcs	.L31
+ 214 0074 0722     		movs	r2, #7
+ 215 0076 C6E7     		b	.L21
+ 216              	.L23:
+ 217 0078 0F22     		movs	r2, #15
+ 218 007a C4E7     		b	.L21
+ 219              	.L24:
+ 220 007c 0E22     		movs	r2, #14
+ 221 007e C2E7     		b	.L21
+ 222              	.L25:
+ 223 0080 0D22     		movs	r2, #13
+ 224 0082 C0E7     		b	.L21
+ 225              	.L26:
+ 226 0084 0C22     		movs	r2, #12
+ 227 0086 BEE7     		b	.L21
+ 228              	.L27:
+ 229 0088 0B22     		movs	r2, #11
+ 230 008a BCE7     		b	.L21
+ 231              	.L28:
+ 232 008c 0A22     		movs	r2, #10
+ 233 008e BAE7     		b	.L21
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 5
+
+
+ 234              	.L29:
+ 235 0090 0922     		movs	r2, #9
+ 236 0092 B8E7     		b	.L21
+ 237              	.L30:
+ 238 0094 0822     		movs	r2, #8
+ 239 0096 B6E7     		b	.L21
+ 240              	.L31:
+ 241 0098 0622     		movs	r2, #6
+ 242 009a B4E7     		b	.L21
+ 243              	.L34:
+ 244              		.align	2
+ 245              	.L33:
+ 246 009c 405327FF 		.word	-14200000
+ 247 00a0 FF340C00 		.word	799999
+ 248 00a4 401E1BFF 		.word	-15000000
+ 249 00a8 3F420F00 		.word	999999
+ 250 00ac 00DC0BFF 		.word	-16000000
+ 251 00b0 7F4F1200 		.word	1199999
+ 252 00b4 808CF9FE 		.word	-17200000
+ 253 00b8 20D61300 		.word	1300000
+ 254 00bc 60B6E5FE 		.word	-18500000
+ 255 00c0 5FE31600 		.word	1499999
+ 256 00c4 00D3CEFE 		.word	-20000000
+ 257 00c8 40771B00 		.word	1800000
+ 258 00cc C05BB3FE 		.word	-21800000
+ 259 00d0 C0912100 		.word	2200000
+ 260 00d4 00CA91FE 		.word	-24000000
+ 261 00d8 20753800 		.word	3700000
+ 262 00dc E05459FE 		.word	-27700000
+ 263 00e0 E09C4100 		.word	4300000
+ 265              		.section	.text.USB_EnableGlobalInt,"ax",%progbits
+ 266              		.align	1
+ 267              		.global	USB_EnableGlobalInt
+ 268              		.syntax unified
+ 269              		.thumb
+ 270              		.thumb_func
+ 272              	USB_EnableGlobalInt:
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 275              		@ link register save eliminated.
+ 276 0000 8368     		ldr	r3, [r0, #8]
+ 277 0002 43F00103 		orr	r3, r3, #1
+ 278 0006 8360     		str	r3, [r0, #8]
+ 279 0008 0020     		movs	r0, #0
+ 280 000a 7047     		bx	lr
+ 282              		.section	.text.USB_DisableGlobalInt,"ax",%progbits
+ 283              		.align	1
+ 284              		.global	USB_DisableGlobalInt
+ 285              		.syntax unified
+ 286              		.thumb
+ 287              		.thumb_func
+ 289              	USB_DisableGlobalInt:
+ 290              		@ args = 0, pretend = 0, frame = 0
+ 291              		@ frame_needed = 0, uses_anonymous_args = 0
+ 292              		@ link register save eliminated.
+ 293 0000 8368     		ldr	r3, [r0, #8]
+ 294 0002 23F00103 		bic	r3, r3, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 6
+
+
+ 295 0006 8360     		str	r3, [r0, #8]
+ 296 0008 0020     		movs	r0, #0
+ 297 000a 7047     		bx	lr
+ 299              		.section	.text.USB_FlushTxFifo,"ax",%progbits
+ 300              		.align	1
+ 301              		.global	USB_FlushTxFifo
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	USB_FlushTxFifo:
+ 307              		@ args = 0, pretend = 0, frame = 8
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309              		@ link register save eliminated.
+ 310 0000 82B0     		sub	sp, sp, #8
+ 311 0002 0023     		movs	r3, #0
+ 312 0004 0193     		str	r3, [sp, #4]
+ 313              	.L39:
+ 314 0006 019B     		ldr	r3, [sp, #4]
+ 315 0008 0133     		adds	r3, r3, #1
+ 316 000a 0193     		str	r3, [sp, #4]
+ 317 000c 019B     		ldr	r3, [sp, #4]
+ 318 000e B3F1706F 		cmp	r3, #251658240
+ 319 0012 15D8     		bhi	.L41
+ 320 0014 0369     		ldr	r3, [r0, #16]
+ 321 0016 002B     		cmp	r3, #0
+ 322 0018 F5DA     		bge	.L39
+ 323 001a 0023     		movs	r3, #0
+ 324 001c 0193     		str	r3, [sp, #4]
+ 325 001e 8901     		lsls	r1, r1, #6
+ 326 0020 41F02001 		orr	r1, r1, #32
+ 327 0024 0161     		str	r1, [r0, #16]
+ 328              	.L40:
+ 329 0026 019B     		ldr	r3, [sp, #4]
+ 330 0028 0133     		adds	r3, r3, #1
+ 331 002a 0193     		str	r3, [sp, #4]
+ 332 002c 019B     		ldr	r3, [sp, #4]
+ 333 002e B3F1706F 		cmp	r3, #251658240
+ 334 0032 08D8     		bhi	.L42
+ 335 0034 0369     		ldr	r3, [r0, #16]
+ 336 0036 13F0200F 		tst	r3, #32
+ 337 003a F4D1     		bne	.L40
+ 338 003c 0020     		movs	r0, #0
+ 339 003e 00E0     		b	.L38
+ 340              	.L41:
+ 341 0040 0320     		movs	r0, #3
+ 342              	.L38:
+ 343 0042 02B0     		add	sp, sp, #8
+ 344              		@ sp needed
+ 345 0044 7047     		bx	lr
+ 346              	.L42:
+ 347 0046 0320     		movs	r0, #3
+ 348 0048 FBE7     		b	.L38
+ 350              		.section	.text.USB_FlushRxFifo,"ax",%progbits
+ 351              		.align	1
+ 352              		.global	USB_FlushRxFifo
+ 353              		.syntax unified
+ 354              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 7
+
+
+ 355              		.thumb_func
+ 357              	USB_FlushRxFifo:
+ 358              		@ args = 0, pretend = 0, frame = 8
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+ 360              		@ link register save eliminated.
+ 361 0000 82B0     		sub	sp, sp, #8
+ 362 0002 0023     		movs	r3, #0
+ 363 0004 0193     		str	r3, [sp, #4]
+ 364              	.L46:
+ 365 0006 019B     		ldr	r3, [sp, #4]
+ 366 0008 0133     		adds	r3, r3, #1
+ 367 000a 0193     		str	r3, [sp, #4]
+ 368 000c 019B     		ldr	r3, [sp, #4]
+ 369 000e B3F1706F 		cmp	r3, #251658240
+ 370 0012 13D8     		bhi	.L48
+ 371 0014 0369     		ldr	r3, [r0, #16]
+ 372 0016 002B     		cmp	r3, #0
+ 373 0018 F5DA     		bge	.L46
+ 374 001a 0023     		movs	r3, #0
+ 375 001c 0193     		str	r3, [sp, #4]
+ 376 001e 1023     		movs	r3, #16
+ 377 0020 0361     		str	r3, [r0, #16]
+ 378              	.L47:
+ 379 0022 019B     		ldr	r3, [sp, #4]
+ 380 0024 0133     		adds	r3, r3, #1
+ 381 0026 0193     		str	r3, [sp, #4]
+ 382 0028 019B     		ldr	r3, [sp, #4]
+ 383 002a B3F1706F 		cmp	r3, #251658240
+ 384 002e 08D8     		bhi	.L49
+ 385 0030 0369     		ldr	r3, [r0, #16]
+ 386 0032 13F0100F 		tst	r3, #16
+ 387 0036 F4D1     		bne	.L47
+ 388 0038 0020     		movs	r0, #0
+ 389 003a 00E0     		b	.L45
+ 390              	.L48:
+ 391 003c 0320     		movs	r0, #3
+ 392              	.L45:
+ 393 003e 02B0     		add	sp, sp, #8
+ 394              		@ sp needed
+ 395 0040 7047     		bx	lr
+ 396              	.L49:
+ 397 0042 0320     		movs	r0, #3
+ 398 0044 FBE7     		b	.L45
+ 400              		.section	.text.USB_SetDevSpeed,"ax",%progbits
+ 401              		.align	1
+ 402              		.global	USB_SetDevSpeed
+ 403              		.syntax unified
+ 404              		.thumb
+ 405              		.thumb_func
+ 407              	USB_SetDevSpeed:
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410              		@ link register save eliminated.
+ 411 0000 D0F80038 		ldr	r3, [r0, #2048]
+ 412 0004 1943     		orrs	r1, r1, r3
+ 413 0006 C0F80018 		str	r1, [r0, #2048]
+ 414 000a 0020     		movs	r0, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 8
+
+
+ 415 000c 7047     		bx	lr
+ 417              		.section	.text.USB_DevInit,"ax",%progbits
+ 418              		.align	1
+ 419              		.global	USB_DevInit
+ 420              		.syntax unified
+ 421              		.thumb
+ 422              		.thumb_func
+ 424              	USB_DevInit:
+ 425              		@ args = 20, pretend = 16, frame = 0
+ 426              		@ frame_needed = 0, uses_anonymous_args = 0
+ 427 0000 84B0     		sub	sp, sp, #16
+ 428 0002 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 429 0004 0446     		mov	r4, r0
+ 430 0006 07A8     		add	r0, sp, #28
+ 431 0008 80E80E00 		stm	r0, {r1, r2, r3}
+ 432 000c 0023     		movs	r3, #0
+ 433 000e 06E0     		b	.L53
+ 434              	.L54:
+ 435 0010 03F14002 		add	r2, r3, #64
+ 436 0014 04EB8202 		add	r2, r4, r2, lsl #2
+ 437 0018 0021     		movs	r1, #0
+ 438 001a 5160     		str	r1, [r2, #4]
+ 439 001c 0133     		adds	r3, r3, #1
+ 440              	.L53:
+ 441 001e 0E2B     		cmp	r3, #14
+ 442 0020 F6D9     		bls	.L54
+ 443 0022 9DF82660 		ldrb	r6, [sp, #38]	@ zero_extendqisi2
+ 444 0026 06BB     		cbnz	r6, .L55
+ 445 0028 D4F80438 		ldr	r3, [r4, #2052]
+ 446 002c 43F00203 		orr	r3, r3, #2
+ 447 0030 C4F80438 		str	r3, [r4, #2052]
+ 448 0034 A36B     		ldr	r3, [r4, #56]
+ 449 0036 23F40013 		bic	r3, r3, #2097152
+ 450 003a A363     		str	r3, [r4, #56]
+ 451 003c 2368     		ldr	r3, [r4]
+ 452 003e 43F04003 		orr	r3, r3, #64
+ 453 0042 2360     		str	r3, [r4]
+ 454 0044 2368     		ldr	r3, [r4]
+ 455 0046 43F08003 		orr	r3, r3, #128
+ 456 004a 2360     		str	r3, [r4]
+ 457              	.L56:
+ 458 004c 0023     		movs	r3, #0
+ 459 004e C4F8003E 		str	r3, [r4, #3584]
+ 460 0052 9DF82130 		ldrb	r3, [sp, #33]	@ zero_extendqisi2
+ 461 0056 012B     		cmp	r3, #1
+ 462 0058 11D1     		bne	.L57
+ 463 005a 9DF81F30 		ldrb	r3, [sp, #31]	@ zero_extendqisi2
+ 464 005e 4BB9     		cbnz	r3, .L58
+ 465 0060 0021     		movs	r1, #0
+ 466 0062 2046     		mov	r0, r4
+ 467 0064 FFF7FEFF 		bl	USB_SetDevSpeed
+ 468 0068 0DE0     		b	.L59
+ 469              	.L55:
+ 470 006a A36B     		ldr	r3, [r4, #56]
+ 471 006c 43F40013 		orr	r3, r3, #2097152
+ 472 0070 A363     		str	r3, [r4, #56]
+ 473 0072 EBE7     		b	.L56
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 9
+
+
+ 474              	.L58:
+ 475 0074 0121     		movs	r1, #1
+ 476 0076 2046     		mov	r0, r4
+ 477 0078 FFF7FEFF 		bl	USB_SetDevSpeed
+ 478 007c 03E0     		b	.L59
+ 479              	.L57:
+ 480 007e 0321     		movs	r1, #3
+ 481 0080 2046     		mov	r0, r4
+ 482 0082 FFF7FEFF 		bl	USB_SetDevSpeed
+ 483              	.L59:
+ 484 0086 1021     		movs	r1, #16
+ 485 0088 2046     		mov	r0, r4
+ 486 008a FFF7FEFF 		bl	USB_FlushTxFifo
+ 487 008e 0546     		mov	r5, r0
+ 488 0090 00B1     		cbz	r0, .L60
+ 489 0092 0125     		movs	r5, #1
+ 490              	.L60:
+ 491 0094 2046     		mov	r0, r4
+ 492 0096 FFF7FEFF 		bl	USB_FlushRxFifo
+ 493 009a 00B1     		cbz	r0, .L61
+ 494 009c 0125     		movs	r5, #1
+ 495              	.L61:
+ 496 009e 04F5006C 		add	ip, r4, #2048
+ 497 00a2 0023     		movs	r3, #0
+ 498 00a4 CCF81030 		str	r3, [ip, #16]
+ 499 00a8 CCF81430 		str	r3, [ip, #20]
+ 500 00ac CCF81C30 		str	r3, [ip, #28]
+ 501 00b0 0DE0     		b	.L62
+ 502              	.L64:
+ 503 00b2 4FF09040 		mov	r0, #1207959552
+ 504 00b6 C2F80009 		str	r0, [r2, #2304]
+ 505 00ba 02E0     		b	.L65
+ 506              	.L63:
+ 507 00bc 0020     		movs	r0, #0
+ 508 00be C2F80009 		str	r0, [r2, #2304]
+ 509              	.L65:
+ 510 00c2 0022     		movs	r2, #0
+ 511 00c4 0A61     		str	r2, [r1, #16]
+ 512 00c6 4FF67F32 		movw	r2, #64383
+ 513 00ca 8A60     		str	r2, [r1, #8]
+ 514 00cc 0133     		adds	r3, r3, #1
+ 515              	.L62:
+ 516 00ce 9DF81C10 		ldrb	r1, [sp, #28]	@ zero_extendqisi2
+ 517 00d2 9942     		cmp	r1, r3
+ 518 00d4 0ED9     		bls	.L78
+ 519 00d6 04EB4312 		add	r2, r4, r3, lsl #5
+ 520 00da 02F51061 		add	r1, r2, #2304
+ 521 00de D2F80009 		ldr	r0, [r2, #2304]
+ 522 00e2 0028     		cmp	r0, #0
+ 523 00e4 EADA     		bge	.L63
+ 524 00e6 002B     		cmp	r3, #0
+ 525 00e8 E3D1     		bne	.L64
+ 526 00ea 4FF00060 		mov	r0, #134217728
+ 527 00ee C2F80009 		str	r0, [r2, #2304]
+ 528 00f2 E6E7     		b	.L65
+ 529              	.L78:
+ 530 00f4 0023     		movs	r3, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 10
+
+
+ 531 00f6 0AE0     		b	.L67
+ 532              	.L81:
+ 533 00f8 BBB1     		cbz	r3, .L79
+ 534 00fa 4FF09047 		mov	r7, #1207959552
+ 535 00fe C2F8007B 		str	r7, [r2, #2816]
+ 536              	.L70:
+ 537 0102 0022     		movs	r2, #0
+ 538 0104 0261     		str	r2, [r0, #16]
+ 539 0106 4FF67F32 		movw	r2, #64383
+ 540 010a 8260     		str	r2, [r0, #8]
+ 541 010c 0133     		adds	r3, r3, #1
+ 542              	.L67:
+ 543 010e 9942     		cmp	r1, r3
+ 544 0110 10D9     		bls	.L80
+ 545 0112 04EB4312 		add	r2, r4, r3, lsl #5
+ 546 0116 02F53060 		add	r0, r2, #2816
+ 547 011a D2F8007B 		ldr	r7, [r2, #2816]
+ 548 011e 002F     		cmp	r7, #0
+ 549 0120 EADB     		blt	.L81
+ 550 0122 0027     		movs	r7, #0
+ 551 0124 C2F8007B 		str	r7, [r2, #2816]
+ 552 0128 EBE7     		b	.L70
+ 553              	.L79:
+ 554 012a 4FF00067 		mov	r7, #134217728
+ 555 012e C2F8007B 		str	r7, [r2, #2816]
+ 556 0132 E6E7     		b	.L70
+ 557              	.L80:
+ 558 0134 DCF81030 		ldr	r3, [ip, #16]
+ 559 0138 23F48073 		bic	r3, r3, #256
+ 560 013c CCF81030 		str	r3, [ip, #16]
+ 561 0140 0023     		movs	r3, #0
+ 562 0142 A361     		str	r3, [r4, #24]
+ 563 0144 6FF08043 		mvn	r3, #1073741824
+ 564 0148 6361     		str	r3, [r4, #20]
+ 565 014a 9DF81E30 		ldrb	r3, [sp, #30]	@ zero_extendqisi2
+ 566 014e 1BB9     		cbnz	r3, .L72
+ 567 0150 A369     		ldr	r3, [r4, #24]
+ 568 0152 43F01003 		orr	r3, r3, #16
+ 569 0156 A361     		str	r3, [r4, #24]
+ 570              	.L72:
+ 571 0158 A269     		ldr	r2, [r4, #24]
+ 572 015a 0B4B     		ldr	r3, .L83
+ 573 015c 1343     		orrs	r3, r3, r2
+ 574 015e A361     		str	r3, [r4, #24]
+ 575 0160 9DF82230 		ldrb	r3, [sp, #34]	@ zero_extendqisi2
+ 576 0164 1BB1     		cbz	r3, .L73
+ 577 0166 A369     		ldr	r3, [r4, #24]
+ 578 0168 43F00803 		orr	r3, r3, #8
+ 579 016c A361     		str	r3, [r4, #24]
+ 580              	.L73:
+ 581 016e 012E     		cmp	r6, #1
+ 582 0170 04D0     		beq	.L82
+ 583              	.L74:
+ 584 0172 2846     		mov	r0, r5
+ 585 0174 BDE8F840 		pop	{r3, r4, r5, r6, r7, lr}
+ 586 0178 04B0     		add	sp, sp, #16
+ 587 017a 7047     		bx	lr
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 11
+
+
+ 588              	.L82:
+ 589 017c A269     		ldr	r2, [r4, #24]
+ 590 017e 034B     		ldr	r3, .L83+4
+ 591 0180 1343     		orrs	r3, r3, r2
+ 592 0182 A361     		str	r3, [r4, #24]
+ 593 0184 F5E7     		b	.L74
+ 594              	.L84:
+ 595 0186 00BF     		.align	2
+ 596              	.L83:
+ 597 0188 00383C80 		.word	-2143537152
+ 598 018c 04000040 		.word	1073741828
+ 600              		.section	.text.USB_GetDevSpeed,"ax",%progbits
+ 601              		.align	1
+ 602              		.global	USB_GetDevSpeed
+ 603              		.syntax unified
+ 604              		.thumb
+ 605              		.thumb_func
+ 607              	USB_GetDevSpeed:
+ 608              		@ args = 0, pretend = 0, frame = 0
+ 609              		@ frame_needed = 0, uses_anonymous_args = 0
+ 610              		@ link register save eliminated.
+ 611 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 612 0004 03F00603 		and	r3, r3, #6
+ 613 0008 022B     		cmp	r3, #2
+ 614 000a 04D0     		beq	.L87
+ 615 000c 062B     		cmp	r3, #6
+ 616 000e 04D0     		beq	.L88
+ 617 0010 2BB9     		cbnz	r3, .L89
+ 618 0012 0020     		movs	r0, #0
+ 619 0014 7047     		bx	lr
+ 620              	.L87:
+ 621 0016 0220     		movs	r0, #2
+ 622 0018 7047     		bx	lr
+ 623              	.L88:
+ 624 001a 0220     		movs	r0, #2
+ 625 001c 7047     		bx	lr
+ 626              	.L89:
+ 627 001e 0F20     		movs	r0, #15
+ 628 0020 7047     		bx	lr
+ 630              		.section	.text.USB_ActivateEndpoint,"ax",%progbits
+ 631              		.align	1
+ 632              		.global	USB_ActivateEndpoint
+ 633              		.syntax unified
+ 634              		.thumb
+ 635              		.thumb_func
+ 637              	USB_ActivateEndpoint:
+ 638              		@ args = 0, pretend = 0, frame = 0
+ 639              		@ frame_needed = 0, uses_anonymous_args = 0
+ 640 0000 10B5     		push	{r4, lr}
+ 641 0002 91F800C0 		ldrb	ip, [r1]	@ zero_extendqisi2
+ 642 0006 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 643 0008 012B     		cmp	r3, #1
+ 644 000a 21D0     		beq	.L94
+ 645 000c 00F5006E 		add	lr, r0, #2048
+ 646 0010 D0F81C38 		ldr	r3, [r0, #2076]
+ 647 0014 0CF00F04 		and	r4, ip, #15
+ 648 0018 0122     		movs	r2, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 12
+
+
+ 649 001a A240     		lsls	r2, r2, r4
+ 650 001c 43EA0243 		orr	r3, r3, r2, lsl #16
+ 651 0020 C0F81C38 		str	r3, [r0, #2076]
+ 652 0024 00EB4C10 		add	r0, r0, ip, lsl #5
+ 653 0028 D0F8003B 		ldr	r3, [r0, #2816]
+ 654 002c 13F4004F 		tst	r3, #32768
+ 655 0030 0CD1     		bne	.L92
+ 656 0032 D0F8002B 		ldr	r2, [r0, #2816]
+ 657 0036 8B68     		ldr	r3, [r1, #8]
+ 658 0038 C3F30A03 		ubfx	r3, r3, #0, #11
+ 659 003c 0979     		ldrb	r1, [r1, #4]	@ zero_extendqisi2
+ 660 003e 43EA8143 		orr	r3, r3, r1, lsl #18
+ 661 0042 1A43     		orrs	r2, r2, r3
+ 662 0044 134B     		ldr	r3, .L95
+ 663 0046 1343     		orrs	r3, r3, r2
+ 664 0048 C0F8003B 		str	r3, [r0, #2816]
+ 665              	.L92:
+ 666 004c 0020     		movs	r0, #0
+ 667 004e 10BD     		pop	{r4, pc}
+ 668              	.L94:
+ 669 0050 D0F81C28 		ldr	r2, [r0, #2076]
+ 670 0054 0CF00F0E 		and	lr, ip, #15
+ 671 0058 03FA0EF3 		lsl	r3, r3, lr
+ 672 005c 9BB2     		uxth	r3, r3
+ 673 005e 1343     		orrs	r3, r3, r2
+ 674 0060 C0F81C38 		str	r3, [r0, #2076]
+ 675 0064 00EB4C10 		add	r0, r0, ip, lsl #5
+ 676 0068 D0F80039 		ldr	r3, [r0, #2304]
+ 677 006c 13F4004F 		tst	r3, #32768
+ 678 0070 ECD1     		bne	.L92
+ 679 0072 D0F80029 		ldr	r2, [r0, #2304]
+ 680 0076 8B68     		ldr	r3, [r1, #8]
+ 681 0078 C3F30A03 		ubfx	r3, r3, #0, #11
+ 682 007c 0979     		ldrb	r1, [r1, #4]	@ zero_extendqisi2
+ 683 007e 43EA8143 		orr	r3, r3, r1, lsl #18
+ 684 0082 43EA8C53 		orr	r3, r3, ip, lsl #22
+ 685 0086 1A43     		orrs	r2, r2, r3
+ 686 0088 024B     		ldr	r3, .L95
+ 687 008a 1343     		orrs	r3, r3, r2
+ 688 008c C0F80039 		str	r3, [r0, #2304]
+ 689 0090 DCE7     		b	.L92
+ 690              	.L96:
+ 691 0092 00BF     		.align	2
+ 692              	.L95:
+ 693 0094 00800010 		.word	268468224
+ 695              		.section	.text.USB_ActivateDedicatedEndpoint,"ax",%progbits
+ 696              		.align	1
+ 697              		.global	USB_ActivateDedicatedEndpoint
+ 698              		.syntax unified
+ 699              		.thumb
+ 700              		.thumb_func
+ 702              	USB_ActivateDedicatedEndpoint:
+ 703              		@ args = 0, pretend = 0, frame = 0
+ 704              		@ frame_needed = 0, uses_anonymous_args = 0
+ 705              		@ link register save eliminated.
+ 706 0000 30B4     		push	{r4, r5}
+ 707 0002 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 13
+
+
+ 708 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 709 0006 012B     		cmp	r3, #1
+ 710 0008 23D0     		beq	.L103
+ 711 000a 00EB421C 		add	ip, r0, r2, lsl #5
+ 712 000e DCF8003B 		ldr	r3, [ip, #2816]
+ 713 0012 13F4004F 		tst	r3, #32768
+ 714 0016 0ED1     		bne	.L101
+ 715 0018 DCF8004B 		ldr	r4, [ip, #2816]
+ 716 001c 8B68     		ldr	r3, [r1, #8]
+ 717 001e C3F30A03 		ubfx	r3, r3, #0, #11
+ 718 0022 0D79     		ldrb	r5, [r1, #4]	@ zero_extendqisi2
+ 719 0024 43EA8543 		orr	r3, r3, r5, lsl #18
+ 720 0028 43EA8253 		orr	r3, r3, r2, lsl #22
+ 721 002c 2343     		orrs	r3, r3, r4
+ 722 002e 43F40043 		orr	r3, r3, #32768
+ 723 0032 CCF8003B 		str	r3, [ip, #2816]
+ 724              	.L101:
+ 725 0036 D0F83C38 		ldr	r3, [r0, #2108]
+ 726 003a 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 727 003c 01F00F01 		and	r1, r1, #15
+ 728 0040 0122     		movs	r2, #1
+ 729 0042 8A40     		lsls	r2, r2, r1
+ 730 0044 43EA0243 		orr	r3, r3, r2, lsl #16
+ 731 0048 C0F83C38 		str	r3, [r0, #2108]
+ 732              	.L100:
+ 733 004c 0020     		movs	r0, #0
+ 734 004e 30BC     		pop	{r4, r5}
+ 735 0050 7047     		bx	lr
+ 736              	.L103:
+ 737 0052 00EB4214 		add	r4, r0, r2, lsl #5
+ 738 0056 D4F80039 		ldr	r3, [r4, #2304]
+ 739 005a 13F4004F 		tst	r3, #32768
+ 740 005e 10D1     		bne	.L99
+ 741 0060 D4F80059 		ldr	r5, [r4, #2304]
+ 742 0064 8B68     		ldr	r3, [r1, #8]
+ 743 0066 C3F30A03 		ubfx	r3, r3, #0, #11
+ 744 006a 91F804C0 		ldrb	ip, [r1, #4]	@ zero_extendqisi2
+ 745 006e 43EA8C43 		orr	r3, r3, ip, lsl #18
+ 746 0072 43EA8253 		orr	r3, r3, r2, lsl #22
+ 747 0076 45EA0302 		orr	r2, r5, r3
+ 748 007a 084B     		ldr	r3, .L104
+ 749 007c 1343     		orrs	r3, r3, r2
+ 750 007e C4F80039 		str	r3, [r4, #2304]
+ 751              	.L99:
+ 752 0082 D0F83C28 		ldr	r2, [r0, #2108]
+ 753 0086 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 754 0088 01F00F01 		and	r1, r1, #15
+ 755 008c 0123     		movs	r3, #1
+ 756 008e 8B40     		lsls	r3, r3, r1
+ 757 0090 9BB2     		uxth	r3, r3
+ 758 0092 1343     		orrs	r3, r3, r2
+ 759 0094 C0F83C38 		str	r3, [r0, #2108]
+ 760 0098 D8E7     		b	.L100
+ 761              	.L105:
+ 762 009a 00BF     		.align	2
+ 763              	.L104:
+ 764 009c 00800010 		.word	268468224
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 14
+
+
+ 766              		.section	.text.USB_DeactivateEndpoint,"ax",%progbits
+ 767              		.align	1
+ 768              		.global	USB_DeactivateEndpoint
+ 769              		.syntax unified
+ 770              		.thumb
+ 771              		.thumb_func
+ 773              	USB_DeactivateEndpoint:
+ 774              		@ args = 0, pretend = 0, frame = 0
+ 775              		@ frame_needed = 0, uses_anonymous_args = 0
+ 776              		@ link register save eliminated.
+ 777 0000 30B4     		push	{r4, r5}
+ 778 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 779 0004 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 780 0006 012A     		cmp	r2, #1
+ 781 0008 26D0     		beq	.L112
+ 782 000a 00EB4313 		add	r3, r0, r3, lsl #5
+ 783 000e D3F8002B 		ldr	r2, [r3, #2816]
+ 784 0012 002A     		cmp	r2, #0
+ 785 0014 52DB     		blt	.L113
+ 786              	.L110:
+ 787 0016 D0F83C48 		ldr	r4, [r0, #2108]
+ 788 001a 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 789 001c 02F00F02 		and	r2, r2, #15
+ 790 0020 4FF0010C 		mov	ip, #1
+ 791 0024 0CFA02F2 		lsl	r2, ip, r2
+ 792 0028 24EA0242 		bic	r2, r4, r2, lsl #16
+ 793 002c C0F83C28 		str	r2, [r0, #2108]
+ 794 0030 D0F81C28 		ldr	r2, [r0, #2076]
+ 795 0034 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 796 0036 01F00F01 		and	r1, r1, #15
+ 797 003a 0CFA01FC 		lsl	ip, ip, r1
+ 798 003e 22EA0C42 		bic	r2, r2, ip, lsl #16
+ 799 0042 C0F81C28 		str	r2, [r0, #2076]
+ 800 0046 D3F8001B 		ldr	r1, [r3, #2816]
+ 801 004a 234A     		ldr	r2, .L115
+ 802 004c 0A40     		ands	r2, r2, r1
+ 803 004e C3F8002B 		str	r2, [r3, #2816]
+ 804              	.L109:
+ 805 0052 0020     		movs	r0, #0
+ 806 0054 30BC     		pop	{r4, r5}
+ 807 0056 7047     		bx	lr
+ 808              	.L112:
+ 809 0058 00EB4313 		add	r3, r0, r3, lsl #5
+ 810 005c D3F80029 		ldr	r2, [r3, #2304]
+ 811 0060 002A     		cmp	r2, #0
+ 812 0062 1EDB     		blt	.L114
+ 813              	.L108:
+ 814 0064 D0F83C58 		ldr	r5, [r0, #2108]
+ 815 0068 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 816 006a 02F00F02 		and	r2, r2, #15
+ 817 006e 0124     		movs	r4, #1
+ 818 0070 04FA02F2 		lsl	r2, r4, r2
+ 819 0074 92B2     		uxth	r2, r2
+ 820 0076 25EA0202 		bic	r2, r5, r2
+ 821 007a C0F83C28 		str	r2, [r0, #2108]
+ 822 007e D0F81C28 		ldr	r2, [r0, #2076]
+ 823 0082 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 15
+
+
+ 824 0084 01F00F01 		and	r1, r1, #15
+ 825 0088 8C40     		lsls	r4, r4, r1
+ 826 008a A4B2     		uxth	r4, r4
+ 827 008c 22EA0402 		bic	r2, r2, r4
+ 828 0090 C0F81C28 		str	r2, [r0, #2076]
+ 829 0094 D3F80019 		ldr	r1, [r3, #2304]
+ 830 0098 104A     		ldr	r2, .L115+4
+ 831 009a 0A40     		ands	r2, r2, r1
+ 832 009c C3F80029 		str	r2, [r3, #2304]
+ 833 00a0 D7E7     		b	.L109
+ 834              	.L114:
+ 835 00a2 D3F80029 		ldr	r2, [r3, #2304]
+ 836 00a6 42F00062 		orr	r2, r2, #134217728
+ 837 00aa C3F80029 		str	r2, [r3, #2304]
+ 838 00ae D3F80029 		ldr	r2, [r3, #2304]
+ 839 00b2 42F08042 		orr	r2, r2, #1073741824
+ 840 00b6 C3F80029 		str	r2, [r3, #2304]
+ 841 00ba D3E7     		b	.L108
+ 842              	.L113:
+ 843 00bc D3F8002B 		ldr	r2, [r3, #2816]
+ 844 00c0 42F00062 		orr	r2, r2, #134217728
+ 845 00c4 C3F8002B 		str	r2, [r3, #2816]
+ 846 00c8 D3F8002B 		ldr	r2, [r3, #2816]
+ 847 00cc 42F08042 		orr	r2, r2, #1073741824
+ 848 00d0 C3F8002B 		str	r2, [r3, #2816]
+ 849 00d4 9FE7     		b	.L110
+ 850              	.L116:
+ 851 00d6 00BF     		.align	2
+ 852              	.L115:
+ 853 00d8 0078F3EF 		.word	-269256704
+ 854 00dc 007833EC 		.word	-332171264
+ 856              		.section	.text.USB_DeactivateDedicatedEndpoint,"ax",%progbits
+ 857              		.align	1
+ 858              		.global	USB_DeactivateDedicatedEndpoint
+ 859              		.syntax unified
+ 860              		.thumb
+ 861              		.thumb_func
+ 863              	USB_DeactivateDedicatedEndpoint:
+ 864              		@ args = 0, pretend = 0, frame = 0
+ 865              		@ frame_needed = 0, uses_anonymous_args = 0
+ 866              		@ link register save eliminated.
+ 867 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 868 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 869 0004 012A     		cmp	r2, #1
+ 870 0006 18D0     		beq	.L122
+ 871 0008 00EB4313 		add	r3, r0, r3, lsl #5
+ 872 000c D3F8002B 		ldr	r2, [r3, #2816]
+ 873 0010 002A     		cmp	r2, #0
+ 874 0012 38DB     		blt	.L123
+ 875              	.L121:
+ 876 0014 D3F8002B 		ldr	r2, [r3, #2816]
+ 877 0018 22F40042 		bic	r2, r2, #32768
+ 878 001c C3F8002B 		str	r2, [r3, #2816]
+ 879 0020 D0F81C38 		ldr	r3, [r0, #2076]
+ 880 0024 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 881 0026 01F00F01 		and	r1, r1, #15
+ 882 002a 0122     		movs	r2, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 16
+
+
+ 883 002c 8A40     		lsls	r2, r2, r1
+ 884 002e 23EA0243 		bic	r3, r3, r2, lsl #16
+ 885 0032 C0F81C38 		str	r3, [r0, #2076]
+ 886              	.L120:
+ 887 0036 0020     		movs	r0, #0
+ 888 0038 7047     		bx	lr
+ 889              	.L122:
+ 890 003a 00EB4313 		add	r3, r0, r3, lsl #5
+ 891 003e D3F80029 		ldr	r2, [r3, #2304]
+ 892 0042 002A     		cmp	r2, #0
+ 893 0044 12DB     		blt	.L124
+ 894              	.L119:
+ 895 0046 D3F80029 		ldr	r2, [r3, #2304]
+ 896 004a 22F40042 		bic	r2, r2, #32768
+ 897 004e C3F80029 		str	r2, [r3, #2304]
+ 898 0052 D0F81C28 		ldr	r2, [r0, #2076]
+ 899 0056 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 900 0058 01F00F01 		and	r1, r1, #15
+ 901 005c 0123     		movs	r3, #1
+ 902 005e 8B40     		lsls	r3, r3, r1
+ 903 0060 9BB2     		uxth	r3, r3
+ 904 0062 22EA0303 		bic	r3, r2, r3
+ 905 0066 C0F81C38 		str	r3, [r0, #2076]
+ 906 006a E4E7     		b	.L120
+ 907              	.L124:
+ 908 006c D3F80029 		ldr	r2, [r3, #2304]
+ 909 0070 42F00062 		orr	r2, r2, #134217728
+ 910 0074 C3F80029 		str	r2, [r3, #2304]
+ 911 0078 D3F80029 		ldr	r2, [r3, #2304]
+ 912 007c 42F08042 		orr	r2, r2, #1073741824
+ 913 0080 C3F80029 		str	r2, [r3, #2304]
+ 914 0084 DFE7     		b	.L119
+ 915              	.L123:
+ 916 0086 D3F8002B 		ldr	r2, [r3, #2816]
+ 917 008a 42F00062 		orr	r2, r2, #134217728
+ 918 008e C3F8002B 		str	r2, [r3, #2816]
+ 919 0092 D3F8002B 		ldr	r2, [r3, #2816]
+ 920 0096 42F08042 		orr	r2, r2, #1073741824
+ 921 009a C3F8002B 		str	r2, [r3, #2816]
+ 922 009e B9E7     		b	.L121
+ 924              		.section	.text.USB_EPStopXfer,"ax",%progbits
+ 925              		.align	1
+ 926              		.global	USB_EPStopXfer
+ 927              		.syntax unified
+ 928              		.thumb
+ 929              		.thumb_func
+ 931              	USB_EPStopXfer:
+ 932              		@ args = 0, pretend = 0, frame = 8
+ 933              		@ frame_needed = 0, uses_anonymous_args = 0
+ 934              		@ link register save eliminated.
+ 935 0000 10B4     		push	{r4}
+ 936 0002 83B0     		sub	sp, sp, #12
+ 937 0004 0246     		mov	r2, r0
+ 938 0006 0023     		movs	r3, #0
+ 939 0008 0193     		str	r3, [sp, #4]
+ 940 000a 4878     		ldrb	r0, [r1, #1]	@ zero_extendqisi2
+ 941 000c 0128     		cmp	r0, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 17
+
+
+ 942 000e 0BD0     		beq	.L134
+ 943 0010 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 944 0012 02EB4313 		add	r3, r2, r3, lsl #5
+ 945 0016 D3F8000B 		ldr	r0, [r3, #2816]
+ 946 001a 0028     		cmp	r0, #0
+ 947 001c 2DDB     		blt	.L135
+ 948 001e 0020     		movs	r0, #0
+ 949              	.L127:
+ 950 0020 03B0     		add	sp, sp, #12
+ 951              		@ sp needed
+ 952 0022 5DF8044B 		ldr	r4, [sp], #4
+ 953 0026 7047     		bx	lr
+ 954              	.L134:
+ 955 0028 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 956 002a 02EB4313 		add	r3, r2, r3, lsl #5
+ 957 002e D3F80049 		ldr	r4, [r3, #2304]
+ 958 0032 002C     		cmp	r4, #0
+ 959 0034 01DB     		blt	.L136
+ 960 0036 0020     		movs	r0, #0
+ 961 0038 F2E7     		b	.L127
+ 962              	.L136:
+ 963 003a D3F80049 		ldr	r4, [r3, #2304]
+ 964 003e 44F00064 		orr	r4, r4, #134217728
+ 965 0042 C3F80049 		str	r4, [r3, #2304]
+ 966 0046 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 967 0048 02EB4313 		add	r3, r2, r3, lsl #5
+ 968 004c D3F80049 		ldr	r4, [r3, #2304]
+ 969 0050 44F08044 		orr	r4, r4, #1073741824
+ 970 0054 C3F80049 		str	r4, [r3, #2304]
+ 971              	.L128:
+ 972 0058 019B     		ldr	r3, [sp, #4]
+ 973 005a 0133     		adds	r3, r3, #1
+ 974 005c 0193     		str	r3, [sp, #4]
+ 975 005e 019C     		ldr	r4, [sp, #4]
+ 976 0060 42F21073 		movw	r3, #10000
+ 977 0064 9C42     		cmp	r4, r3
+ 978 0066 DBD8     		bhi	.L127
+ 979 0068 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 980 006a 02EB4313 		add	r3, r2, r3, lsl #5
+ 981 006e D3F80039 		ldr	r3, [r3, #2304]
+ 982 0072 002B     		cmp	r3, #0
+ 983 0074 F0DB     		blt	.L128
+ 984 0076 0020     		movs	r0, #0
+ 985 0078 D2E7     		b	.L127
+ 986              	.L135:
+ 987 007a D3F8000B 		ldr	r0, [r3, #2816]
+ 988 007e 40F00060 		orr	r0, r0, #134217728
+ 989 0082 C3F8000B 		str	r0, [r3, #2816]
+ 990 0086 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 991 0088 02EB4313 		add	r3, r2, r3, lsl #5
+ 992 008c D3F8000B 		ldr	r0, [r3, #2816]
+ 993 0090 40F08040 		orr	r0, r0, #1073741824
+ 994 0094 C3F8000B 		str	r0, [r3, #2816]
+ 995              	.L129:
+ 996 0098 019B     		ldr	r3, [sp, #4]
+ 997 009a 0133     		adds	r3, r3, #1
+ 998 009c 0193     		str	r3, [sp, #4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 18
+
+
+ 999 009e 0198     		ldr	r0, [sp, #4]
+ 1000 00a0 42F21073 		movw	r3, #10000
+ 1001 00a4 9842     		cmp	r0, r3
+ 1002 00a6 08D8     		bhi	.L132
+ 1003 00a8 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1004 00aa 02EB4313 		add	r3, r2, r3, lsl #5
+ 1005 00ae D3F8003B 		ldr	r3, [r3, #2816]
+ 1006 00b2 002B     		cmp	r3, #0
+ 1007 00b4 F0DB     		blt	.L129
+ 1008 00b6 0020     		movs	r0, #0
+ 1009 00b8 B2E7     		b	.L127
+ 1010              	.L132:
+ 1011 00ba 0120     		movs	r0, #1
+ 1012 00bc B0E7     		b	.L127
+ 1014              		.section	.text.USB_WritePacket,"ax",%progbits
+ 1015              		.align	1
+ 1016              		.global	USB_WritePacket
+ 1017              		.syntax unified
+ 1018              		.thumb
+ 1019              		.thumb_func
+ 1021              	USB_WritePacket:
+ 1022              		@ args = 4, pretend = 0, frame = 0
+ 1023              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1024 0000 10B5     		push	{r4, lr}
+ 1025 0002 9DF80840 		ldrb	r4, [sp, #8]	@ zero_extendqisi2
+ 1026 0006 84B9     		cbnz	r4, .L138
+ 1027 0008 0333     		adds	r3, r3, #3
+ 1028 000a 4FEA930E 		lsr	lr, r3, #2
+ 1029 000e 4FF0000C 		mov	ip, #0
+ 1030 0012 08E0     		b	.L139
+ 1031              	.L140:
+ 1032 0014 00EB0233 		add	r3, r0, r2, lsl #12
+ 1033 0018 03F58053 		add	r3, r3, #4096
+ 1034 001c 51F8044B 		ldr	r4, [r1], #4	@ unaligned
+ 1035 0020 1C60     		str	r4, [r3]
+ 1036 0022 0CF1010C 		add	ip, ip, #1
+ 1037              	.L139:
+ 1038 0026 F445     		cmp	ip, lr
+ 1039 0028 F4D3     		bcc	.L140
+ 1040              	.L138:
+ 1041 002a 0020     		movs	r0, #0
+ 1042 002c 10BD     		pop	{r4, pc}
+ 1044              		.section	.text.USB_EPStartXfer,"ax",%progbits
+ 1045              		.align	1
+ 1046              		.global	USB_EPStartXfer
+ 1047              		.syntax unified
+ 1048              		.thumb
+ 1049              		.thumb_func
+ 1051              	USB_EPStartXfer:
+ 1052              		@ args = 0, pretend = 0, frame = 0
+ 1053              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1054 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1055 0002 83B0     		sub	sp, sp, #12
+ 1056 0004 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
+ 1057 0006 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 1058 0008 012B     		cmp	r3, #1
+ 1059 000a 2DD0     		beq	.L165
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 19
+
+
+ 1060 000c 00EB441C 		add	ip, r0, r4, lsl #5
+ 1061 0010 0CF53063 		add	r3, ip, #2816
+ 1062 0014 1D69     		ldr	r5, [r3, #16]
+ 1063 0016 6FF31205 		bfc	r5, #0, #19
+ 1064 001a 1D61     		str	r5, [r3, #16]
+ 1065 001c 1D69     		ldr	r5, [r3, #16]
+ 1066 001e 6FF3DC45 		bfc	r5, #19, #10
+ 1067 0022 1D61     		str	r5, [r3, #16]
+ 1068 0024 002C     		cmp	r4, #0
+ 1069 0026 40F0CE80 		bne	.L157
+ 1070 002a 0C69     		ldr	r4, [r1, #16]
+ 1071 002c 0CB1     		cbz	r4, .L158
+ 1072 002e 8C68     		ldr	r4, [r1, #8]
+ 1073 0030 0C61     		str	r4, [r1, #16]
+ 1074              	.L158:
+ 1075 0032 8C68     		ldr	r4, [r1, #8]
+ 1076 0034 0C62     		str	r4, [r1, #32]
+ 1077 0036 1D69     		ldr	r5, [r3, #16]
+ 1078 0038 C4F31204 		ubfx	r4, r4, #0, #19
+ 1079 003c 2C43     		orrs	r4, r4, r5
+ 1080 003e 1C61     		str	r4, [r3, #16]
+ 1081 0040 1C69     		ldr	r4, [r3, #16]
+ 1082 0042 44F40024 		orr	r4, r4, #524288
+ 1083 0046 1C61     		str	r4, [r3, #16]
+ 1084              	.L159:
+ 1085 0048 012A     		cmp	r2, #1
+ 1086 004a 00F0DF80 		beq	.L166
+ 1087              	.L161:
+ 1088 004e 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1089 0050 012B     		cmp	r3, #1
+ 1090 0052 00F0E180 		beq	.L167
+ 1091              	.L162:
+ 1092 0056 DCF8003B 		ldr	r3, [ip, #2816]
+ 1093 005a 43F00443 		orr	r3, r3, #-2080374784
+ 1094 005e CCF8003B 		str	r3, [ip, #2816]
+ 1095              	.L153:
+ 1096 0062 0020     		movs	r0, #0
+ 1097 0064 03B0     		add	sp, sp, #12
+ 1098              		@ sp needed
+ 1099 0066 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1100              	.L165:
+ 1101 0068 0B69     		ldr	r3, [r1, #16]
+ 1102 006a 73BB     		cbnz	r3, .L144
+ 1103 006c 00EB4413 		add	r3, r0, r4, lsl #5
+ 1104 0070 D3F81059 		ldr	r5, [r3, #2320]
+ 1105 0074 6FF3DC45 		bfc	r5, #19, #10
+ 1106 0078 C3F81059 		str	r5, [r3, #2320]
+ 1107 007c D3F81059 		ldr	r5, [r3, #2320]
+ 1108 0080 45F40025 		orr	r5, r5, #524288
+ 1109 0084 C3F81059 		str	r5, [r3, #2320]
+ 1110 0088 D3F81059 		ldr	r5, [r3, #2320]
+ 1111 008c 6FF31205 		bfc	r5, #0, #19
+ 1112 0090 C3F81059 		str	r5, [r3, #2320]
+ 1113              	.L145:
+ 1114 0094 012A     		cmp	r2, #1
+ 1115 0096 54D0     		beq	.L168
+ 1116 0098 00EB4414 		add	r4, r0, r4, lsl #5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 20
+
+
+ 1117 009c D4F80039 		ldr	r3, [r4, #2304]
+ 1118 00a0 43F00443 		orr	r3, r3, #-2080374784
+ 1119 00a4 C4F80039 		str	r3, [r4, #2304]
+ 1120 00a8 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1121 00aa 012B     		cmp	r3, #1
+ 1122 00ac 72D0     		beq	.L154
+ 1123 00ae 0B69     		ldr	r3, [r1, #16]
+ 1124 00b0 002B     		cmp	r3, #0
+ 1125 00b2 D6D0     		beq	.L153
+ 1126 00b4 D0F83438 		ldr	r3, [r0, #2100]
+ 1127 00b8 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 1128 00ba 01F00F01 		and	r1, r1, #15
+ 1129 00be 0122     		movs	r2, #1
+ 1130 00c0 8A40     		lsls	r2, r2, r1
+ 1131 00c2 1343     		orrs	r3, r3, r2
+ 1132 00c4 C0F83438 		str	r3, [r0, #2100]
+ 1133 00c8 CBE7     		b	.L153
+ 1134              	.L144:
+ 1135 00ca 00EB4413 		add	r3, r0, r4, lsl #5
+ 1136 00ce 03F51063 		add	r3, r3, #2304
+ 1137 00d2 1D69     		ldr	r5, [r3, #16]
+ 1138 00d4 6FF31205 		bfc	r5, #0, #19
+ 1139 00d8 1D61     		str	r5, [r3, #16]
+ 1140 00da 1D69     		ldr	r5, [r3, #16]
+ 1141 00dc 6FF3DC45 		bfc	r5, #19, #10
+ 1142 00e0 1D61     		str	r5, [r3, #16]
+ 1143 00e2 84B9     		cbnz	r4, .L146
+ 1144 00e4 0E69     		ldr	r6, [r1, #16]
+ 1145 00e6 8D68     		ldr	r5, [r1, #8]
+ 1146 00e8 AE42     		cmp	r6, r5
+ 1147 00ea 00D9     		bls	.L147
+ 1148 00ec 0D61     		str	r5, [r1, #16]
+ 1149              	.L147:
+ 1150 00ee 1D69     		ldr	r5, [r3, #16]
+ 1151 00f0 45F40025 		orr	r5, r5, #524288
+ 1152 00f4 1D61     		str	r5, [r3, #16]
+ 1153              	.L148:
+ 1154 00f6 1D69     		ldr	r5, [r3, #16]
+ 1155 00f8 0E69     		ldr	r6, [r1, #16]
+ 1156 00fa C6F3120C 		ubfx	ip, r6, #0, #19
+ 1157 00fe 45EA0C05 		orr	r5, r5, ip
+ 1158 0102 1D61     		str	r5, [r3, #16]
+ 1159 0104 C6E7     		b	.L145
+ 1160              	.L146:
+ 1161 0106 0D69     		ldr	r5, [r1, #16]
+ 1162 0108 8E68     		ldr	r6, [r1, #8]
+ 1163 010a 3544     		add	r5, r5, r6
+ 1164 010c 013D     		subs	r5, r5, #1
+ 1165 010e B5FBF6F5 		udiv	r5, r5, r6
+ 1166 0112 1E69     		ldr	r6, [r3, #16]
+ 1167 0114 1FFA85FC 		uxth	ip, r5
+ 1168 0118 494F     		ldr	r7, .L170
+ 1169 011a 07EAC545 		and	r5, r7, r5, lsl #19
+ 1170 011e 3543     		orrs	r5, r5, r6
+ 1171 0120 1D61     		str	r5, [r3, #16]
+ 1172 0122 0D79     		ldrb	r5, [r1, #4]	@ zero_extendqisi2
+ 1173 0124 012D     		cmp	r5, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 21
+
+
+ 1174 0126 E6D1     		bne	.L148
+ 1175 0128 1D69     		ldr	r5, [r3, #16]
+ 1176 012a 25F0C045 		bic	r5, r5, #1610612736
+ 1177 012e 1D61     		str	r5, [r3, #16]
+ 1178 0130 1D69     		ldr	r5, [r3, #16]
+ 1179 0132 4FEA4C7C 		lsl	ip, ip, #29
+ 1180 0136 0CF0C04C 		and	ip, ip, #1610612736
+ 1181 013a 45EA0C05 		orr	r5, r5, ip
+ 1182 013e 1D61     		str	r5, [r3, #16]
+ 1183 0140 D9E7     		b	.L148
+ 1184              	.L168:
+ 1185 0142 CB69     		ldr	r3, [r1, #28]
+ 1186 0144 1BB1     		cbz	r3, .L150
+ 1187 0146 00EB4412 		add	r2, r0, r4, lsl #5
+ 1188 014a C2F81439 		str	r3, [r2, #2324]
+ 1189              	.L150:
+ 1190 014e 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1191 0150 012B     		cmp	r3, #1
+ 1192 0152 08D0     		beq	.L169
+ 1193              	.L151:
+ 1194 0154 00EB4414 		add	r4, r0, r4, lsl #5
+ 1195 0158 D4F80039 		ldr	r3, [r4, #2304]
+ 1196 015c 43F00443 		orr	r3, r3, #-2080374784
+ 1197 0160 C4F80039 		str	r3, [r4, #2304]
+ 1198 0164 7DE7     		b	.L153
+ 1199              	.L169:
+ 1200 0166 D0F80838 		ldr	r3, [r0, #2056]
+ 1201 016a 13F4807F 		tst	r3, #256
+ 1202 016e 08D1     		bne	.L152
+ 1203 0170 00EB4412 		add	r2, r0, r4, lsl #5
+ 1204 0174 D2F80039 		ldr	r3, [r2, #2304]
+ 1205 0178 43F00053 		orr	r3, r3, #536870912
+ 1206 017c C2F80039 		str	r3, [r2, #2304]
+ 1207 0180 E8E7     		b	.L151
+ 1208              	.L152:
+ 1209 0182 00EB4412 		add	r2, r0, r4, lsl #5
+ 1210 0186 D2F80039 		ldr	r3, [r2, #2304]
+ 1211 018a 43F08053 		orr	r3, r3, #268435456
+ 1212 018e C2F80039 		str	r3, [r2, #2304]
+ 1213 0192 DFE7     		b	.L151
+ 1214              	.L154:
+ 1215 0194 D0F80838 		ldr	r3, [r0, #2056]
+ 1216 0198 13F4807F 		tst	r3, #256
+ 1217 019c 0CD1     		bne	.L155
+ 1218 019e D4F80039 		ldr	r3, [r4, #2304]
+ 1219 01a2 43F00053 		orr	r3, r3, #536870912
+ 1220 01a6 C4F80039 		str	r3, [r4, #2304]
+ 1221              	.L156:
+ 1222 01aa 0092     		str	r2, [sp]
+ 1223 01ac 0B8A     		ldrh	r3, [r1, #16]
+ 1224 01ae 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 1225 01b0 C968     		ldr	r1, [r1, #12]
+ 1226 01b2 FFF7FEFF 		bl	USB_WritePacket
+ 1227 01b6 54E7     		b	.L153
+ 1228              	.L155:
+ 1229 01b8 D4F80039 		ldr	r3, [r4, #2304]
+ 1230 01bc 43F08053 		orr	r3, r3, #268435456
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 22
+
+
+ 1231 01c0 C4F80039 		str	r3, [r4, #2304]
+ 1232 01c4 F1E7     		b	.L156
+ 1233              	.L157:
+ 1234 01c6 0C69     		ldr	r4, [r1, #16]
+ 1235 01c8 54B9     		cbnz	r4, .L160
+ 1236 01ca 1C69     		ldr	r4, [r3, #16]
+ 1237 01cc 8D68     		ldr	r5, [r1, #8]
+ 1238 01ce C5F31205 		ubfx	r5, r5, #0, #19
+ 1239 01d2 2C43     		orrs	r4, r4, r5
+ 1240 01d4 1C61     		str	r4, [r3, #16]
+ 1241 01d6 1C69     		ldr	r4, [r3, #16]
+ 1242 01d8 44F40024 		orr	r4, r4, #524288
+ 1243 01dc 1C61     		str	r4, [r3, #16]
+ 1244 01de 33E7     		b	.L159
+ 1245              	.L160:
+ 1246 01e0 8D68     		ldr	r5, [r1, #8]
+ 1247 01e2 2C44     		add	r4, r4, r5
+ 1248 01e4 013C     		subs	r4, r4, #1
+ 1249 01e6 B4FBF5F4 		udiv	r4, r4, r5
+ 1250 01ea A4B2     		uxth	r4, r4
+ 1251 01ec 04FB05F5 		mul	r5, r4, r5
+ 1252 01f0 0D62     		str	r5, [r1, #32]
+ 1253 01f2 1D69     		ldr	r5, [r3, #16]
+ 1254 01f4 124E     		ldr	r6, .L170
+ 1255 01f6 06EAC444 		and	r4, r6, r4, lsl #19
+ 1256 01fa 2C43     		orrs	r4, r4, r5
+ 1257 01fc 1C61     		str	r4, [r3, #16]
+ 1258 01fe 1C69     		ldr	r4, [r3, #16]
+ 1259 0200 0D6A     		ldr	r5, [r1, #32]
+ 1260 0202 C5F31205 		ubfx	r5, r5, #0, #19
+ 1261 0206 2C43     		orrs	r4, r4, r5
+ 1262 0208 1C61     		str	r4, [r3, #16]
+ 1263 020a 1DE7     		b	.L159
+ 1264              	.L166:
+ 1265 020c CA68     		ldr	r2, [r1, #12]
+ 1266 020e 002A     		cmp	r2, #0
+ 1267 0210 3FF41DAF 		beq	.L161
+ 1268 0214 5A61     		str	r2, [r3, #20]
+ 1269 0216 1AE7     		b	.L161
+ 1270              	.L167:
+ 1271 0218 D0F80838 		ldr	r3, [r0, #2056]
+ 1272 021c 13F4807F 		tst	r3, #256
+ 1273 0220 06D1     		bne	.L163
+ 1274 0222 DCF8003B 		ldr	r3, [ip, #2816]
+ 1275 0226 43F00053 		orr	r3, r3, #536870912
+ 1276 022a CCF8003B 		str	r3, [ip, #2816]
+ 1277 022e 12E7     		b	.L162
+ 1278              	.L163:
+ 1279 0230 DCF8003B 		ldr	r3, [ip, #2816]
+ 1280 0234 43F08053 		orr	r3, r3, #268435456
+ 1281 0238 CCF8003B 		str	r3, [ip, #2816]
+ 1282 023c 0BE7     		b	.L162
+ 1283              	.L171:
+ 1284 023e 00BF     		.align	2
+ 1285              	.L170:
+ 1286 0240 0000F81F 		.word	536346624
+ 1288              		.section	.text.USB_ReadPacket,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 23
+
+
+ 1289              		.align	1
+ 1290              		.global	USB_ReadPacket
+ 1291              		.syntax unified
+ 1292              		.thumb
+ 1293              		.thumb_func
+ 1295              	USB_ReadPacket:
+ 1296              		@ args = 0, pretend = 0, frame = 0
+ 1297              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1298 0000 10B5     		push	{r4, lr}
+ 1299 0002 8446     		mov	ip, r0
+ 1300 0004 0846     		mov	r0, r1
+ 1301 0006 4FEA920E 		lsr	lr, r2, #2
+ 1302 000a 02F00302 		and	r2, r2, #3
+ 1303 000e 0023     		movs	r3, #0
+ 1304 0010 05E0     		b	.L173
+ 1305              	.L174:
+ 1306 0012 0CF58051 		add	r1, ip, #4096
+ 1307 0016 0968     		ldr	r1, [r1]
+ 1308 0018 40F8041B 		str	r1, [r0], #4	@ unaligned
+ 1309 001c 0133     		adds	r3, r3, #1
+ 1310              	.L173:
+ 1311 001e 7345     		cmp	r3, lr
+ 1312 0020 F7D3     		bcc	.L174
+ 1313 0022 7AB1     		cbz	r2, .L175
+ 1314 0024 0CF5805C 		add	ip, ip, #4096
+ 1315 0028 DCF80040 		ldr	r4, [ip]
+ 1316 002c 0021     		movs	r1, #0
+ 1317              	.L176:
+ 1318 002e CBB2     		uxtb	r3, r1
+ 1319 0030 DB00     		lsls	r3, r3, #3
+ 1320 0032 24FA03F3 		lsr	r3, r4, r3
+ 1321 0036 00F8013B 		strb	r3, [r0], #1
+ 1322 003a 0131     		adds	r1, r1, #1
+ 1323 003c 013A     		subs	r2, r2, #1
+ 1324 003e 92B2     		uxth	r2, r2
+ 1325 0040 002A     		cmp	r2, #0
+ 1326 0042 F4D1     		bne	.L176
+ 1327              	.L175:
+ 1328 0044 10BD     		pop	{r4, pc}
+ 1330              		.section	.text.USB_EPSetStall,"ax",%progbits
+ 1331              		.align	1
+ 1332              		.global	USB_EPSetStall
+ 1333              		.syntax unified
+ 1334              		.thumb
+ 1335              		.thumb_func
+ 1337              	USB_EPSetStall:
+ 1338              		@ args = 0, pretend = 0, frame = 0
+ 1339              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1340              		@ link register save eliminated.
+ 1341 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1342 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 1343 0004 012A     		cmp	r2, #1
+ 1344 0006 14D0     		beq	.L183
+ 1345 0008 00EB4310 		add	r0, r0, r3, lsl #5
+ 1346 000c D0F8002B 		ldr	r2, [r0, #2816]
+ 1347 0010 002A     		cmp	r2, #0
+ 1348 0012 06DB     		blt	.L182
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 24
+
+
+ 1349 0014 2BB1     		cbz	r3, .L182
+ 1350 0016 D0F8003B 		ldr	r3, [r0, #2816]
+ 1351 001a 23F08043 		bic	r3, r3, #1073741824
+ 1352 001e C0F8003B 		str	r3, [r0, #2816]
+ 1353              	.L182:
+ 1354 0022 D0F8003B 		ldr	r3, [r0, #2816]
+ 1355 0026 43F40013 		orr	r3, r3, #2097152
+ 1356 002a C0F8003B 		str	r3, [r0, #2816]
+ 1357              	.L181:
+ 1358 002e 0020     		movs	r0, #0
+ 1359 0030 7047     		bx	lr
+ 1360              	.L183:
+ 1361 0032 00EB4310 		add	r0, r0, r3, lsl #5
+ 1362 0036 D0F80029 		ldr	r2, [r0, #2304]
+ 1363 003a 002A     		cmp	r2, #0
+ 1364 003c 06DB     		blt	.L180
+ 1365 003e 2BB1     		cbz	r3, .L180
+ 1366 0040 D0F80039 		ldr	r3, [r0, #2304]
+ 1367 0044 23F08043 		bic	r3, r3, #1073741824
+ 1368 0048 C0F80039 		str	r3, [r0, #2304]
+ 1369              	.L180:
+ 1370 004c D0F80039 		ldr	r3, [r0, #2304]
+ 1371 0050 43F40013 		orr	r3, r3, #2097152
+ 1372 0054 C0F80039 		str	r3, [r0, #2304]
+ 1373 0058 E9E7     		b	.L181
+ 1375              		.section	.text.USB_EPClearStall,"ax",%progbits
+ 1376              		.align	1
+ 1377              		.global	USB_EPClearStall
+ 1378              		.syntax unified
+ 1379              		.thumb
+ 1380              		.thumb_func
+ 1382              	USB_EPClearStall:
+ 1383              		@ args = 0, pretend = 0, frame = 0
+ 1384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1385              		@ link register save eliminated.
+ 1386 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 1387 0002 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 1388 0004 012A     		cmp	r2, #1
+ 1389 0006 0ED0     		beq	.L187
+ 1390 0008 00EB4310 		add	r0, r0, r3, lsl #5
+ 1391 000c D0F8003B 		ldr	r3, [r0, #2816]
+ 1392 0010 23F40013 		bic	r3, r3, #2097152
+ 1393 0014 C0F8003B 		str	r3, [r0, #2816]
+ 1394 0018 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 1395 001a 023B     		subs	r3, r3, #2
+ 1396 001c DBB2     		uxtb	r3, r3
+ 1397 001e 012B     		cmp	r3, #1
+ 1398 0020 15D9     		bls	.L188
+ 1399              	.L186:
+ 1400 0022 0020     		movs	r0, #0
+ 1401 0024 7047     		bx	lr
+ 1402              	.L187:
+ 1403 0026 00EB4310 		add	r0, r0, r3, lsl #5
+ 1404 002a D0F80039 		ldr	r3, [r0, #2304]
+ 1405 002e 23F40013 		bic	r3, r3, #2097152
+ 1406 0032 C0F80039 		str	r3, [r0, #2304]
+ 1407 0036 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 25
+
+
+ 1408 0038 023B     		subs	r3, r3, #2
+ 1409 003a DBB2     		uxtb	r3, r3
+ 1410 003c 012B     		cmp	r3, #1
+ 1411 003e F0D8     		bhi	.L186
+ 1412 0040 D0F80039 		ldr	r3, [r0, #2304]
+ 1413 0044 43F08053 		orr	r3, r3, #268435456
+ 1414 0048 C0F80039 		str	r3, [r0, #2304]
+ 1415 004c E9E7     		b	.L186
+ 1416              	.L188:
+ 1417 004e D0F8003B 		ldr	r3, [r0, #2816]
+ 1418 0052 43F08053 		orr	r3, r3, #268435456
+ 1419 0056 C0F8003B 		str	r3, [r0, #2816]
+ 1420 005a E2E7     		b	.L186
+ 1422              		.section	.text.USB_StopDevice,"ax",%progbits
+ 1423              		.align	1
+ 1424              		.global	USB_StopDevice
+ 1425              		.syntax unified
+ 1426              		.thumb
+ 1427              		.thumb_func
+ 1429              	USB_StopDevice:
+ 1430              		@ args = 0, pretend = 0, frame = 0
+ 1431              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1432 0000 10B5     		push	{r4, lr}
+ 1433 0002 0446     		mov	r4, r0
+ 1434 0004 0022     		movs	r2, #0
+ 1435 0006 08E0     		b	.L190
+ 1436              	.L191:
+ 1437 0008 04EB4213 		add	r3, r4, r2, lsl #5
+ 1438 000c 4FF67F31 		movw	r1, #64383
+ 1439 0010 C3F80819 		str	r1, [r3, #2312]
+ 1440 0014 C3F8081B 		str	r1, [r3, #2824]
+ 1441 0018 0132     		adds	r2, r2, #1
+ 1442              	.L190:
+ 1443 001a 0E2A     		cmp	r2, #14
+ 1444 001c F4D9     		bls	.L191
+ 1445 001e 0022     		movs	r2, #0
+ 1446 0020 C4F81028 		str	r2, [r4, #2064]
+ 1447 0024 C4F81428 		str	r2, [r4, #2068]
+ 1448 0028 C4F81C28 		str	r2, [r4, #2076]
+ 1449 002c 2046     		mov	r0, r4
+ 1450 002e FFF7FEFF 		bl	USB_FlushRxFifo
+ 1451 0032 00B1     		cbz	r0, .L194
+ 1452              	.L192:
+ 1453 0034 10BD     		pop	{r4, pc}
+ 1454              	.L194:
+ 1455 0036 1021     		movs	r1, #16
+ 1456 0038 2046     		mov	r0, r4
+ 1457 003a FFF7FEFF 		bl	USB_FlushTxFifo
+ 1458 003e F9E7     		b	.L192
+ 1460              		.section	.text.USB_SetDevAddress,"ax",%progbits
+ 1461              		.align	1
+ 1462              		.global	USB_SetDevAddress
+ 1463              		.syntax unified
+ 1464              		.thumb
+ 1465              		.thumb_func
+ 1467              	USB_SetDevAddress:
+ 1468              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 26
+
+
+ 1469              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1470              		@ link register save eliminated.
+ 1471 0000 D0F80038 		ldr	r3, [r0, #2048]
+ 1472 0004 23F4FE63 		bic	r3, r3, #2032
+ 1473 0008 C0F80038 		str	r3, [r0, #2048]
+ 1474 000c D0F80038 		ldr	r3, [r0, #2048]
+ 1475 0010 0901     		lsls	r1, r1, #4
+ 1476 0012 01F4FE61 		and	r1, r1, #2032
+ 1477 0016 0B43     		orrs	r3, r3, r1
+ 1478 0018 C0F80038 		str	r3, [r0, #2048]
+ 1479 001c 0020     		movs	r0, #0
+ 1480 001e 7047     		bx	lr
+ 1482              		.section	.text.USB_DevConnect,"ax",%progbits
+ 1483              		.align	1
+ 1484              		.global	USB_DevConnect
+ 1485              		.syntax unified
+ 1486              		.thumb
+ 1487              		.thumb_func
+ 1489              	USB_DevConnect:
+ 1490              		@ args = 0, pretend = 0, frame = 0
+ 1491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1492              		@ link register save eliminated.
+ 1493 0000 D0F8003E 		ldr	r3, [r0, #3584]
+ 1494 0004 23F00303 		bic	r3, r3, #3
+ 1495 0008 C0F8003E 		str	r3, [r0, #3584]
+ 1496 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1497 0010 23F00203 		bic	r3, r3, #2
+ 1498 0014 C0F80438 		str	r3, [r0, #2052]
+ 1499 0018 0020     		movs	r0, #0
+ 1500 001a 7047     		bx	lr
+ 1502              		.section	.text.USB_DevDisconnect,"ax",%progbits
+ 1503              		.align	1
+ 1504              		.global	USB_DevDisconnect
+ 1505              		.syntax unified
+ 1506              		.thumb
+ 1507              		.thumb_func
+ 1509              	USB_DevDisconnect:
+ 1510              		@ args = 0, pretend = 0, frame = 0
+ 1511              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1512              		@ link register save eliminated.
+ 1513 0000 D0F8003E 		ldr	r3, [r0, #3584]
+ 1514 0004 23F00303 		bic	r3, r3, #3
+ 1515 0008 C0F8003E 		str	r3, [r0, #3584]
+ 1516 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1517 0010 43F00203 		orr	r3, r3, #2
+ 1518 0014 C0F80438 		str	r3, [r0, #2052]
+ 1519 0018 0020     		movs	r0, #0
+ 1520 001a 7047     		bx	lr
+ 1522              		.section	.text.USB_ReadInterrupts,"ax",%progbits
+ 1523              		.align	1
+ 1524              		.global	USB_ReadInterrupts
+ 1525              		.syntax unified
+ 1526              		.thumb
+ 1527              		.thumb_func
+ 1529              	USB_ReadInterrupts:
+ 1530              		@ args = 0, pretend = 0, frame = 0
+ 1531              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 27
+
+
+ 1532              		@ link register save eliminated.
+ 1533 0000 4269     		ldr	r2, [r0, #20]
+ 1534 0002 8069     		ldr	r0, [r0, #24]
+ 1535 0004 1040     		ands	r0, r0, r2
+ 1536 0006 7047     		bx	lr
+ 1538              		.section	.text.USB_ReadChInterrupts,"ax",%progbits
+ 1539              		.align	1
+ 1540              		.global	USB_ReadChInterrupts
+ 1541              		.syntax unified
+ 1542              		.thumb
+ 1543              		.thumb_func
+ 1545              	USB_ReadChInterrupts:
+ 1546              		@ args = 0, pretend = 0, frame = 0
+ 1547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1548              		@ link register save eliminated.
+ 1549 0000 00EB4110 		add	r0, r0, r1, lsl #5
+ 1550 0004 00F5A063 		add	r3, r0, #1280
+ 1551 0008 D0F80805 		ldr	r0, [r0, #1288]
+ 1552 000c DB68     		ldr	r3, [r3, #12]
+ 1553 000e 1840     		ands	r0, r0, r3
+ 1554 0010 7047     		bx	lr
+ 1556              		.section	.text.USB_ReadDevAllOutEpInterrupt,"ax",%progbits
+ 1557              		.align	1
+ 1558              		.global	USB_ReadDevAllOutEpInterrupt
+ 1559              		.syntax unified
+ 1560              		.thumb
+ 1561              		.thumb_func
+ 1563              	USB_ReadDevAllOutEpInterrupt:
+ 1564              		@ args = 0, pretend = 0, frame = 0
+ 1565              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1566              		@ link register save eliminated.
+ 1567 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1568 0004 00F50060 		add	r0, r0, #2048
+ 1569 0008 C069     		ldr	r0, [r0, #28]
+ 1570 000a 1840     		ands	r0, r0, r3
+ 1571 000c 000C     		lsrs	r0, r0, #16
+ 1572 000e 7047     		bx	lr
+ 1574              		.section	.text.USB_ReadDevAllInEpInterrupt,"ax",%progbits
+ 1575              		.align	1
+ 1576              		.global	USB_ReadDevAllInEpInterrupt
+ 1577              		.syntax unified
+ 1578              		.thumb
+ 1579              		.thumb_func
+ 1581              	USB_ReadDevAllInEpInterrupt:
+ 1582              		@ args = 0, pretend = 0, frame = 0
+ 1583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1584              		@ link register save eliminated.
+ 1585 0000 D0F81838 		ldr	r3, [r0, #2072]
+ 1586 0004 00F50060 		add	r0, r0, #2048
+ 1587 0008 C069     		ldr	r0, [r0, #28]
+ 1588 000a 1840     		ands	r0, r0, r3
+ 1589 000c 80B2     		uxth	r0, r0
+ 1590 000e 7047     		bx	lr
+ 1592              		.section	.text.USB_ReadDevOutEPInterrupt,"ax",%progbits
+ 1593              		.align	1
+ 1594              		.global	USB_ReadDevOutEPInterrupt
+ 1595              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 28
+
+
+ 1596              		.thumb
+ 1597              		.thumb_func
+ 1599              	USB_ReadDevOutEPInterrupt:
+ 1600              		@ args = 0, pretend = 0, frame = 0
+ 1601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1602              		@ link register save eliminated.
+ 1603 0000 00EB4111 		add	r1, r0, r1, lsl #5
+ 1604 0004 D1F8082B 		ldr	r2, [r1, #2824]
+ 1605 0008 00F50060 		add	r0, r0, #2048
+ 1606 000c 4069     		ldr	r0, [r0, #20]
+ 1607 000e 1040     		ands	r0, r0, r2
+ 1608 0010 7047     		bx	lr
+ 1610              		.section	.text.USB_ReadDevInEPInterrupt,"ax",%progbits
+ 1611              		.align	1
+ 1612              		.global	USB_ReadDevInEPInterrupt
+ 1613              		.syntax unified
+ 1614              		.thumb
+ 1615              		.thumb_func
+ 1617              	USB_ReadDevInEPInterrupt:
+ 1618              		@ args = 0, pretend = 0, frame = 0
+ 1619              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1620              		@ link register save eliminated.
+ 1621 0000 D0F81028 		ldr	r2, [r0, #2064]
+ 1622 0004 D0F83438 		ldr	r3, [r0, #2100]
+ 1623 0008 01F00F0C 		and	ip, r1, #15
+ 1624 000c 23FA0CF3 		lsr	r3, r3, ip
+ 1625 0010 DB01     		lsls	r3, r3, #7
+ 1626 0012 DBB2     		uxtb	r3, r3
+ 1627 0014 1343     		orrs	r3, r3, r2
+ 1628 0016 00EB4110 		add	r0, r0, r1, lsl #5
+ 1629 001a 00F51060 		add	r0, r0, #2304
+ 1630 001e 8068     		ldr	r0, [r0, #8]
+ 1631 0020 1840     		ands	r0, r0, r3
+ 1632 0022 7047     		bx	lr
+ 1634              		.section	.text.USB_ClearInterrupts,"ax",%progbits
+ 1635              		.align	1
+ 1636              		.global	USB_ClearInterrupts
+ 1637              		.syntax unified
+ 1638              		.thumb
+ 1639              		.thumb_func
+ 1641              	USB_ClearInterrupts:
+ 1642              		@ args = 0, pretend = 0, frame = 0
+ 1643              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1644              		@ link register save eliminated.
+ 1645 0000 4369     		ldr	r3, [r0, #20]
+ 1646 0002 0B40     		ands	r3, r3, r1
+ 1647 0004 4361     		str	r3, [r0, #20]
+ 1648 0006 7047     		bx	lr
+ 1650              		.section	.text.USB_GetMode,"ax",%progbits
+ 1651              		.align	1
+ 1652              		.global	USB_GetMode
+ 1653              		.syntax unified
+ 1654              		.thumb
+ 1655              		.thumb_func
+ 1657              	USB_GetMode:
+ 1658              		@ args = 0, pretend = 0, frame = 0
+ 1659              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 29
+
+
+ 1660              		@ link register save eliminated.
+ 1661 0000 4069     		ldr	r0, [r0, #20]
+ 1662 0002 00F00100 		and	r0, r0, #1
+ 1663 0006 7047     		bx	lr
+ 1665              		.section	.text.USB_SetCurrentMode,"ax",%progbits
+ 1666              		.align	1
+ 1667              		.global	USB_SetCurrentMode
+ 1668              		.syntax unified
+ 1669              		.thumb
+ 1670              		.thumb_func
+ 1672              	USB_SetCurrentMode:
+ 1673              		@ args = 0, pretend = 0, frame = 0
+ 1674              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1675 0000 38B5     		push	{r3, r4, r5, lr}
+ 1676 0002 0546     		mov	r5, r0
+ 1677 0004 C368     		ldr	r3, [r0, #12]
+ 1678 0006 23F0C043 		bic	r3, r3, #1610612736
+ 1679 000a C360     		str	r3, [r0, #12]
+ 1680 000c 0129     		cmp	r1, #1
+ 1681 000e 13D0     		beq	.L215
+ 1682 0010 19BB     		cbnz	r1, .L212
+ 1683 0012 C368     		ldr	r3, [r0, #12]
+ 1684 0014 43F08043 		orr	r3, r3, #1073741824
+ 1685 0018 C360     		str	r3, [r0, #12]
+ 1686 001a 0024     		movs	r4, #0
+ 1687              	.L211:
+ 1688 001c 0A20     		movs	r0, #10
+ 1689 001e FFF7FEFF 		bl	HAL_Delay
+ 1690 0022 0A34     		adds	r4, r4, #10
+ 1691 0024 2846     		mov	r0, r5
+ 1692 0026 FFF7FEFF 		bl	USB_GetMode
+ 1693 002a 08B1     		cbz	r0, .L208
+ 1694 002c C72C     		cmp	r4, #199
+ 1695 002e F5D9     		bls	.L211
+ 1696              	.L208:
+ 1697 0030 C82C     		cmp	r4, #200
+ 1698 0032 14D0     		beq	.L213
+ 1699 0034 0020     		movs	r0, #0
+ 1700              	.L210:
+ 1701 0036 38BD     		pop	{r3, r4, r5, pc}
+ 1702              	.L215:
+ 1703 0038 C368     		ldr	r3, [r0, #12]
+ 1704 003a 43F00053 		orr	r3, r3, #536870912
+ 1705 003e C360     		str	r3, [r0, #12]
+ 1706 0040 0024     		movs	r4, #0
+ 1707              	.L209:
+ 1708 0042 0A20     		movs	r0, #10
+ 1709 0044 FFF7FEFF 		bl	HAL_Delay
+ 1710 0048 0A34     		adds	r4, r4, #10
+ 1711 004a 2846     		mov	r0, r5
+ 1712 004c FFF7FEFF 		bl	USB_GetMode
+ 1713 0050 0128     		cmp	r0, #1
+ 1714 0052 EDD0     		beq	.L208
+ 1715 0054 C72C     		cmp	r4, #199
+ 1716 0056 F4D9     		bls	.L209
+ 1717 0058 EAE7     		b	.L208
+ 1718              	.L212:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 30
+
+
+ 1719 005a 0120     		movs	r0, #1
+ 1720 005c EBE7     		b	.L210
+ 1721              	.L213:
+ 1722 005e 0120     		movs	r0, #1
+ 1723 0060 E9E7     		b	.L210
+ 1725              		.section	.text.USB_ActivateSetup,"ax",%progbits
+ 1726              		.align	1
+ 1727              		.global	USB_ActivateSetup
+ 1728              		.syntax unified
+ 1729              		.thumb
+ 1730              		.thumb_func
+ 1732              	USB_ActivateSetup:
+ 1733              		@ args = 0, pretend = 0, frame = 0
+ 1734              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1735              		@ link register save eliminated.
+ 1736 0000 D0F80039 		ldr	r3, [r0, #2304]
+ 1737 0004 6FF30A03 		bfc	r3, #0, #11
+ 1738 0008 C0F80039 		str	r3, [r0, #2304]
+ 1739 000c D0F80438 		ldr	r3, [r0, #2052]
+ 1740 0010 43F48073 		orr	r3, r3, #256
+ 1741 0014 C0F80438 		str	r3, [r0, #2052]
+ 1742 0018 0020     		movs	r0, #0
+ 1743 001a 7047     		bx	lr
+ 1745              		.section	.text.USB_EP0_OutStart,"ax",%progbits
+ 1746              		.align	1
+ 1747              		.global	USB_EP0_OutStart
+ 1748              		.syntax unified
+ 1749              		.thumb
+ 1750              		.thumb_func
+ 1752              	USB_EP0_OutStart:
+ 1753              		@ args = 0, pretend = 0, frame = 0
+ 1754              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1755              		@ link register save eliminated.
+ 1756 0000 10B4     		push	{r4}
+ 1757 0002 046C     		ldr	r4, [r0, #64]
+ 1758 0004 154B     		ldr	r3, .L222
+ 1759 0006 9C42     		cmp	r4, r3
+ 1760 0008 03D9     		bls	.L218
+ 1761 000a D0F8003B 		ldr	r3, [r0, #2816]
+ 1762 000e 002B     		cmp	r3, #0
+ 1763 0010 16DB     		blt	.L219
+ 1764              	.L218:
+ 1765 0012 0024     		movs	r4, #0
+ 1766 0014 C0F8104B 		str	r4, [r0, #2832]
+ 1767 0018 D0F8104B 		ldr	r4, [r0, #2832]
+ 1768 001c 44F40024 		orr	r4, r4, #524288
+ 1769 0020 C0F8104B 		str	r4, [r0, #2832]
+ 1770 0024 D0F8104B 		ldr	r4, [r0, #2832]
+ 1771 0028 44F01804 		orr	r4, r4, #24
+ 1772 002c C0F8104B 		str	r4, [r0, #2832]
+ 1773 0030 D0F8104B 		ldr	r4, [r0, #2832]
+ 1774 0034 44F0C044 		orr	r4, r4, #1610612736
+ 1775 0038 C0F8104B 		str	r4, [r0, #2832]
+ 1776 003c 0129     		cmp	r1, #1
+ 1777 003e 03D0     		beq	.L221
+ 1778              	.L219:
+ 1779 0040 0020     		movs	r0, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 31
+
+
+ 1780 0042 5DF8044B 		ldr	r4, [sp], #4
+ 1781 0046 7047     		bx	lr
+ 1782              	.L221:
+ 1783 0048 C0F8142B 		str	r2, [r0, #2836]
+ 1784 004c D0F8003B 		ldr	r3, [r0, #2816]
+ 1785 0050 43F08023 		orr	r3, r3, #-2147450880
+ 1786 0054 C0F8003B 		str	r3, [r0, #2816]
+ 1787 0058 F2E7     		b	.L219
+ 1788              	.L223:
+ 1789 005a 00BF     		.align	2
+ 1790              	.L222:
+ 1791 005c 0A30544F 		.word	1330917386
+ 1793              		.section	.text.USB_HostInit,"ax",%progbits
+ 1794              		.align	1
+ 1795              		.global	USB_HostInit
+ 1796              		.syntax unified
+ 1797              		.thumb
+ 1798              		.thumb_func
+ 1800              	USB_HostInit:
+ 1801              		@ args = 20, pretend = 16, frame = 0
+ 1802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1803 0000 84B0     		sub	sp, sp, #16
+ 1804 0002 38B5     		push	{r3, r4, r5, lr}
+ 1805 0004 0446     		mov	r4, r0
+ 1806 0006 05A8     		add	r0, sp, #20
+ 1807 0008 80E80E00 		stm	r0, {r1, r2, r3}
+ 1808 000c 0023     		movs	r3, #0
+ 1809 000e C4F8003E 		str	r3, [r4, #3584]
+ 1810 0012 A36B     		ldr	r3, [r4, #56]
+ 1811 0014 23F40013 		bic	r3, r3, #2097152
+ 1812 0018 A363     		str	r3, [r4, #56]
+ 1813 001a E368     		ldr	r3, [r4, #12]
+ 1814 001c 13F0400F 		tst	r3, #64
+ 1815 0020 11D1     		bne	.L225
+ 1816 0022 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
+ 1817 0026 012B     		cmp	r3, #1
+ 1818 0028 06D0     		beq	.L238
+ 1819 002a D4F80034 		ldr	r3, [r4, #1024]
+ 1820 002e 23F00403 		bic	r3, r3, #4
+ 1821 0032 C4F80034 		str	r3, [r4, #1024]
+ 1822 0036 0CE0     		b	.L227
+ 1823              	.L238:
+ 1824 0038 D4F80034 		ldr	r3, [r4, #1024]
+ 1825 003c 43F00403 		orr	r3, r3, #4
+ 1826 0040 C4F80034 		str	r3, [r4, #1024]
+ 1827 0044 05E0     		b	.L227
+ 1828              	.L225:
+ 1829 0046 D4F80034 		ldr	r3, [r4, #1024]
+ 1830 004a 23F00403 		bic	r3, r3, #4
+ 1831 004e C4F80034 		str	r3, [r4, #1024]
+ 1832              	.L227:
+ 1833 0052 1021     		movs	r1, #16
+ 1834 0054 2046     		mov	r0, r4
+ 1835 0056 FFF7FEFF 		bl	USB_FlushTxFifo
+ 1836 005a 0546     		mov	r5, r0
+ 1837 005c 00B1     		cbz	r0, .L228
+ 1838 005e 0125     		movs	r5, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 32
+
+
+ 1839              	.L228:
+ 1840 0060 2046     		mov	r0, r4
+ 1841 0062 FFF7FEFF 		bl	USB_FlushRxFifo
+ 1842 0066 00B1     		cbz	r0, .L229
+ 1843 0068 0125     		movs	r5, #1
+ 1844              	.L229:
+ 1845 006a 0022     		movs	r2, #0
+ 1846 006c 09E0     		b	.L230
+ 1847              	.L231:
+ 1848 006e 04EB4213 		add	r3, r4, r2, lsl #5
+ 1849 0072 4FF0FF31 		mov	r1, #-1
+ 1850 0076 C3F80815 		str	r1, [r3, #1288]
+ 1851 007a 0021     		movs	r1, #0
+ 1852 007c C3F80C15 		str	r1, [r3, #1292]
+ 1853 0080 0132     		adds	r2, r2, #1
+ 1854              	.L230:
+ 1855 0082 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 1856 0086 9342     		cmp	r3, r2
+ 1857 0088 F1D8     		bhi	.L231
+ 1858 008a 0023     		movs	r3, #0
+ 1859 008c A361     		str	r3, [r4, #24]
+ 1860 008e 4FF0FF33 		mov	r3, #-1
+ 1861 0092 6361     		str	r3, [r4, #20]
+ 1862 0094 124B     		ldr	r3, .L240
+ 1863 0096 9C42     		cmp	r4, r3
+ 1864 0098 17D0     		beq	.L239
+ 1865 009a 8023     		movs	r3, #128
+ 1866 009c 6362     		str	r3, [r4, #36]
+ 1867 009e 03F5C003 		add	r3, r3, #6291456
+ 1868 00a2 A362     		str	r3, [r4, #40]
+ 1869 00a4 0F4B     		ldr	r3, .L240+4
+ 1870 00a6 C4F80031 		str	r3, [r4, #256]
+ 1871              	.L233:
+ 1872 00aa 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 1873 00ae 1BB9     		cbnz	r3, .L234
+ 1874 00b0 A369     		ldr	r3, [r4, #24]
+ 1875 00b2 43F01003 		orr	r3, r3, #16
+ 1876 00b6 A361     		str	r3, [r4, #24]
+ 1877              	.L234:
+ 1878 00b8 A269     		ldr	r2, [r4, #24]
+ 1879 00ba 0B4B     		ldr	r3, .L240+8
+ 1880 00bc 1343     		orrs	r3, r3, r2
+ 1881 00be A361     		str	r3, [r4, #24]
+ 1882 00c0 2846     		mov	r0, r5
+ 1883 00c2 BDE83840 		pop	{r3, r4, r5, lr}
+ 1884 00c6 04B0     		add	sp, sp, #16
+ 1885 00c8 7047     		bx	lr
+ 1886              	.L239:
+ 1887 00ca 4FF40073 		mov	r3, #512
+ 1888 00ce 6362     		str	r3, [r4, #36]
+ 1889 00d0 03F18073 		add	r3, r3, #16777216
+ 1890 00d4 A362     		str	r3, [r4, #40]
+ 1891 00d6 054B     		ldr	r3, .L240+12
+ 1892 00d8 C4F80031 		str	r3, [r4, #256]
+ 1893 00dc E5E7     		b	.L233
+ 1894              	.L241:
+ 1895 00de 00BF     		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 33
+
+
+ 1896              	.L240:
+ 1897 00e0 00000440 		.word	1074003968
+ 1898 00e4 E0004000 		.word	4194528
+ 1899 00e8 080020A3 		.word	-1558183928
+ 1900 00ec 0003E000 		.word	14680832
+ 1902              		.section	.text.USB_InitFSLSPClkSel,"ax",%progbits
+ 1903              		.align	1
+ 1904              		.global	USB_InitFSLSPClkSel
+ 1905              		.syntax unified
+ 1906              		.thumb
+ 1907              		.thumb_func
+ 1909              	USB_InitFSLSPClkSel:
+ 1910              		@ args = 0, pretend = 0, frame = 0
+ 1911              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1912              		@ link register save eliminated.
+ 1913 0000 00F5806C 		add	ip, r0, #1024
+ 1914 0004 D0F80034 		ldr	r3, [r0, #1024]
+ 1915 0008 23F00303 		bic	r3, r3, #3
+ 1916 000c C0F80034 		str	r3, [r0, #1024]
+ 1917 0010 D0F80034 		ldr	r3, [r0, #1024]
+ 1918 0014 01F00302 		and	r2, r1, #3
+ 1919 0018 1343     		orrs	r3, r3, r2
+ 1920 001a C0F80034 		str	r3, [r0, #1024]
+ 1921 001e 0129     		cmp	r1, #1
+ 1922 0020 07D0     		beq	.L246
+ 1923 0022 0229     		cmp	r1, #2
+ 1924 0024 0BD1     		bne	.L245
+ 1925 0026 41F27073 		movw	r3, #6000
+ 1926 002a CCF80430 		str	r3, [ip, #4]
+ 1927 002e 0020     		movs	r0, #0
+ 1928 0030 7047     		bx	lr
+ 1929              	.L246:
+ 1930 0032 4BF68033 		movw	r3, #48000
+ 1931 0036 CCF80430 		str	r3, [ip, #4]
+ 1932 003a 0020     		movs	r0, #0
+ 1933 003c 7047     		bx	lr
+ 1934              	.L245:
+ 1935 003e 0120     		movs	r0, #1
+ 1936 0040 7047     		bx	lr
+ 1938              		.section	.text.USB_ResetPort,"ax",%progbits
+ 1939              		.align	1
+ 1940              		.global	USB_ResetPort
+ 1941              		.syntax unified
+ 1942              		.thumb
+ 1943              		.thumb_func
+ 1945              	USB_ResetPort:
+ 1946              		@ args = 0, pretend = 0, frame = 8
+ 1947              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1948 0000 30B5     		push	{r4, r5, lr}
+ 1949 0002 83B0     		sub	sp, sp, #12
+ 1950 0004 0446     		mov	r4, r0
+ 1951 0006 0025     		movs	r5, #0
+ 1952 0008 0195     		str	r5, [sp, #4]
+ 1953 000a D0F84034 		ldr	r3, [r0, #1088]
+ 1954 000e 0193     		str	r3, [sp, #4]
+ 1955 0010 019B     		ldr	r3, [sp, #4]
+ 1956 0012 23F02E03 		bic	r3, r3, #46
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 34
+
+
+ 1957 0016 0193     		str	r3, [sp, #4]
+ 1958 0018 019B     		ldr	r3, [sp, #4]
+ 1959 001a 43F48073 		orr	r3, r3, #256
+ 1960 001e C0F84034 		str	r3, [r0, #1088]
+ 1961 0022 6420     		movs	r0, #100
+ 1962 0024 FFF7FEFF 		bl	HAL_Delay
+ 1963 0028 019B     		ldr	r3, [sp, #4]
+ 1964 002a 23F48073 		bic	r3, r3, #256
+ 1965 002e C4F84034 		str	r3, [r4, #1088]
+ 1966 0032 0A20     		movs	r0, #10
+ 1967 0034 FFF7FEFF 		bl	HAL_Delay
+ 1968 0038 2846     		mov	r0, r5
+ 1969 003a 03B0     		add	sp, sp, #12
+ 1970              		@ sp needed
+ 1971 003c 30BD     		pop	{r4, r5, pc}
+ 1973              		.section	.text.USB_DriveVbus,"ax",%progbits
+ 1974              		.align	1
+ 1975              		.global	USB_DriveVbus
+ 1976              		.syntax unified
+ 1977              		.thumb
+ 1978              		.thumb_func
+ 1980              	USB_DriveVbus:
+ 1981              		@ args = 0, pretend = 0, frame = 8
+ 1982              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1983              		@ link register save eliminated.
+ 1984 0000 82B0     		sub	sp, sp, #8
+ 1985 0002 0023     		movs	r3, #0
+ 1986 0004 0193     		str	r3, [sp, #4]
+ 1987 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 1988 000a 0193     		str	r3, [sp, #4]
+ 1989 000c 019B     		ldr	r3, [sp, #4]
+ 1990 000e 23F02E03 		bic	r3, r3, #46
+ 1991 0012 0193     		str	r3, [sp, #4]
+ 1992 0014 019B     		ldr	r3, [sp, #4]
+ 1993 0016 13F4805F 		tst	r3, #4096
+ 1994 001a 01D1     		bne	.L250
+ 1995 001c 0129     		cmp	r1, #1
+ 1996 001e 0CD0     		beq	.L253
+ 1997              	.L250:
+ 1998 0020 019B     		ldr	r3, [sp, #4]
+ 1999 0022 13F4805F 		tst	r3, #4096
+ 2000 0026 05D0     		beq	.L251
+ 2001 0028 21B9     		cbnz	r1, .L251
+ 2002 002a 019B     		ldr	r3, [sp, #4]
+ 2003 002c 23F48053 		bic	r3, r3, #4096
+ 2004 0030 C0F84034 		str	r3, [r0, #1088]
+ 2005              	.L251:
+ 2006 0034 0020     		movs	r0, #0
+ 2007 0036 02B0     		add	sp, sp, #8
+ 2008              		@ sp needed
+ 2009 0038 7047     		bx	lr
+ 2010              	.L253:
+ 2011 003a 019B     		ldr	r3, [sp, #4]
+ 2012 003c 43F48053 		orr	r3, r3, #4096
+ 2013 0040 C0F84034 		str	r3, [r0, #1088]
+ 2014 0044 ECE7     		b	.L250
+ 2016              		.section	.text.USB_GetHostSpeed,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 35
+
+
+ 2017              		.align	1
+ 2018              		.global	USB_GetHostSpeed
+ 2019              		.syntax unified
+ 2020              		.thumb
+ 2021              		.thumb_func
+ 2023              	USB_GetHostSpeed:
+ 2024              		@ args = 0, pretend = 0, frame = 8
+ 2025              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2026              		@ link register save eliminated.
+ 2027 0000 82B0     		sub	sp, sp, #8
+ 2028 0002 0023     		movs	r3, #0
+ 2029 0004 0193     		str	r3, [sp, #4]
+ 2030 0006 D0F84034 		ldr	r3, [r0, #1088]
+ 2031 000a 0193     		str	r3, [sp, #4]
+ 2032 000c 0198     		ldr	r0, [sp, #4]
+ 2033 000e C0F34140 		ubfx	r0, r0, #17, #2
+ 2034 0012 02B0     		add	sp, sp, #8
+ 2035              		@ sp needed
+ 2036 0014 7047     		bx	lr
+ 2038              		.section	.text.USB_GetCurrentFrame,"ax",%progbits
+ 2039              		.align	1
+ 2040              		.global	USB_GetCurrentFrame
+ 2041              		.syntax unified
+ 2042              		.thumb
+ 2043              		.thumb_func
+ 2045              	USB_GetCurrentFrame:
+ 2046              		@ args = 0, pretend = 0, frame = 0
+ 2047              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2048              		@ link register save eliminated.
+ 2049 0000 00F58060 		add	r0, r0, #1024
+ 2050 0004 8068     		ldr	r0, [r0, #8]
+ 2051 0006 80B2     		uxth	r0, r0
+ 2052 0008 7047     		bx	lr
+ 2054              		.section	.text.USB_HC_Init,"ax",%progbits
+ 2055              		.align	1
+ 2056              		.global	USB_HC_Init
+ 2057              		.syntax unified
+ 2058              		.thumb
+ 2059              		.thumb_func
+ 2061              	USB_HC_Init:
+ 2062              		@ args = 12, pretend = 0, frame = 0
+ 2063              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2064 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 2065 0004 9146     		mov	r9, r2
+ 2066 0006 1C46     		mov	r4, r3
+ 2067 0008 9DF82450 		ldrb	r5, [sp, #36]	@ zero_extendqisi2
+ 2068 000c 00EB4116 		add	r6, r0, r1, lsl #5
+ 2069 0010 06F5A063 		add	r3, r6, #1280
+ 2070 0014 4FF0FF32 		mov	r2, #-1
+ 2071 0018 9A60     		str	r2, [r3, #8]
+ 2072 001a 032D     		cmp	r5, #3
+ 2073 001c 00F28380 		bhi	.L267
+ 2074 0020 DFE805F0 		tbb	[pc, r5]
+ 2075              	.L260:
+ 2076 0024 02       		.byte	(.L261-.L260)/2
+ 2077 0025 73       		.byte	(.L262-.L260)/2
+ 2078 0026 02       		.byte	(.L261-.L260)/2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 36
+
+
+ 2079 0027 65       		.byte	(.L259-.L260)/2
+ 2080              		.p2align 1
+ 2081              	.L261:
+ 2082 0028 40F29D42 		movw	r2, #1181
+ 2083 002c DA60     		str	r2, [r3, #12]
+ 2084 002e 19F0800F 		tst	r9, #128
+ 2085 0032 50D1     		bne	.L274
+ 2086 0034 3F4A     		ldr	r2, .L279
+ 2087 0036 9042     		cmp	r0, r2
+ 2088 0038 53D0     		beq	.L275
+ 2089 003a 0027     		movs	r7, #0
+ 2090              	.L258:
+ 2091 003c 0022     		movs	r2, #0
+ 2092 003e 5A60     		str	r2, [r3, #4]
+ 2093 0040 DA68     		ldr	r2, [r3, #12]
+ 2094 0042 42F00202 		orr	r2, r2, #2
+ 2095 0046 DA60     		str	r2, [r3, #12]
+ 2096 0048 D0F81834 		ldr	r3, [r0, #1048]
+ 2097 004c 01F00F01 		and	r1, r1, #15
+ 2098 0050 0122     		movs	r2, #1
+ 2099 0052 8A40     		lsls	r2, r2, r1
+ 2100 0054 1343     		orrs	r3, r3, r2
+ 2101 0056 C0F81834 		str	r3, [r0, #1048]
+ 2102 005a 8369     		ldr	r3, [r0, #24]
+ 2103 005c 43F00073 		orr	r3, r3, #33554432
+ 2104 0060 8361     		str	r3, [r0, #24]
+ 2105 0062 19F0800F 		tst	r9, #128
+ 2106 0066 60D1     		bne	.L276
+ 2107 0068 4FF00008 		mov	r8, #0
+ 2108              	.L264:
+ 2109 006c FFF7FEFF 		bl	USB_GetHostSpeed
+ 2110 0070 9DF82030 		ldrb	r3, [sp, #32]	@ zero_extendqisi2
+ 2111 0074 022B     		cmp	r3, #2
+ 2112 0076 14BF     		ite	ne
+ 2113 0078 0023     		movne	r3, #0
+ 2114 007a 0123     		moveq	r3, #1
+ 2115 007c 0228     		cmp	r0, #2
+ 2116 007e 08BF     		it	eq
+ 2117 0080 0023     		moveq	r3, #0
+ 2118 0082 002B     		cmp	r3, #0
+ 2119 0084 54D0     		beq	.L272
+ 2120 0086 4FF40032 		mov	r2, #131072
+ 2121              	.L265:
+ 2122 008a A305     		lsls	r3, r4, #22
+ 2123 008c 03F0FE53 		and	r3, r3, #532676608
+ 2124 0090 4FEAC929 		lsl	r9, r9, #11
+ 2125 0094 09F4F049 		and	r9, r9, #30720
+ 2126 0098 43EA0903 		orr	r3, r3, r9
+ 2127 009c A904     		lsls	r1, r5, #18
+ 2128 009e 01F44021 		and	r1, r1, #786432
+ 2129 00a2 0B43     		orrs	r3, r3, r1
+ 2130 00a4 BDF82810 		ldrh	r1, [sp, #40]
+ 2131 00a8 C1F30A01 		ubfx	r1, r1, #0, #11
+ 2132 00ac 0B43     		orrs	r3, r3, r1
+ 2133 00ae 43EA0803 		orr	r3, r3, r8
+ 2134 00b2 1343     		orrs	r3, r3, r2
+ 2135 00b4 43F48013 		orr	r3, r3, #1048576
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 37
+
+
+ 2136 00b8 C6F80035 		str	r3, [r6, #1280]
+ 2137 00bc 012D     		cmp	r5, #1
+ 2138 00be 18BF     		it	ne
+ 2139 00c0 032D     		cmpne	r5, #3
+ 2140 00c2 05D1     		bne	.L266
+ 2141 00c4 D6F80035 		ldr	r3, [r6, #1280]
+ 2142 00c8 43F00053 		orr	r3, r3, #536870912
+ 2143 00cc C6F80035 		str	r3, [r6, #1280]
+ 2144              	.L266:
+ 2145 00d0 3846     		mov	r0, r7
+ 2146 00d2 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 2147              	.L274:
+ 2148 00d6 DA68     		ldr	r2, [r3, #12]
+ 2149 00d8 42F48072 		orr	r2, r2, #256
+ 2150 00dc DA60     		str	r2, [r3, #12]
+ 2151 00de 0027     		movs	r7, #0
+ 2152 00e0 ACE7     		b	.L258
+ 2153              	.L275:
+ 2154 00e2 DA68     		ldr	r2, [r3, #12]
+ 2155 00e4 42F06002 		orr	r2, r2, #96
+ 2156 00e8 DA60     		str	r2, [r3, #12]
+ 2157 00ea 0027     		movs	r7, #0
+ 2158 00ec A6E7     		b	.L258
+ 2159              	.L259:
+ 2160 00ee 40F29D62 		movw	r2, #1693
+ 2161 00f2 DA60     		str	r2, [r3, #12]
+ 2162 00f4 19F0800F 		tst	r9, #128
+ 2163 00f8 01D1     		bne	.L277
+ 2164 00fa 0027     		movs	r7, #0
+ 2165 00fc 9EE7     		b	.L258
+ 2166              	.L277:
+ 2167 00fe DA68     		ldr	r2, [r3, #12]
+ 2168 0100 42F48072 		orr	r2, r2, #256
+ 2169 0104 DA60     		str	r2, [r3, #12]
+ 2170 0106 0027     		movs	r7, #0
+ 2171 0108 98E7     		b	.L258
+ 2172              	.L262:
+ 2173 010a 40F22522 		movw	r2, #549
+ 2174 010e DA60     		str	r2, [r3, #12]
+ 2175 0110 19F0800F 		tst	r9, #128
+ 2176 0114 01D1     		bne	.L278
+ 2177 0116 0027     		movs	r7, #0
+ 2178 0118 90E7     		b	.L258
+ 2179              	.L278:
+ 2180 011a DA68     		ldr	r2, [r3, #12]
+ 2181 011c 42F4C072 		orr	r2, r2, #384
+ 2182 0120 DA60     		str	r2, [r3, #12]
+ 2183 0122 0027     		movs	r7, #0
+ 2184 0124 8AE7     		b	.L258
+ 2185              	.L267:
+ 2186 0126 0127     		movs	r7, #1
+ 2187 0128 88E7     		b	.L258
+ 2188              	.L276:
+ 2189 012a 4FF40048 		mov	r8, #32768
+ 2190 012e 9DE7     		b	.L264
+ 2191              	.L272:
+ 2192 0130 0022     		movs	r2, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 38
+
+
+ 2193 0132 AAE7     		b	.L265
+ 2194              	.L280:
+ 2195              		.align	2
+ 2196              	.L279:
+ 2197 0134 00000440 		.word	1074003968
+ 2199              		.section	.text.USB_HC_ReadInterrupt,"ax",%progbits
+ 2200              		.align	1
+ 2201              		.global	USB_HC_ReadInterrupt
+ 2202              		.syntax unified
+ 2203              		.thumb
+ 2204              		.thumb_func
+ 2206              	USB_HC_ReadInterrupt:
+ 2207              		@ args = 0, pretend = 0, frame = 0
+ 2208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2209              		@ link register save eliminated.
+ 2210 0000 00F58060 		add	r0, r0, #1024
+ 2211 0004 4069     		ldr	r0, [r0, #20]
+ 2212 0006 80B2     		uxth	r0, r0
+ 2213 0008 7047     		bx	lr
+ 2215              		.section	.text.USB_HC_Halt,"ax",%progbits
+ 2216              		.align	1
+ 2217              		.global	USB_HC_Halt
+ 2218              		.syntax unified
+ 2219              		.thumb
+ 2220              		.thumb_func
+ 2222              	USB_HC_Halt:
+ 2223              		@ args = 0, pretend = 0, frame = 8
+ 2224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2225              		@ link register save eliminated.
+ 2226 0000 70B4     		push	{r4, r5, r6}
+ 2227 0002 83B0     		sub	sp, sp, #12
+ 2228 0004 0023     		movs	r3, #0
+ 2229 0006 0193     		str	r3, [sp, #4]
+ 2230 0008 00EB4111 		add	r1, r0, r1, lsl #5
+ 2231 000c 01F5A062 		add	r2, r1, #1280
+ 2232 0010 D1F80035 		ldr	r3, [r1, #1280]
+ 2233 0014 C3F38143 		ubfx	r3, r3, #18, #2
+ 2234 0018 D1F80055 		ldr	r5, [r1, #1280]
+ 2235 001c 5468     		ldr	r4, [r2, #4]
+ 2236 001e 8668     		ldr	r6, [r0, #8]
+ 2237 0020 16F0200F 		tst	r6, #32
+ 2238 0024 07D0     		beq	.L283
+ 2239 0026 ED0F     		lsrs	r5, r5, #31
+ 2240 0028 E40F     		lsrs	r4, r4, #31
+ 2241 002a 24B9     		cbnz	r4, .L283
+ 2242 002c CDB3     		cbz	r5, .L284
+ 2243 002e 032B     		cmp	r3, #3
+ 2244 0030 18BF     		it	ne
+ 2245 0032 012B     		cmpne	r3, #1
+ 2246 0034 35D0     		beq	.L284
+ 2247              	.L283:
+ 2248 0036 022B     		cmp	r3, #2
+ 2249 0038 18BF     		it	ne
+ 2250 003a 002B     		cmpne	r3, #0
+ 2251 003c 35D1     		bne	.L285
+ 2252 003e D1F80035 		ldr	r3, [r1, #1280]
+ 2253 0042 43F08043 		orr	r3, r3, #1073741824
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 39
+
+
+ 2254 0046 C1F80035 		str	r3, [r1, #1280]
+ 2255 004a 8368     		ldr	r3, [r0, #8]
+ 2256 004c 13F0200F 		tst	r3, #32
+ 2257 0050 21D1     		bne	.L286
+ 2258 0052 C36A     		ldr	r3, [r0, #44]
+ 2259 0054 13F47F0F 		tst	r3, #16711680
+ 2260 0058 16D1     		bne	.L287
+ 2261 005a D1F80035 		ldr	r3, [r1, #1280]
+ 2262 005e 23F00043 		bic	r3, r3, #-2147483648
+ 2263 0062 C1F80035 		str	r3, [r1, #1280]
+ 2264 0066 D1F80035 		ldr	r3, [r1, #1280]
+ 2265 006a 43F00043 		orr	r3, r3, #-2147483648
+ 2266 006e C1F80035 		str	r3, [r1, #1280]
+ 2267              	.L288:
+ 2268 0072 019B     		ldr	r3, [sp, #4]
+ 2269 0074 0133     		adds	r3, r3, #1
+ 2270 0076 0193     		str	r3, [sp, #4]
+ 2271 0078 019B     		ldr	r3, [sp, #4]
+ 2272 007a B3F57A7F 		cmp	r3, #1000
+ 2273 007e 10D8     		bhi	.L284
+ 2274 0080 1368     		ldr	r3, [r2]
+ 2275 0082 002B     		cmp	r3, #0
+ 2276 0084 F5DB     		blt	.L288
+ 2277 0086 0CE0     		b	.L284
+ 2278              	.L287:
+ 2279 0088 D1F80035 		ldr	r3, [r1, #1280]
+ 2280 008c 43F00043 		orr	r3, r3, #-2147483648
+ 2281 0090 C1F80035 		str	r3, [r1, #1280]
+ 2282 0094 05E0     		b	.L284
+ 2283              	.L286:
+ 2284 0096 D1F80035 		ldr	r3, [r1, #1280]
+ 2285 009a 43F00043 		orr	r3, r3, #-2147483648
+ 2286 009e C1F80035 		str	r3, [r1, #1280]
+ 2287              	.L284:
+ 2288 00a2 0020     		movs	r0, #0
+ 2289 00a4 03B0     		add	sp, sp, #12
+ 2290              		@ sp needed
+ 2291 00a6 70BC     		pop	{r4, r5, r6}
+ 2292 00a8 7047     		bx	lr
+ 2293              	.L285:
+ 2294 00aa D1F80035 		ldr	r3, [r1, #1280]
+ 2295 00ae 43F08043 		orr	r3, r3, #1073741824
+ 2296 00b2 C1F80035 		str	r3, [r1, #1280]
+ 2297 00b6 D0F81034 		ldr	r3, [r0, #1040]
+ 2298 00ba 13F47F0F 		tst	r3, #16711680
+ 2299 00be 16D1     		bne	.L289
+ 2300 00c0 D1F80035 		ldr	r3, [r1, #1280]
+ 2301 00c4 23F00043 		bic	r3, r3, #-2147483648
+ 2302 00c8 C1F80035 		str	r3, [r1, #1280]
+ 2303 00cc D1F80035 		ldr	r3, [r1, #1280]
+ 2304 00d0 43F00043 		orr	r3, r3, #-2147483648
+ 2305 00d4 C1F80035 		str	r3, [r1, #1280]
+ 2306              	.L290:
+ 2307 00d8 019B     		ldr	r3, [sp, #4]
+ 2308 00da 0133     		adds	r3, r3, #1
+ 2309 00dc 0193     		str	r3, [sp, #4]
+ 2310 00de 019B     		ldr	r3, [sp, #4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 40
+
+
+ 2311 00e0 B3F57A7F 		cmp	r3, #1000
+ 2312 00e4 DDD8     		bhi	.L284
+ 2313 00e6 1368     		ldr	r3, [r2]
+ 2314 00e8 002B     		cmp	r3, #0
+ 2315 00ea F5DB     		blt	.L290
+ 2316 00ec D9E7     		b	.L284
+ 2317              	.L289:
+ 2318 00ee D1F80035 		ldr	r3, [r1, #1280]
+ 2319 00f2 43F00043 		orr	r3, r3, #-2147483648
+ 2320 00f6 C1F80035 		str	r3, [r1, #1280]
+ 2321 00fa D2E7     		b	.L284
+ 2323              		.section	.text.USB_DoPing,"ax",%progbits
+ 2324              		.align	1
+ 2325              		.global	USB_DoPing
+ 2326              		.syntax unified
+ 2327              		.thumb
+ 2328              		.thumb_func
+ 2330              	USB_DoPing:
+ 2331              		@ args = 0, pretend = 0, frame = 0
+ 2332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2333              		@ link register save eliminated.
+ 2334 0000 00EB4110 		add	r0, r0, r1, lsl #5
+ 2335 0004 064A     		ldr	r2, .L293
+ 2336 0006 C0F81025 		str	r2, [r0, #1296]
+ 2337 000a D0F80035 		ldr	r3, [r0, #1280]
+ 2338 000e 23F08043 		bic	r3, r3, #1073741824
+ 2339 0012 43F00043 		orr	r3, r3, #-2147483648
+ 2340 0016 C0F80035 		str	r3, [r0, #1280]
+ 2341 001a 0020     		movs	r0, #0
+ 2342 001c 7047     		bx	lr
+ 2343              	.L294:
+ 2344 001e 00BF     		.align	2
+ 2345              	.L293:
+ 2346 0020 00000880 		.word	-2146959360
+ 2348              		.section	.text.USB_HC_StartXfer,"ax",%progbits
+ 2349              		.align	1
+ 2350              		.global	USB_HC_StartXfer
+ 2351              		.syntax unified
+ 2352              		.thumb
+ 2353              		.thumb_func
+ 2355              	USB_HC_StartXfer:
+ 2356              		@ args = 0, pretend = 0, frame = 8
+ 2357              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2358 0000 70B5     		push	{r4, r5, r6, lr}
+ 2359 0002 84B0     		sub	sp, sp, #16
+ 2360 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 2361 0006 A74C     		ldr	r4, .L338
+ 2362 0008 A042     		cmp	r0, r4
+ 2363 000a 16D0     		beq	.L329
+ 2364              	.L296:
+ 2365 000c 8C79     		ldrb	r4, [r1, #6]	@ zero_extendqisi2
+ 2366 000e 012C     		cmp	r4, #1
+ 2367 0010 2ED0     		beq	.L330
+ 2368 0012 0C6A     		ldr	r4, [r1, #32]
+ 2369 0014 002C     		cmp	r4, #0
+ 2370 0016 66D0     		beq	.L325
+ 2371 0018 8D8A     		ldrh	r5, [r1, #20]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 41
+
+
+ 2372 001a 04EB050C 		add	ip, r4, r5
+ 2373 001e 0CF1FF3C 		add	ip, ip, #-1
+ 2374 0022 BCFBF5FC 		udiv	ip, ip, r5
+ 2375 0026 1FFA8CFC 		uxth	ip, ip
+ 2376 002a BCF5807F 		cmp	ip, #256
+ 2377 002e 5CD9     		bls	.L307
+ 2378 0030 2D02     		lsls	r5, r5, #8
+ 2379 0032 CD61     		str	r5, [r1, #28]
+ 2380 0034 4FF4807C 		mov	ip, #256
+ 2381 0038 57E0     		b	.L307
+ 2382              	.L329:
+ 2383 003a 012A     		cmp	r2, #1
+ 2384 003c 07D0     		beq	.L331
+ 2385 003e 8C88     		ldrh	r4, [r1, #4]
+ 2386 0040 B4F5807F 		cmp	r4, #256
+ 2387 0044 E2D1     		bne	.L296
+ 2388 0046 1946     		mov	r1, r3
+ 2389 0048 FFF7FEFF 		bl	USB_DoPing
+ 2390 004c 27E1     		b	.L298
+ 2391              	.L331:
+ 2392 004e 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2393 0050 022C     		cmp	r4, #2
+ 2394 0052 18BF     		it	ne
+ 2395 0054 002C     		cmpne	r4, #0
+ 2396 0056 D9D1     		bne	.L296
+ 2397 0058 8C79     		ldrb	r4, [r1, #6]	@ zero_extendqisi2
+ 2398 005a 002C     		cmp	r4, #0
+ 2399 005c D6D1     		bne	.L296
+ 2400 005e 00EB4314 		add	r4, r0, r3, lsl #5
+ 2401 0062 D4F80C55 		ldr	r5, [r4, #1292]
+ 2402 0066 25F07005 		bic	r5, r5, #112
+ 2403 006a C4F80C55 		str	r5, [r4, #1292]
+ 2404 006e CDE7     		b	.L296
+ 2405              	.L330:
+ 2406 0070 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2407 0072 24B1     		cbz	r4, .L300
+ 2408 0074 8C8A     		ldrh	r4, [r1, #20]
+ 2409 0076 CC61     		str	r4, [r1, #28]
+ 2410 0078 4FF0010C 		mov	ip, #1
+ 2411 007c 3CE0     		b	.L301
+ 2412              	.L300:
+ 2413 007e 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2414 0080 012C     		cmp	r4, #1
+ 2415 0082 06D0     		beq	.L332
+ 2416 0084 012A     		cmp	r2, #1
+ 2417 0086 26D0     		beq	.L333
+ 2418              	.L306:
+ 2419 0088 0C6A     		ldr	r4, [r1, #32]
+ 2420 008a CC61     		str	r4, [r1, #28]
+ 2421 008c 4FF0010C 		mov	ip, #1
+ 2422 0090 32E0     		b	.L301
+ 2423              	.L332:
+ 2424 0092 0C6A     		ldr	r4, [r1, #32]
+ 2425 0094 BC2C     		cmp	r4, #188
+ 2426 0096 0FD9     		bls	.L303
+ 2427 0098 8C8A     		ldrh	r4, [r1, #20]
+ 2428 009a CC61     		str	r4, [r1, #28]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 42
+
+
+ 2429 009c 0C62     		str	r4, [r1, #32]
+ 2430 009e CC68     		ldr	r4, [r1, #12]
+ 2431 00a0 013C     		subs	r4, r4, #1
+ 2432 00a2 012C     		cmp	r4, #1
+ 2433 00a4 03D9     		bls	.L334
+ 2434 00a6 0124     		movs	r4, #1
+ 2435 00a8 CC60     		str	r4, [r1, #12]
+ 2436 00aa A446     		mov	ip, r4
+ 2437 00ac 24E0     		b	.L301
+ 2438              	.L334:
+ 2439 00ae 0224     		movs	r4, #2
+ 2440 00b0 CC60     		str	r4, [r1, #12]
+ 2441 00b2 4FF0010C 		mov	ip, #1
+ 2442 00b6 1FE0     		b	.L301
+ 2443              	.L303:
+ 2444 00b8 CC61     		str	r4, [r1, #28]
+ 2445 00ba CC68     		ldr	r4, [r1, #12]
+ 2446 00bc 013C     		subs	r4, r4, #1
+ 2447 00be 012C     		cmp	r4, #1
+ 2448 00c0 04D9     		bls	.L305
+ 2449 00c2 0424     		movs	r4, #4
+ 2450 00c4 CC60     		str	r4, [r1, #12]
+ 2451 00c6 4FF0010C 		mov	ip, #1
+ 2452 00ca 15E0     		b	.L301
+ 2453              	.L305:
+ 2454 00cc 0324     		movs	r4, #3
+ 2455 00ce CC60     		str	r4, [r1, #12]
+ 2456 00d0 4FF0010C 		mov	ip, #1
+ 2457 00d4 10E0     		b	.L301
+ 2458              	.L333:
+ 2459 00d6 0D6A     		ldr	r5, [r1, #32]
+ 2460 00d8 8C8A     		ldrh	r4, [r1, #20]
+ 2461 00da A542     		cmp	r5, r4
+ 2462 00dc D4D9     		bls	.L306
+ 2463 00de CC61     		str	r4, [r1, #28]
+ 2464 00e0 4FF0010C 		mov	ip, #1
+ 2465 00e4 08E0     		b	.L301
+ 2466              	.L325:
+ 2467 00e6 4FF0010C 		mov	ip, #1
+ 2468              	.L307:
+ 2469 00ea CD78     		ldrb	r5, [r1, #3]	@ zero_extendqisi2
+ 2470 00ec 002D     		cmp	r5, #0
+ 2471 00ee 60D0     		beq	.L308
+ 2472 00f0 8C8A     		ldrh	r4, [r1, #20]
+ 2473 00f2 04FB0CF4 		mul	r4, r4, ip
+ 2474 00f6 CC61     		str	r4, [r1, #28]
+ 2475              	.L301:
+ 2476 00f8 CC69     		ldr	r4, [r1, #28]
+ 2477 00fa C4F31204 		ubfx	r4, r4, #0, #19
+ 2478 00fe 6A4D     		ldr	r5, .L338+4
+ 2479 0100 05EACC45 		and	r5, r5, ip, lsl #19
+ 2480 0104 2C43     		orrs	r4, r4, r5
+ 2481 0106 91F816C0 		ldrb	ip, [r1, #22]	@ zero_extendqisi2
+ 2482 010a 4FEA4C7C 		lsl	ip, ip, #29
+ 2483 010e 0CF0C04C 		and	ip, ip, #1610612736
+ 2484 0112 00EB4313 		add	r3, r0, r3, lsl #5
+ 2485 0116 03F5A06E 		add	lr, r3, #1280
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 43
+
+
+ 2486 011a 44EA0C04 		orr	r4, r4, ip
+ 2487 011e CEF81040 		str	r4, [lr, #16]
+ 2488 0122 12B1     		cbz	r2, .L309
+ 2489 0124 8C69     		ldr	r4, [r1, #24]
+ 2490 0126 CEF81440 		str	r4, [lr, #20]
+ 2491              	.L309:
+ 2492 012a 00F58065 		add	r5, r0, #1024
+ 2493 012e AC68     		ldr	r4, [r5, #8]
+ 2494 0130 D3F80065 		ldr	r6, [r3, #1280]
+ 2495 0134 26F00056 		bic	r6, r6, #536870912
+ 2496 0138 C3F80065 		str	r6, [r3, #1280]
+ 2497 013c D3F80065 		ldr	r6, [r3, #1280]
+ 2498 0140 6FEA040C 		mvn	ip, r4
+ 2499 0144 4FEA4C7C 		lsl	ip, ip, #29
+ 2500 0148 0CF0005C 		and	ip, ip, #536870912
+ 2501 014c 46EA0C06 		orr	r6, r6, ip
+ 2502 0150 C3F80065 		str	r6, [r3, #1280]
+ 2503 0154 8C79     		ldrb	r4, [r1, #6]	@ zero_extendqisi2
+ 2504 0156 012C     		cmp	r4, #1
+ 2505 0158 2DD0     		beq	.L335
+ 2506 015a 0024     		movs	r4, #0
+ 2507 015c CEF80440 		str	r4, [lr, #4]
+ 2508              	.L313:
+ 2509 0160 D3F80045 		ldr	r4, [r3, #1280]
+ 2510 0164 0394     		str	r4, [sp, #12]
+ 2511 0166 039C     		ldr	r4, [sp, #12]
+ 2512 0168 24F08044 		bic	r4, r4, #1073741824
+ 2513 016c 0394     		str	r4, [sp, #12]
+ 2514 016e CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2515 0170 002C     		cmp	r4, #0
+ 2516 0172 7DD0     		beq	.L319
+ 2517 0174 039C     		ldr	r4, [sp, #12]
+ 2518 0176 44F40044 		orr	r4, r4, #32768
+ 2519 017a 0394     		str	r4, [sp, #12]
+ 2520              	.L320:
+ 2521 017c 039C     		ldr	r4, [sp, #12]
+ 2522 017e 44F00044 		orr	r4, r4, #-2147483648
+ 2523 0182 0394     		str	r4, [sp, #12]
+ 2524 0184 039C     		ldr	r4, [sp, #12]
+ 2525 0186 C3F80045 		str	r4, [r3, #1280]
+ 2526 018a 002A     		cmp	r2, #0
+ 2527 018c 40F08780 		bne	.L298
+ 2528 0190 CB78     		ldrb	r3, [r1, #3]	@ zero_extendqisi2
+ 2529 0192 002B     		cmp	r3, #0
+ 2530 0194 40F08380 		bne	.L298
+ 2531 0198 0B6A     		ldr	r3, [r1, #32]
+ 2532 019a 002B     		cmp	r3, #0
+ 2533 019c 7FD0     		beq	.L298
+ 2534 019e CA79     		ldrb	r2, [r1, #7]	@ zero_extendqisi2
+ 2535 01a0 002A     		cmp	r2, #0
+ 2536 01a2 7CD1     		bne	.L298
+ 2537 01a4 8A7C     		ldrb	r2, [r1, #18]	@ zero_extendqisi2
+ 2538 01a6 032A     		cmp	r2, #3
+ 2539 01a8 72D8     		bhi	.L321
+ 2540 01aa DFE802F0 		tbb	[pc, r2]
+ 2541              	.L323:
+ 2542 01ae 66       		.byte	(.L324-.L323)/2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 44
+
+
+ 2543 01af 7F       		.byte	(.L322-.L323)/2
+ 2544 01b0 66       		.byte	(.L324-.L323)/2
+ 2545 01b1 7F       		.byte	(.L322-.L323)/2
+ 2546              		.p2align 1
+ 2547              	.L308:
+ 2548 01b2 CC61     		str	r4, [r1, #28]
+ 2549 01b4 A0E7     		b	.L301
+ 2550              	.L335:
+ 2551 01b6 4E7C     		ldrb	r6, [r1, #17]	@ zero_extendqisi2
+ 2552 01b8 0C7C     		ldrb	r4, [r1, #16]	@ zero_extendqisi2
+ 2553 01ba 44EAC614 		orr	r4, r4, r6, lsl #7
+ 2554 01be 44F00044 		orr	r4, r4, #-2147483648
+ 2555 01c2 CEF80440 		str	r4, [lr, #4]
+ 2556 01c6 DEF80C40 		ldr	r4, [lr, #12]
+ 2557 01ca 44F06004 		orr	r4, r4, #96
+ 2558 01ce CEF80C40 		str	r4, [lr, #12]
+ 2559 01d2 CC79     		ldrb	r4, [r1, #7]	@ zero_extendqisi2
+ 2560 01d4 012C     		cmp	r4, #1
+ 2561 01d6 15D0     		beq	.L336
+ 2562              	.L311:
+ 2563 01d8 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2564 01da 032C     		cmp	r4, #3
+ 2565 01dc 18BF     		it	ne
+ 2566 01de 012C     		cmpne	r4, #1
+ 2567 01e0 02D1     		bne	.L312
+ 2568 01e2 CC79     		ldrb	r4, [r1, #7]	@ zero_extendqisi2
+ 2569 01e4 012C     		cmp	r4, #1
+ 2570 01e6 1DD0     		beq	.L337
+ 2571              	.L312:
+ 2572 01e8 8C7C     		ldrb	r4, [r1, #18]	@ zero_extendqisi2
+ 2573 01ea 012C     		cmp	r4, #1
+ 2574 01ec B8D1     		bne	.L313
+ 2575 01ee CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2576 01f0 002C     		cmp	r4, #0
+ 2577 01f2 B5D1     		bne	.L313
+ 2578 01f4 CC68     		ldr	r4, [r1, #12]
+ 2579 01f6 013C     		subs	r4, r4, #1
+ 2580 01f8 032C     		cmp	r4, #3
+ 2581 01fa B1D8     		bhi	.L313
+ 2582 01fc DFE804F0 		tbb	[pc, r4]
+ 2583              	.L315:
+ 2584 0200 1C       		.byte	(.L318-.L315)/2
+ 2585 0201 23       		.byte	(.L317-.L315)/2
+ 2586 0202 2A       		.byte	(.L316-.L315)/2
+ 2587 0203 31       		.byte	(.L314-.L315)/2
+ 2588              		.p2align 1
+ 2589              	.L336:
+ 2590 0204 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2591 0206 002C     		cmp	r4, #0
+ 2592 0208 E6D1     		bne	.L311
+ 2593 020a DEF80440 		ldr	r4, [lr, #4]
+ 2594 020e 44F48034 		orr	r4, r4, #65536
+ 2595 0212 CEF80440 		str	r4, [lr, #4]
+ 2596 0216 DEF80C40 		ldr	r4, [lr, #12]
+ 2597 021a 44F04004 		orr	r4, r4, #64
+ 2598 021e CEF80C40 		str	r4, [lr, #12]
+ 2599 0222 D9E7     		b	.L311
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 45
+
+
+ 2600              	.L337:
+ 2601 0224 CC78     		ldrb	r4, [r1, #3]	@ zero_extendqisi2
+ 2602 0226 012C     		cmp	r4, #1
+ 2603 0228 DED1     		bne	.L312
+ 2604 022a DEF80440 		ldr	r4, [lr, #4]
+ 2605 022e 44F48034 		orr	r4, r4, #65536
+ 2606 0232 CEF80440 		str	r4, [lr, #4]
+ 2607 0236 D7E7     		b	.L312
+ 2608              	.L318:
+ 2609 0238 DEF80440 		ldr	r4, [lr, #4]
+ 2610 023c 44F40044 		orr	r4, r4, #32768
+ 2611 0240 CEF80440 		str	r4, [lr, #4]
+ 2612 0244 8CE7     		b	.L313
+ 2613              	.L317:
+ 2614 0246 DEF80440 		ldr	r4, [lr, #4]
+ 2615 024a 44F00E04 		orr	r4, r4, #14
+ 2616 024e CEF80440 		str	r4, [lr, #4]
+ 2617 0252 85E7     		b	.L313
+ 2618              	.L316:
+ 2619 0254 DEF80440 		ldr	r4, [lr, #4]
+ 2620 0258 44F48044 		orr	r4, r4, #16384
+ 2621 025c CEF80440 		str	r4, [lr, #4]
+ 2622 0260 7EE7     		b	.L313
+ 2623              	.L314:
+ 2624 0262 DEF80440 		ldr	r4, [lr, #4]
+ 2625 0266 44F44044 		orr	r4, r4, #49152
+ 2626 026a CEF80440 		str	r4, [lr, #4]
+ 2627 026e 77E7     		b	.L313
+ 2628              	.L319:
+ 2629 0270 039C     		ldr	r4, [sp, #12]
+ 2630 0272 24F40044 		bic	r4, r4, #32768
+ 2631 0276 0394     		str	r4, [sp, #12]
+ 2632 0278 80E7     		b	.L320
+ 2633              	.L324:
+ 2634 027a 0333     		adds	r3, r3, #3
+ 2635 027c C26A     		ldr	r2, [r0, #44]
+ 2636 027e 92B2     		uxth	r2, r2
+ 2637 0280 C3F38F03 		ubfx	r3, r3, #2, #16
+ 2638 0284 9A42     		cmp	r2, r3
+ 2639 0286 03D2     		bcs	.L321
+ 2640 0288 8369     		ldr	r3, [r0, #24]
+ 2641 028a 43F02003 		orr	r3, r3, #32
+ 2642 028e 8361     		str	r3, [r0, #24]
+ 2643              	.L321:
+ 2644 0290 0023     		movs	r3, #0
+ 2645 0292 0093     		str	r3, [sp]
+ 2646 0294 0B8C     		ldrh	r3, [r1, #32]
+ 2647 0296 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 2648 0298 8969     		ldr	r1, [r1, #24]
+ 2649 029a FFF7FEFF 		bl	USB_WritePacket
+ 2650              	.L298:
+ 2651 029e 0020     		movs	r0, #0
+ 2652 02a0 04B0     		add	sp, sp, #16
+ 2653              		@ sp needed
+ 2654 02a2 70BD     		pop	{r4, r5, r6, pc}
+ 2655              	.L339:
+ 2656              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 46
+
+
+ 2657              	.L338:
+ 2658 02a4 00000440 		.word	1074003968
+ 2659 02a8 0000F81F 		.word	536346624
+ 2660              	.L322:
+ 2661 02ac 0333     		adds	r3, r3, #3
+ 2662 02ae 2A69     		ldr	r2, [r5, #16]
+ 2663 02b0 92B2     		uxth	r2, r2
+ 2664 02b2 C3F38F03 		ubfx	r3, r3, #2, #16
+ 2665 02b6 9A42     		cmp	r2, r3
+ 2666 02b8 EAD2     		bcs	.L321
+ 2667 02ba 8369     		ldr	r3, [r0, #24]
+ 2668 02bc 43F08063 		orr	r3, r3, #67108864
+ 2669 02c0 8361     		str	r3, [r0, #24]
+ 2670 02c2 E5E7     		b	.L321
+ 2672              		.section	.text.USB_StopHost,"ax",%progbits
+ 2673              		.align	1
+ 2674              		.global	USB_StopHost
+ 2675              		.syntax unified
+ 2676              		.thumb
+ 2677              		.thumb_func
+ 2679              	USB_StopHost:
+ 2680              		@ args = 0, pretend = 0, frame = 8
+ 2681              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2682 0000 30B5     		push	{r4, r5, lr}
+ 2683 0002 83B0     		sub	sp, sp, #12
+ 2684 0004 0446     		mov	r4, r0
+ 2685 0006 0023     		movs	r3, #0
+ 2686 0008 0193     		str	r3, [sp, #4]
+ 2687 000a FFF7FEFF 		bl	USB_DisableGlobalInt
+ 2688 000e 1021     		movs	r1, #16
+ 2689 0010 2046     		mov	r0, r4
+ 2690 0012 FFF7FEFF 		bl	USB_FlushTxFifo
+ 2691 0016 0546     		mov	r5, r0
+ 2692 0018 00B1     		cbz	r0, .L341
+ 2693 001a 0125     		movs	r5, #1
+ 2694              	.L341:
+ 2695 001c 2046     		mov	r0, r4
+ 2696 001e FFF7FEFF 		bl	USB_FlushRxFifo
+ 2697 0022 00B1     		cbz	r0, .L342
+ 2698 0024 0125     		movs	r5, #1
+ 2699              	.L342:
+ 2700 0026 0022     		movs	r2, #0
+ 2701 0028 0AE0     		b	.L343
+ 2702              	.L344:
+ 2703 002a 04EB4211 		add	r1, r4, r2, lsl #5
+ 2704 002e D1F80035 		ldr	r3, [r1, #1280]
+ 2705 0032 23F08023 		bic	r3, r3, #-2147450880
+ 2706 0036 43F08043 		orr	r3, r3, #1073741824
+ 2707 003a C1F80035 		str	r3, [r1, #1280]
+ 2708 003e 0132     		adds	r2, r2, #1
+ 2709              	.L343:
+ 2710 0040 0F2A     		cmp	r2, #15
+ 2711 0042 F2D9     		bls	.L344
+ 2712 0044 0021     		movs	r1, #0
+ 2713 0046 00E0     		b	.L345
+ 2714              	.L346:
+ 2715 0048 0131     		adds	r1, r1, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 47
+
+
+ 2716              	.L345:
+ 2717 004a 0F29     		cmp	r1, #15
+ 2718 004c 16D8     		bhi	.L352
+ 2719 004e 04EB4110 		add	r0, r4, r1, lsl #5
+ 2720 0052 00F5A062 		add	r2, r0, #1280
+ 2721 0056 D0F80035 		ldr	r3, [r0, #1280]
+ 2722 005a 23F40043 		bic	r3, r3, #32768
+ 2723 005e 43F04043 		orr	r3, r3, #-1073741824
+ 2724 0062 C0F80035 		str	r3, [r0, #1280]
+ 2725              	.L347:
+ 2726 0066 019B     		ldr	r3, [sp, #4]
+ 2727 0068 0133     		adds	r3, r3, #1
+ 2728 006a 0193     		str	r3, [sp, #4]
+ 2729 006c 019B     		ldr	r3, [sp, #4]
+ 2730 006e B3F57A7F 		cmp	r3, #1000
+ 2731 0072 E9D8     		bhi	.L346
+ 2732 0074 1368     		ldr	r3, [r2]
+ 2733 0076 002B     		cmp	r3, #0
+ 2734 0078 F5DB     		blt	.L347
+ 2735 007a E5E7     		b	.L346
+ 2736              	.L352:
+ 2737 007c 4FF0FF33 		mov	r3, #-1
+ 2738 0080 C4F81434 		str	r3, [r4, #1044]
+ 2739 0084 6361     		str	r3, [r4, #20]
+ 2740 0086 2046     		mov	r0, r4
+ 2741 0088 FFF7FEFF 		bl	USB_EnableGlobalInt
+ 2742 008c 2846     		mov	r0, r5
+ 2743 008e 03B0     		add	sp, sp, #12
+ 2744              		@ sp needed
+ 2745 0090 30BD     		pop	{r4, r5, pc}
+ 2747              		.section	.text.USB_ActivateRemoteWakeup,"ax",%progbits
+ 2748              		.align	1
+ 2749              		.global	USB_ActivateRemoteWakeup
+ 2750              		.syntax unified
+ 2751              		.thumb
+ 2752              		.thumb_func
+ 2754              	USB_ActivateRemoteWakeup:
+ 2755              		@ args = 0, pretend = 0, frame = 0
+ 2756              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2757              		@ link register save eliminated.
+ 2758 0000 D0F80838 		ldr	r3, [r0, #2056]
+ 2759 0004 00F50060 		add	r0, r0, #2048
+ 2760 0008 13F0010F 		tst	r3, #1
+ 2761 000c 03D0     		beq	.L354
+ 2762 000e 4368     		ldr	r3, [r0, #4]
+ 2763 0010 43F00103 		orr	r3, r3, #1
+ 2764 0014 4360     		str	r3, [r0, #4]
+ 2765              	.L354:
+ 2766 0016 0020     		movs	r0, #0
+ 2767 0018 7047     		bx	lr
+ 2769              		.section	.text.USB_DeActivateRemoteWakeup,"ax",%progbits
+ 2770              		.align	1
+ 2771              		.global	USB_DeActivateRemoteWakeup
+ 2772              		.syntax unified
+ 2773              		.thumb
+ 2774              		.thumb_func
+ 2776              	USB_DeActivateRemoteWakeup:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 48
+
+
+ 2777              		@ args = 0, pretend = 0, frame = 0
+ 2778              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2779              		@ link register save eliminated.
+ 2780 0000 D0F80438 		ldr	r3, [r0, #2052]
+ 2781 0004 23F00103 		bic	r3, r3, #1
+ 2782 0008 C0F80438 		str	r3, [r0, #2052]
+ 2783 000c 0020     		movs	r0, #0
+ 2784 000e 7047     		bx	lr
+ 2786              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 49
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f7xx_ll_usb.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:17     .text.USB_CoreReset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:22     .text.USB_CoreReset:00000000 USB_CoreReset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:76     .text.USB_CoreInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:82     .text.USB_CoreInit:00000000 USB_CoreInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:143    .text.USB_CoreInit:00000080 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:146    .text.USB_SetTurnaroundTime:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:152    .text.USB_SetTurnaroundTime:00000000 USB_SetTurnaroundTime
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:246    .text.USB_SetTurnaroundTime:0000009c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:266    .text.USB_EnableGlobalInt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:272    .text.USB_EnableGlobalInt:00000000 USB_EnableGlobalInt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:283    .text.USB_DisableGlobalInt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:289    .text.USB_DisableGlobalInt:00000000 USB_DisableGlobalInt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:300    .text.USB_FlushTxFifo:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:306    .text.USB_FlushTxFifo:00000000 USB_FlushTxFifo
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:351    .text.USB_FlushRxFifo:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:357    .text.USB_FlushRxFifo:00000000 USB_FlushRxFifo
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:401    .text.USB_SetDevSpeed:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:407    .text.USB_SetDevSpeed:00000000 USB_SetDevSpeed
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:418    .text.USB_DevInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:424    .text.USB_DevInit:00000000 USB_DevInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:597    .text.USB_DevInit:00000188 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:601    .text.USB_GetDevSpeed:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:607    .text.USB_GetDevSpeed:00000000 USB_GetDevSpeed
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:631    .text.USB_ActivateEndpoint:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:637    .text.USB_ActivateEndpoint:00000000 USB_ActivateEndpoint
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:693    .text.USB_ActivateEndpoint:00000094 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:696    .text.USB_ActivateDedicatedEndpoint:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:702    .text.USB_ActivateDedicatedEndpoint:00000000 USB_ActivateDedicatedEndpoint
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:764    .text.USB_ActivateDedicatedEndpoint:0000009c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:767    .text.USB_DeactivateEndpoint:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:773    .text.USB_DeactivateEndpoint:00000000 USB_DeactivateEndpoint
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:853    .text.USB_DeactivateEndpoint:000000d8 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:857    .text.USB_DeactivateDedicatedEndpoint:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:863    .text.USB_DeactivateDedicatedEndpoint:00000000 USB_DeactivateDedicatedEndpoint
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:925    .text.USB_EPStopXfer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:931    .text.USB_EPStopXfer:00000000 USB_EPStopXfer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1015   .text.USB_WritePacket:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1021   .text.USB_WritePacket:00000000 USB_WritePacket
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1045   .text.USB_EPStartXfer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1051   .text.USB_EPStartXfer:00000000 USB_EPStartXfer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1286   .text.USB_EPStartXfer:00000240 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1289   .text.USB_ReadPacket:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1295   .text.USB_ReadPacket:00000000 USB_ReadPacket
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1331   .text.USB_EPSetStall:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1337   .text.USB_EPSetStall:00000000 USB_EPSetStall
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1376   .text.USB_EPClearStall:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1382   .text.USB_EPClearStall:00000000 USB_EPClearStall
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1423   .text.USB_StopDevice:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1429   .text.USB_StopDevice:00000000 USB_StopDevice
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1461   .text.USB_SetDevAddress:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1467   .text.USB_SetDevAddress:00000000 USB_SetDevAddress
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1483   .text.USB_DevConnect:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1489   .text.USB_DevConnect:00000000 USB_DevConnect
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1503   .text.USB_DevDisconnect:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1509   .text.USB_DevDisconnect:00000000 USB_DevDisconnect
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 50
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1523   .text.USB_ReadInterrupts:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1529   .text.USB_ReadInterrupts:00000000 USB_ReadInterrupts
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1539   .text.USB_ReadChInterrupts:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1545   .text.USB_ReadChInterrupts:00000000 USB_ReadChInterrupts
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1557   .text.USB_ReadDevAllOutEpInterrupt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1563   .text.USB_ReadDevAllOutEpInterrupt:00000000 USB_ReadDevAllOutEpInterrupt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1575   .text.USB_ReadDevAllInEpInterrupt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1581   .text.USB_ReadDevAllInEpInterrupt:00000000 USB_ReadDevAllInEpInterrupt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1593   .text.USB_ReadDevOutEPInterrupt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1599   .text.USB_ReadDevOutEPInterrupt:00000000 USB_ReadDevOutEPInterrupt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1611   .text.USB_ReadDevInEPInterrupt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1617   .text.USB_ReadDevInEPInterrupt:00000000 USB_ReadDevInEPInterrupt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1635   .text.USB_ClearInterrupts:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1641   .text.USB_ClearInterrupts:00000000 USB_ClearInterrupts
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1651   .text.USB_GetMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1657   .text.USB_GetMode:00000000 USB_GetMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1666   .text.USB_SetCurrentMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1672   .text.USB_SetCurrentMode:00000000 USB_SetCurrentMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1726   .text.USB_ActivateSetup:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1732   .text.USB_ActivateSetup:00000000 USB_ActivateSetup
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1746   .text.USB_EP0_OutStart:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1752   .text.USB_EP0_OutStart:00000000 USB_EP0_OutStart
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1791   .text.USB_EP0_OutStart:0000005c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1794   .text.USB_HostInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1800   .text.USB_HostInit:00000000 USB_HostInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1897   .text.USB_HostInit:000000e0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1903   .text.USB_InitFSLSPClkSel:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1909   .text.USB_InitFSLSPClkSel:00000000 USB_InitFSLSPClkSel
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1939   .text.USB_ResetPort:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1945   .text.USB_ResetPort:00000000 USB_ResetPort
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1974   .text.USB_DriveVbus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:1980   .text.USB_DriveVbus:00000000 USB_DriveVbus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2017   .text.USB_GetHostSpeed:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2023   .text.USB_GetHostSpeed:00000000 USB_GetHostSpeed
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2039   .text.USB_GetCurrentFrame:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2045   .text.USB_GetCurrentFrame:00000000 USB_GetCurrentFrame
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2055   .text.USB_HC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2061   .text.USB_HC_Init:00000000 USB_HC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2076   .text.USB_HC_Init:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2080   .text.USB_HC_Init:00000028 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2197   .text.USB_HC_Init:00000134 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2200   .text.USB_HC_ReadInterrupt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2206   .text.USB_HC_ReadInterrupt:00000000 USB_HC_ReadInterrupt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2216   .text.USB_HC_Halt:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2222   .text.USB_HC_Halt:00000000 USB_HC_Halt
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2324   .text.USB_DoPing:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2330   .text.USB_DoPing:00000000 USB_DoPing
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2346   .text.USB_DoPing:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2349   .text.USB_HC_StartXfer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2355   .text.USB_HC_StartXfer:00000000 USB_HC_StartXfer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2542   .text.USB_HC_StartXfer:000001ae $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2546   .text.USB_HC_StartXfer:000001b2 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2584   .text.USB_HC_StartXfer:00000200 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2588   .text.USB_HC_StartXfer:00000204 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2658   .text.USB_HC_StartXfer:000002a4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2661   .text.USB_HC_StartXfer:000002ac $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2673   .text.USB_StopHost:00000000 $t
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s 			page 51
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2679   .text.USB_StopHost:00000000 USB_StopHost
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2748   .text.USB_ActivateRemoteWakeup:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2754   .text.USB_ActivateRemoteWakeup:00000000 USB_ActivateRemoteWakeup
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2770   .text.USB_DeActivateRemoteWakeup:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKq66aq.s:2776   .text.USB_DeActivateRemoteWakeup:00000000 USB_DeActivateRemoteWakeup
+
+UNDEFINED SYMBOLS
+HAL_Delay

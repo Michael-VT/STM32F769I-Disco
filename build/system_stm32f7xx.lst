@@ -1,0 +1,165 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"system_stm32f7xx.c"
+  15              		.text
+  16              		.section	.text.SystemInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	SystemInit
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	SystemInit:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 034A     		ldr	r2, .L2
+  28 0002 D2F88830 		ldr	r3, [r2, #136]
+  29 0006 43F47003 		orr	r3, r3, #15728640
+  30 000a C2F88830 		str	r3, [r2, #136]
+  31 000e 7047     		bx	lr
+  32              	.L3:
+  33              		.align	2
+  34              	.L2:
+  35 0010 00ED00E0 		.word	-536810240
+  37              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+  38              		.align	1
+  39              		.global	SystemCoreClockUpdate
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  44              	SystemCoreClockUpdate:
+  45              		@ args = 0, pretend = 0, frame = 0
+  46              		@ frame_needed = 0, uses_anonymous_args = 0
+  47              		@ link register save eliminated.
+  48 0000 224B     		ldr	r3, .L11
+  49 0002 9B68     		ldr	r3, [r3, #8]
+  50 0004 03F00C03 		and	r3, r3, #12
+  51 0008 042B     		cmp	r3, #4
+  52 000a 11D0     		beq	.L5
+  53 000c 082B     		cmp	r3, #8
+  54 000e 13D0     		beq	.L6
+  55 0010 002B     		cmp	r3, #0
+  56 0012 37D1     		bne	.L7
+  57 0014 1E4B     		ldr	r3, .L11+4
+  58 0016 1F4A     		ldr	r2, .L11+8
+  59 0018 1A60     		str	r2, [r3]
+  60              	.L8:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s 			page 2
+
+
+  61 001a 1C4B     		ldr	r3, .L11
+  62 001c 9B68     		ldr	r3, [r3, #8]
+  63 001e C3F30313 		ubfx	r3, r3, #4, #4
+  64 0022 1D4A     		ldr	r2, .L11+12
+  65 0024 D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+  66 0026 1A4A     		ldr	r2, .L11+4
+  67 0028 1368     		ldr	r3, [r2]
+  68 002a CB40     		lsrs	r3, r3, r1
+  69 002c 1360     		str	r3, [r2]
+  70 002e 7047     		bx	lr
+  71              	.L5:
+  72 0030 174B     		ldr	r3, .L11+4
+  73 0032 1A4A     		ldr	r2, .L11+16
+  74 0034 1A60     		str	r2, [r3]
+  75 0036 F0E7     		b	.L8
+  76              	.L6:
+  77 0038 144B     		ldr	r3, .L11
+  78 003a 5968     		ldr	r1, [r3, #4]
+  79 003c 5A68     		ldr	r2, [r3, #4]
+  80 003e 02F03F02 		and	r2, r2, #63
+  81 0042 11F4800F 		tst	r1, #4194304
+  82 0046 13D0     		beq	.L9
+  83 0048 144B     		ldr	r3, .L11+16
+  84 004a B3FBF2F3 		udiv	r3, r3, r2
+  85 004e 0F4A     		ldr	r2, .L11
+  86 0050 5268     		ldr	r2, [r2, #4]
+  87 0052 C2F38812 		ubfx	r2, r2, #6, #9
+  88 0056 02FB03F3 		mul	r3, r2, r3
+  89              	.L10:
+  90 005a 0C4A     		ldr	r2, .L11
+  91 005c 5268     		ldr	r2, [r2, #4]
+  92 005e C2F30142 		ubfx	r2, r2, #16, #2
+  93 0062 0132     		adds	r2, r2, #1
+  94 0064 5200     		lsls	r2, r2, #1
+  95 0066 B3FBF2F3 		udiv	r3, r3, r2
+  96 006a 094A     		ldr	r2, .L11+4
+  97 006c 1360     		str	r3, [r2]
+  98 006e D4E7     		b	.L8
+  99              	.L9:
+ 100 0070 084B     		ldr	r3, .L11+8
+ 101 0072 B3FBF2F3 		udiv	r3, r3, r2
+ 102 0076 054A     		ldr	r2, .L11
+ 103 0078 5268     		ldr	r2, [r2, #4]
+ 104 007a C2F38812 		ubfx	r2, r2, #6, #9
+ 105 007e 02FB03F3 		mul	r3, r2, r3
+ 106 0082 EAE7     		b	.L10
+ 107              	.L7:
+ 108 0084 024B     		ldr	r3, .L11+4
+ 109 0086 034A     		ldr	r2, .L11+8
+ 110 0088 1A60     		str	r2, [r3]
+ 111 008a C6E7     		b	.L8
+ 112              	.L12:
+ 113              		.align	2
+ 114              	.L11:
+ 115 008c 00380240 		.word	1073887232
+ 116 0090 00000000 		.word	SystemCoreClock
+ 117 0094 0024F400 		.word	16000000
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s 			page 3
+
+
+ 118 0098 00000000 		.word	AHBPrescTable
+ 119 009c 40787D01 		.word	25000000
+ 121              		.global	APBPrescTable
+ 122              		.section	.rodata.APBPrescTable,"a"
+ 123              		.align	2
+ 126              	APBPrescTable:
+ 127 0000 00000000 		.ascii	"\000\000\000\000\001\002\003\004"
+ 127      01020304 
+ 128              		.global	AHBPrescTable
+ 129              		.section	.rodata.AHBPrescTable,"a"
+ 130              		.align	2
+ 133              	AHBPrescTable:
+ 134 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\002\003\004\006"
+ 134      00000000 
+ 134      01020304 
+ 134      06
+ 135 000d 070809   		.ascii	"\007\010\011"
+ 136              		.global	SystemCoreClock
+ 137              		.section	.data.SystemCoreClock,"aw"
+ 138              		.align	2
+ 141              	SystemCoreClock:
+ 142 0000 0024F400 		.word	16000000
+ 143              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_stm32f7xx.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:17     .text.SystemInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:23     .text.SystemInit:00000000 SystemInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:35     .text.SystemInit:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:38     .text.SystemCoreClockUpdate:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:44     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:115    .text.SystemCoreClockUpdate:0000008c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:141    .data.SystemCoreClock:00000000 SystemCoreClock
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:133    .rodata.AHBPrescTable:00000000 AHBPrescTable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:126    .rodata.APBPrescTable:00000000 APBPrescTable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:123    .rodata.APBPrescTable:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:130    .rodata.AHBPrescTable:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvEBceM.s:138    .data.SystemCoreClock:00000000 $d
+
+NO UNDEFINED SYMBOLS

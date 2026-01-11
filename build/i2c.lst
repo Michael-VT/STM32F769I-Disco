@@ -1,0 +1,224 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"i2c.c"
+  15              		.text
+  16              		.section	.text.MX_I2C1_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_I2C1_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_I2C1_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 1448     		ldr	r0, .L9
+  28 0004 144B     		ldr	r3, .L9+4
+  29 0006 0360     		str	r3, [r0]
+  30 0008 A3F1FE53 		sub	r3, r3, #532676608
+  31 000c A3F69843 		subw	r3, r3, #3224
+  32 0010 4360     		str	r3, [r0, #4]
+  33 0012 0023     		movs	r3, #0
+  34 0014 8360     		str	r3, [r0, #8]
+  35 0016 0122     		movs	r2, #1
+  36 0018 C260     		str	r2, [r0, #12]
+  37 001a 0361     		str	r3, [r0, #16]
+  38 001c 4361     		str	r3, [r0, #20]
+  39 001e 8361     		str	r3, [r0, #24]
+  40 0020 C361     		str	r3, [r0, #28]
+  41 0022 0362     		str	r3, [r0, #32]
+  42 0024 FFF7FEFF 		bl	HAL_I2C_Init
+  43 0028 50B9     		cbnz	r0, .L6
+  44              	.L2:
+  45 002a 0021     		movs	r1, #0
+  46 002c 0948     		ldr	r0, .L9
+  47 002e FFF7FEFF 		bl	HAL_I2CEx_ConfigAnalogFilter
+  48 0032 40B9     		cbnz	r0, .L7
+  49              	.L3:
+  50 0034 0021     		movs	r1, #0
+  51 0036 0748     		ldr	r0, .L9
+  52 0038 FFF7FEFF 		bl	HAL_I2CEx_ConfigDigitalFilter
+  53 003c 30B9     		cbnz	r0, .L8
+  54              	.L1:
+  55 003e 08BD     		pop	{r3, pc}
+  56              	.L6:
+  57 0040 FFF7FEFF 		bl	Error_Handler
+  58 0044 F1E7     		b	.L2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s 			page 2
+
+
+  59              	.L7:
+  60 0046 FFF7FEFF 		bl	Error_Handler
+  61 004a F3E7     		b	.L3
+  62              	.L8:
+  63 004c FFF7FEFF 		bl	Error_Handler
+  64 0050 F5E7     		b	.L1
+  65              	.L10:
+  66 0052 00BF     		.align	2
+  67              	.L9:
+  68 0054 00000000 		.word	hi2c1
+  69 0058 00540040 		.word	1073763328
+  71              		.section	.text.HAL_I2C_MspInit,"ax",%progbits
+  72              		.align	1
+  73              		.global	HAL_I2C_MspInit
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  78              	HAL_I2C_MspInit:
+  79              		@ args = 0, pretend = 0, frame = 176
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81 0000 10B5     		push	{r4, lr}
+  82 0002 ACB0     		sub	sp, sp, #176
+  83 0004 0446     		mov	r4, r0
+  84 0006 0021     		movs	r1, #0
+  85 0008 2791     		str	r1, [sp, #156]
+  86 000a 2891     		str	r1, [sp, #160]
+  87 000c 2991     		str	r1, [sp, #164]
+  88 000e 2A91     		str	r1, [sp, #168]
+  89 0010 2B91     		str	r1, [sp, #172]
+  90 0012 9022     		movs	r2, #144
+  91 0014 03A8     		add	r0, sp, #12
+  92 0016 FFF7FEFF 		bl	memset
+  93 001a 2268     		ldr	r2, [r4]
+  94 001c 184B     		ldr	r3, .L17
+  95 001e 9A42     		cmp	r2, r3
+  96 0020 01D0     		beq	.L15
+  97              	.L11:
+  98 0022 2CB0     		add	sp, sp, #176
+  99              		@ sp needed
+ 100 0024 10BD     		pop	{r4, pc}
+ 101              	.L15:
+ 102 0026 4FF48043 		mov	r3, #16384
+ 103 002a 0393     		str	r3, [sp, #12]
+ 104 002c 03A8     		add	r0, sp, #12
+ 105 002e FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 106 0032 10BB     		cbnz	r0, .L16
+ 107              	.L13:
+ 108 0034 134C     		ldr	r4, .L17+4
+ 109 0036 236B     		ldr	r3, [r4, #48]
+ 110 0038 43F00203 		orr	r3, r3, #2
+ 111 003c 2363     		str	r3, [r4, #48]
+ 112 003e 236B     		ldr	r3, [r4, #48]
+ 113 0040 03F00203 		and	r3, r3, #2
+ 114 0044 0193     		str	r3, [sp, #4]
+ 115 0046 019B     		ldr	r3, [sp, #4]
+ 116 0048 4FF44073 		mov	r3, #768
+ 117 004c 2793     		str	r3, [sp, #156]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s 			page 3
+
+
+ 118 004e 1223     		movs	r3, #18
+ 119 0050 2893     		str	r3, [sp, #160]
+ 120 0052 0123     		movs	r3, #1
+ 121 0054 2993     		str	r3, [sp, #164]
+ 122 0056 0023     		movs	r3, #0
+ 123 0058 2A93     		str	r3, [sp, #168]
+ 124 005a 0423     		movs	r3, #4
+ 125 005c 2B93     		str	r3, [sp, #172]
+ 126 005e 27A9     		add	r1, sp, #156
+ 127 0060 0948     		ldr	r0, .L17+8
+ 128 0062 FFF7FEFF 		bl	HAL_GPIO_Init
+ 129 0066 236C     		ldr	r3, [r4, #64]
+ 130 0068 43F40013 		orr	r3, r3, #2097152
+ 131 006c 2364     		str	r3, [r4, #64]
+ 132 006e 236C     		ldr	r3, [r4, #64]
+ 133 0070 03F40013 		and	r3, r3, #2097152
+ 134 0074 0293     		str	r3, [sp, #8]
+ 135 0076 029B     		ldr	r3, [sp, #8]
+ 136 0078 D3E7     		b	.L11
+ 137              	.L16:
+ 138 007a FFF7FEFF 		bl	Error_Handler
+ 139 007e D9E7     		b	.L13
+ 140              	.L18:
+ 141              		.align	2
+ 142              	.L17:
+ 143 0080 00540040 		.word	1073763328
+ 144 0084 00380240 		.word	1073887232
+ 145 0088 00040240 		.word	1073873920
+ 147              		.section	.text.HAL_I2C_MspDeInit,"ax",%progbits
+ 148              		.align	1
+ 149              		.global	HAL_I2C_MspDeInit
+ 150              		.syntax unified
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	HAL_I2C_MspDeInit:
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157 0000 0268     		ldr	r2, [r0]
+ 158 0002 0B4B     		ldr	r3, .L26
+ 159 0004 9A42     		cmp	r2, r3
+ 160 0006 00D0     		beq	.L25
+ 161 0008 7047     		bx	lr
+ 162              	.L25:
+ 163 000a 10B5     		push	{r4, lr}
+ 164 000c 094A     		ldr	r2, .L26+4
+ 165 000e 136C     		ldr	r3, [r2, #64]
+ 166 0010 23F40013 		bic	r3, r3, #2097152
+ 167 0014 1364     		str	r3, [r2, #64]
+ 168 0016 084C     		ldr	r4, .L26+8
+ 169 0018 4FF48071 		mov	r1, #256
+ 170 001c 2046     		mov	r0, r4
+ 171 001e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 172 0022 4FF40071 		mov	r1, #512
+ 173 0026 2046     		mov	r0, r4
+ 174 0028 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 175 002c 10BD     		pop	{r4, pc}
+ 176              	.L27:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s 			page 4
+
+
+ 177 002e 00BF     		.align	2
+ 178              	.L26:
+ 179 0030 00540040 		.word	1073763328
+ 180 0034 00380240 		.word	1073887232
+ 181 0038 00040240 		.word	1073873920
+ 183              		.global	hi2c1
+ 184              		.section	.bss.hi2c1,"aw",%nobits
+ 185              		.align	2
+ 188              	hi2c1:
+ 189 0000 00000000 		.space	84
+ 189      00000000 
+ 189      00000000 
+ 189      00000000 
+ 189      00000000 
+ 190              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:17     .text.MX_I2C1_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:23     .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:68     .text.MX_I2C1_Init:00000054 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:188    .bss.hi2c1:00000000 hi2c1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:72     .text.HAL_I2C_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:78     .text.HAL_I2C_MspInit:00000000 HAL_I2C_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:143    .text.HAL_I2C_MspInit:00000080 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:148    .text.HAL_I2C_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:154    .text.HAL_I2C_MspDeInit:00000000 HAL_I2C_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:179    .text.HAL_I2C_MspDeInit:00000030 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc2qiZDE.s:185    .bss.hi2c1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Init
+HAL_I2CEx_ConfigAnalogFilter
+HAL_I2CEx_ConfigDigitalFilter
+Error_Handler
+memset
+HAL_RCCEx_PeriphCLKConfig
+HAL_GPIO_Init
+HAL_GPIO_DeInit

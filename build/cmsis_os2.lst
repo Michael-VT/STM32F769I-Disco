@@ -1,0 +1,4817 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"cmsis_os2.c"
+  15              		.text
+  16              		.section	.text.TimerCallback,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	TimerCallback:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 08B5     		push	{r3, lr}
+  26 0002 FFF7FEFF 		bl	pvTimerGetTimerID
+  27 0006 10B1     		cbz	r0, .L1
+  28 0008 0268     		ldr	r2, [r0]
+  29 000a 4068     		ldr	r0, [r0, #4]
+  30 000c 9047     		blx	r2
+  31              	.L1:
+  32 000e 08BD     		pop	{r3, pc}
+  34              		.section	.text.osKernelInitialize,"ax",%progbits
+  35              		.align	1
+  36              		.global	osKernelInitialize
+  37              		.syntax unified
+  38              		.thumb
+  39              		.thumb_func
+  41              	osKernelInitialize:
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 0, uses_anonymous_args = 0
+  44              		@ link register save eliminated.
+  45              		.syntax unified
+  46              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  47 0000 EFF30583 		MRS r3, ipsr
+  48              	@ 0 "" 2
+  49              		.thumb
+  50              		.syntax unified
+  51 0004 7BB9     		cbnz	r3, .L8
+  52              		.syntax unified
+  53              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+  54 0006 EFF31083 		MRS r3, primask
+  55              	@ 0 "" 2
+  56              		.thumb
+  57              		.syntax unified
+  58 000a 13B9     		cbnz	r3, .L6
+  59              		.syntax unified
+  60              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 2
+
+
+  61 000c EFF31183 		MRS r3, basepri
+  62              	@ 0 "" 2
+  63              		.thumb
+  64              		.syntax unified
+  65 0010 1BB1     		cbz	r3, .L7
+  66              	.L6:
+  67 0012 094B     		ldr	r3, .L11
+  68 0014 1B68     		ldr	r3, [r3]
+  69 0016 022B     		cmp	r3, #2
+  70 0018 08D0     		beq	.L9
+  71              	.L7:
+  72 001a 074B     		ldr	r3, .L11
+  73 001c 1868     		ldr	r0, [r3]
+  74 001e 40B9     		cbnz	r0, .L10
+  75 0020 0122     		movs	r2, #1
+  76 0022 1A60     		str	r2, [r3]
+  77 0024 7047     		bx	lr
+  78              	.L8:
+  79 0026 6FF00500 		mvn	r0, #5
+  80 002a 7047     		bx	lr
+  81              	.L9:
+  82 002c 6FF00500 		mvn	r0, #5
+  83 0030 7047     		bx	lr
+  84              	.L10:
+  85 0032 4FF0FF30 		mov	r0, #-1
+  86 0036 7047     		bx	lr
+  87              	.L12:
+  88              		.align	2
+  89              	.L11:
+  90 0038 00000000 		.word	KernelState
+  92              		.section	.rodata.osKernelGetInfo.str1.4,"aMS",%progbits,1
+  93              		.align	2
+  94              	.LC0:
+  95 0000 46726565 		.ascii	"FreeRTOS V10.2.0\000"
+  95      52544F53 
+  95      20563130 
+  95      2E322E30 
+  95      00
+  96              		.section	.text.osKernelGetInfo,"ax",%progbits
+  97              		.align	1
+  98              		.global	osKernelGetInfo
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 103              	osKernelGetInfo:
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106 0000 08B5     		push	{r3, lr}
+ 107 0002 0B46     		mov	r3, r1
+ 108 0004 18B1     		cbz	r0, .L14
+ 109 0006 0146     		mov	r1, r0
+ 110 0008 0748     		ldr	r0, .L19
+ 111 000a 0860     		str	r0, [r1]
+ 112 000c 4860     		str	r0, [r1, #4]
+ 113              	.L14:
+ 114 000e 002B     		cmp	r3, #0
+ 115 0010 18BF     		it	ne
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 3
+
+
+ 116 0012 002A     		cmpne	r2, #0
+ 117 0014 06D0     		beq	.L15
+ 118 0016 112A     		cmp	r2, #17
+ 119 0018 00D9     		bls	.L16
+ 120 001a 1122     		movs	r2, #17
+ 121              	.L16:
+ 122 001c 0349     		ldr	r1, .L19+4
+ 123 001e 1846     		mov	r0, r3
+ 124 0020 FFF7FEFF 		bl	memcpy
+ 125              	.L15:
+ 126 0024 0020     		movs	r0, #0
+ 127 0026 08BD     		pop	{r3, pc}
+ 128              	.L20:
+ 129              		.align	2
+ 130              	.L19:
+ 131 0028 20EFF505 		.word	100003616
+ 132 002c 00000000 		.word	.LC0
+ 134              		.section	.text.osKernelGetState,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	osKernelGetState
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	osKernelGetState:
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144 0000 08B5     		push	{r3, lr}
+ 145 0002 FFF7FEFF 		bl	xTaskGetSchedulerState
+ 146 0006 40B1     		cbz	r0, .L23
+ 147 0008 0346     		mov	r3, r0
+ 148 000a 0228     		cmp	r0, #2
+ 149 000c 06D0     		beq	.L21
+ 150 000e 044B     		ldr	r3, .L26
+ 151 0010 1B68     		ldr	r3, [r3]
+ 152 0012 012B     		cmp	r3, #1
+ 153 0014 02D0     		beq	.L21
+ 154 0016 0023     		movs	r3, #0
+ 155 0018 00E0     		b	.L21
+ 156              	.L23:
+ 157 001a 0323     		movs	r3, #3
+ 158              	.L21:
+ 159 001c 1846     		mov	r0, r3
+ 160 001e 08BD     		pop	{r3, pc}
+ 161              	.L27:
+ 162              		.align	2
+ 163              	.L26:
+ 164 0020 00000000 		.word	KernelState
+ 166              		.section	.text.osKernelStart,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	osKernelStart
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 173              	osKernelStart:
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176 0000 08B5     		push	{r3, lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 4
+
+
+ 177              		.syntax unified
+ 178              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 179 0002 EFF30583 		MRS r3, ipsr
+ 180              	@ 0 "" 2
+ 181              		.thumb
+ 182              		.syntax unified
+ 183 0006 A3B9     		cbnz	r3, .L32
+ 184              		.syntax unified
+ 185              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 186 0008 EFF31083 		MRS r3, primask
+ 187              	@ 0 "" 2
+ 188              		.thumb
+ 189              		.syntax unified
+ 190 000c 13B9     		cbnz	r3, .L30
+ 191              		.syntax unified
+ 192              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 193 000e EFF31183 		MRS r3, basepri
+ 194              	@ 0 "" 2
+ 195              		.thumb
+ 196              		.syntax unified
+ 197 0012 1BB1     		cbz	r3, .L31
+ 198              	.L30:
+ 199 0014 0B4B     		ldr	r3, .L36
+ 200 0016 1B68     		ldr	r3, [r3]
+ 201 0018 022B     		cmp	r3, #2
+ 202 001a 0DD0     		beq	.L33
+ 203              	.L31:
+ 204 001c 094B     		ldr	r3, .L36
+ 205 001e 1B68     		ldr	r3, [r3]
+ 206 0020 012B     		cmp	r3, #1
+ 207 0022 0CD1     		bne	.L34
+ 208 0024 074B     		ldr	r3, .L36
+ 209 0026 0222     		movs	r2, #2
+ 210 0028 1A60     		str	r2, [r3]
+ 211 002a FFF7FEFF 		bl	vTaskStartScheduler
+ 212 002e 0020     		movs	r0, #0
+ 213              	.L28:
+ 214 0030 08BD     		pop	{r3, pc}
+ 215              	.L32:
+ 216 0032 6FF00500 		mvn	r0, #5
+ 217 0036 FBE7     		b	.L28
+ 218              	.L33:
+ 219 0038 6FF00500 		mvn	r0, #5
+ 220 003c F8E7     		b	.L28
+ 221              	.L34:
+ 222 003e 4FF0FF30 		mov	r0, #-1
+ 223 0042 F5E7     		b	.L28
+ 224              	.L37:
+ 225              		.align	2
+ 226              	.L36:
+ 227 0044 00000000 		.word	KernelState
+ 229              		.section	.text.osKernelLock,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	osKernelLock
+ 232              		.syntax unified
+ 233              		.thumb
+ 234              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 5
+
+
+ 236              	osKernelLock:
+ 237              		@ args = 0, pretend = 0, frame = 0
+ 238              		@ frame_needed = 0, uses_anonymous_args = 0
+ 239 0000 08B5     		push	{r3, lr}
+ 240              		.syntax unified
+ 241              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 242 0002 EFF30583 		MRS r3, ipsr
+ 243              	@ 0 "" 2
+ 244              		.thumb
+ 245              		.syntax unified
+ 246 0006 93B9     		cbnz	r3, .L42
+ 247              		.syntax unified
+ 248              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 249 0008 EFF31083 		MRS r3, primask
+ 250              	@ 0 "" 2
+ 251              		.thumb
+ 252              		.syntax unified
+ 253 000c 13B9     		cbnz	r3, .L40
+ 254              		.syntax unified
+ 255              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 256 000e EFF31183 		MRS r3, basepri
+ 257              	@ 0 "" 2
+ 258              		.thumb
+ 259              		.syntax unified
+ 260 0012 1BB1     		cbz	r3, .L41
+ 261              	.L40:
+ 262 0014 0B4B     		ldr	r3, .L47
+ 263 0016 1B68     		ldr	r3, [r3]
+ 264 0018 022B     		cmp	r3, #2
+ 265 001a 0BD0     		beq	.L43
+ 266              	.L41:
+ 267 001c FFF7FEFF 		bl	xTaskGetSchedulerState
+ 268 0020 58B1     		cbz	r0, .L44
+ 269 0022 0228     		cmp	r0, #2
+ 270 0024 0BD1     		bne	.L45
+ 271 0026 FFF7FEFF 		bl	vTaskSuspendAll
+ 272 002a 0020     		movs	r0, #0
+ 273              	.L38:
+ 274 002c 08BD     		pop	{r3, pc}
+ 275              	.L42:
+ 276 002e 6FF00500 		mvn	r0, #5
+ 277 0032 FBE7     		b	.L38
+ 278              	.L43:
+ 279 0034 6FF00500 		mvn	r0, #5
+ 280 0038 F8E7     		b	.L38
+ 281              	.L44:
+ 282 003a 0120     		movs	r0, #1
+ 283 003c F6E7     		b	.L38
+ 284              	.L45:
+ 285 003e 4FF0FF30 		mov	r0, #-1
+ 286 0042 F3E7     		b	.L38
+ 287              	.L48:
+ 288              		.align	2
+ 289              	.L47:
+ 290 0044 00000000 		.word	KernelState
+ 292              		.section	.text.osKernelUnlock,"ax",%progbits
+ 293              		.align	1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 6
+
+
+ 294              		.global	osKernelUnlock
+ 295              		.syntax unified
+ 296              		.thumb
+ 297              		.thumb_func
+ 299              	osKernelUnlock:
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302 0000 08B5     		push	{r3, lr}
+ 303              		.syntax unified
+ 304              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 305 0002 EFF30583 		MRS r3, ipsr
+ 306              	@ 0 "" 2
+ 307              		.thumb
+ 308              		.syntax unified
+ 309 0006 CBB9     		cbnz	r3, .L54
+ 310              		.syntax unified
+ 311              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 312 0008 EFF31083 		MRS r3, primask
+ 313              	@ 0 "" 2
+ 314              		.thumb
+ 315              		.syntax unified
+ 316 000c 13B9     		cbnz	r3, .L51
+ 317              		.syntax unified
+ 318              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 319 000e EFF31183 		MRS r3, basepri
+ 320              	@ 0 "" 2
+ 321              		.thumb
+ 322              		.syntax unified
+ 323 0012 1BB1     		cbz	r3, .L52
+ 324              	.L51:
+ 325 0014 0F4B     		ldr	r3, .L59
+ 326 0016 1B68     		ldr	r3, [r3]
+ 327 0018 022B     		cmp	r3, #2
+ 328 001a 12D0     		beq	.L55
+ 329              	.L52:
+ 330 001c FFF7FEFF 		bl	xTaskGetSchedulerState
+ 331 0020 18B1     		cbz	r0, .L53
+ 332 0022 0228     		cmp	r0, #2
+ 333 0024 10D1     		bne	.L56
+ 334 0026 0020     		movs	r0, #0
+ 335              	.L49:
+ 336 0028 08BD     		pop	{r3, pc}
+ 337              	.L53:
+ 338 002a FFF7FEFF 		bl	xTaskResumeAll
+ 339 002e 0128     		cmp	r0, #1
+ 340 0030 FAD0     		beq	.L49
+ 341 0032 FFF7FEFF 		bl	xTaskGetSchedulerState
+ 342 0036 50B1     		cbz	r0, .L57
+ 343 0038 0120     		movs	r0, #1
+ 344 003a F5E7     		b	.L49
+ 345              	.L54:
+ 346 003c 6FF00500 		mvn	r0, #5
+ 347 0040 F2E7     		b	.L49
+ 348              	.L55:
+ 349 0042 6FF00500 		mvn	r0, #5
+ 350 0046 EFE7     		b	.L49
+ 351              	.L56:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 7
+
+
+ 352 0048 4FF0FF30 		mov	r0, #-1
+ 353 004c ECE7     		b	.L49
+ 354              	.L57:
+ 355 004e 4FF0FF30 		mov	r0, #-1
+ 356 0052 E9E7     		b	.L49
+ 357              	.L60:
+ 358              		.align	2
+ 359              	.L59:
+ 360 0054 00000000 		.word	KernelState
+ 362              		.section	.text.osKernelRestoreLock,"ax",%progbits
+ 363              		.align	1
+ 364              		.global	osKernelRestoreLock
+ 365              		.syntax unified
+ 366              		.thumb
+ 367              		.thumb_func
+ 369              	osKernelRestoreLock:
+ 370              		@ args = 0, pretend = 0, frame = 0
+ 371              		@ frame_needed = 0, uses_anonymous_args = 0
+ 372 0000 10B5     		push	{r4, lr}
+ 373              		.syntax unified
+ 374              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 375 0002 EFF30583 		MRS r3, ipsr
+ 376              	@ 0 "" 2
+ 377              		.thumb
+ 378              		.syntax unified
+ 379 0006 13BB     		cbnz	r3, .L67
+ 380 0008 0446     		mov	r4, r0
+ 381              		.syntax unified
+ 382              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 383 000a EFF31083 		MRS r3, primask
+ 384              	@ 0 "" 2
+ 385              		.thumb
+ 386              		.syntax unified
+ 387 000e 13B9     		cbnz	r3, .L63
+ 388              		.syntax unified
+ 389              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 390 0010 EFF31183 		MRS r3, basepri
+ 391              	@ 0 "" 2
+ 392              		.thumb
+ 393              		.syntax unified
+ 394 0014 1BB1     		cbz	r3, .L64
+ 395              	.L63:
+ 396 0016 144B     		ldr	r3, .L75
+ 397 0018 1B68     		ldr	r3, [r3]
+ 398 001a 022B     		cmp	r3, #2
+ 399 001c 1AD0     		beq	.L68
+ 400              	.L64:
+ 401 001e FFF7FEFF 		bl	xTaskGetSchedulerState
+ 402 0022 08B1     		cbz	r0, .L65
+ 403 0024 0228     		cmp	r0, #2
+ 404 0026 18D1     		bne	.L69
+ 405              	.L65:
+ 406 0028 012C     		cmp	r4, #1
+ 407 002a 06D0     		beq	.L73
+ 408 002c C4B9     		cbnz	r4, .L70
+ 409 002e FFF7FEFF 		bl	xTaskResumeAll
+ 410 0032 0128     		cmp	r0, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 8
+
+
+ 411 0034 04D1     		bne	.L74
+ 412              	.L62:
+ 413 0036 2046     		mov	r0, r4
+ 414 0038 10BD     		pop	{r4, pc}
+ 415              	.L73:
+ 416 003a FFF7FEFF 		bl	vTaskSuspendAll
+ 417 003e FAE7     		b	.L62
+ 418              	.L74:
+ 419 0040 FFF7FEFF 		bl	xTaskGetSchedulerState
+ 420 0044 0228     		cmp	r0, #2
+ 421 0046 F6D0     		beq	.L62
+ 422 0048 4FF0FF34 		mov	r4, #-1
+ 423 004c F3E7     		b	.L62
+ 424              	.L67:
+ 425 004e 6FF00504 		mvn	r4, #5
+ 426 0052 F0E7     		b	.L62
+ 427              	.L68:
+ 428 0054 6FF00504 		mvn	r4, #5
+ 429 0058 EDE7     		b	.L62
+ 430              	.L69:
+ 431 005a 4FF0FF34 		mov	r4, #-1
+ 432 005e EAE7     		b	.L62
+ 433              	.L70:
+ 434 0060 4FF0FF34 		mov	r4, #-1
+ 435 0064 E7E7     		b	.L62
+ 436              	.L76:
+ 437 0066 00BF     		.align	2
+ 438              	.L75:
+ 439 0068 00000000 		.word	KernelState
+ 441              		.section	.text.osKernelGetTickCount,"ax",%progbits
+ 442              		.align	1
+ 443              		.global	osKernelGetTickCount
+ 444              		.syntax unified
+ 445              		.thumb
+ 446              		.thumb_func
+ 448              	osKernelGetTickCount:
+ 449              		@ args = 0, pretend = 0, frame = 0
+ 450              		@ frame_needed = 0, uses_anonymous_args = 0
+ 451 0000 08B5     		push	{r3, lr}
+ 452              		.syntax unified
+ 453              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 454 0002 EFF30583 		MRS r3, ipsr
+ 455              	@ 0 "" 2
+ 456              		.thumb
+ 457              		.syntax unified
+ 458 0006 63B9     		cbnz	r3, .L78
+ 459              		.syntax unified
+ 460              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 461 0008 EFF31083 		MRS r3, primask
+ 462              	@ 0 "" 2
+ 463              		.thumb
+ 464              		.syntax unified
+ 465 000c 13B9     		cbnz	r3, .L79
+ 466              		.syntax unified
+ 467              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 468 000e EFF31183 		MRS r3, basepri
+ 469              	@ 0 "" 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 9
+
+
+ 470              		.thumb
+ 471              		.syntax unified
+ 472 0012 1BB1     		cbz	r3, .L80
+ 473              	.L79:
+ 474 0014 044B     		ldr	r3, .L83
+ 475 0016 1B68     		ldr	r3, [r3]
+ 476 0018 022B     		cmp	r3, #2
+ 477 001a 02D0     		beq	.L78
+ 478              	.L80:
+ 479 001c FFF7FEFF 		bl	xTaskGetTickCount
+ 480 0020 01E0     		b	.L77
+ 481              	.L78:
+ 482 0022 FFF7FEFF 		bl	xTaskGetTickCountFromISR
+ 483              	.L77:
+ 484 0026 08BD     		pop	{r3, pc}
+ 485              	.L84:
+ 486              		.align	2
+ 487              	.L83:
+ 488 0028 00000000 		.word	KernelState
+ 490              		.section	.text.osKernelGetTickFreq,"ax",%progbits
+ 491              		.align	1
+ 492              		.global	osKernelGetTickFreq
+ 493              		.syntax unified
+ 494              		.thumb
+ 495              		.thumb_func
+ 497              	osKernelGetTickFreq:
+ 498              		@ args = 0, pretend = 0, frame = 0
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500              		@ link register save eliminated.
+ 501 0000 4FF47A70 		mov	r0, #1000
+ 502 0004 7047     		bx	lr
+ 504              		.section	.text.osKernelGetSysTimerCount,"ax",%progbits
+ 505              		.align	1
+ 506              		.global	osKernelGetSysTimerCount
+ 507              		.syntax unified
+ 508              		.thumb
+ 509              		.thumb_func
+ 511              	osKernelGetSysTimerCount:
+ 512              		@ args = 0, pretend = 0, frame = 0
+ 513              		@ frame_needed = 0, uses_anonymous_args = 0
+ 514 0000 10B5     		push	{r4, lr}
+ 515              		.syntax unified
+ 516              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 517 0002 EFF31083 		MRS r3, primask
+ 518              	@ 0 "" 2
+ 519              		.thumb
+ 520              		.syntax unified
+ 521 0006 23B9     		cbnz	r3, .L89
+ 522              		.syntax unified
+ 523              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 524 0008 EFF31183 		MRS r3, basepri
+ 525              	@ 0 "" 2
+ 526              		.thumb
+ 527              		.syntax unified
+ 528 000c 83B9     		cbnz	r3, .L90
+ 529 000e 0024     		movs	r4, #0
+ 530 0010 00E0     		b	.L87
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 10
+
+
+ 531              	.L89:
+ 532 0012 0124     		movs	r4, #1
+ 533              	.L87:
+ 534              		.syntax unified
+ 535              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 536 0014 72B6     		cpsid i
+ 537              	@ 0 "" 2
+ 538              		.thumb
+ 539              		.syntax unified
+ 540 0016 FFF7FEFF 		bl	xTaskGetTickCount
+ 541 001a 064B     		ldr	r3, .L92
+ 542 001c 1B68     		ldr	r3, [r3]
+ 543 001e 064A     		ldr	r2, .L92+4
+ 544 0020 A2FB0323 		umull	r2, r3, r2, r3
+ 545 0024 9B09     		lsrs	r3, r3, #6
+ 546 0026 03FB00F0 		mul	r0, r3, r0
+ 547 002a 04B9     		cbnz	r4, .L86
+ 548              		.syntax unified
+ 549              	@ 131 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 550 002c 62B6     		cpsie i
+ 551              	@ 0 "" 2
+ 552              		.thumb
+ 553              		.syntax unified
+ 554              	.L86:
+ 555 002e 10BD     		pop	{r4, pc}
+ 556              	.L90:
+ 557 0030 0124     		movs	r4, #1
+ 558 0032 EFE7     		b	.L87
+ 559              	.L93:
+ 560              		.align	2
+ 561              	.L92:
+ 562 0034 00000000 		.word	SystemCoreClock
+ 563 0038 D34D6210 		.word	274877907
+ 565              		.section	.text.osKernelGetSysTimerFreq,"ax",%progbits
+ 566              		.align	1
+ 567              		.global	osKernelGetSysTimerFreq
+ 568              		.syntax unified
+ 569              		.thumb
+ 570              		.thumb_func
+ 572              	osKernelGetSysTimerFreq:
+ 573              		@ args = 0, pretend = 0, frame = 0
+ 574              		@ frame_needed = 0, uses_anonymous_args = 0
+ 575              		@ link register save eliminated.
+ 576 0000 014B     		ldr	r3, .L95
+ 577 0002 1868     		ldr	r0, [r3]
+ 578 0004 7047     		bx	lr
+ 579              	.L96:
+ 580 0006 00BF     		.align	2
+ 581              	.L95:
+ 582 0008 00000000 		.word	SystemCoreClock
+ 584              		.section	.text.osThreadNew,"ax",%progbits
+ 585              		.align	1
+ 586              		.global	osThreadNew
+ 587              		.syntax unified
+ 588              		.thumb
+ 589              		.thumb_func
+ 591              	osThreadNew:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 11
+
+
+ 592              		@ args = 0, pretend = 0, frame = 8
+ 593              		@ frame_needed = 0, uses_anonymous_args = 0
+ 594 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 595 0002 87B0     		sub	sp, sp, #28
+ 596 0004 0024     		movs	r4, #0
+ 597 0006 0594     		str	r4, [sp, #20]
+ 598              		.syntax unified
+ 599              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 600 0008 EFF30584 		MRS r4, ipsr
+ 601              	@ 0 "" 2
+ 602              		.thumb
+ 603              		.syntax unified
+ 604 000c 54BB     		cbnz	r4, .L98
+ 605              		.syntax unified
+ 606              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 607 000e EFF31083 		MRS r3, primask
+ 608              	@ 0 "" 2
+ 609              		.thumb
+ 610              		.syntax unified
+ 611 0012 13B9     		cbnz	r3, .L99
+ 612              		.syntax unified
+ 613              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 614 0014 EFF31183 		MRS r3, basepri
+ 615              	@ 0 "" 2
+ 616              		.thumb
+ 617              		.syntax unified
+ 618 0018 1BB1     		cbz	r3, .L100
+ 619              	.L99:
+ 620 001a 2B4B     		ldr	r3, .L118
+ 621 001c 1B68     		ldr	r3, [r3]
+ 622 001e 022B     		cmp	r3, #2
+ 623 0020 20D0     		beq	.L98
+ 624              	.L100:
+ 625 0022 F8B1     		cbz	r0, .L98
+ 626 0024 002A     		cmp	r2, #0
+ 627 0026 34D0     		beq	.L107
+ 628 0028 1568     		ldr	r5, [r2]
+ 629 002a 9369     		ldr	r3, [r2, #24]
+ 630 002c 2BB1     		cbz	r3, .L108
+ 631 002e 1E46     		mov	r6, r3
+ 632 0030 013B     		subs	r3, r3, #1
+ 633 0032 372B     		cmp	r3, #55
+ 634 0034 02D9     		bls	.L102
+ 635 0036 0020     		movs	r0, #0
+ 636 0038 15E0     		b	.L97
+ 637              	.L108:
+ 638 003a 1826     		movs	r6, #24
+ 639              	.L102:
+ 640 003c 5368     		ldr	r3, [r2, #4]
+ 641 003e 13F0010F 		tst	r3, #1
+ 642 0042 3FD1     		bne	.L110
+ 643 0044 5469     		ldr	r4, [r2, #20]
+ 644 0046 84B1     		cbz	r4, .L111
+ 645 0048 4FEA940C 		lsr	ip, r4, #2
+ 646              	.L104:
+ 647 004c 9368     		ldr	r3, [r2, #8]
+ 648 004e 2BB1     		cbz	r3, .L105
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 12
+
+
+ 649 0050 D768     		ldr	r7, [r2, #12]
+ 650 0052 5F2F     		cmp	r7, #95
+ 651 0054 02D9     		bls	.L105
+ 652 0056 1769     		ldr	r7, [r2, #16]
+ 653 0058 07B1     		cbz	r7, .L105
+ 654 005a 84B9     		cbnz	r4, .L106
+ 655              	.L105:
+ 656 005c 43B1     		cbz	r3, .L116
+ 657 005e 4FF0FF33 		mov	r3, #-1
+ 658              	.L101:
+ 659 0062 0BB3     		cbz	r3, .L117
+ 660              	.L98:
+ 661 0064 0598     		ldr	r0, [sp, #20]
+ 662              	.L97:
+ 663 0066 07B0     		add	sp, sp, #28
+ 664              		@ sp needed
+ 665 0068 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 666              	.L111:
+ 667 006a 4FF4807C 		mov	ip, #256
+ 668 006e EDE7     		b	.L104
+ 669              	.L116:
+ 670 0070 D368     		ldr	r3, [r2, #12]
+ 671 0072 A3B9     		cbnz	r3, .L113
+ 672 0074 1369     		ldr	r3, [r2, #16]
+ 673 0076 ABB1     		cbz	r3, .L114
+ 674 0078 4FF0FF33 		mov	r3, #-1
+ 675 007c F1E7     		b	.L101
+ 676              	.L106:
+ 677 007e 0293     		str	r3, [sp, #8]
+ 678 0080 0197     		str	r7, [sp, #4]
+ 679 0082 0096     		str	r6, [sp]
+ 680 0084 0B46     		mov	r3, r1
+ 681 0086 6246     		mov	r2, ip
+ 682 0088 2946     		mov	r1, r5
+ 683 008a FFF7FEFF 		bl	xTaskCreateStatic
+ 684 008e 0590     		str	r0, [sp, #20]
+ 685 0090 E8E7     		b	.L98
+ 686              	.L107:
+ 687 0092 1546     		mov	r5, r2
+ 688 0094 0023     		movs	r3, #0
+ 689 0096 1826     		movs	r6, #24
+ 690 0098 4FF4807C 		mov	ip, #256
+ 691 009c E1E7     		b	.L101
+ 692              	.L113:
+ 693 009e 4FF0FF33 		mov	r3, #-1
+ 694 00a2 DEE7     		b	.L101
+ 695              	.L114:
+ 696 00a4 0023     		movs	r3, #0
+ 697 00a6 DCE7     		b	.L101
+ 698              	.L117:
+ 699 00a8 05AB     		add	r3, sp, #20
+ 700 00aa 0193     		str	r3, [sp, #4]
+ 701 00ac 0096     		str	r6, [sp]
+ 702 00ae 0B46     		mov	r3, r1
+ 703 00b0 1FFA8CF2 		uxth	r2, ip
+ 704 00b4 2946     		mov	r1, r5
+ 705 00b6 FFF7FEFF 		bl	xTaskCreate
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 13
+
+
+ 706 00ba 0128     		cmp	r0, #1
+ 707 00bc D2D0     		beq	.L98
+ 708 00be 0023     		movs	r3, #0
+ 709 00c0 0593     		str	r3, [sp, #20]
+ 710 00c2 CFE7     		b	.L98
+ 711              	.L110:
+ 712 00c4 0020     		movs	r0, #0
+ 713 00c6 CEE7     		b	.L97
+ 714              	.L119:
+ 715              		.align	2
+ 716              	.L118:
+ 717 00c8 00000000 		.word	KernelState
+ 719              		.section	.text.osThreadGetName,"ax",%progbits
+ 720              		.align	1
+ 721              		.global	osThreadGetName
+ 722              		.syntax unified
+ 723              		.thumb
+ 724              		.thumb_func
+ 726              	osThreadGetName:
+ 727              		@ args = 0, pretend = 0, frame = 0
+ 728              		@ frame_needed = 0, uses_anonymous_args = 0
+ 729 0000 08B5     		push	{r3, lr}
+ 730              		.syntax unified
+ 731              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 732 0002 EFF30583 		MRS r3, ipsr
+ 733              	@ 0 "" 2
+ 734              		.thumb
+ 735              		.syntax unified
+ 736 0006 6BB9     		cbnz	r3, .L124
+ 737              		.syntax unified
+ 738              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 739 0008 EFF31083 		MRS r3, primask
+ 740              	@ 0 "" 2
+ 741              		.thumb
+ 742              		.syntax unified
+ 743 000c 13B9     		cbnz	r3, .L122
+ 744              		.syntax unified
+ 745              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 746 000e EFF31183 		MRS r3, basepri
+ 747              	@ 0 "" 2
+ 748              		.thumb
+ 749              		.syntax unified
+ 750 0012 1BB1     		cbz	r3, .L123
+ 751              	.L122:
+ 752 0014 054B     		ldr	r3, .L128
+ 753 0016 1B68     		ldr	r3, [r3]
+ 754 0018 022B     		cmp	r3, #2
+ 755 001a 05D0     		beq	.L125
+ 756              	.L123:
+ 757 001c 08B1     		cbz	r0, .L120
+ 758 001e FFF7FEFF 		bl	pcTaskGetName
+ 759              	.L120:
+ 760 0022 08BD     		pop	{r3, pc}
+ 761              	.L124:
+ 762 0024 0020     		movs	r0, #0
+ 763 0026 FCE7     		b	.L120
+ 764              	.L125:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 14
+
+
+ 765 0028 0020     		movs	r0, #0
+ 766 002a FAE7     		b	.L120
+ 767              	.L129:
+ 768              		.align	2
+ 769              	.L128:
+ 770 002c 00000000 		.word	KernelState
+ 772              		.section	.text.osThreadGetId,"ax",%progbits
+ 773              		.align	1
+ 774              		.global	osThreadGetId
+ 775              		.syntax unified
+ 776              		.thumb
+ 777              		.thumb_func
+ 779              	osThreadGetId:
+ 780              		@ args = 0, pretend = 0, frame = 0
+ 781              		@ frame_needed = 0, uses_anonymous_args = 0
+ 782 0000 08B5     		push	{r3, lr}
+ 783 0002 FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 784 0006 08BD     		pop	{r3, pc}
+ 786              		.section	.text.osThreadGetState,"ax",%progbits
+ 787              		.align	1
+ 788              		.global	osThreadGetState
+ 789              		.syntax unified
+ 790              		.thumb
+ 791              		.thumb_func
+ 793              	osThreadGetState:
+ 794              		@ args = 0, pretend = 0, frame = 0
+ 795              		@ frame_needed = 0, uses_anonymous_args = 0
+ 796 0000 08B5     		push	{r3, lr}
+ 797              		.syntax unified
+ 798              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 799 0002 EFF30583 		MRS r3, ipsr
+ 800              	@ 0 "" 2
+ 801              		.thumb
+ 802              		.syntax unified
+ 803 0006 E3B9     		cbnz	r3, .L141
+ 804              		.syntax unified
+ 805              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 806 0008 EFF31083 		MRS r3, primask
+ 807              	@ 0 "" 2
+ 808              		.thumb
+ 809              		.syntax unified
+ 810 000c 13B9     		cbnz	r3, .L134
+ 811              		.syntax unified
+ 812              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 813 000e EFF31183 		MRS r3, basepri
+ 814              	@ 0 "" 2
+ 815              		.thumb
+ 816              		.syntax unified
+ 817 0012 1BB1     		cbz	r3, .L135
+ 818              	.L134:
+ 819 0014 104B     		ldr	r3, .L146
+ 820 0016 1B68     		ldr	r3, [r3]
+ 821 0018 022B     		cmp	r3, #2
+ 822 001a 15D0     		beq	.L142
+ 823              	.L135:
+ 824 001c B8B1     		cbz	r0, .L143
+ 825 001e FFF7FEFF 		bl	eTaskGetState
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 15
+
+
+ 826 0022 0428     		cmp	r0, #4
+ 827 0024 0AD8     		bhi	.L136
+ 828 0026 DFE800F0 		tbb	[pc, r0]
+ 829              	.L138:
+ 830 002a 03       		.byte	(.L140-.L138)/2
+ 831 002b 15       		.byte	(.L144-.L138)/2
+ 832 002c 05       		.byte	(.L139-.L138)/2
+ 833 002d 05       		.byte	(.L139-.L138)/2
+ 834 002e 07       		.byte	(.L137-.L138)/2
+ 835 002f 00       		.p2align 1
+ 836              	.L140:
+ 837 0030 0220     		movs	r0, #2
+ 838 0032 00E0     		b	.L132
+ 839              	.L139:
+ 840 0034 0320     		movs	r0, #3
+ 841              	.L132:
+ 842 0036 08BD     		pop	{r3, pc}
+ 843              	.L137:
+ 844 0038 0420     		movs	r0, #4
+ 845 003a FCE7     		b	.L132
+ 846              	.L136:
+ 847 003c 4FF0FF30 		mov	r0, #-1
+ 848 0040 F9E7     		b	.L132
+ 849              	.L141:
+ 850 0042 4FF0FF30 		mov	r0, #-1
+ 851 0046 F6E7     		b	.L132
+ 852              	.L142:
+ 853 0048 4FF0FF30 		mov	r0, #-1
+ 854 004c F3E7     		b	.L132
+ 855              	.L143:
+ 856 004e 4FF0FF30 		mov	r0, #-1
+ 857 0052 F0E7     		b	.L132
+ 858              	.L144:
+ 859 0054 0120     		movs	r0, #1
+ 860 0056 EEE7     		b	.L132
+ 861              	.L147:
+ 862              		.align	2
+ 863              	.L146:
+ 864 0058 00000000 		.word	KernelState
+ 866              		.section	.text.osThreadGetStackSpace,"ax",%progbits
+ 867              		.align	1
+ 868              		.global	osThreadGetStackSpace
+ 869              		.syntax unified
+ 870              		.thumb
+ 871              		.thumb_func
+ 873              	osThreadGetStackSpace:
+ 874              		@ args = 0, pretend = 0, frame = 0
+ 875              		@ frame_needed = 0, uses_anonymous_args = 0
+ 876 0000 08B5     		push	{r3, lr}
+ 877 0002 0346     		mov	r3, r0
+ 878              		.syntax unified
+ 879              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 880 0004 EFF30580 		MRS r0, ipsr
+ 881              	@ 0 "" 2
+ 882              		.thumb
+ 883              		.syntax unified
+ 884 0008 70B9     		cbnz	r0, .L152
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 16
+
+
+ 885              		.syntax unified
+ 886              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 887 000a EFF31082 		MRS r2, primask
+ 888              	@ 0 "" 2
+ 889              		.thumb
+ 890              		.syntax unified
+ 891 000e 12B9     		cbnz	r2, .L150
+ 892              		.syntax unified
+ 893              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 894 0010 EFF31182 		MRS r2, basepri
+ 895              	@ 0 "" 2
+ 896              		.thumb
+ 897              		.syntax unified
+ 898 0014 1AB1     		cbz	r2, .L151
+ 899              	.L150:
+ 900 0016 054A     		ldr	r2, .L154
+ 901 0018 1268     		ldr	r2, [r2]
+ 902 001a 022A     		cmp	r2, #2
+ 903 001c 05D0     		beq	.L148
+ 904              	.L151:
+ 905 001e 23B1     		cbz	r3, .L148
+ 906 0020 1846     		mov	r0, r3
+ 907 0022 FFF7FEFF 		bl	uxTaskGetStackHighWaterMark
+ 908 0026 00E0     		b	.L148
+ 909              	.L152:
+ 910 0028 0020     		movs	r0, #0
+ 911              	.L148:
+ 912 002a 08BD     		pop	{r3, pc}
+ 913              	.L155:
+ 914              		.align	2
+ 915              	.L154:
+ 916 002c 00000000 		.word	KernelState
+ 918              		.section	.text.osThreadSetPriority,"ax",%progbits
+ 919              		.align	1
+ 920              		.global	osThreadSetPriority
+ 921              		.syntax unified
+ 922              		.thumb
+ 923              		.thumb_func
+ 925              	osThreadSetPriority:
+ 926              		@ args = 0, pretend = 0, frame = 0
+ 927              		@ frame_needed = 0, uses_anonymous_args = 0
+ 928 0000 08B5     		push	{r3, lr}
+ 929              		.syntax unified
+ 930              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 931 0002 EFF30583 		MRS r3, ipsr
+ 932              	@ 0 "" 2
+ 933              		.thumb
+ 934              		.syntax unified
+ 935 0006 9BB9     		cbnz	r3, .L160
+ 936              		.syntax unified
+ 937              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 938 0008 EFF31083 		MRS r3, primask
+ 939              	@ 0 "" 2
+ 940              		.thumb
+ 941              		.syntax unified
+ 942 000c 13B9     		cbnz	r3, .L158
+ 943              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 17
+
+
+ 944              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 945 000e EFF31183 		MRS r3, basepri
+ 946              	@ 0 "" 2
+ 947              		.thumb
+ 948              		.syntax unified
+ 949 0012 1BB1     		cbz	r3, .L159
+ 950              	.L158:
+ 951 0014 0C4B     		ldr	r3, .L165
+ 952 0016 1B68     		ldr	r3, [r3]
+ 953 0018 022B     		cmp	r3, #2
+ 954 001a 0CD0     		beq	.L161
+ 955              	.L159:
+ 956 001c 0028     		cmp	r0, #0
+ 957 001e 18BF     		it	ne
+ 958 0020 0029     		cmpne	r1, #0
+ 959 0022 0BDD     		ble	.L162
+ 960 0024 3829     		cmp	r1, #56
+ 961 0026 0CDC     		bgt	.L163
+ 962 0028 FFF7FEFF 		bl	vTaskPrioritySet
+ 963 002c 0020     		movs	r0, #0
+ 964              	.L156:
+ 965 002e 08BD     		pop	{r3, pc}
+ 966              	.L160:
+ 967 0030 6FF00500 		mvn	r0, #5
+ 968 0034 FBE7     		b	.L156
+ 969              	.L161:
+ 970 0036 6FF00500 		mvn	r0, #5
+ 971 003a F8E7     		b	.L156
+ 972              	.L162:
+ 973 003c 6FF00300 		mvn	r0, #3
+ 974 0040 F5E7     		b	.L156
+ 975              	.L163:
+ 976 0042 6FF00300 		mvn	r0, #3
+ 977 0046 F2E7     		b	.L156
+ 978              	.L166:
+ 979              		.align	2
+ 980              	.L165:
+ 981 0048 00000000 		.word	KernelState
+ 983              		.section	.text.osThreadGetPriority,"ax",%progbits
+ 984              		.align	1
+ 985              		.global	osThreadGetPriority
+ 986              		.syntax unified
+ 987              		.thumb
+ 988              		.thumb_func
+ 990              	osThreadGetPriority:
+ 991              		@ args = 0, pretend = 0, frame = 0
+ 992              		@ frame_needed = 0, uses_anonymous_args = 0
+ 993 0000 08B5     		push	{r3, lr}
+ 994              		.syntax unified
+ 995              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 996 0002 EFF30583 		MRS r3, ipsr
+ 997              	@ 0 "" 2
+ 998              		.thumb
+ 999              		.syntax unified
+ 1000 0006 6BB9     		cbnz	r3, .L171
+ 1001              		.syntax unified
+ 1002              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 18
+
+
+ 1003 0008 EFF31083 		MRS r3, primask
+ 1004              	@ 0 "" 2
+ 1005              		.thumb
+ 1006              		.syntax unified
+ 1007 000c 13B9     		cbnz	r3, .L169
+ 1008              		.syntax unified
+ 1009              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1010 000e EFF31183 		MRS r3, basepri
+ 1011              	@ 0 "" 2
+ 1012              		.thumb
+ 1013              		.syntax unified
+ 1014 0012 1BB1     		cbz	r3, .L170
+ 1015              	.L169:
+ 1016 0014 084B     		ldr	r3, .L175
+ 1017 0016 1B68     		ldr	r3, [r3]
+ 1018 0018 022B     		cmp	r3, #2
+ 1019 001a 06D0     		beq	.L172
+ 1020              	.L170:
+ 1021 001c 40B1     		cbz	r0, .L173
+ 1022 001e FFF7FEFF 		bl	uxTaskPriorityGet
+ 1023              	.L167:
+ 1024 0022 08BD     		pop	{r3, pc}
+ 1025              	.L171:
+ 1026 0024 4FF0FF30 		mov	r0, #-1
+ 1027 0028 FBE7     		b	.L167
+ 1028              	.L172:
+ 1029 002a 4FF0FF30 		mov	r0, #-1
+ 1030 002e F8E7     		b	.L167
+ 1031              	.L173:
+ 1032 0030 4FF0FF30 		mov	r0, #-1
+ 1033 0034 F5E7     		b	.L167
+ 1034              	.L176:
+ 1035 0036 00BF     		.align	2
+ 1036              	.L175:
+ 1037 0038 00000000 		.word	KernelState
+ 1039              		.section	.text.osThreadYield,"ax",%progbits
+ 1040              		.align	1
+ 1041              		.global	osThreadYield
+ 1042              		.syntax unified
+ 1043              		.thumb
+ 1044              		.thumb_func
+ 1046              	osThreadYield:
+ 1047              		@ args = 0, pretend = 0, frame = 0
+ 1048              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1049              		@ link register save eliminated.
+ 1050              		.syntax unified
+ 1051              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1052 0000 EFF30583 		MRS r3, ipsr
+ 1053              	@ 0 "" 2
+ 1054              		.thumb
+ 1055              		.syntax unified
+ 1056 0004 ABB9     		cbnz	r3, .L181
+ 1057              		.syntax unified
+ 1058              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1059 0006 EFF31083 		MRS r3, primask
+ 1060              	@ 0 "" 2
+ 1061              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 19
+
+
+ 1062              		.syntax unified
+ 1063 000a 13B9     		cbnz	r3, .L179
+ 1064              		.syntax unified
+ 1065              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1066 000c EFF31183 		MRS r3, basepri
+ 1067              	@ 0 "" 2
+ 1068              		.thumb
+ 1069              		.syntax unified
+ 1070 0010 1BB1     		cbz	r3, .L180
+ 1071              	.L179:
+ 1072 0012 0B4B     		ldr	r3, .L183
+ 1073 0014 1B68     		ldr	r3, [r3]
+ 1074 0016 022B     		cmp	r3, #2
+ 1075 0018 0ED0     		beq	.L182
+ 1076              	.L180:
+ 1077 001a 4FF0E023 		mov	r3, #-536813568
+ 1078 001e 4FF08052 		mov	r2, #268435456
+ 1079 0022 C3F8042D 		str	r2, [r3, #3332]
+ 1080              		.syntax unified
+ 1081              	@ 564 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 1082 0026 BFF34F8F 		dsb
+ 1083              	@ 0 "" 2
+ 1084              	@ 564 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 1085 002a BFF36F8F 		isb
+ 1086              	@ 0 "" 2
+ 1087              		.thumb
+ 1088              		.syntax unified
+ 1089 002e 0020     		movs	r0, #0
+ 1090 0030 7047     		bx	lr
+ 1091              	.L181:
+ 1092 0032 6FF00500 		mvn	r0, #5
+ 1093 0036 7047     		bx	lr
+ 1094              	.L182:
+ 1095 0038 6FF00500 		mvn	r0, #5
+ 1096 003c 7047     		bx	lr
+ 1097              	.L184:
+ 1098 003e 00BF     		.align	2
+ 1099              	.L183:
+ 1100 0040 00000000 		.word	KernelState
+ 1102              		.section	.text.osThreadSuspend,"ax",%progbits
+ 1103              		.align	1
+ 1104              		.global	osThreadSuspend
+ 1105              		.syntax unified
+ 1106              		.thumb
+ 1107              		.thumb_func
+ 1109              	osThreadSuspend:
+ 1110              		@ args = 0, pretend = 0, frame = 0
+ 1111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1112 0000 08B5     		push	{r3, lr}
+ 1113              		.syntax unified
+ 1114              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1115 0002 EFF30583 		MRS r3, ipsr
+ 1116              	@ 0 "" 2
+ 1117              		.thumb
+ 1118              		.syntax unified
+ 1119 0006 73B9     		cbnz	r3, .L189
+ 1120              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 20
+
+
+ 1121              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1122 0008 EFF31083 		MRS r3, primask
+ 1123              	@ 0 "" 2
+ 1124              		.thumb
+ 1125              		.syntax unified
+ 1126 000c 13B9     		cbnz	r3, .L187
+ 1127              		.syntax unified
+ 1128              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1129 000e EFF31183 		MRS r3, basepri
+ 1130              	@ 0 "" 2
+ 1131              		.thumb
+ 1132              		.syntax unified
+ 1133 0012 1BB1     		cbz	r3, .L188
+ 1134              	.L187:
+ 1135 0014 084B     		ldr	r3, .L193
+ 1136 0016 1B68     		ldr	r3, [r3]
+ 1137 0018 022B     		cmp	r3, #2
+ 1138 001a 07D0     		beq	.L190
+ 1139              	.L188:
+ 1140 001c 48B1     		cbz	r0, .L191
+ 1141 001e FFF7FEFF 		bl	vTaskSuspend
+ 1142 0022 0020     		movs	r0, #0
+ 1143              	.L185:
+ 1144 0024 08BD     		pop	{r3, pc}
+ 1145              	.L189:
+ 1146 0026 6FF00500 		mvn	r0, #5
+ 1147 002a FBE7     		b	.L185
+ 1148              	.L190:
+ 1149 002c 6FF00500 		mvn	r0, #5
+ 1150 0030 F8E7     		b	.L185
+ 1151              	.L191:
+ 1152 0032 6FF00300 		mvn	r0, #3
+ 1153 0036 F5E7     		b	.L185
+ 1154              	.L194:
+ 1155              		.align	2
+ 1156              	.L193:
+ 1157 0038 00000000 		.word	KernelState
+ 1159              		.section	.text.osThreadResume,"ax",%progbits
+ 1160              		.align	1
+ 1161              		.global	osThreadResume
+ 1162              		.syntax unified
+ 1163              		.thumb
+ 1164              		.thumb_func
+ 1166              	osThreadResume:
+ 1167              		@ args = 0, pretend = 0, frame = 0
+ 1168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1169 0000 08B5     		push	{r3, lr}
+ 1170              		.syntax unified
+ 1171              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1172 0002 EFF30583 		MRS r3, ipsr
+ 1173              	@ 0 "" 2
+ 1174              		.thumb
+ 1175              		.syntax unified
+ 1176 0006 73B9     		cbnz	r3, .L199
+ 1177              		.syntax unified
+ 1178              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1179 0008 EFF31083 		MRS r3, primask
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 21
+
+
+ 1180              	@ 0 "" 2
+ 1181              		.thumb
+ 1182              		.syntax unified
+ 1183 000c 13B9     		cbnz	r3, .L197
+ 1184              		.syntax unified
+ 1185              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1186 000e EFF31183 		MRS r3, basepri
+ 1187              	@ 0 "" 2
+ 1188              		.thumb
+ 1189              		.syntax unified
+ 1190 0012 1BB1     		cbz	r3, .L198
+ 1191              	.L197:
+ 1192 0014 084B     		ldr	r3, .L203
+ 1193 0016 1B68     		ldr	r3, [r3]
+ 1194 0018 022B     		cmp	r3, #2
+ 1195 001a 07D0     		beq	.L200
+ 1196              	.L198:
+ 1197 001c 48B1     		cbz	r0, .L201
+ 1198 001e FFF7FEFF 		bl	vTaskResume
+ 1199 0022 0020     		movs	r0, #0
+ 1200              	.L195:
+ 1201 0024 08BD     		pop	{r3, pc}
+ 1202              	.L199:
+ 1203 0026 6FF00500 		mvn	r0, #5
+ 1204 002a FBE7     		b	.L195
+ 1205              	.L200:
+ 1206 002c 6FF00500 		mvn	r0, #5
+ 1207 0030 F8E7     		b	.L195
+ 1208              	.L201:
+ 1209 0032 6FF00300 		mvn	r0, #3
+ 1210 0036 F5E7     		b	.L195
+ 1211              	.L204:
+ 1212              		.align	2
+ 1213              	.L203:
+ 1214 0038 00000000 		.word	KernelState
+ 1216              		.section	.text.osThreadExit,"ax",%progbits
+ 1217              		.align	1
+ 1218              		.global	osThreadExit
+ 1219              		.syntax unified
+ 1220              		.thumb
+ 1221              		.thumb_func
+ 1223              	osThreadExit:
+ 1224              		@ Volatile: function does not return.
+ 1225              		@ args = 0, pretend = 0, frame = 0
+ 1226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1227 0000 08B5     		push	{r3, lr}
+ 1228 0002 0020     		movs	r0, #0
+ 1229 0004 FFF7FEFF 		bl	vTaskDelete
+ 1230              	.L206:
+ 1231 0008 FEE7     		b	.L206
+ 1233              		.section	.text.osThreadTerminate,"ax",%progbits
+ 1234              		.align	1
+ 1235              		.global	osThreadTerminate
+ 1236              		.syntax unified
+ 1237              		.thumb
+ 1238              		.thumb_func
+ 1240              	osThreadTerminate:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 22
+
+
+ 1241              		@ args = 0, pretend = 0, frame = 0
+ 1242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1243              		.syntax unified
+ 1244              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1245 0000 EFF30583 		MRS r3, ipsr
+ 1246              	@ 0 "" 2
+ 1247              		.thumb
+ 1248              		.syntax unified
+ 1249 0004 B3B9     		cbnz	r3, .L212
+ 1250 0006 10B5     		push	{r4, lr}
+ 1251 0008 0446     		mov	r4, r0
+ 1252              		.syntax unified
+ 1253              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1254 000a EFF31083 		MRS r3, primask
+ 1255              	@ 0 "" 2
+ 1256              		.thumb
+ 1257              		.syntax unified
+ 1258 000e 13B9     		cbnz	r3, .L210
+ 1259              		.syntax unified
+ 1260              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1261 0010 EFF31183 		MRS r3, basepri
+ 1262              	@ 0 "" 2
+ 1263              		.thumb
+ 1264              		.syntax unified
+ 1265 0014 1BB1     		cbz	r3, .L211
+ 1266              	.L210:
+ 1267 0016 0D4B     		ldr	r3, .L220
+ 1268 0018 1B68     		ldr	r3, [r3]
+ 1269 001a 022B     		cmp	r3, #2
+ 1270 001c 0DD0     		beq	.L213
+ 1271              	.L211:
+ 1272 001e 7CB1     		cbz	r4, .L214
+ 1273 0020 2046     		mov	r0, r4
+ 1274 0022 FFF7FEFF 		bl	eTaskGetState
+ 1275 0026 0428     		cmp	r0, #4
+ 1276 0028 0DD0     		beq	.L215
+ 1277 002a 2046     		mov	r0, r4
+ 1278 002c FFF7FEFF 		bl	vTaskDelete
+ 1279 0030 0020     		movs	r0, #0
+ 1280              	.L208:
+ 1281 0032 10BD     		pop	{r4, pc}
+ 1282              	.L212:
+ 1283 0034 6FF00500 		mvn	r0, #5
+ 1284 0038 7047     		bx	lr
+ 1285              	.L213:
+ 1286 003a 6FF00500 		mvn	r0, #5
+ 1287 003e F8E7     		b	.L208
+ 1288              	.L214:
+ 1289 0040 6FF00300 		mvn	r0, #3
+ 1290 0044 F5E7     		b	.L208
+ 1291              	.L215:
+ 1292 0046 6FF00200 		mvn	r0, #2
+ 1293 004a F2E7     		b	.L208
+ 1294              	.L221:
+ 1295              		.align	2
+ 1296              	.L220:
+ 1297 004c 00000000 		.word	KernelState
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 23
+
+
+ 1299              		.section	.text.osThreadGetCount,"ax",%progbits
+ 1300              		.align	1
+ 1301              		.global	osThreadGetCount
+ 1302              		.syntax unified
+ 1303              		.thumb
+ 1304              		.thumb_func
+ 1306              	osThreadGetCount:
+ 1307              		@ args = 0, pretend = 0, frame = 0
+ 1308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1309              		.syntax unified
+ 1310              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1311 0000 EFF30580 		MRS r0, ipsr
+ 1312              	@ 0 "" 2
+ 1313              		.thumb
+ 1314              		.syntax unified
+ 1315 0004 68B9     		cbnz	r0, .L226
+ 1316 0006 08B5     		push	{r3, lr}
+ 1317              		.syntax unified
+ 1318              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1319 0008 EFF31083 		MRS r3, primask
+ 1320              	@ 0 "" 2
+ 1321              		.thumb
+ 1322              		.syntax unified
+ 1323 000c 13B9     		cbnz	r3, .L224
+ 1324              		.syntax unified
+ 1325              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1326 000e EFF31183 		MRS r3, basepri
+ 1327              	@ 0 "" 2
+ 1328              		.thumb
+ 1329              		.syntax unified
+ 1330 0012 1BB1     		cbz	r3, .L225
+ 1331              	.L224:
+ 1332 0014 044B     		ldr	r3, .L231
+ 1333 0016 1B68     		ldr	r3, [r3]
+ 1334 0018 022B     		cmp	r3, #2
+ 1335 001a 01D0     		beq	.L222
+ 1336              	.L225:
+ 1337 001c FFF7FEFF 		bl	uxTaskGetNumberOfTasks
+ 1338              	.L222:
+ 1339 0020 08BD     		pop	{r3, pc}
+ 1340              	.L226:
+ 1341 0022 0020     		movs	r0, #0
+ 1342 0024 7047     		bx	lr
+ 1343              	.L232:
+ 1344 0026 00BF     		.align	2
+ 1345              	.L231:
+ 1346 0028 00000000 		.word	KernelState
+ 1348              		.section	.text.osThreadEnumerate,"ax",%progbits
+ 1349              		.align	1
+ 1350              		.global	osThreadEnumerate
+ 1351              		.syntax unified
+ 1352              		.thumb
+ 1353              		.thumb_func
+ 1355              	osThreadEnumerate:
+ 1356              		@ args = 0, pretend = 0, frame = 0
+ 1357              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1358 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 24
+
+
+ 1359              		.syntax unified
+ 1360              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1361 0004 EFF30584 		MRS r4, ipsr
+ 1362              	@ 0 "" 2
+ 1363              		.thumb
+ 1364              		.syntax unified
+ 1365 0008 B4BB     		cbnz	r4, .L240
+ 1366 000a 0646     		mov	r6, r0
+ 1367 000c 0D46     		mov	r5, r1
+ 1368              		.syntax unified
+ 1369              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1370 000e EFF31083 		MRS r3, primask
+ 1371              	@ 0 "" 2
+ 1372              		.thumb
+ 1373              		.syntax unified
+ 1374 0012 13B9     		cbnz	r3, .L235
+ 1375              		.syntax unified
+ 1376              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1377 0014 EFF31183 		MRS r3, basepri
+ 1378              	@ 0 "" 2
+ 1379              		.thumb
+ 1380              		.syntax unified
+ 1381 0018 1BB1     		cbz	r3, .L236
+ 1382              	.L235:
+ 1383 001a 194B     		ldr	r3, .L243
+ 1384 001c 1B68     		ldr	r3, [r3]
+ 1385 001e 022B     		cmp	r3, #2
+ 1386 0020 2BD0     		beq	.L233
+ 1387              	.L236:
+ 1388 0022 B5FA85F3 		clz	r3, r5
+ 1389 0026 5B09     		lsrs	r3, r3, #5
+ 1390 0028 3EB3     		cbz	r6, .L233
+ 1391 002a 33BB     		cbnz	r3, .L233
+ 1392 002c FFF7FEFF 		bl	vTaskSuspendAll
+ 1393 0030 FFF7FEFF 		bl	uxTaskGetNumberOfTasks
+ 1394 0034 8046     		mov	r8, r0
+ 1395 0036 00EBC000 		add	r0, r0, r0, lsl #3
+ 1396 003a 8000     		lsls	r0, r0, #2
+ 1397 003c FFF7FEFF 		bl	pvPortMalloc
+ 1398 0040 0746     		mov	r7, r0
+ 1399 0042 B8B1     		cbz	r0, .L241
+ 1400 0044 0022     		movs	r2, #0
+ 1401 0046 4146     		mov	r1, r8
+ 1402 0048 FFF7FEFF 		bl	uxTaskGetSystemState
+ 1403 004c 06E0     		b	.L238
+ 1404              	.L239:
+ 1405 004e 04EBC403 		add	r3, r4, r4, lsl #3
+ 1406 0052 57F82330 		ldr	r3, [r7, r3, lsl #2]
+ 1407 0056 46F82430 		str	r3, [r6, r4, lsl #2]
+ 1408 005a 0134     		adds	r4, r4, #1
+ 1409              	.L238:
+ 1410 005c 2B46     		mov	r3, r5
+ 1411 005e 8542     		cmp	r5, r0
+ 1412 0060 28BF     		it	cs
+ 1413 0062 0346     		movcs	r3, r0
+ 1414 0064 9C42     		cmp	r4, r3
+ 1415 0066 F2D3     		bcc	.L239
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 25
+
+
+ 1416              	.L237:
+ 1417 0068 FFF7FEFF 		bl	xTaskResumeAll
+ 1418 006c 3846     		mov	r0, r7
+ 1419 006e FFF7FEFF 		bl	vPortFree
+ 1420 0072 02E0     		b	.L233
+ 1421              	.L241:
+ 1422 0074 4446     		mov	r4, r8
+ 1423 0076 F7E7     		b	.L237
+ 1424              	.L240:
+ 1425 0078 0024     		movs	r4, #0
+ 1426              	.L233:
+ 1427 007a 2046     		mov	r0, r4
+ 1428 007c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1429              	.L244:
+ 1430              		.align	2
+ 1431              	.L243:
+ 1432 0080 00000000 		.word	KernelState
+ 1434              		.section	.text.osThreadFlagsSet,"ax",%progbits
+ 1435              		.align	1
+ 1436              		.global	osThreadFlagsSet
+ 1437              		.syntax unified
+ 1438              		.thumb
+ 1439              		.thumb_func
+ 1441              	osThreadFlagsSet:
+ 1442              		@ args = 0, pretend = 0, frame = 8
+ 1443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1444 0000 30B5     		push	{r4, r5, lr}
+ 1445 0002 85B0     		sub	sp, sp, #20
+ 1446 0004 CB0F     		lsrs	r3, r1, #31
+ 1447 0006 0028     		cmp	r0, #0
+ 1448 0008 08BF     		it	eq
+ 1449 000a 43F00103 		orreq	r3, r3, #1
+ 1450 000e 2BB1     		cbz	r3, .L246
+ 1451 0010 6FF00303 		mvn	r3, #3
+ 1452 0014 0393     		str	r3, [sp, #12]
+ 1453              	.L247:
+ 1454 0016 0398     		ldr	r0, [sp, #12]
+ 1455 0018 05B0     		add	sp, sp, #20
+ 1456              		@ sp needed
+ 1457 001a 30BD     		pop	{r4, r5, pc}
+ 1458              	.L246:
+ 1459 001c 0446     		mov	r4, r0
+ 1460 001e 4FF0FF33 		mov	r3, #-1
+ 1461 0022 0393     		str	r3, [sp, #12]
+ 1462              		.syntax unified
+ 1463              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1464 0024 EFF30583 		MRS r3, ipsr
+ 1465              	@ 0 "" 2
+ 1466              		.thumb
+ 1467              		.syntax unified
+ 1468 0028 ABB9     		cbnz	r3, .L248
+ 1469              		.syntax unified
+ 1470              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1471 002a EFF31083 		MRS r3, primask
+ 1472              	@ 0 "" 2
+ 1473              		.thumb
+ 1474              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 26
+
+
+ 1475 002e 13B9     		cbnz	r3, .L249
+ 1476              		.syntax unified
+ 1477              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1478 0030 EFF31183 		MRS r3, basepri
+ 1479              	@ 0 "" 2
+ 1480              		.thumb
+ 1481              		.syntax unified
+ 1482 0034 1BB1     		cbz	r3, .L250
+ 1483              	.L249:
+ 1484 0036 174B     		ldr	r3, .L252
+ 1485 0038 1B68     		ldr	r3, [r3]
+ 1486 003a 022B     		cmp	r3, #2
+ 1487 003c 0BD0     		beq	.L248
+ 1488              	.L250:
+ 1489 003e 0023     		movs	r3, #0
+ 1490 0040 0122     		movs	r2, #1
+ 1491 0042 2046     		mov	r0, r4
+ 1492 0044 FFF7FEFF 		bl	xTaskGenericNotify
+ 1493 0048 03AB     		add	r3, sp, #12
+ 1494 004a 0022     		movs	r2, #0
+ 1495 004c 1146     		mov	r1, r2
+ 1496 004e 2046     		mov	r0, r4
+ 1497 0050 FFF7FEFF 		bl	xTaskGenericNotify
+ 1498 0054 DFE7     		b	.L247
+ 1499              	.L248:
+ 1500 0056 0025     		movs	r5, #0
+ 1501 0058 0295     		str	r5, [sp, #8]
+ 1502 005a 02AB     		add	r3, sp, #8
+ 1503 005c 0093     		str	r3, [sp]
+ 1504 005e 2B46     		mov	r3, r5
+ 1505 0060 0122     		movs	r2, #1
+ 1506 0062 2046     		mov	r0, r4
+ 1507 0064 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 1508 0068 0095     		str	r5, [sp]
+ 1509 006a 03AB     		add	r3, sp, #12
+ 1510 006c 2A46     		mov	r2, r5
+ 1511 006e 2946     		mov	r1, r5
+ 1512 0070 2046     		mov	r0, r4
+ 1513 0072 FFF7FEFF 		bl	xTaskGenericNotifyFromISR
+ 1514 0076 029B     		ldr	r3, [sp, #8]
+ 1515 0078 002B     		cmp	r3, #0
+ 1516 007a CCD0     		beq	.L247
+ 1517 007c 4FF0E023 		mov	r3, #-536813568
+ 1518 0080 4FF08052 		mov	r2, #268435456
+ 1519 0084 C3F8042D 		str	r2, [r3, #3332]
+ 1520              		.syntax unified
+ 1521              	@ 699 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 1522 0088 BFF34F8F 		dsb
+ 1523              	@ 0 "" 2
+ 1524              	@ 699 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 1525 008c BFF36F8F 		isb
+ 1526              	@ 0 "" 2
+ 1527              		.thumb
+ 1528              		.syntax unified
+ 1529 0090 C1E7     		b	.L247
+ 1530              	.L253:
+ 1531 0092 00BF     		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 27
+
+
+ 1532              	.L252:
+ 1533 0094 00000000 		.word	KernelState
+ 1535              		.section	.text.osThreadFlagsClear,"ax",%progbits
+ 1536              		.align	1
+ 1537              		.global	osThreadFlagsClear
+ 1538              		.syntax unified
+ 1539              		.thumb
+ 1540              		.thumb_func
+ 1542              	osThreadFlagsClear:
+ 1543              		@ args = 0, pretend = 0, frame = 8
+ 1544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1545 0000 70B5     		push	{r4, r5, r6, lr}
+ 1546 0002 82B0     		sub	sp, sp, #8
+ 1547              		.syntax unified
+ 1548              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1549 0004 EFF30583 		MRS r3, ipsr
+ 1550              	@ 0 "" 2
+ 1551              		.thumb
+ 1552              		.syntax unified
+ 1553 0008 3BBB     		cbnz	r3, .L258
+ 1554 000a 0546     		mov	r5, r0
+ 1555              		.syntax unified
+ 1556              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1557 000c EFF31083 		MRS r3, primask
+ 1558              	@ 0 "" 2
+ 1559              		.thumb
+ 1560              		.syntax unified
+ 1561 0010 13B9     		cbnz	r3, .L256
+ 1562              		.syntax unified
+ 1563              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1564 0012 EFF31183 		MRS r3, basepri
+ 1565              	@ 0 "" 2
+ 1566              		.thumb
+ 1567              		.syntax unified
+ 1568 0016 1BB1     		cbz	r3, .L257
+ 1569              	.L256:
+ 1570 0018 154B     		ldr	r3, .L265
+ 1571 001a 1B68     		ldr	r3, [r3]
+ 1572 001c 022B     		cmp	r3, #2
+ 1573 001e 21D0     		beq	.L259
+ 1574              	.L257:
+ 1575 0020 002D     		cmp	r5, #0
+ 1576 0022 22DB     		blt	.L260
+ 1577 0024 FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 1578 0028 0646     		mov	r6, r0
+ 1579 002a 01AB     		add	r3, sp, #4
+ 1580 002c 0022     		movs	r2, #0
+ 1581 002e 1146     		mov	r1, r2
+ 1582 0030 FFF7FEFF 		bl	xTaskGenericNotify
+ 1583 0034 0128     		cmp	r0, #1
+ 1584 0036 02D0     		beq	.L264
+ 1585 0038 4FF0FF34 		mov	r4, #-1
+ 1586 003c 0FE0     		b	.L254
+ 1587              	.L264:
+ 1588 003e 019C     		ldr	r4, [sp, #4]
+ 1589 0040 24EA0501 		bic	r1, r4, r5
+ 1590 0044 0191     		str	r1, [sp, #4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 28
+
+
+ 1591 0046 0023     		movs	r3, #0
+ 1592 0048 0322     		movs	r2, #3
+ 1593 004a 3046     		mov	r0, r6
+ 1594 004c FFF7FEFF 		bl	xTaskGenericNotify
+ 1595 0050 0128     		cmp	r0, #1
+ 1596 0052 04D0     		beq	.L254
+ 1597 0054 4FF0FF34 		mov	r4, #-1
+ 1598 0058 01E0     		b	.L254
+ 1599              	.L258:
+ 1600 005a 6FF00504 		mvn	r4, #5
+ 1601              	.L254:
+ 1602 005e 2046     		mov	r0, r4
+ 1603 0060 02B0     		add	sp, sp, #8
+ 1604              		@ sp needed
+ 1605 0062 70BD     		pop	{r4, r5, r6, pc}
+ 1606              	.L259:
+ 1607 0064 6FF00504 		mvn	r4, #5
+ 1608 0068 F9E7     		b	.L254
+ 1609              	.L260:
+ 1610 006a 6FF00304 		mvn	r4, #3
+ 1611 006e F6E7     		b	.L254
+ 1612              	.L266:
+ 1613              		.align	2
+ 1614              	.L265:
+ 1615 0070 00000000 		.word	KernelState
+ 1617              		.section	.text.osThreadFlagsGet,"ax",%progbits
+ 1618              		.align	1
+ 1619              		.global	osThreadFlagsGet
+ 1620              		.syntax unified
+ 1621              		.thumb
+ 1622              		.thumb_func
+ 1624              	osThreadFlagsGet:
+ 1625              		@ args = 0, pretend = 0, frame = 8
+ 1626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1627 0000 00B5     		push	{lr}
+ 1628 0002 83B0     		sub	sp, sp, #12
+ 1629              		.syntax unified
+ 1630              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1631 0004 EFF30583 		MRS r3, ipsr
+ 1632              	@ 0 "" 2
+ 1633              		.thumb
+ 1634              		.syntax unified
+ 1635 0008 B3B9     		cbnz	r3, .L268
+ 1636              		.syntax unified
+ 1637              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1638 000a EFF31083 		MRS r3, primask
+ 1639              	@ 0 "" 2
+ 1640              		.thumb
+ 1641              		.syntax unified
+ 1642 000e 13B9     		cbnz	r3, .L269
+ 1643              		.syntax unified
+ 1644              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1645 0010 EFF31183 		MRS r3, basepri
+ 1646              	@ 0 "" 2
+ 1647              		.thumb
+ 1648              		.syntax unified
+ 1649 0014 1BB1     		cbz	r3, .L270
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 29
+
+
+ 1650              	.L269:
+ 1651 0016 0C4B     		ldr	r3, .L273
+ 1652 0018 1B68     		ldr	r3, [r3]
+ 1653 001a 022B     		cmp	r3, #2
+ 1654 001c 0CD0     		beq	.L268
+ 1655              	.L270:
+ 1656 001e FFF7FEFF 		bl	xTaskGetCurrentTaskHandle
+ 1657 0022 01AB     		add	r3, sp, #4
+ 1658 0024 0022     		movs	r2, #0
+ 1659 0026 1146     		mov	r1, r2
+ 1660 0028 FFF7FEFF 		bl	xTaskGenericNotify
+ 1661 002c 0128     		cmp	r0, #1
+ 1662 002e 06D0     		beq	.L271
+ 1663 0030 4FF0FF33 		mov	r3, #-1
+ 1664 0034 0193     		str	r3, [sp, #4]
+ 1665 0036 02E0     		b	.L271
+ 1666              	.L268:
+ 1667 0038 6FF00503 		mvn	r3, #5
+ 1668 003c 0193     		str	r3, [sp, #4]
+ 1669              	.L271:
+ 1670 003e 0198     		ldr	r0, [sp, #4]
+ 1671 0040 03B0     		add	sp, sp, #12
+ 1672              		@ sp needed
+ 1673 0042 5DF804FB 		ldr	pc, [sp], #4
+ 1674              	.L274:
+ 1675 0046 00BF     		.align	2
+ 1676              	.L273:
+ 1677 0048 00000000 		.word	KernelState
+ 1679              		.section	.text.osThreadFlagsWait,"ax",%progbits
+ 1680              		.align	1
+ 1681              		.global	osThreadFlagsWait
+ 1682              		.syntax unified
+ 1683              		.thumb
+ 1684              		.thumb_func
+ 1686              	osThreadFlagsWait:
+ 1687              		@ args = 0, pretend = 0, frame = 16
+ 1688              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1689 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1690 0004 85B0     		sub	sp, sp, #20
+ 1691              		.syntax unified
+ 1692              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1693 0006 EFF30583 		MRS r3, ipsr
+ 1694              	@ 0 "" 2
+ 1695              		.thumb
+ 1696              		.syntax unified
+ 1697 000a 0193     		str	r3, [sp, #4]
+ 1698 000c 002B     		cmp	r3, #0
+ 1699 000e 4CD1     		bne	.L285
+ 1700 0010 8146     		mov	r9, r0
+ 1701 0012 8A46     		mov	r10, r1
+ 1702 0014 1746     		mov	r7, r2
+ 1703              		.syntax unified
+ 1704              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1705 0016 EFF31083 		MRS r3, primask
+ 1706              	@ 0 "" 2
+ 1707              		.thumb
+ 1708              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 30
+
+
+ 1709 001a 13B9     		cbnz	r3, .L277
+ 1710              		.syntax unified
+ 1711              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1712 001c EFF31183 		MRS r3, basepri
+ 1713              	@ 0 "" 2
+ 1714              		.thumb
+ 1715              		.syntax unified
+ 1716 0020 1BB1     		cbz	r3, .L278
+ 1717              	.L277:
+ 1718 0022 294B     		ldr	r3, .L296
+ 1719 0024 1B68     		ldr	r3, [r3]
+ 1720 0026 022B     		cmp	r3, #2
+ 1721 0028 45D0     		beq	.L286
+ 1722              	.L278:
+ 1723 002a B9F1000F 		cmp	r9, #0
+ 1724 002e 45DB     		blt	.L287
+ 1725 0030 1AF0020F 		tst	r10, #2
+ 1726 0034 07D0     		beq	.L288
+ 1727 0036 DDF80480 		ldr	r8, [sp, #4]
+ 1728              	.L279:
+ 1729 003a FFF7FEFF 		bl	xTaskGetTickCount
+ 1730 003e 8346     		mov	fp, r0
+ 1731 0040 3E46     		mov	r6, r7
+ 1732 0042 019D     		ldr	r5, [sp, #4]
+ 1733 0044 23E0     		b	.L284
+ 1734              	.L288:
+ 1735 0046 C846     		mov	r8, r9
+ 1736 0048 F7E7     		b	.L279
+ 1737              	.L295:
+ 1738 004a 05EA0905 		and	r5, r5, r9
+ 1739 004e 039B     		ldr	r3, [sp, #12]
+ 1740 0050 1D43     		orrs	r5, r5, r3
+ 1741 0052 1AF0010F 		tst	r10, #1
+ 1742 0056 0DD0     		beq	.L281
+ 1743 0058 39EA0503 		bics	r3, r9, r5
+ 1744 005c 27D0     		beq	.L275
+ 1745 005e 87B3     		cbz	r7, .L294
+ 1746              	.L282:
+ 1747 0060 FFF7FEFF 		bl	xTaskGetTickCount
+ 1748 0064 A0EB0B03 		sub	r3, r0, fp
+ 1749 0068 9E42     		cmp	r6, r3
+ 1750 006a 0BD3     		bcc	.L291
+ 1751 006c ABEB0000 		sub	r0, fp, r0
+ 1752 0070 0644     		add	r6, r6, r0
+ 1753 0072 0BE0     		b	.L283
+ 1754              	.L281:
+ 1755 0074 19EA050F 		tst	r9, r5
+ 1756 0078 19D1     		bne	.L275
+ 1757 007a 002F     		cmp	r7, #0
+ 1758 007c F0D1     		bne	.L282
+ 1759 007e 6FF00205 		mvn	r5, #2
+ 1760 0082 14E0     		b	.L275
+ 1761              	.L291:
+ 1762 0084 019E     		ldr	r6, [sp, #4]
+ 1763 0086 01E0     		b	.L283
+ 1764              	.L292:
+ 1765 0088 6FF00105 		mvn	r5, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 31
+
+
+ 1766              	.L283:
+ 1767 008c 7CB1     		cbz	r4, .L275
+ 1768              	.L284:
+ 1769 008e 3346     		mov	r3, r6
+ 1770 0090 03AA     		add	r2, sp, #12
+ 1771 0092 4146     		mov	r1, r8
+ 1772 0094 0020     		movs	r0, #0
+ 1773 0096 FFF7FEFF 		bl	xTaskNotifyWait
+ 1774 009a 0446     		mov	r4, r0
+ 1775 009c 0128     		cmp	r0, #1
+ 1776 009e D4D0     		beq	.L295
+ 1777 00a0 002F     		cmp	r7, #0
+ 1778 00a2 F1D1     		bne	.L292
+ 1779 00a4 6FF00205 		mvn	r5, #2
+ 1780 00a8 F0E7     		b	.L283
+ 1781              	.L285:
+ 1782 00aa 6FF00505 		mvn	r5, #5
+ 1783              	.L275:
+ 1784 00ae 2846     		mov	r0, r5
+ 1785 00b0 05B0     		add	sp, sp, #20
+ 1786              		@ sp needed
+ 1787 00b2 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1788              	.L286:
+ 1789 00b6 6FF00505 		mvn	r5, #5
+ 1790 00ba F8E7     		b	.L275
+ 1791              	.L287:
+ 1792 00bc 6FF00305 		mvn	r5, #3
+ 1793 00c0 F5E7     		b	.L275
+ 1794              	.L294:
+ 1795 00c2 6FF00205 		mvn	r5, #2
+ 1796 00c6 F2E7     		b	.L275
+ 1797              	.L297:
+ 1798              		.align	2
+ 1799              	.L296:
+ 1800 00c8 00000000 		.word	KernelState
+ 1802              		.section	.text.osDelay,"ax",%progbits
+ 1803              		.align	1
+ 1804              		.global	osDelay
+ 1805              		.syntax unified
+ 1806              		.thumb
+ 1807              		.thumb_func
+ 1809              	osDelay:
+ 1810              		@ args = 0, pretend = 0, frame = 0
+ 1811              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1812 0000 08B5     		push	{r3, lr}
+ 1813              		.syntax unified
+ 1814              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1815 0002 EFF30583 		MRS r3, ipsr
+ 1816              	@ 0 "" 2
+ 1817              		.thumb
+ 1818              		.syntax unified
+ 1819 0006 83B9     		cbnz	r3, .L302
+ 1820              		.syntax unified
+ 1821              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1822 0008 EFF31083 		MRS r3, primask
+ 1823              	@ 0 "" 2
+ 1824              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 32
+
+
+ 1825              		.syntax unified
+ 1826 000c 13B9     		cbnz	r3, .L300
+ 1827              		.syntax unified
+ 1828              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1829 000e EFF31183 		MRS r3, basepri
+ 1830              	@ 0 "" 2
+ 1831              		.thumb
+ 1832              		.syntax unified
+ 1833 0012 1BB1     		cbz	r3, .L301
+ 1834              	.L300:
+ 1835 0014 084B     		ldr	r3, .L307
+ 1836 0016 1B68     		ldr	r3, [r3]
+ 1837 0018 022B     		cmp	r3, #2
+ 1838 001a 09D0     		beq	.L303
+ 1839              	.L301:
+ 1840 001c 08B9     		cbnz	r0, .L306
+ 1841 001e 0020     		movs	r0, #0
+ 1842              	.L298:
+ 1843 0020 08BD     		pop	{r3, pc}
+ 1844              	.L306:
+ 1845 0022 FFF7FEFF 		bl	vTaskDelay
+ 1846 0026 0020     		movs	r0, #0
+ 1847 0028 FAE7     		b	.L298
+ 1848              	.L302:
+ 1849 002a 6FF00500 		mvn	r0, #5
+ 1850 002e F7E7     		b	.L298
+ 1851              	.L303:
+ 1852 0030 6FF00500 		mvn	r0, #5
+ 1853 0034 F4E7     		b	.L298
+ 1854              	.L308:
+ 1855 0036 00BF     		.align	2
+ 1856              	.L307:
+ 1857 0038 00000000 		.word	KernelState
+ 1859              		.section	.text.osDelayUntil,"ax",%progbits
+ 1860              		.align	1
+ 1861              		.global	osDelayUntil
+ 1862              		.syntax unified
+ 1863              		.thumb
+ 1864              		.thumb_func
+ 1866              	osDelayUntil:
+ 1867              		@ args = 0, pretend = 0, frame = 8
+ 1868              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1869              		.syntax unified
+ 1870              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1871 0000 EFF30583 		MRS r3, ipsr
+ 1872              	@ 0 "" 2
+ 1873              		.thumb
+ 1874              		.syntax unified
+ 1875 0004 C3B9     		cbnz	r3, .L313
+ 1876 0006 10B5     		push	{r4, lr}
+ 1877 0008 82B0     		sub	sp, sp, #8
+ 1878 000a 0446     		mov	r4, r0
+ 1879              		.syntax unified
+ 1880              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1881 000c EFF31083 		MRS r3, primask
+ 1882              	@ 0 "" 2
+ 1883              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 33
+
+
+ 1884              		.syntax unified
+ 1885 0010 13B9     		cbnz	r3, .L311
+ 1886              		.syntax unified
+ 1887              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1888 0012 EFF31183 		MRS r3, basepri
+ 1889              	@ 0 "" 2
+ 1890              		.thumb
+ 1891              		.syntax unified
+ 1892 0016 1BB1     		cbz	r3, .L312
+ 1893              	.L311:
+ 1894 0018 0C4B     		ldr	r3, .L320
+ 1895 001a 1B68     		ldr	r3, [r3]
+ 1896 001c 022B     		cmp	r3, #2
+ 1897 001e 0ED0     		beq	.L314
+ 1898              	.L312:
+ 1899 0020 FFF7FEFF 		bl	xTaskGetTickCount
+ 1900 0024 0190     		str	r0, [sp, #4]
+ 1901 0026 211A     		subs	r1, r4, r0
+ 1902 0028 0029     		cmp	r1, #0
+ 1903 002a 0BDD     		ble	.L315
+ 1904 002c 01A8     		add	r0, sp, #4
+ 1905 002e FFF7FEFF 		bl	vTaskDelayUntil
+ 1906 0032 0020     		movs	r0, #0
+ 1907              	.L309:
+ 1908 0034 02B0     		add	sp, sp, #8
+ 1909              		@ sp needed
+ 1910 0036 10BD     		pop	{r4, pc}
+ 1911              	.L313:
+ 1912 0038 6FF00500 		mvn	r0, #5
+ 1913 003c 7047     		bx	lr
+ 1914              	.L314:
+ 1915 003e 6FF00500 		mvn	r0, #5
+ 1916 0042 F7E7     		b	.L309
+ 1917              	.L315:
+ 1918 0044 6FF00300 		mvn	r0, #3
+ 1919 0048 F4E7     		b	.L309
+ 1920              	.L321:
+ 1921 004a 00BF     		.align	2
+ 1922              	.L320:
+ 1923 004c 00000000 		.word	KernelState
+ 1925              		.section	.text.osTimerNew,"ax",%progbits
+ 1926              		.align	1
+ 1927              		.global	osTimerNew
+ 1928              		.syntax unified
+ 1929              		.thumb
+ 1930              		.thumb_func
+ 1932              	osTimerNew:
+ 1933              		@ args = 0, pretend = 0, frame = 0
+ 1934              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1935 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1936 0004 82B0     		sub	sp, sp, #8
+ 1937              		.syntax unified
+ 1938              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1939 0006 EFF30585 		MRS r5, ipsr
+ 1940              	@ 0 "" 2
+ 1941              		.thumb
+ 1942              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 34
+
+
+ 1943 000a 002D     		cmp	r5, #0
+ 1944 000c 41D1     		bne	.L330
+ 1945 000e 0646     		mov	r6, r0
+ 1946 0010 8846     		mov	r8, r1
+ 1947 0012 1746     		mov	r7, r2
+ 1948 0014 1C46     		mov	r4, r3
+ 1949              		.syntax unified
+ 1950              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1951 0016 EFF31083 		MRS r3, primask
+ 1952              	@ 0 "" 2
+ 1953              		.thumb
+ 1954              		.syntax unified
+ 1955 001a 13B9     		cbnz	r3, .L324
+ 1956              		.syntax unified
+ 1957              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1958 001c EFF31183 		MRS r3, basepri
+ 1959              	@ 0 "" 2
+ 1960              		.thumb
+ 1961              		.syntax unified
+ 1962 0020 1BB1     		cbz	r3, .L325
+ 1963              	.L324:
+ 1964 0022 214B     		ldr	r3, .L340
+ 1965 0024 1B68     		ldr	r3, [r3]
+ 1966 0026 022B     		cmp	r3, #2
+ 1967 0028 37D0     		beq	.L331
+ 1968              	.L325:
+ 1969 002a 002E     		cmp	r6, #0
+ 1970 002c 37D0     		beq	.L332
+ 1971 002e 0820     		movs	r0, #8
+ 1972 0030 FFF7FEFF 		bl	pvPortMalloc
+ 1973 0034 70B3     		cbz	r0, .L322
+ 1974 0036 0660     		str	r6, [r0]
+ 1975 0038 4760     		str	r7, [r0, #4]
+ 1976 003a B8F1000F 		cmp	r8, #0
+ 1977 003e 00D0     		beq	.L326
+ 1978 0040 0125     		movs	r5, #1
+ 1979              	.L326:
+ 1980 0042 0CB3     		cbz	r4, .L334
+ 1981 0044 2668     		ldr	r6, [r4]
+ 1982 0046 A368     		ldr	r3, [r4, #8]
+ 1983 0048 13B1     		cbz	r3, .L328
+ 1984 004a E268     		ldr	r2, [r4, #12]
+ 1985 004c 2B2A     		cmp	r2, #43
+ 1986 004e 11D8     		bhi	.L329
+ 1987              	.L328:
+ 1988 0050 5BB1     		cbz	r3, .L339
+ 1989 0052 4FF0FF33 		mov	r3, #-1
+ 1990              	.L327:
+ 1991 0056 23BB     		cbnz	r3, .L337
+ 1992 0058 144B     		ldr	r3, .L340+4
+ 1993 005a 0093     		str	r3, [sp]
+ 1994 005c 0346     		mov	r3, r0
+ 1995 005e 2A46     		mov	r2, r5
+ 1996 0060 0121     		movs	r1, #1
+ 1997 0062 3046     		mov	r0, r6
+ 1998 0064 FFF7FEFF 		bl	xTimerCreate
+ 1999 0068 14E0     		b	.L322
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 35
+
+
+ 2000              	.L339:
+ 2001 006a E368     		ldr	r3, [r4, #12]
+ 2002 006c 7BB1     		cbz	r3, .L336
+ 2003 006e 4FF0FF33 		mov	r3, #-1
+ 2004 0072 F0E7     		b	.L327
+ 2005              	.L329:
+ 2006 0074 0193     		str	r3, [sp, #4]
+ 2007 0076 0D4B     		ldr	r3, .L340+4
+ 2008 0078 0093     		str	r3, [sp]
+ 2009 007a 0346     		mov	r3, r0
+ 2010 007c 2A46     		mov	r2, r5
+ 2011 007e 0121     		movs	r1, #1
+ 2012 0080 3046     		mov	r0, r6
+ 2013 0082 FFF7FEFF 		bl	xTimerCreateStatic
+ 2014 0086 05E0     		b	.L322
+ 2015              	.L334:
+ 2016 0088 2646     		mov	r6, r4
+ 2017 008a 0023     		movs	r3, #0
+ 2018 008c E3E7     		b	.L327
+ 2019              	.L336:
+ 2020 008e 0023     		movs	r3, #0
+ 2021 0090 E1E7     		b	.L327
+ 2022              	.L330:
+ 2023 0092 0020     		movs	r0, #0
+ 2024              	.L322:
+ 2025 0094 02B0     		add	sp, sp, #8
+ 2026              		@ sp needed
+ 2027 0096 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2028              	.L331:
+ 2029 009a 0020     		movs	r0, #0
+ 2030 009c FAE7     		b	.L322
+ 2031              	.L332:
+ 2032 009e 0020     		movs	r0, #0
+ 2033 00a0 F8E7     		b	.L322
+ 2034              	.L337:
+ 2035 00a2 0020     		movs	r0, #0
+ 2036 00a4 F6E7     		b	.L322
+ 2037              	.L341:
+ 2038 00a6 00BF     		.align	2
+ 2039              	.L340:
+ 2040 00a8 00000000 		.word	KernelState
+ 2041 00ac 00000000 		.word	TimerCallback
+ 2043              		.section	.text.osTimerGetName,"ax",%progbits
+ 2044              		.align	1
+ 2045              		.global	osTimerGetName
+ 2046              		.syntax unified
+ 2047              		.thumb
+ 2048              		.thumb_func
+ 2050              	osTimerGetName:
+ 2051              		@ args = 0, pretend = 0, frame = 0
+ 2052              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2053 0000 08B5     		push	{r3, lr}
+ 2054              		.syntax unified
+ 2055              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2056 0002 EFF30583 		MRS r3, ipsr
+ 2057              	@ 0 "" 2
+ 2058              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 36
+
+
+ 2059              		.syntax unified
+ 2060 0006 6BB9     		cbnz	r3, .L346
+ 2061              		.syntax unified
+ 2062              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2063 0008 EFF31083 		MRS r3, primask
+ 2064              	@ 0 "" 2
+ 2065              		.thumb
+ 2066              		.syntax unified
+ 2067 000c 13B9     		cbnz	r3, .L344
+ 2068              		.syntax unified
+ 2069              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2070 000e EFF31183 		MRS r3, basepri
+ 2071              	@ 0 "" 2
+ 2072              		.thumb
+ 2073              		.syntax unified
+ 2074 0012 1BB1     		cbz	r3, .L345
+ 2075              	.L344:
+ 2076 0014 054B     		ldr	r3, .L350
+ 2077 0016 1B68     		ldr	r3, [r3]
+ 2078 0018 022B     		cmp	r3, #2
+ 2079 001a 05D0     		beq	.L347
+ 2080              	.L345:
+ 2081 001c 08B1     		cbz	r0, .L342
+ 2082 001e FFF7FEFF 		bl	pcTimerGetName
+ 2083              	.L342:
+ 2084 0022 08BD     		pop	{r3, pc}
+ 2085              	.L346:
+ 2086 0024 0020     		movs	r0, #0
+ 2087 0026 FCE7     		b	.L342
+ 2088              	.L347:
+ 2089 0028 0020     		movs	r0, #0
+ 2090 002a FAE7     		b	.L342
+ 2091              	.L351:
+ 2092              		.align	2
+ 2093              	.L350:
+ 2094 002c 00000000 		.word	KernelState
+ 2096              		.section	.text.osTimerStart,"ax",%progbits
+ 2097              		.align	1
+ 2098              		.global	osTimerStart
+ 2099              		.syntax unified
+ 2100              		.thumb
+ 2101              		.thumb_func
+ 2103              	osTimerStart:
+ 2104              		@ args = 0, pretend = 0, frame = 0
+ 2105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2106              		.syntax unified
+ 2107              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2108 0000 EFF30583 		MRS r3, ipsr
+ 2109              	@ 0 "" 2
+ 2110              		.thumb
+ 2111              		.syntax unified
+ 2112 0004 C3B9     		cbnz	r3, .L356
+ 2113 0006 0A46     		mov	r2, r1
+ 2114              		.syntax unified
+ 2115              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2116 0008 EFF31083 		MRS r3, primask
+ 2117              	@ 0 "" 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 37
+
+
+ 2118              		.thumb
+ 2119              		.syntax unified
+ 2120 000c 13B9     		cbnz	r3, .L354
+ 2121              		.syntax unified
+ 2122              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2123 000e EFF31183 		MRS r3, basepri
+ 2124              	@ 0 "" 2
+ 2125              		.thumb
+ 2126              		.syntax unified
+ 2127 0012 1BB1     		cbz	r3, .L355
+ 2128              	.L354:
+ 2129 0014 0E4B     		ldr	r3, .L364
+ 2130 0016 1B68     		ldr	r3, [r3]
+ 2131 0018 022B     		cmp	r3, #2
+ 2132 001a 10D0     		beq	.L357
+ 2133              	.L355:
+ 2134 001c 90B1     		cbz	r0, .L358
+ 2135 001e 00B5     		push	{lr}
+ 2136 0020 83B0     		sub	sp, sp, #12
+ 2137 0022 0023     		movs	r3, #0
+ 2138 0024 0093     		str	r3, [sp]
+ 2139 0026 0421     		movs	r1, #4
+ 2140 0028 FFF7FEFF 		bl	xTimerGenericCommand
+ 2141 002c 0128     		cmp	r0, #1
+ 2142 002e 0CD1     		bne	.L359
+ 2143 0030 0020     		movs	r0, #0
+ 2144              	.L352:
+ 2145 0032 03B0     		add	sp, sp, #12
+ 2146              		@ sp needed
+ 2147 0034 5DF804FB 		ldr	pc, [sp], #4
+ 2148              	.L356:
+ 2149 0038 6FF00500 		mvn	r0, #5
+ 2150 003c 7047     		bx	lr
+ 2151              	.L357:
+ 2152 003e 6FF00500 		mvn	r0, #5
+ 2153 0042 7047     		bx	lr
+ 2154              	.L358:
+ 2155 0044 6FF00300 		mvn	r0, #3
+ 2156 0048 7047     		bx	lr
+ 2157              	.L359:
+ 2158 004a 6FF00200 		mvn	r0, #2
+ 2159 004e F0E7     		b	.L352
+ 2160              	.L365:
+ 2161              		.align	2
+ 2162              	.L364:
+ 2163 0050 00000000 		.word	KernelState
+ 2165              		.section	.text.osTimerStop,"ax",%progbits
+ 2166              		.align	1
+ 2167              		.global	osTimerStop
+ 2168              		.syntax unified
+ 2169              		.thumb
+ 2170              		.thumb_func
+ 2172              	osTimerStop:
+ 2173              		@ args = 0, pretend = 0, frame = 0
+ 2174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2175              		.syntax unified
+ 2176              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 38
+
+
+ 2177 0000 EFF30583 		MRS r3, ipsr
+ 2178              	@ 0 "" 2
+ 2179              		.thumb
+ 2180              		.syntax unified
+ 2181 0004 EBB9     		cbnz	r3, .L370
+ 2182 0006 10B5     		push	{r4, lr}
+ 2183 0008 82B0     		sub	sp, sp, #8
+ 2184 000a 0446     		mov	r4, r0
+ 2185              		.syntax unified
+ 2186              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2187 000c EFF31083 		MRS r3, primask
+ 2188              	@ 0 "" 2
+ 2189              		.thumb
+ 2190              		.syntax unified
+ 2191 0010 13B9     		cbnz	r3, .L368
+ 2192              		.syntax unified
+ 2193              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2194 0012 EFF31183 		MRS r3, basepri
+ 2195              	@ 0 "" 2
+ 2196              		.thumb
+ 2197              		.syntax unified
+ 2198 0016 1BB1     		cbz	r3, .L369
+ 2199              	.L368:
+ 2200 0018 114B     		ldr	r3, .L379
+ 2201 001a 1B68     		ldr	r3, [r3]
+ 2202 001c 022B     		cmp	r3, #2
+ 2203 001e 13D0     		beq	.L371
+ 2204              	.L369:
+ 2205 0020 ACB1     		cbz	r4, .L372
+ 2206 0022 2046     		mov	r0, r4
+ 2207 0024 FFF7FEFF 		bl	xTimerIsTimerActive
+ 2208 0028 A0B1     		cbz	r0, .L373
+ 2209 002a 0022     		movs	r2, #0
+ 2210 002c 0092     		str	r2, [sp]
+ 2211 002e 1346     		mov	r3, r2
+ 2212 0030 0321     		movs	r1, #3
+ 2213 0032 2046     		mov	r0, r4
+ 2214 0034 FFF7FEFF 		bl	xTimerGenericCommand
+ 2215 0038 0128     		cmp	r0, #1
+ 2216 003a 0ED1     		bne	.L374
+ 2217 003c 0020     		movs	r0, #0
+ 2218              	.L366:
+ 2219 003e 02B0     		add	sp, sp, #8
+ 2220              		@ sp needed
+ 2221 0040 10BD     		pop	{r4, pc}
+ 2222              	.L370:
+ 2223 0042 6FF00500 		mvn	r0, #5
+ 2224 0046 7047     		bx	lr
+ 2225              	.L371:
+ 2226 0048 6FF00500 		mvn	r0, #5
+ 2227 004c F7E7     		b	.L366
+ 2228              	.L372:
+ 2229 004e 6FF00300 		mvn	r0, #3
+ 2230 0052 F4E7     		b	.L366
+ 2231              	.L373:
+ 2232 0054 6FF00200 		mvn	r0, #2
+ 2233 0058 F1E7     		b	.L366
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 39
+
+
+ 2234              	.L374:
+ 2235 005a 4FF0FF30 		mov	r0, #-1
+ 2236 005e EEE7     		b	.L366
+ 2237              	.L380:
+ 2238              		.align	2
+ 2239              	.L379:
+ 2240 0060 00000000 		.word	KernelState
+ 2242              		.section	.text.osTimerIsRunning,"ax",%progbits
+ 2243              		.align	1
+ 2244              		.global	osTimerIsRunning
+ 2245              		.syntax unified
+ 2246              		.thumb
+ 2247              		.thumb_func
+ 2249              	osTimerIsRunning:
+ 2250              		@ args = 0, pretend = 0, frame = 0
+ 2251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2252 0000 08B5     		push	{r3, lr}
+ 2253 0002 0346     		mov	r3, r0
+ 2254              		.syntax unified
+ 2255              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2256 0004 EFF30580 		MRS r0, ipsr
+ 2257              	@ 0 "" 2
+ 2258              		.thumb
+ 2259              		.syntax unified
+ 2260 0008 70B9     		cbnz	r0, .L385
+ 2261              		.syntax unified
+ 2262              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2263 000a EFF31082 		MRS r2, primask
+ 2264              	@ 0 "" 2
+ 2265              		.thumb
+ 2266              		.syntax unified
+ 2267 000e 12B9     		cbnz	r2, .L383
+ 2268              		.syntax unified
+ 2269              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2270 0010 EFF31182 		MRS r2, basepri
+ 2271              	@ 0 "" 2
+ 2272              		.thumb
+ 2273              		.syntax unified
+ 2274 0014 1AB1     		cbz	r2, .L384
+ 2275              	.L383:
+ 2276 0016 054A     		ldr	r2, .L387
+ 2277 0018 1268     		ldr	r2, [r2]
+ 2278 001a 022A     		cmp	r2, #2
+ 2279 001c 05D0     		beq	.L381
+ 2280              	.L384:
+ 2281 001e 23B1     		cbz	r3, .L381
+ 2282 0020 1846     		mov	r0, r3
+ 2283 0022 FFF7FEFF 		bl	xTimerIsTimerActive
+ 2284 0026 00E0     		b	.L381
+ 2285              	.L385:
+ 2286 0028 0020     		movs	r0, #0
+ 2287              	.L381:
+ 2288 002a 08BD     		pop	{r3, pc}
+ 2289              	.L388:
+ 2290              		.align	2
+ 2291              	.L387:
+ 2292 002c 00000000 		.word	KernelState
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 40
+
+
+ 2294              		.section	.text.osTimerDelete,"ax",%progbits
+ 2295              		.align	1
+ 2296              		.global	osTimerDelete
+ 2297              		.syntax unified
+ 2298              		.thumb
+ 2299              		.thumb_func
+ 2301              	osTimerDelete:
+ 2302              		@ args = 0, pretend = 0, frame = 0
+ 2303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2304              		.syntax unified
+ 2305              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2306 0000 EFF30583 		MRS r3, ipsr
+ 2307              	@ 0 "" 2
+ 2308              		.thumb
+ 2309              		.syntax unified
+ 2310 0004 03BB     		cbnz	r3, .L393
+ 2311 0006 30B5     		push	{r4, r5, lr}
+ 2312 0008 83B0     		sub	sp, sp, #12
+ 2313 000a 0446     		mov	r4, r0
+ 2314              		.syntax unified
+ 2315              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2316 000c EFF31083 		MRS r3, primask
+ 2317              	@ 0 "" 2
+ 2318              		.thumb
+ 2319              		.syntax unified
+ 2320 0010 13B9     		cbnz	r3, .L391
+ 2321              		.syntax unified
+ 2322              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2323 0012 EFF31183 		MRS r3, basepri
+ 2324              	@ 0 "" 2
+ 2325              		.thumb
+ 2326              		.syntax unified
+ 2327 0016 1BB1     		cbz	r3, .L392
+ 2328              	.L391:
+ 2329 0018 114B     		ldr	r3, .L401
+ 2330 001a 1B68     		ldr	r3, [r3]
+ 2331 001c 022B     		cmp	r3, #2
+ 2332 001e 16D0     		beq	.L394
+ 2333              	.L392:
+ 2334 0020 C4B1     		cbz	r4, .L395
+ 2335 0022 2046     		mov	r0, r4
+ 2336 0024 FFF7FEFF 		bl	pvTimerGetTimerID
+ 2337 0028 0546     		mov	r5, r0
+ 2338 002a 0022     		movs	r2, #0
+ 2339 002c 0092     		str	r2, [sp]
+ 2340 002e 1346     		mov	r3, r2
+ 2341 0030 0521     		movs	r1, #5
+ 2342 0032 2046     		mov	r0, r4
+ 2343 0034 FFF7FEFF 		bl	xTimerGenericCommand
+ 2344 0038 0128     		cmp	r0, #1
+ 2345 003a 0ED1     		bne	.L396
+ 2346 003c 2846     		mov	r0, r5
+ 2347 003e FFF7FEFF 		bl	vPortFree
+ 2348 0042 0020     		movs	r0, #0
+ 2349              	.L389:
+ 2350 0044 03B0     		add	sp, sp, #12
+ 2351              		@ sp needed
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 41
+
+
+ 2352 0046 30BD     		pop	{r4, r5, pc}
+ 2353              	.L393:
+ 2354 0048 6FF00500 		mvn	r0, #5
+ 2355 004c 7047     		bx	lr
+ 2356              	.L394:
+ 2357 004e 6FF00500 		mvn	r0, #5
+ 2358 0052 F7E7     		b	.L389
+ 2359              	.L395:
+ 2360 0054 6FF00300 		mvn	r0, #3
+ 2361 0058 F4E7     		b	.L389
+ 2362              	.L396:
+ 2363 005a 6FF00200 		mvn	r0, #2
+ 2364 005e F1E7     		b	.L389
+ 2365              	.L402:
+ 2366              		.align	2
+ 2367              	.L401:
+ 2368 0060 00000000 		.word	KernelState
+ 2370              		.section	.text.osEventFlagsNew,"ax",%progbits
+ 2371              		.align	1
+ 2372              		.global	osEventFlagsNew
+ 2373              		.syntax unified
+ 2374              		.thumb
+ 2375              		.thumb_func
+ 2377              	osEventFlagsNew:
+ 2378              		@ args = 0, pretend = 0, frame = 0
+ 2379              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2380 0000 08B5     		push	{r3, lr}
+ 2381              		.syntax unified
+ 2382              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2383 0002 EFF30583 		MRS r3, ipsr
+ 2384              	@ 0 "" 2
+ 2385              		.thumb
+ 2386              		.syntax unified
+ 2387 0006 1BBB     		cbnz	r3, .L410
+ 2388              		.syntax unified
+ 2389              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2390 0008 EFF31083 		MRS r3, primask
+ 2391              	@ 0 "" 2
+ 2392              		.thumb
+ 2393              		.syntax unified
+ 2394 000c 13B9     		cbnz	r3, .L405
+ 2395              		.syntax unified
+ 2396              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2397 000e EFF31183 		MRS r3, basepri
+ 2398              	@ 0 "" 2
+ 2399              		.thumb
+ 2400              		.syntax unified
+ 2401 0012 1BB1     		cbz	r3, .L406
+ 2402              	.L405:
+ 2403 0014 114B     		ldr	r3, .L418
+ 2404 0016 1B68     		ldr	r3, [r3]
+ 2405 0018 022B     		cmp	r3, #2
+ 2406 001a 1BD0     		beq	.L411
+ 2407              	.L406:
+ 2408 001c A0B1     		cbz	r0, .L412
+ 2409 001e 8368     		ldr	r3, [r0, #8]
+ 2410 0020 13B1     		cbz	r3, .L408
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 42
+
+
+ 2411 0022 C268     		ldr	r2, [r0, #12]
+ 2412 0024 1F2A     		cmp	r2, #31
+ 2413 0026 0BD8     		bhi	.L409
+ 2414              	.L408:
+ 2415 0028 2BB1     		cbz	r3, .L417
+ 2416 002a 4FF0FF33 		mov	r3, #-1
+ 2417              	.L407:
+ 2418 002e 9BB9     		cbnz	r3, .L415
+ 2419 0030 FFF7FEFF 		bl	xEventGroupCreate
+ 2420 0034 0DE0     		b	.L403
+ 2421              	.L417:
+ 2422 0036 C368     		ldr	r3, [r0, #12]
+ 2423 0038 43B1     		cbz	r3, .L414
+ 2424 003a 4FF0FF33 		mov	r3, #-1
+ 2425 003e F6E7     		b	.L407
+ 2426              	.L409:
+ 2427 0040 1846     		mov	r0, r3
+ 2428 0042 FFF7FEFF 		bl	xEventGroupCreateStatic
+ 2429 0046 04E0     		b	.L403
+ 2430              	.L412:
+ 2431 0048 0023     		movs	r3, #0
+ 2432 004a F0E7     		b	.L407
+ 2433              	.L414:
+ 2434 004c 0023     		movs	r3, #0
+ 2435 004e EEE7     		b	.L407
+ 2436              	.L410:
+ 2437 0050 0020     		movs	r0, #0
+ 2438              	.L403:
+ 2439 0052 08BD     		pop	{r3, pc}
+ 2440              	.L411:
+ 2441 0054 0020     		movs	r0, #0
+ 2442 0056 FCE7     		b	.L403
+ 2443              	.L415:
+ 2444 0058 0020     		movs	r0, #0
+ 2445 005a FAE7     		b	.L403
+ 2446              	.L419:
+ 2447              		.align	2
+ 2448              	.L418:
+ 2449 005c 00000000 		.word	KernelState
+ 2451              		.section	.text.osEventFlagsSet,"ax",%progbits
+ 2452              		.align	1
+ 2453              		.global	osEventFlagsSet
+ 2454              		.syntax unified
+ 2455              		.thumb
+ 2456              		.thumb_func
+ 2458              	osEventFlagsSet:
+ 2459              		@ args = 0, pretend = 0, frame = 8
+ 2460              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2461 0000 0028     		cmp	r0, #0
+ 2462 0002 18BF     		it	ne
+ 2463 0004 B1F1807F 		cmpne	r1, #16777216
+ 2464 0008 29D2     		bcs	.L425
+ 2465 000a 10B5     		push	{r4, lr}
+ 2466 000c 82B0     		sub	sp, sp, #8
+ 2467 000e 0C46     		mov	r4, r1
+ 2468              		.syntax unified
+ 2469              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 43
+
+
+ 2470 0010 EFF30583 		MRS r3, ipsr
+ 2471              	@ 0 "" 2
+ 2472              		.thumb
+ 2473              		.syntax unified
+ 2474 0014 73B9     		cbnz	r3, .L422
+ 2475              		.syntax unified
+ 2476              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2477 0016 EFF31083 		MRS r3, primask
+ 2478              	@ 0 "" 2
+ 2479              		.thumb
+ 2480              		.syntax unified
+ 2481 001a 13B9     		cbnz	r3, .L423
+ 2482              		.syntax unified
+ 2483              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2484 001c EFF31183 		MRS r3, basepri
+ 2485              	@ 0 "" 2
+ 2486              		.thumb
+ 2487              		.syntax unified
+ 2488 0020 1BB1     		cbz	r3, .L424
+ 2489              	.L423:
+ 2490 0022 134B     		ldr	r3, .L432
+ 2491 0024 1B68     		ldr	r3, [r3]
+ 2492 0026 022B     		cmp	r3, #2
+ 2493 0028 04D0     		beq	.L422
+ 2494              	.L424:
+ 2495 002a 2146     		mov	r1, r4
+ 2496 002c FFF7FEFF 		bl	xEventGroupSetBits
+ 2497              	.L420:
+ 2498 0030 02B0     		add	sp, sp, #8
+ 2499              		@ sp needed
+ 2500 0032 10BD     		pop	{r4, pc}
+ 2501              	.L422:
+ 2502 0034 0023     		movs	r3, #0
+ 2503 0036 0193     		str	r3, [sp, #4]
+ 2504 0038 01AA     		add	r2, sp, #4
+ 2505 003a 2146     		mov	r1, r4
+ 2506 003c FFF7FEFF 		bl	xEventGroupSetBitsFromISR
+ 2507 0040 80B1     		cbz	r0, .L426
+ 2508 0042 019B     		ldr	r3, [sp, #4]
+ 2509 0044 8BB1     		cbz	r3, .L427
+ 2510 0046 4FF0E023 		mov	r3, #-536813568
+ 2511 004a 4FF08052 		mov	r2, #268435456
+ 2512 004e C3F8042D 		str	r2, [r3, #3332]
+ 2513              		.syntax unified
+ 2514              	@ 1103 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 2515 0052 BFF34F8F 		dsb
+ 2516              	@ 0 "" 2
+ 2517              	@ 1103 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 2518 0056 BFF36F8F 		isb
+ 2519              	@ 0 "" 2
+ 2520              		.thumb
+ 2521              		.syntax unified
+ 2522 005a 2046     		mov	r0, r4
+ 2523 005c E8E7     		b	.L420
+ 2524              	.L425:
+ 2525 005e 6FF00300 		mvn	r0, #3
+ 2526 0062 7047     		bx	lr
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 44
+
+
+ 2527              	.L426:
+ 2528 0064 6FF00200 		mvn	r0, #2
+ 2529 0068 E2E7     		b	.L420
+ 2530              	.L427:
+ 2531 006a 2046     		mov	r0, r4
+ 2532 006c E0E7     		b	.L420
+ 2533              	.L433:
+ 2534 006e 00BF     		.align	2
+ 2535              	.L432:
+ 2536 0070 00000000 		.word	KernelState
+ 2538              		.section	.text.osEventFlagsClear,"ax",%progbits
+ 2539              		.align	1
+ 2540              		.global	osEventFlagsClear
+ 2541              		.syntax unified
+ 2542              		.thumb
+ 2543              		.thumb_func
+ 2545              	osEventFlagsClear:
+ 2546              		@ args = 0, pretend = 0, frame = 0
+ 2547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2548 0000 70B5     		push	{r4, r5, r6, lr}
+ 2549 0002 0028     		cmp	r0, #0
+ 2550 0004 18BF     		it	ne
+ 2551 0006 B1F1807F 		cmpne	r1, #16777216
+ 2552 000a 20D2     		bcs	.L439
+ 2553 000c 0446     		mov	r4, r0
+ 2554 000e 0D46     		mov	r5, r1
+ 2555              		.syntax unified
+ 2556              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2557 0010 EFF30583 		MRS r3, ipsr
+ 2558              	@ 0 "" 2
+ 2559              		.thumb
+ 2560              		.syntax unified
+ 2561 0014 7BB9     		cbnz	r3, .L436
+ 2562              		.syntax unified
+ 2563              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2564 0016 EFF31083 		MRS r3, primask
+ 2565              	@ 0 "" 2
+ 2566              		.thumb
+ 2567              		.syntax unified
+ 2568 001a 13B9     		cbnz	r3, .L437
+ 2569              		.syntax unified
+ 2570              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2571 001c EFF31183 		MRS r3, basepri
+ 2572              	@ 0 "" 2
+ 2573              		.thumb
+ 2574              		.syntax unified
+ 2575 0020 1BB1     		cbz	r3, .L438
+ 2576              	.L437:
+ 2577 0022 0D4B     		ldr	r3, .L442
+ 2578 0024 1B68     		ldr	r3, [r3]
+ 2579 0026 022B     		cmp	r3, #2
+ 2580 0028 05D0     		beq	.L436
+ 2581              	.L438:
+ 2582 002a 2946     		mov	r1, r5
+ 2583 002c 2046     		mov	r0, r4
+ 2584 002e FFF7FEFF 		bl	xEventGroupClearBits
+ 2585 0032 0646     		mov	r6, r0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 45
+
+
+ 2586 0034 0DE0     		b	.L434
+ 2587              	.L436:
+ 2588 0036 2046     		mov	r0, r4
+ 2589 0038 FFF7FEFF 		bl	xEventGroupGetBitsFromISR
+ 2590 003c 0646     		mov	r6, r0
+ 2591 003e 2946     		mov	r1, r5
+ 2592 0040 2046     		mov	r0, r4
+ 2593 0042 FFF7FEFF 		bl	xEventGroupClearBitsFromISR
+ 2594 0046 20B9     		cbnz	r0, .L434
+ 2595 0048 6FF00206 		mvn	r6, #2
+ 2596 004c 01E0     		b	.L434
+ 2597              	.L439:
+ 2598 004e 6FF00306 		mvn	r6, #3
+ 2599              	.L434:
+ 2600 0052 3046     		mov	r0, r6
+ 2601 0054 70BD     		pop	{r4, r5, r6, pc}
+ 2602              	.L443:
+ 2603 0056 00BF     		.align	2
+ 2604              	.L442:
+ 2605 0058 00000000 		.word	KernelState
+ 2607              		.section	.text.osEventFlagsGet,"ax",%progbits
+ 2608              		.align	1
+ 2609              		.global	osEventFlagsGet
+ 2610              		.syntax unified
+ 2611              		.thumb
+ 2612              		.thumb_func
+ 2614              	osEventFlagsGet:
+ 2615              		@ args = 0, pretend = 0, frame = 0
+ 2616              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2617 0000 B8B1     		cbz	r0, .L449
+ 2618 0002 08B5     		push	{r3, lr}
+ 2619 0004 0346     		mov	r3, r0
+ 2620              		.syntax unified
+ 2621              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2622 0006 EFF30582 		MRS r2, ipsr
+ 2623              	@ 0 "" 2
+ 2624              		.thumb
+ 2625              		.syntax unified
+ 2626 000a 72B9     		cbnz	r2, .L446
+ 2627              		.syntax unified
+ 2628              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2629 000c EFF31082 		MRS r2, primask
+ 2630              	@ 0 "" 2
+ 2631              		.thumb
+ 2632              		.syntax unified
+ 2633 0010 12B9     		cbnz	r2, .L447
+ 2634              		.syntax unified
+ 2635              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2636 0012 EFF31182 		MRS r2, basepri
+ 2637              	@ 0 "" 2
+ 2638              		.thumb
+ 2639              		.syntax unified
+ 2640 0016 1AB1     		cbz	r2, .L448
+ 2641              	.L447:
+ 2642 0018 074A     		ldr	r2, .L454
+ 2643 001a 1268     		ldr	r2, [r2]
+ 2644 001c 022A     		cmp	r2, #2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 46
+
+
+ 2645 001e 04D0     		beq	.L446
+ 2646              	.L448:
+ 2647 0020 0021     		movs	r1, #0
+ 2648 0022 1846     		mov	r0, r3
+ 2649 0024 FFF7FEFF 		bl	xEventGroupClearBits
+ 2650 0028 02E0     		b	.L444
+ 2651              	.L446:
+ 2652 002a 1846     		mov	r0, r3
+ 2653 002c FFF7FEFF 		bl	xEventGroupGetBitsFromISR
+ 2654              	.L444:
+ 2655 0030 08BD     		pop	{r3, pc}
+ 2656              	.L449:
+ 2657 0032 0020     		movs	r0, #0
+ 2658 0034 7047     		bx	lr
+ 2659              	.L455:
+ 2660 0036 00BF     		.align	2
+ 2661              	.L454:
+ 2662 0038 00000000 		.word	KernelState
+ 2664              		.section	.text.osEventFlagsWait,"ax",%progbits
+ 2665              		.align	1
+ 2666              		.global	osEventFlagsWait
+ 2667              		.syntax unified
+ 2668              		.thumb
+ 2669              		.thumb_func
+ 2671              	osEventFlagsWait:
+ 2672              		@ args = 0, pretend = 0, frame = 0
+ 2673              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2674 0000 0028     		cmp	r0, #0
+ 2675 0002 18BF     		it	ne
+ 2676 0004 B1F1807F 		cmpne	r1, #16777216
+ 2677 0008 2DD2     		bcs	.L463
+ 2678 000a 70B5     		push	{r4, r5, r6, lr}
+ 2679 000c 82B0     		sub	sp, sp, #8
+ 2680 000e 0C46     		mov	r4, r1
+ 2681 0010 1D46     		mov	r5, r3
+ 2682              		.syntax unified
+ 2683              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2684 0012 EFF30583 		MRS r3, ipsr
+ 2685              	@ 0 "" 2
+ 2686              		.thumb
+ 2687              		.syntax unified
+ 2688 0016 4BBB     		cbnz	r3, .L464
+ 2689              		.syntax unified
+ 2690              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2691 0018 EFF31083 		MRS r3, primask
+ 2692              	@ 0 "" 2
+ 2693              		.thumb
+ 2694              		.syntax unified
+ 2695 001c 13B9     		cbnz	r3, .L458
+ 2696              		.syntax unified
+ 2697              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2698 001e EFF31183 		MRS r3, basepri
+ 2699              	@ 0 "" 2
+ 2700              		.thumb
+ 2701              		.syntax unified
+ 2702 0022 1BB1     		cbz	r3, .L459
+ 2703              	.L458:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 47
+
+
+ 2704 0024 184B     		ldr	r3, .L474
+ 2705 0026 1B68     		ldr	r3, [r3]
+ 2706 0028 022B     		cmp	r3, #2
+ 2707 002a 23D0     		beq	.L465
+ 2708              	.L459:
+ 2709 002c 12F00106 		ands	r6, r2, #1
+ 2710 0030 0FD0     		beq	.L466
+ 2711 0032 0123     		movs	r3, #1
+ 2712              	.L460:
+ 2713 0034 12F0020F 		tst	r2, #2
+ 2714 0038 0DD0     		beq	.L467
+ 2715 003a 0022     		movs	r2, #0
+ 2716              	.L461:
+ 2717 003c 0095     		str	r5, [sp]
+ 2718 003e 2146     		mov	r1, r4
+ 2719 0040 FFF7FEFF 		bl	xEventGroupWaitBits
+ 2720 0044 4EB1     		cbz	r6, .L462
+ 2721 0046 8442     		cmp	r4, r0
+ 2722 0048 12D0     		beq	.L456
+ 2723 004a B5B1     		cbz	r5, .L468
+ 2724 004c 6FF00100 		mvn	r0, #1
+ 2725 0050 0EE0     		b	.L456
+ 2726              	.L466:
+ 2727 0052 0023     		movs	r3, #0
+ 2728 0054 EEE7     		b	.L460
+ 2729              	.L467:
+ 2730 0056 0122     		movs	r2, #1
+ 2731 0058 F0E7     		b	.L461
+ 2732              	.L462:
+ 2733 005a 0442     		tst	r4, r0
+ 2734 005c 08D1     		bne	.L456
+ 2735 005e 7DB1     		cbz	r5, .L469
+ 2736 0060 6FF00100 		mvn	r0, #1
+ 2737 0064 04E0     		b	.L456
+ 2738              	.L463:
+ 2739 0066 6FF00300 		mvn	r0, #3
+ 2740 006a 7047     		bx	lr
+ 2741              	.L464:
+ 2742 006c 6FF00500 		mvn	r0, #5
+ 2743              	.L456:
+ 2744 0070 02B0     		add	sp, sp, #8
+ 2745              		@ sp needed
+ 2746 0072 70BD     		pop	{r4, r5, r6, pc}
+ 2747              	.L465:
+ 2748 0074 6FF00500 		mvn	r0, #5
+ 2749 0078 FAE7     		b	.L456
+ 2750              	.L468:
+ 2751 007a 6FF00200 		mvn	r0, #2
+ 2752 007e F7E7     		b	.L456
+ 2753              	.L469:
+ 2754 0080 6FF00200 		mvn	r0, #2
+ 2755 0084 F4E7     		b	.L456
+ 2756              	.L475:
+ 2757 0086 00BF     		.align	2
+ 2758              	.L474:
+ 2759 0088 00000000 		.word	KernelState
+ 2761              		.section	.text.osEventFlagsDelete,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 48
+
+
+ 2762              		.align	1
+ 2763              		.global	osEventFlagsDelete
+ 2764              		.syntax unified
+ 2765              		.thumb
+ 2766              		.thumb_func
+ 2768              	osEventFlagsDelete:
+ 2769              		@ args = 0, pretend = 0, frame = 0
+ 2770              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2771 0000 08B5     		push	{r3, lr}
+ 2772              		.syntax unified
+ 2773              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2774 0002 EFF30583 		MRS r3, ipsr
+ 2775              	@ 0 "" 2
+ 2776              		.thumb
+ 2777              		.syntax unified
+ 2778 0006 73B9     		cbnz	r3, .L480
+ 2779              		.syntax unified
+ 2780              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2781 0008 EFF31083 		MRS r3, primask
+ 2782              	@ 0 "" 2
+ 2783              		.thumb
+ 2784              		.syntax unified
+ 2785 000c 13B9     		cbnz	r3, .L478
+ 2786              		.syntax unified
+ 2787              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2788 000e EFF31183 		MRS r3, basepri
+ 2789              	@ 0 "" 2
+ 2790              		.thumb
+ 2791              		.syntax unified
+ 2792 0012 1BB1     		cbz	r3, .L479
+ 2793              	.L478:
+ 2794 0014 084B     		ldr	r3, .L484
+ 2795 0016 1B68     		ldr	r3, [r3]
+ 2796 0018 022B     		cmp	r3, #2
+ 2797 001a 07D0     		beq	.L481
+ 2798              	.L479:
+ 2799 001c 48B1     		cbz	r0, .L482
+ 2800 001e FFF7FEFF 		bl	vEventGroupDelete
+ 2801 0022 0020     		movs	r0, #0
+ 2802              	.L476:
+ 2803 0024 08BD     		pop	{r3, pc}
+ 2804              	.L480:
+ 2805 0026 6FF00500 		mvn	r0, #5
+ 2806 002a FBE7     		b	.L476
+ 2807              	.L481:
+ 2808 002c 6FF00500 		mvn	r0, #5
+ 2809 0030 F8E7     		b	.L476
+ 2810              	.L482:
+ 2811 0032 6FF00300 		mvn	r0, #3
+ 2812 0036 F5E7     		b	.L476
+ 2813              	.L485:
+ 2814              		.align	2
+ 2815              	.L484:
+ 2816 0038 00000000 		.word	KernelState
+ 2818              		.section	.text.osMutexNew,"ax",%progbits
+ 2819              		.align	1
+ 2820              		.global	osMutexNew
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 49
+
+
+ 2821              		.syntax unified
+ 2822              		.thumb
+ 2823              		.thumb_func
+ 2825              	osMutexNew:
+ 2826              		@ args = 0, pretend = 0, frame = 0
+ 2827              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2828 0000 70B5     		push	{r4, r5, r6, lr}
+ 2829              		.syntax unified
+ 2830              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2831 0002 EFF30585 		MRS r5, ipsr
+ 2832              	@ 0 "" 2
+ 2833              		.thumb
+ 2834              		.syntax unified
+ 2835 0006 002D     		cmp	r5, #0
+ 2836 0008 4FD1     		bne	.L499
+ 2837 000a 0446     		mov	r4, r0
+ 2838              		.syntax unified
+ 2839              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2840 000c EFF31083 		MRS r3, primask
+ 2841              	@ 0 "" 2
+ 2842              		.thumb
+ 2843              		.syntax unified
+ 2844 0010 13B9     		cbnz	r3, .L488
+ 2845              		.syntax unified
+ 2846              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2847 0012 EFF31183 		MRS r3, basepri
+ 2848              	@ 0 "" 2
+ 2849              		.thumb
+ 2850              		.syntax unified
+ 2851 0016 1BB1     		cbz	r3, .L489
+ 2852              	.L488:
+ 2853 0018 274B     		ldr	r3, .L509
+ 2854 001a 1B68     		ldr	r3, [r3]
+ 2855 001c 022B     		cmp	r3, #2
+ 2856 001e 47D0     		beq	.L500
+ 2857              	.L489:
+ 2858 0020 34B3     		cbz	r4, .L501
+ 2859 0022 6368     		ldr	r3, [r4, #4]
+ 2860 0024 13F00105 		ands	r5, r3, #1
+ 2861 0028 00D0     		beq	.L490
+ 2862 002a 0125     		movs	r5, #1
+ 2863              	.L490:
+ 2864 002c 13F0080F 		tst	r3, #8
+ 2865 0030 40D1     		bne	.L502
+ 2866 0032 7CB3     		cbz	r4, .L503
+ 2867 0034 A168     		ldr	r1, [r4, #8]
+ 2868 0036 11B1     		cbz	r1, .L492
+ 2869 0038 E368     		ldr	r3, [r4, #12]
+ 2870 003a 4F2B     		cmp	r3, #79
+ 2871 003c 1FD8     		bhi	.L493
+ 2872              	.L492:
+ 2873 003e C9B1     		cbz	r1, .L508
+ 2874 0040 4FF0FF33 		mov	r3, #-1
+ 2875              	.L491:
+ 2876 0044 7BBB     		cbnz	r3, .L506
+ 2877 0046 4DB3     		cbz	r5, .L497
+ 2878 0048 0420     		movs	r0, #4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 50
+
+
+ 2879 004a FFF7FEFF 		bl	xQueueCreateMutex
+ 2880 004e 0646     		mov	r6, r0
+ 2881              	.L495:
+ 2882 0050 2EB1     		cbz	r6, .L496
+ 2883 0052 04B1     		cbz	r4, .L498
+ 2884 0054 2468     		ldr	r4, [r4]
+ 2885              	.L498:
+ 2886 0056 2146     		mov	r1, r4
+ 2887 0058 3046     		mov	r0, r6
+ 2888 005a FFF7FEFF 		bl	vQueueAddToRegistry
+ 2889              	.L496:
+ 2890 005e 002E     		cmp	r6, #0
+ 2891 0060 0CBF     		ite	eq
+ 2892 0062 0025     		moveq	r5, #0
+ 2893 0064 05F00105 		andne	r5, r5, #1
+ 2894 0068 05B3     		cbz	r5, .L486
+ 2895 006a 46F00106 		orr	r6, r6, #1
+ 2896 006e 1DE0     		b	.L486
+ 2897              	.L501:
+ 2898 0070 2B46     		mov	r3, r5
+ 2899 0072 DBE7     		b	.L490
+ 2900              	.L508:
+ 2901 0074 E368     		ldr	r3, [r4, #12]
+ 2902 0076 7BB1     		cbz	r3, .L505
+ 2903 0078 4FF0FF33 		mov	r3, #-1
+ 2904 007c E2E7     		b	.L491
+ 2905              	.L493:
+ 2906 007e 25B1     		cbz	r5, .L494
+ 2907 0080 0420     		movs	r0, #4
+ 2908 0082 FFF7FEFF 		bl	xQueueCreateMutexStatic
+ 2909 0086 0646     		mov	r6, r0
+ 2910 0088 E2E7     		b	.L495
+ 2911              	.L494:
+ 2912 008a 0120     		movs	r0, #1
+ 2913 008c FFF7FEFF 		bl	xQueueCreateMutexStatic
+ 2914 0090 0646     		mov	r6, r0
+ 2915 0092 DDE7     		b	.L495
+ 2916              	.L503:
+ 2917 0094 0023     		movs	r3, #0
+ 2918 0096 D5E7     		b	.L491
+ 2919              	.L505:
+ 2920 0098 0023     		movs	r3, #0
+ 2921 009a D3E7     		b	.L491
+ 2922              	.L497:
+ 2923 009c 0120     		movs	r0, #1
+ 2924 009e FFF7FEFF 		bl	xQueueCreateMutex
+ 2925 00a2 0646     		mov	r6, r0
+ 2926 00a4 D4E7     		b	.L495
+ 2927              	.L506:
+ 2928 00a6 0026     		movs	r6, #0
+ 2929 00a8 D9E7     		b	.L496
+ 2930              	.L499:
+ 2931 00aa 0026     		movs	r6, #0
+ 2932              	.L486:
+ 2933 00ac 3046     		mov	r0, r6
+ 2934 00ae 70BD     		pop	{r4, r5, r6, pc}
+ 2935              	.L500:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 51
+
+
+ 2936 00b0 0026     		movs	r6, #0
+ 2937 00b2 FBE7     		b	.L486
+ 2938              	.L502:
+ 2939 00b4 0026     		movs	r6, #0
+ 2940 00b6 F9E7     		b	.L486
+ 2941              	.L510:
+ 2942              		.align	2
+ 2943              	.L509:
+ 2944 00b8 00000000 		.word	KernelState
+ 2946              		.section	.text.osMutexAcquire,"ax",%progbits
+ 2947              		.align	1
+ 2948              		.global	osMutexAcquire
+ 2949              		.syntax unified
+ 2950              		.thumb
+ 2951              		.thumb_func
+ 2953              	osMutexAcquire:
+ 2954              		@ args = 0, pretend = 0, frame = 0
+ 2955              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2956              		.syntax unified
+ 2957              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2958 0000 EFF30582 		MRS r2, ipsr
+ 2959              	@ 0 "" 2
+ 2960              		.thumb
+ 2961              		.syntax unified
+ 2962 0004 2ABB     		cbnz	r2, .L516
+ 2963 0006 10B5     		push	{r4, lr}
+ 2964 0008 0346     		mov	r3, r0
+ 2965 000a 0C46     		mov	r4, r1
+ 2966 000c 20F00100 		bic	r0, r0, #1
+ 2967 0010 03F00101 		and	r1, r3, #1
+ 2968              		.syntax unified
+ 2969              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2970 0014 EFF31082 		MRS r2, primask
+ 2971              	@ 0 "" 2
+ 2972              		.thumb
+ 2973              		.syntax unified
+ 2974 0018 12B9     		cbnz	r2, .L513
+ 2975              		.syntax unified
+ 2976              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 2977 001a EFF31182 		MRS r2, basepri
+ 2978              	@ 0 "" 2
+ 2979              		.thumb
+ 2980              		.syntax unified
+ 2981 001e 1AB1     		cbz	r2, .L514
+ 2982              	.L513:
+ 2983 0020 154A     		ldr	r2, .L527
+ 2984 0022 1268     		ldr	r2, [r2]
+ 2985 0024 022A     		cmp	r2, #2
+ 2986 0026 17D0     		beq	.L517
+ 2987              	.L514:
+ 2988 0028 012B     		cmp	r3, #1
+ 2989 002a 18D9     		bls	.L518
+ 2990 002c 41B1     		cbz	r1, .L515
+ 2991 002e 2146     		mov	r1, r4
+ 2992 0030 FFF7FEFF 		bl	xQueueTakeMutexRecursive
+ 2993 0034 0128     		cmp	r0, #1
+ 2994 0036 15D0     		beq	.L519
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 52
+
+
+ 2995 0038 B4B1     		cbz	r4, .L520
+ 2996 003a 6FF00100 		mvn	r0, #1
+ 2997 003e 12E0     		b	.L511
+ 2998              	.L515:
+ 2999 0040 2146     		mov	r1, r4
+ 3000 0042 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 3001 0046 0128     		cmp	r0, #1
+ 3002 0048 11D0     		beq	.L521
+ 3003 004a 94B1     		cbz	r4, .L522
+ 3004 004c 6FF00100 		mvn	r0, #1
+ 3005 0050 09E0     		b	.L511
+ 3006              	.L516:
+ 3007 0052 6FF00500 		mvn	r0, #5
+ 3008 0056 7047     		bx	lr
+ 3009              	.L517:
+ 3010 0058 6FF00500 		mvn	r0, #5
+ 3011 005c 03E0     		b	.L511
+ 3012              	.L518:
+ 3013 005e 6FF00300 		mvn	r0, #3
+ 3014 0062 00E0     		b	.L511
+ 3015              	.L519:
+ 3016 0064 0020     		movs	r0, #0
+ 3017              	.L511:
+ 3018 0066 10BD     		pop	{r4, pc}
+ 3019              	.L520:
+ 3020 0068 6FF00200 		mvn	r0, #2
+ 3021 006c FBE7     		b	.L511
+ 3022              	.L521:
+ 3023 006e 0020     		movs	r0, #0
+ 3024 0070 F9E7     		b	.L511
+ 3025              	.L522:
+ 3026 0072 6FF00200 		mvn	r0, #2
+ 3027 0076 F6E7     		b	.L511
+ 3028              	.L528:
+ 3029              		.align	2
+ 3030              	.L527:
+ 3031 0078 00000000 		.word	KernelState
+ 3033              		.section	.text.osMutexRelease,"ax",%progbits
+ 3034              		.align	1
+ 3035              		.global	osMutexRelease
+ 3036              		.syntax unified
+ 3037              		.thumb
+ 3038              		.thumb_func
+ 3040              	osMutexRelease:
+ 3041              		@ args = 0, pretend = 0, frame = 0
+ 3042              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3043              		.syntax unified
+ 3044              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3045 0000 EFF30582 		MRS r2, ipsr
+ 3046              	@ 0 "" 2
+ 3047              		.thumb
+ 3048              		.syntax unified
+ 3049 0004 0ABB     		cbnz	r2, .L534
+ 3050 0006 08B5     		push	{r3, lr}
+ 3051 0008 0346     		mov	r3, r0
+ 3052 000a 20F00100 		bic	r0, r0, #1
+ 3053 000e 03F00101 		and	r1, r3, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 53
+
+
+ 3054              		.syntax unified
+ 3055              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3056 0012 EFF31082 		MRS r2, primask
+ 3057              	@ 0 "" 2
+ 3058              		.thumb
+ 3059              		.syntax unified
+ 3060 0016 12B9     		cbnz	r2, .L531
+ 3061              		.syntax unified
+ 3062              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3063 0018 EFF31182 		MRS r2, basepri
+ 3064              	@ 0 "" 2
+ 3065              		.thumb
+ 3066              		.syntax unified
+ 3067 001c 1AB1     		cbz	r2, .L532
+ 3068              	.L531:
+ 3069 001e 124A     		ldr	r2, .L543
+ 3070 0020 1268     		ldr	r2, [r2]
+ 3071 0022 022A     		cmp	r2, #2
+ 3072 0024 14D0     		beq	.L535
+ 3073              	.L532:
+ 3074 0026 012B     		cmp	r3, #1
+ 3075 0028 15D9     		bls	.L536
+ 3076 002a 29B1     		cbz	r1, .L533
+ 3077 002c FFF7FEFF 		bl	xQueueGiveMutexRecursive
+ 3078 0030 0128     		cmp	r0, #1
+ 3079 0032 13D1     		bne	.L537
+ 3080 0034 0020     		movs	r0, #0
+ 3081              	.L529:
+ 3082 0036 08BD     		pop	{r3, pc}
+ 3083              	.L533:
+ 3084 0038 0023     		movs	r3, #0
+ 3085 003a 1A46     		mov	r2, r3
+ 3086 003c 1946     		mov	r1, r3
+ 3087 003e FFF7FEFF 		bl	xQueueGenericSend
+ 3088 0042 0128     		cmp	r0, #1
+ 3089 0044 0DD1     		bne	.L538
+ 3090 0046 0020     		movs	r0, #0
+ 3091 0048 F5E7     		b	.L529
+ 3092              	.L534:
+ 3093 004a 6FF00500 		mvn	r0, #5
+ 3094 004e 7047     		bx	lr
+ 3095              	.L535:
+ 3096 0050 6FF00500 		mvn	r0, #5
+ 3097 0054 EFE7     		b	.L529
+ 3098              	.L536:
+ 3099 0056 6FF00300 		mvn	r0, #3
+ 3100 005a ECE7     		b	.L529
+ 3101              	.L537:
+ 3102 005c 6FF00200 		mvn	r0, #2
+ 3103 0060 E9E7     		b	.L529
+ 3104              	.L538:
+ 3105 0062 6FF00200 		mvn	r0, #2
+ 3106 0066 E6E7     		b	.L529
+ 3107              	.L544:
+ 3108              		.align	2
+ 3109              	.L543:
+ 3110 0068 00000000 		.word	KernelState
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 54
+
+
+ 3112              		.section	.text.osMutexGetOwner,"ax",%progbits
+ 3113              		.align	1
+ 3114              		.global	osMutexGetOwner
+ 3115              		.syntax unified
+ 3116              		.thumb
+ 3117              		.thumb_func
+ 3119              	osMutexGetOwner:
+ 3120              		@ args = 0, pretend = 0, frame = 0
+ 3121              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3122              		.syntax unified
+ 3123              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3124 0000 EFF30582 		MRS r2, ipsr
+ 3125              	@ 0 "" 2
+ 3126              		.thumb
+ 3127              		.syntax unified
+ 3128 0004 92B9     		cbnz	r2, .L549
+ 3129 0006 08B5     		push	{r3, lr}
+ 3130 0008 0346     		mov	r3, r0
+ 3131 000a 20F00100 		bic	r0, r0, #1
+ 3132              		.syntax unified
+ 3133              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3134 000e EFF31082 		MRS r2, primask
+ 3135              	@ 0 "" 2
+ 3136              		.thumb
+ 3137              		.syntax unified
+ 3138 0012 12B9     		cbnz	r2, .L547
+ 3139              		.syntax unified
+ 3140              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3141 0014 EFF31182 		MRS r2, basepri
+ 3142              	@ 0 "" 2
+ 3143              		.thumb
+ 3144              		.syntax unified
+ 3145 0018 1AB1     		cbz	r2, .L548
+ 3146              	.L547:
+ 3147 001a 074A     		ldr	r2, .L556
+ 3148 001c 1268     		ldr	r2, [r2]
+ 3149 001e 022A     		cmp	r2, #2
+ 3150 0020 06D0     		beq	.L550
+ 3151              	.L548:
+ 3152 0022 012B     		cmp	r3, #1
+ 3153 0024 06D9     		bls	.L551
+ 3154 0026 FFF7FEFF 		bl	xQueueGetMutexHolder
+ 3155              	.L545:
+ 3156 002a 08BD     		pop	{r3, pc}
+ 3157              	.L549:
+ 3158 002c 0020     		movs	r0, #0
+ 3159 002e 7047     		bx	lr
+ 3160              	.L550:
+ 3161 0030 0020     		movs	r0, #0
+ 3162 0032 FAE7     		b	.L545
+ 3163              	.L551:
+ 3164 0034 0020     		movs	r0, #0
+ 3165 0036 F8E7     		b	.L545
+ 3166              	.L557:
+ 3167              		.align	2
+ 3168              	.L556:
+ 3169 0038 00000000 		.word	KernelState
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 55
+
+
+ 3171              		.section	.text.osMutexDelete,"ax",%progbits
+ 3172              		.align	1
+ 3173              		.global	osMutexDelete
+ 3174              		.syntax unified
+ 3175              		.thumb
+ 3176              		.thumb_func
+ 3178              	osMutexDelete:
+ 3179              		@ args = 0, pretend = 0, frame = 0
+ 3180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3181              		.syntax unified
+ 3182              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3183 0000 EFF30583 		MRS r3, ipsr
+ 3184              	@ 0 "" 2
+ 3185              		.thumb
+ 3186              		.syntax unified
+ 3187 0004 B3B9     		cbnz	r3, .L562
+ 3188 0006 10B5     		push	{r4, lr}
+ 3189 0008 20F00104 		bic	r4, r0, #1
+ 3190              		.syntax unified
+ 3191              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3192 000c EFF31083 		MRS r3, primask
+ 3193              	@ 0 "" 2
+ 3194              		.thumb
+ 3195              		.syntax unified
+ 3196 0010 13B9     		cbnz	r3, .L560
+ 3197              		.syntax unified
+ 3198              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3199 0012 EFF31183 		MRS r3, basepri
+ 3200              	@ 0 "" 2
+ 3201              		.thumb
+ 3202              		.syntax unified
+ 3203 0016 1BB1     		cbz	r3, .L561
+ 3204              	.L560:
+ 3205 0018 0B4B     		ldr	r3, .L569
+ 3206 001a 1B68     		ldr	r3, [r3]
+ 3207 001c 022B     		cmp	r3, #2
+ 3208 001e 0CD0     		beq	.L563
+ 3209              	.L561:
+ 3210 0020 0128     		cmp	r0, #1
+ 3211 0022 0DD9     		bls	.L564
+ 3212 0024 2046     		mov	r0, r4
+ 3213 0026 FFF7FEFF 		bl	vQueueUnregisterQueue
+ 3214 002a 2046     		mov	r0, r4
+ 3215 002c FFF7FEFF 		bl	vQueueDelete
+ 3216 0030 0020     		movs	r0, #0
+ 3217              	.L558:
+ 3218 0032 10BD     		pop	{r4, pc}
+ 3219              	.L562:
+ 3220 0034 6FF00500 		mvn	r0, #5
+ 3221 0038 7047     		bx	lr
+ 3222              	.L563:
+ 3223 003a 6FF00500 		mvn	r0, #5
+ 3224 003e F8E7     		b	.L558
+ 3225              	.L564:
+ 3226 0040 6FF00300 		mvn	r0, #3
+ 3227 0044 F5E7     		b	.L558
+ 3228              	.L570:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 56
+
+
+ 3229 0046 00BF     		.align	2
+ 3230              	.L569:
+ 3231 0048 00000000 		.word	KernelState
+ 3233              		.section	.text.osSemaphoreNew,"ax",%progbits
+ 3234              		.align	1
+ 3235              		.global	osSemaphoreNew
+ 3236              		.syntax unified
+ 3237              		.thumb
+ 3238              		.thumb_func
+ 3240              	osSemaphoreNew:
+ 3241              		@ args = 0, pretend = 0, frame = 0
+ 3242              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3243 0000 70B5     		push	{r4, r5, r6, lr}
+ 3244 0002 82B0     		sub	sp, sp, #8
+ 3245              		.syntax unified
+ 3246              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3247 0004 EFF30583 		MRS r3, ipsr
+ 3248              	@ 0 "" 2
+ 3249              		.thumb
+ 3250              		.syntax unified
+ 3251 0008 002B     		cmp	r3, #0
+ 3252 000a 57D1     		bne	.L583
+ 3253 000c 0E46     		mov	r6, r1
+ 3254 000e 1446     		mov	r4, r2
+ 3255              		.syntax unified
+ 3256              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3257 0010 EFF31083 		MRS r3, primask
+ 3258              	@ 0 "" 2
+ 3259              		.thumb
+ 3260              		.syntax unified
+ 3261 0014 13B9     		cbnz	r3, .L573
+ 3262              		.syntax unified
+ 3263              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3264 0016 EFF31183 		MRS r3, basepri
+ 3265              	@ 0 "" 2
+ 3266              		.thumb
+ 3267              		.syntax unified
+ 3268 001a 1BB1     		cbz	r3, .L574
+ 3269              	.L573:
+ 3270 001c 2C4B     		ldr	r3, .L593
+ 3271 001e 1B68     		ldr	r3, [r3]
+ 3272 0020 022B     		cmp	r3, #2
+ 3273 0022 4FD0     		beq	.L584
+ 3274              	.L574:
+ 3275 0024 B042     		cmp	r0, r6
+ 3276 0026 34BF     		ite	cc
+ 3277 0028 0023     		movcc	r3, #0
+ 3278 002a 0123     		movcs	r3, #1
+ 3279 002c 0028     		cmp	r0, #0
+ 3280 002e 4BD0     		beq	.L585
+ 3281 0030 002B     		cmp	r3, #0
+ 3282 0032 49D0     		beq	.L585
+ 3283 0034 4CB1     		cbz	r4, .L586
+ 3284 0036 A568     		ldr	r5, [r4, #8]
+ 3285 0038 15B1     		cbz	r5, .L576
+ 3286 003a E368     		ldr	r3, [r4, #12]
+ 3287 003c 4F2B     		cmp	r3, #79
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 57
+
+
+ 3288 003e 14D8     		bhi	.L587
+ 3289              	.L576:
+ 3290 0040 002D     		cmp	r5, #0
+ 3291 0042 43D1     		bne	.L588
+ 3292 0044 E368     		ldr	r3, [r4, #12]
+ 3293 0046 0BB1     		cbz	r3, .L575
+ 3294 0048 39E0     		b	.L571
+ 3295              	.L586:
+ 3296 004a 0023     		movs	r3, #0
+ 3297              	.L575:
+ 3298 004c 0128     		cmp	r0, #1
+ 3299 004e 0ED0     		beq	.L590
+ 3300 0050 73BB     		cbnz	r3, .L591
+ 3301 0052 3146     		mov	r1, r6
+ 3302 0054 FFF7FEFF 		bl	xQueueCreateCountingSemaphore
+ 3303 0058 0546     		mov	r5, r0
+ 3304              	.L580:
+ 3305 005a 85B3     		cbz	r5, .L571
+ 3306 005c 04B1     		cbz	r4, .L582
+ 3307 005e 2468     		ldr	r4, [r4]
+ 3308              	.L582:
+ 3309 0060 2146     		mov	r1, r4
+ 3310 0062 2846     		mov	r0, r5
+ 3311 0064 FFF7FEFF 		bl	vQueueAddToRegistry
+ 3312 0068 29E0     		b	.L571
+ 3313              	.L587:
+ 3314 006a 0123     		movs	r3, #1
+ 3315 006c EEE7     		b	.L575
+ 3316              	.L590:
+ 3317 006e B3B9     		cbnz	r3, .L592
+ 3318 0070 0322     		movs	r2, #3
+ 3319 0072 0021     		movs	r1, #0
+ 3320 0074 0120     		movs	r0, #1
+ 3321 0076 FFF7FEFF 		bl	xQueueGenericCreate
+ 3322 007a 0546     		mov	r5, r0
+ 3323              	.L579:
+ 3324 007c 002D     		cmp	r5, #0
+ 3325 007e 18BF     		it	ne
+ 3326 0080 002E     		cmpne	r6, #0
+ 3327 0082 EAD0     		beq	.L580
+ 3328 0084 0023     		movs	r3, #0
+ 3329 0086 1A46     		mov	r2, r3
+ 3330 0088 1946     		mov	r1, r3
+ 3331 008a 2846     		mov	r0, r5
+ 3332 008c FFF7FEFF 		bl	xQueueGenericSend
+ 3333 0090 0128     		cmp	r0, #1
+ 3334 0092 E2D0     		beq	.L580
+ 3335 0094 2846     		mov	r0, r5
+ 3336 0096 FFF7FEFF 		bl	vQueueDelete
+ 3337 009a 0025     		movs	r5, #0
+ 3338 009c 0FE0     		b	.L571
+ 3339              	.L592:
+ 3340 009e A368     		ldr	r3, [r4, #8]
+ 3341 00a0 0322     		movs	r2, #3
+ 3342 00a2 0092     		str	r2, [sp]
+ 3343 00a4 0022     		movs	r2, #0
+ 3344 00a6 1146     		mov	r1, r2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 58
+
+
+ 3345 00a8 FFF7FEFF 		bl	xQueueGenericCreateStatic
+ 3346 00ac 0546     		mov	r5, r0
+ 3347 00ae E5E7     		b	.L579
+ 3348              	.L591:
+ 3349 00b0 A268     		ldr	r2, [r4, #8]
+ 3350 00b2 3146     		mov	r1, r6
+ 3351 00b4 FFF7FEFF 		bl	xQueueCreateCountingSemaphoreStatic
+ 3352 00b8 0546     		mov	r5, r0
+ 3353 00ba CEE7     		b	.L580
+ 3354              	.L583:
+ 3355 00bc 0025     		movs	r5, #0
+ 3356              	.L571:
+ 3357 00be 2846     		mov	r0, r5
+ 3358 00c0 02B0     		add	sp, sp, #8
+ 3359              		@ sp needed
+ 3360 00c2 70BD     		pop	{r4, r5, r6, pc}
+ 3361              	.L584:
+ 3362 00c4 0025     		movs	r5, #0
+ 3363 00c6 FAE7     		b	.L571
+ 3364              	.L585:
+ 3365 00c8 0025     		movs	r5, #0
+ 3366 00ca F8E7     		b	.L571
+ 3367              	.L588:
+ 3368 00cc 0025     		movs	r5, #0
+ 3369 00ce F6E7     		b	.L571
+ 3370              	.L594:
+ 3371              		.align	2
+ 3372              	.L593:
+ 3373 00d0 00000000 		.word	KernelState
+ 3375              		.section	.text.osSemaphoreAcquire,"ax",%progbits
+ 3376              		.align	1
+ 3377              		.global	osSemaphoreAcquire
+ 3378              		.syntax unified
+ 3379              		.thumb
+ 3380              		.thumb_func
+ 3382              	osSemaphoreAcquire:
+ 3383              		@ args = 0, pretend = 0, frame = 8
+ 3384              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3385 0000 90B3     		cbz	r0, .L600
+ 3386 0002 10B5     		push	{r4, lr}
+ 3387 0004 82B0     		sub	sp, sp, #8
+ 3388 0006 0C46     		mov	r4, r1
+ 3389 0008 8446     		mov	ip, r0
+ 3390              		.syntax unified
+ 3391              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3392 000a EFF30583 		MRS r3, ipsr
+ 3393              	@ 0 "" 2
+ 3394              		.thumb
+ 3395              		.syntax unified
+ 3396 000e 9BB9     		cbnz	r3, .L597
+ 3397              		.syntax unified
+ 3398              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3399 0010 EFF31083 		MRS r3, primask
+ 3400              	@ 0 "" 2
+ 3401              		.thumb
+ 3402              		.syntax unified
+ 3403 0014 13B9     		cbnz	r3, .L598
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 59
+
+
+ 3404              		.syntax unified
+ 3405              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3406 0016 EFF31183 		MRS r3, basepri
+ 3407              	@ 0 "" 2
+ 3408              		.thumb
+ 3409              		.syntax unified
+ 3410 001a 1BB1     		cbz	r3, .L599
+ 3411              	.L598:
+ 3412 001c 194B     		ldr	r3, .L609
+ 3413 001e 1B68     		ldr	r3, [r3]
+ 3414 0020 022B     		cmp	r3, #2
+ 3415 0022 09D0     		beq	.L597
+ 3416              	.L599:
+ 3417 0024 2146     		mov	r1, r4
+ 3418 0026 6046     		mov	r0, ip
+ 3419 0028 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 3420 002c 0128     		cmp	r0, #1
+ 3421 002e 24D0     		beq	.L603
+ 3422 0030 2CB3     		cbz	r4, .L604
+ 3423 0032 6FF00100 		mvn	r0, #1
+ 3424 0036 15E0     		b	.L595
+ 3425              	.L597:
+ 3426 0038 CCB9     		cbnz	r4, .L601
+ 3427 003a 0021     		movs	r1, #0
+ 3428 003c 0191     		str	r1, [sp, #4]
+ 3429 003e 01AA     		add	r2, sp, #4
+ 3430 0040 6046     		mov	r0, ip
+ 3431 0042 FFF7FEFF 		bl	xQueueReceiveFromISR
+ 3432 0046 0128     		cmp	r0, #1
+ 3433 0048 14D1     		bne	.L602
+ 3434 004a 0198     		ldr	r0, [sp, #4]
+ 3435 004c 50B1     		cbz	r0, .L595
+ 3436 004e 4FF0E023 		mov	r3, #-536813568
+ 3437 0052 4FF08052 		mov	r2, #268435456
+ 3438 0056 C3F8042D 		str	r2, [r3, #3332]
+ 3439              		.syntax unified
+ 3440              	@ 1509 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3441 005a BFF34F8F 		dsb
+ 3442              	@ 0 "" 2
+ 3443              	@ 1509 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3444 005e BFF36F8F 		isb
+ 3445              	@ 0 "" 2
+ 3446              		.thumb
+ 3447              		.syntax unified
+ 3448 0062 0020     		movs	r0, #0
+ 3449              	.L595:
+ 3450 0064 02B0     		add	sp, sp, #8
+ 3451              		@ sp needed
+ 3452 0066 10BD     		pop	{r4, pc}
+ 3453              	.L600:
+ 3454 0068 6FF00300 		mvn	r0, #3
+ 3455 006c 7047     		bx	lr
+ 3456              	.L601:
+ 3457 006e 6FF00300 		mvn	r0, #3
+ 3458 0072 F7E7     		b	.L595
+ 3459              	.L602:
+ 3460 0074 6FF00200 		mvn	r0, #2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 60
+
+
+ 3461 0078 F4E7     		b	.L595
+ 3462              	.L603:
+ 3463 007a 0020     		movs	r0, #0
+ 3464 007c F2E7     		b	.L595
+ 3465              	.L604:
+ 3466 007e 6FF00200 		mvn	r0, #2
+ 3467 0082 EFE7     		b	.L595
+ 3468              	.L610:
+ 3469              		.align	2
+ 3470              	.L609:
+ 3471 0084 00000000 		.word	KernelState
+ 3473              		.section	.text.osSemaphoreRelease,"ax",%progbits
+ 3474              		.align	1
+ 3475              		.global	osSemaphoreRelease
+ 3476              		.syntax unified
+ 3477              		.thumb
+ 3478              		.thumb_func
+ 3480              	osSemaphoreRelease:
+ 3481              		@ args = 0, pretend = 0, frame = 8
+ 3482              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3483 0000 90B3     		cbz	r0, .L616
+ 3484 0002 00B5     		push	{lr}
+ 3485 0004 83B0     		sub	sp, sp, #12
+ 3486 0006 8446     		mov	ip, r0
+ 3487              		.syntax unified
+ 3488              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3489 0008 EFF30583 		MRS r3, ipsr
+ 3490              	@ 0 "" 2
+ 3491              		.thumb
+ 3492              		.syntax unified
+ 3493 000c ABB9     		cbnz	r3, .L613
+ 3494              		.syntax unified
+ 3495              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3496 000e EFF31083 		MRS r3, primask
+ 3497              	@ 0 "" 2
+ 3498              		.thumb
+ 3499              		.syntax unified
+ 3500 0012 13B9     		cbnz	r3, .L614
+ 3501              		.syntax unified
+ 3502              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3503 0014 EFF31183 		MRS r3, basepri
+ 3504              	@ 0 "" 2
+ 3505              		.thumb
+ 3506              		.syntax unified
+ 3507 0018 1BB1     		cbz	r3, .L615
+ 3508              	.L614:
+ 3509 001a 184B     		ldr	r3, .L623
+ 3510 001c 1B68     		ldr	r3, [r3]
+ 3511 001e 022B     		cmp	r3, #2
+ 3512 0020 0BD0     		beq	.L613
+ 3513              	.L615:
+ 3514 0022 0023     		movs	r3, #0
+ 3515 0024 1A46     		mov	r2, r3
+ 3516 0026 1946     		mov	r1, r3
+ 3517 0028 6046     		mov	r0, ip
+ 3518 002a FFF7FEFF 		bl	xQueueGenericSend
+ 3519 002e 0128     		cmp	r0, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 61
+
+
+ 3520 0030 20D1     		bne	.L618
+ 3521 0032 0020     		movs	r0, #0
+ 3522              	.L611:
+ 3523 0034 03B0     		add	sp, sp, #12
+ 3524              		@ sp needed
+ 3525 0036 5DF804FB 		ldr	pc, [sp], #4
+ 3526              	.L613:
+ 3527 003a 0023     		movs	r3, #0
+ 3528 003c 0193     		str	r3, [sp, #4]
+ 3529 003e 01A9     		add	r1, sp, #4
+ 3530 0040 6046     		mov	r0, ip
+ 3531 0042 FFF7FEFF 		bl	xQueueGiveFromISR
+ 3532 0046 0128     		cmp	r0, #1
+ 3533 0048 11D1     		bne	.L617
+ 3534 004a 0198     		ldr	r0, [sp, #4]
+ 3535 004c 0028     		cmp	r0, #0
+ 3536 004e F1D0     		beq	.L611
+ 3537 0050 4FF0E023 		mov	r3, #-536813568
+ 3538 0054 4FF08052 		mov	r2, #268435456
+ 3539 0058 C3F8042D 		str	r2, [r3, #3332]
+ 3540              		.syntax unified
+ 3541              	@ 1542 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3542 005c BFF34F8F 		dsb
+ 3543              	@ 0 "" 2
+ 3544              	@ 1542 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3545 0060 BFF36F8F 		isb
+ 3546              	@ 0 "" 2
+ 3547              		.thumb
+ 3548              		.syntax unified
+ 3549 0064 0020     		movs	r0, #0
+ 3550 0066 E5E7     		b	.L611
+ 3551              	.L616:
+ 3552 0068 6FF00300 		mvn	r0, #3
+ 3553 006c 7047     		bx	lr
+ 3554              	.L617:
+ 3555 006e 6FF00200 		mvn	r0, #2
+ 3556 0072 DFE7     		b	.L611
+ 3557              	.L618:
+ 3558 0074 6FF00200 		mvn	r0, #2
+ 3559 0078 DCE7     		b	.L611
+ 3560              	.L624:
+ 3561 007a 00BF     		.align	2
+ 3562              	.L623:
+ 3563 007c 00000000 		.word	KernelState
+ 3565              		.section	.text.osSemaphoreGetCount,"ax",%progbits
+ 3566              		.align	1
+ 3567              		.global	osSemaphoreGetCount
+ 3568              		.syntax unified
+ 3569              		.thumb
+ 3570              		.thumb_func
+ 3572              	osSemaphoreGetCount:
+ 3573              		@ args = 0, pretend = 0, frame = 0
+ 3574              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3575 0000 B0B1     		cbz	r0, .L630
+ 3576 0002 08B5     		push	{r3, lr}
+ 3577 0004 0346     		mov	r3, r0
+ 3578              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 62
+
+
+ 3579              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3580 0006 EFF30582 		MRS r2, ipsr
+ 3581              	@ 0 "" 2
+ 3582              		.thumb
+ 3583              		.syntax unified
+ 3584 000a 6AB9     		cbnz	r2, .L627
+ 3585              		.syntax unified
+ 3586              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3587 000c EFF31082 		MRS r2, primask
+ 3588              	@ 0 "" 2
+ 3589              		.thumb
+ 3590              		.syntax unified
+ 3591 0010 12B9     		cbnz	r2, .L628
+ 3592              		.syntax unified
+ 3593              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3594 0012 EFF31182 		MRS r2, basepri
+ 3595              	@ 0 "" 2
+ 3596              		.thumb
+ 3597              		.syntax unified
+ 3598 0016 1AB1     		cbz	r2, .L629
+ 3599              	.L628:
+ 3600 0018 064A     		ldr	r2, .L635
+ 3601 001a 1268     		ldr	r2, [r2]
+ 3602 001c 022A     		cmp	r2, #2
+ 3603 001e 03D0     		beq	.L627
+ 3604              	.L629:
+ 3605 0020 1846     		mov	r0, r3
+ 3606 0022 FFF7FEFF 		bl	uxQueueMessagesWaiting
+ 3607 0026 02E0     		b	.L625
+ 3608              	.L627:
+ 3609 0028 1846     		mov	r0, r3
+ 3610 002a FFF7FEFF 		bl	uxQueueMessagesWaitingFromISR
+ 3611              	.L625:
+ 3612 002e 08BD     		pop	{r3, pc}
+ 3613              	.L630:
+ 3614 0030 0020     		movs	r0, #0
+ 3615 0032 7047     		bx	lr
+ 3616              	.L636:
+ 3617              		.align	2
+ 3618              	.L635:
+ 3619 0034 00000000 		.word	KernelState
+ 3621              		.section	.text.osSemaphoreDelete,"ax",%progbits
+ 3622              		.align	1
+ 3623              		.global	osSemaphoreDelete
+ 3624              		.syntax unified
+ 3625              		.thumb
+ 3626              		.thumb_func
+ 3628              	osSemaphoreDelete:
+ 3629              		@ args = 0, pretend = 0, frame = 0
+ 3630              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3631              		.syntax unified
+ 3632              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3633 0000 EFF30583 		MRS r3, ipsr
+ 3634              	@ 0 "" 2
+ 3635              		.thumb
+ 3636              		.syntax unified
+ 3637 0004 A3B9     		cbnz	r3, .L641
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 63
+
+
+ 3638 0006 10B5     		push	{r4, lr}
+ 3639 0008 0446     		mov	r4, r0
+ 3640              		.syntax unified
+ 3641              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3642 000a EFF31083 		MRS r3, primask
+ 3643              	@ 0 "" 2
+ 3644              		.thumb
+ 3645              		.syntax unified
+ 3646 000e 13B9     		cbnz	r3, .L639
+ 3647              		.syntax unified
+ 3648              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3649 0010 EFF31183 		MRS r3, basepri
+ 3650              	@ 0 "" 2
+ 3651              		.thumb
+ 3652              		.syntax unified
+ 3653 0014 1BB1     		cbz	r3, .L640
+ 3654              	.L639:
+ 3655 0016 0B4B     		ldr	r3, .L648
+ 3656 0018 1B68     		ldr	r3, [r3]
+ 3657 001a 022B     		cmp	r3, #2
+ 3658 001c 0BD0     		beq	.L642
+ 3659              	.L640:
+ 3660 001e 6CB1     		cbz	r4, .L643
+ 3661 0020 2046     		mov	r0, r4
+ 3662 0022 FFF7FEFF 		bl	vQueueUnregisterQueue
+ 3663 0026 2046     		mov	r0, r4
+ 3664 0028 FFF7FEFF 		bl	vQueueDelete
+ 3665 002c 0020     		movs	r0, #0
+ 3666              	.L637:
+ 3667 002e 10BD     		pop	{r4, pc}
+ 3668              	.L641:
+ 3669 0030 6FF00500 		mvn	r0, #5
+ 3670 0034 7047     		bx	lr
+ 3671              	.L642:
+ 3672 0036 6FF00500 		mvn	r0, #5
+ 3673 003a F8E7     		b	.L637
+ 3674              	.L643:
+ 3675 003c 6FF00300 		mvn	r0, #3
+ 3676 0040 F5E7     		b	.L637
+ 3677              	.L649:
+ 3678 0042 00BF     		.align	2
+ 3679              	.L648:
+ 3680 0044 00000000 		.word	KernelState
+ 3682              		.section	.text.osMessageQueueNew,"ax",%progbits
+ 3683              		.align	1
+ 3684              		.global	osMessageQueueNew
+ 3685              		.syntax unified
+ 3686              		.thumb
+ 3687              		.thumb_func
+ 3689              	osMessageQueueNew:
+ 3690              		@ args = 0, pretend = 0, frame = 0
+ 3691              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3692 0000 70B5     		push	{r4, r5, r6, lr}
+ 3693 0002 82B0     		sub	sp, sp, #8
+ 3694              		.syntax unified
+ 3695              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3696 0004 EFF30583 		MRS r3, ipsr
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 64
+
+
+ 3697              	@ 0 "" 2
+ 3698              		.thumb
+ 3699              		.syntax unified
+ 3700 0008 002B     		cmp	r3, #0
+ 3701 000a 47D1     		bne	.L659
+ 3702 000c 1446     		mov	r4, r2
+ 3703              		.syntax unified
+ 3704              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3705 000e EFF31083 		MRS r3, primask
+ 3706              	@ 0 "" 2
+ 3707              		.thumb
+ 3708              		.syntax unified
+ 3709 0012 13B9     		cbnz	r3, .L652
+ 3710              		.syntax unified
+ 3711              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3712 0014 EFF31183 		MRS r3, basepri
+ 3713              	@ 0 "" 2
+ 3714              		.thumb
+ 3715              		.syntax unified
+ 3716 0018 1BB1     		cbz	r3, .L653
+ 3717              	.L652:
+ 3718 001a 254B     		ldr	r3, .L671
+ 3719 001c 1B68     		ldr	r3, [r3]
+ 3720 001e 022B     		cmp	r3, #2
+ 3721 0020 40D0     		beq	.L660
+ 3722              	.L653:
+ 3723 0022 0B1E     		subs	r3, r1, #0
+ 3724 0024 18BF     		it	ne
+ 3725 0026 0123     		movne	r3, #1
+ 3726 0028 0028     		cmp	r0, #0
+ 3727 002a 3DD0     		beq	.L661
+ 3728 002c 002B     		cmp	r3, #0
+ 3729 002e 3BD0     		beq	.L661
+ 3730 0030 6CB3     		cbz	r4, .L662
+ 3731 0032 A368     		ldr	r3, [r4, #8]
+ 3732 0034 4BB1     		cbz	r3, .L655
+ 3733 0036 E268     		ldr	r2, [r4, #12]
+ 3734 0038 4F2A     		cmp	r2, #79
+ 3735 003a 06D9     		bls	.L655
+ 3736 003c 2269     		ldr	r2, [r4, #16]
+ 3737 003e 22B1     		cbz	r2, .L655
+ 3738 0040 01FB00F5 		mul	r5, r1, r0
+ 3739 0044 6669     		ldr	r6, [r4, #20]
+ 3740 0046 AE42     		cmp	r6, r5
+ 3741 0048 1BD2     		bcs	.L656
+ 3742              	.L655:
+ 3743 004a 73B1     		cbz	r3, .L669
+ 3744 004c 4FF0FF33 		mov	r3, #-1
+ 3745              	.L654:
+ 3746 0050 63BB     		cbnz	r3, .L667
+ 3747 0052 0022     		movs	r2, #0
+ 3748 0054 FFF7FEFF 		bl	xQueueGenericCreate
+ 3749 0058 0546     		mov	r5, r0
+ 3750              	.L657:
+ 3751 005a 05B3     		cbz	r5, .L650
+ 3752 005c 04B1     		cbz	r4, .L658
+ 3753 005e 2468     		ldr	r4, [r4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 65
+
+
+ 3754              	.L658:
+ 3755 0060 2146     		mov	r1, r4
+ 3756 0062 2846     		mov	r0, r5
+ 3757 0064 FFF7FEFF 		bl	vQueueAddToRegistry
+ 3758 0068 19E0     		b	.L650
+ 3759              	.L669:
+ 3760 006a E368     		ldr	r3, [r4, #12]
+ 3761 006c 8BB9     		cbnz	r3, .L664
+ 3762 006e 2369     		ldr	r3, [r4, #16]
+ 3763 0070 13B1     		cbz	r3, .L670
+ 3764 0072 4FF0FF33 		mov	r3, #-1
+ 3765 0076 EBE7     		b	.L654
+ 3766              	.L670:
+ 3767 0078 6369     		ldr	r3, [r4, #20]
+ 3768 007a 6BB1     		cbz	r3, .L666
+ 3769 007c 4FF0FF33 		mov	r3, #-1
+ 3770 0080 E6E7     		b	.L654
+ 3771              	.L656:
+ 3772 0082 0025     		movs	r5, #0
+ 3773 0084 0095     		str	r5, [sp]
+ 3774 0086 FFF7FEFF 		bl	xQueueGenericCreateStatic
+ 3775 008a 0546     		mov	r5, r0
+ 3776 008c E5E7     		b	.L657
+ 3777              	.L662:
+ 3778 008e 0023     		movs	r3, #0
+ 3779 0090 DEE7     		b	.L654
+ 3780              	.L664:
+ 3781 0092 4FF0FF33 		mov	r3, #-1
+ 3782 0096 DBE7     		b	.L654
+ 3783              	.L666:
+ 3784 0098 0023     		movs	r3, #0
+ 3785 009a D9E7     		b	.L654
+ 3786              	.L659:
+ 3787 009c 0025     		movs	r5, #0
+ 3788              	.L650:
+ 3789 009e 2846     		mov	r0, r5
+ 3790 00a0 02B0     		add	sp, sp, #8
+ 3791              		@ sp needed
+ 3792 00a2 70BD     		pop	{r4, r5, r6, pc}
+ 3793              	.L660:
+ 3794 00a4 0025     		movs	r5, #0
+ 3795 00a6 FAE7     		b	.L650
+ 3796              	.L661:
+ 3797 00a8 0025     		movs	r5, #0
+ 3798 00aa F8E7     		b	.L650
+ 3799              	.L667:
+ 3800 00ac 0025     		movs	r5, #0
+ 3801 00ae F6E7     		b	.L650
+ 3802              	.L672:
+ 3803              		.align	2
+ 3804              	.L671:
+ 3805 00b0 00000000 		.word	KernelState
+ 3807              		.section	.text.osMessageQueuePut,"ax",%progbits
+ 3808              		.align	1
+ 3809              		.global	osMessageQueuePut
+ 3810              		.syntax unified
+ 3811              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 66
+
+
+ 3812              		.thumb_func
+ 3814              	osMessageQueuePut:
+ 3815              		@ args = 0, pretend = 0, frame = 8
+ 3816              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3817 0000 10B5     		push	{r4, lr}
+ 3818 0002 82B0     		sub	sp, sp, #8
+ 3819 0004 1C46     		mov	r4, r3
+ 3820              		.syntax unified
+ 3821              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3822 0006 EFF30583 		MRS r3, ipsr
+ 3823              	@ 0 "" 2
+ 3824              		.thumb
+ 3825              		.syntax unified
+ 3826 000a BBB9     		cbnz	r3, .L674
+ 3827              		.syntax unified
+ 3828              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3829 000c EFF31083 		MRS r3, primask
+ 3830              	@ 0 "" 2
+ 3831              		.thumb
+ 3832              		.syntax unified
+ 3833 0010 13B9     		cbnz	r3, .L675
+ 3834              		.syntax unified
+ 3835              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3836 0012 EFF31183 		MRS r3, basepri
+ 3837              	@ 0 "" 2
+ 3838              		.thumb
+ 3839              		.syntax unified
+ 3840 0016 1BB1     		cbz	r3, .L676
+ 3841              	.L675:
+ 3842 0018 1E4B     		ldr	r3, .L685
+ 3843 001a 1B68     		ldr	r3, [r3]
+ 3844 001c 022B     		cmp	r3, #2
+ 3845 001e 0DD0     		beq	.L674
+ 3846              	.L676:
+ 3847 0020 0029     		cmp	r1, #0
+ 3848 0022 18BF     		it	ne
+ 3849 0024 0028     		cmpne	r0, #0
+ 3850 0026 2DD0     		beq	.L681
+ 3851 0028 0023     		movs	r3, #0
+ 3852 002a 2246     		mov	r2, r4
+ 3853 002c FFF7FEFF 		bl	xQueueGenericSend
+ 3854 0030 0128     		cmp	r0, #1
+ 3855 0032 2AD0     		beq	.L682
+ 3856 0034 5CB3     		cbz	r4, .L683
+ 3857 0036 6FF00100 		mvn	r0, #1
+ 3858 003a 18E0     		b	.L673
+ 3859              	.L674:
+ 3860 003c 0029     		cmp	r1, #0
+ 3861 003e 18BF     		it	ne
+ 3862 0040 0028     		cmpne	r0, #0
+ 3863 0042 16D0     		beq	.L678
+ 3864 0044 C4B9     		cbnz	r4, .L679
+ 3865 0046 0023     		movs	r3, #0
+ 3866 0048 0193     		str	r3, [sp, #4]
+ 3867 004a 01AA     		add	r2, sp, #4
+ 3868 004c FFF7FEFF 		bl	xQueueGenericSendFromISR
+ 3869 0050 0128     		cmp	r0, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 67
+
+
+ 3870 0052 14D1     		bne	.L680
+ 3871 0054 0198     		ldr	r0, [sp, #4]
+ 3872 0056 50B1     		cbz	r0, .L673
+ 3873 0058 4FF0E023 		mov	r3, #-536813568
+ 3874 005c 4FF08052 		mov	r2, #268435456
+ 3875 0060 C3F8042D 		str	r2, [r3, #3332]
+ 3876              		.syntax unified
+ 3877              	@ 1670 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3878 0064 BFF34F8F 		dsb
+ 3879              	@ 0 "" 2
+ 3880              	@ 1670 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3881 0068 BFF36F8F 		isb
+ 3882              	@ 0 "" 2
+ 3883              		.thumb
+ 3884              		.syntax unified
+ 3885 006c 0020     		movs	r0, #0
+ 3886              	.L673:
+ 3887 006e 02B0     		add	sp, sp, #8
+ 3888              		@ sp needed
+ 3889 0070 10BD     		pop	{r4, pc}
+ 3890              	.L678:
+ 3891 0072 6FF00300 		mvn	r0, #3
+ 3892 0076 FAE7     		b	.L673
+ 3893              	.L679:
+ 3894 0078 6FF00300 		mvn	r0, #3
+ 3895 007c F7E7     		b	.L673
+ 3896              	.L680:
+ 3897 007e 6FF00200 		mvn	r0, #2
+ 3898 0082 F4E7     		b	.L673
+ 3899              	.L681:
+ 3900 0084 6FF00300 		mvn	r0, #3
+ 3901 0088 F1E7     		b	.L673
+ 3902              	.L682:
+ 3903 008a 0020     		movs	r0, #0
+ 3904 008c EFE7     		b	.L673
+ 3905              	.L683:
+ 3906 008e 6FF00200 		mvn	r0, #2
+ 3907 0092 ECE7     		b	.L673
+ 3908              	.L686:
+ 3909              		.align	2
+ 3910              	.L685:
+ 3911 0094 00000000 		.word	KernelState
+ 3913              		.section	.text.osMessageQueueGet,"ax",%progbits
+ 3914              		.align	1
+ 3915              		.global	osMessageQueueGet
+ 3916              		.syntax unified
+ 3917              		.thumb
+ 3918              		.thumb_func
+ 3920              	osMessageQueueGet:
+ 3921              		@ args = 0, pretend = 0, frame = 8
+ 3922              		@ frame_needed = 0, uses_anonymous_args = 0
+ 3923 0000 10B5     		push	{r4, lr}
+ 3924 0002 82B0     		sub	sp, sp, #8
+ 3925 0004 1C46     		mov	r4, r3
+ 3926              		.syntax unified
+ 3927              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3928 0006 EFF30583 		MRS r3, ipsr
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 68
+
+
+ 3929              	@ 0 "" 2
+ 3930              		.thumb
+ 3931              		.syntax unified
+ 3932 000a B3B9     		cbnz	r3, .L688
+ 3933              		.syntax unified
+ 3934              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3935 000c EFF31083 		MRS r3, primask
+ 3936              	@ 0 "" 2
+ 3937              		.thumb
+ 3938              		.syntax unified
+ 3939 0010 13B9     		cbnz	r3, .L689
+ 3940              		.syntax unified
+ 3941              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 3942 0012 EFF31183 		MRS r3, basepri
+ 3943              	@ 0 "" 2
+ 3944              		.thumb
+ 3945              		.syntax unified
+ 3946 0016 1BB1     		cbz	r3, .L690
+ 3947              	.L689:
+ 3948 0018 1E4B     		ldr	r3, .L699
+ 3949 001a 1B68     		ldr	r3, [r3]
+ 3950 001c 022B     		cmp	r3, #2
+ 3951 001e 0CD0     		beq	.L688
+ 3952              	.L690:
+ 3953 0020 0029     		cmp	r1, #0
+ 3954 0022 18BF     		it	ne
+ 3955 0024 0028     		cmpne	r0, #0
+ 3956 0026 2CD0     		beq	.L695
+ 3957 0028 2246     		mov	r2, r4
+ 3958 002a FFF7FEFF 		bl	xQueueReceive
+ 3959 002e 0128     		cmp	r0, #1
+ 3960 0030 2AD0     		beq	.L696
+ 3961 0032 5CB3     		cbz	r4, .L697
+ 3962 0034 6FF00100 		mvn	r0, #1
+ 3963 0038 18E0     		b	.L687
+ 3964              	.L688:
+ 3965 003a 0029     		cmp	r1, #0
+ 3966 003c 18BF     		it	ne
+ 3967 003e 0028     		cmpne	r0, #0
+ 3968 0040 16D0     		beq	.L692
+ 3969 0042 C4B9     		cbnz	r4, .L693
+ 3970 0044 0023     		movs	r3, #0
+ 3971 0046 0193     		str	r3, [sp, #4]
+ 3972 0048 01AA     		add	r2, sp, #4
+ 3973 004a FFF7FEFF 		bl	xQueueReceiveFromISR
+ 3974 004e 0128     		cmp	r0, #1
+ 3975 0050 14D1     		bne	.L694
+ 3976 0052 0198     		ldr	r0, [sp, #4]
+ 3977 0054 50B1     		cbz	r0, .L687
+ 3978 0056 4FF0E023 		mov	r3, #-536813568
+ 3979 005a 4FF08052 		mov	r2, #268435456
+ 3980 005e C3F8042D 		str	r2, [r3, #3332]
+ 3981              		.syntax unified
+ 3982              	@ 1711 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ 3983 0062 BFF34F8F 		dsb
+ 3984              	@ 0 "" 2
+ 3985              	@ 1711 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 69
+
+
+ 3986 0066 BFF36F8F 		isb
+ 3987              	@ 0 "" 2
+ 3988              		.thumb
+ 3989              		.syntax unified
+ 3990 006a 0020     		movs	r0, #0
+ 3991              	.L687:
+ 3992 006c 02B0     		add	sp, sp, #8
+ 3993              		@ sp needed
+ 3994 006e 10BD     		pop	{r4, pc}
+ 3995              	.L692:
+ 3996 0070 6FF00300 		mvn	r0, #3
+ 3997 0074 FAE7     		b	.L687
+ 3998              	.L693:
+ 3999 0076 6FF00300 		mvn	r0, #3
+ 4000 007a F7E7     		b	.L687
+ 4001              	.L694:
+ 4002 007c 6FF00200 		mvn	r0, #2
+ 4003 0080 F4E7     		b	.L687
+ 4004              	.L695:
+ 4005 0082 6FF00300 		mvn	r0, #3
+ 4006 0086 F1E7     		b	.L687
+ 4007              	.L696:
+ 4008 0088 0020     		movs	r0, #0
+ 4009 008a EFE7     		b	.L687
+ 4010              	.L697:
+ 4011 008c 6FF00200 		mvn	r0, #2
+ 4012 0090 ECE7     		b	.L687
+ 4013              	.L700:
+ 4014 0092 00BF     		.align	2
+ 4015              	.L699:
+ 4016 0094 00000000 		.word	KernelState
+ 4018              		.section	.text.osMessageQueueGetCapacity,"ax",%progbits
+ 4019              		.align	1
+ 4020              		.global	osMessageQueueGetCapacity
+ 4021              		.syntax unified
+ 4022              		.thumb
+ 4023              		.thumb_func
+ 4025              	osMessageQueueGetCapacity:
+ 4026              		@ args = 0, pretend = 0, frame = 0
+ 4027              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4028              		@ link register save eliminated.
+ 4029 0000 08B1     		cbz	r0, .L703
+ 4030 0002 C06B     		ldr	r0, [r0, #60]
+ 4031 0004 7047     		bx	lr
+ 4032              	.L703:
+ 4033 0006 0020     		movs	r0, #0
+ 4034 0008 7047     		bx	lr
+ 4036              		.section	.text.osMessageQueueGetMsgSize,"ax",%progbits
+ 4037              		.align	1
+ 4038              		.global	osMessageQueueGetMsgSize
+ 4039              		.syntax unified
+ 4040              		.thumb
+ 4041              		.thumb_func
+ 4043              	osMessageQueueGetMsgSize:
+ 4044              		@ args = 0, pretend = 0, frame = 0
+ 4045              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4046              		@ link register save eliminated.
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 70
+
+
+ 4047 0000 08B1     		cbz	r0, .L706
+ 4048 0002 006C     		ldr	r0, [r0, #64]
+ 4049 0004 7047     		bx	lr
+ 4050              	.L706:
+ 4051 0006 0020     		movs	r0, #0
+ 4052 0008 7047     		bx	lr
+ 4054              		.section	.text.osMessageQueueGetCount,"ax",%progbits
+ 4055              		.align	1
+ 4056              		.global	osMessageQueueGetCount
+ 4057              		.syntax unified
+ 4058              		.thumb
+ 4059              		.thumb_func
+ 4061              	osMessageQueueGetCount:
+ 4062              		@ args = 0, pretend = 0, frame = 0
+ 4063              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4064 0000 B0B1     		cbz	r0, .L712
+ 4065 0002 08B5     		push	{r3, lr}
+ 4066 0004 0346     		mov	r3, r0
+ 4067              		.syntax unified
+ 4068              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4069 0006 EFF30582 		MRS r2, ipsr
+ 4070              	@ 0 "" 2
+ 4071              		.thumb
+ 4072              		.syntax unified
+ 4073 000a 6AB9     		cbnz	r2, .L709
+ 4074              		.syntax unified
+ 4075              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4076 000c EFF31082 		MRS r2, primask
+ 4077              	@ 0 "" 2
+ 4078              		.thumb
+ 4079              		.syntax unified
+ 4080 0010 12B9     		cbnz	r2, .L710
+ 4081              		.syntax unified
+ 4082              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4083 0012 EFF31182 		MRS r2, basepri
+ 4084              	@ 0 "" 2
+ 4085              		.thumb
+ 4086              		.syntax unified
+ 4087 0016 1AB1     		cbz	r2, .L711
+ 4088              	.L710:
+ 4089 0018 064A     		ldr	r2, .L717
+ 4090 001a 1268     		ldr	r2, [r2]
+ 4091 001c 022A     		cmp	r2, #2
+ 4092 001e 03D0     		beq	.L709
+ 4093              	.L711:
+ 4094 0020 1846     		mov	r0, r3
+ 4095 0022 FFF7FEFF 		bl	uxQueueMessagesWaiting
+ 4096 0026 02E0     		b	.L707
+ 4097              	.L709:
+ 4098 0028 1846     		mov	r0, r3
+ 4099 002a FFF7FEFF 		bl	uxQueueMessagesWaitingFromISR
+ 4100              	.L707:
+ 4101 002e 08BD     		pop	{r3, pc}
+ 4102              	.L712:
+ 4103 0030 0020     		movs	r0, #0
+ 4104 0032 7047     		bx	lr
+ 4105              	.L718:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 71
+
+
+ 4106              		.align	2
+ 4107              	.L717:
+ 4108 0034 00000000 		.word	KernelState
+ 4110              		.section	.text.osMessageQueueGetSpace,"ax",%progbits
+ 4111              		.align	1
+ 4112              		.global	osMessageQueueGetSpace
+ 4113              		.syntax unified
+ 4114              		.thumb
+ 4115              		.thumb_func
+ 4117              	osMessageQueueGetSpace:
+ 4118              		@ args = 0, pretend = 0, frame = 0
+ 4119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4120 0000 20B3     		cbz	r0, .L724
+ 4121 0002 08B5     		push	{r3, lr}
+ 4122 0004 0246     		mov	r2, r0
+ 4123              		.syntax unified
+ 4124              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4125 0006 EFF30583 		MRS r3, ipsr
+ 4126              	@ 0 "" 2
+ 4127              		.thumb
+ 4128              		.syntax unified
+ 4129 000a 6BB9     		cbnz	r3, .L721
+ 4130              		.syntax unified
+ 4131              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4132 000c EFF31083 		MRS r3, primask
+ 4133              	@ 0 "" 2
+ 4134              		.thumb
+ 4135              		.syntax unified
+ 4136 0010 13B9     		cbnz	r3, .L722
+ 4137              		.syntax unified
+ 4138              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4139 0012 EFF31183 		MRS r3, basepri
+ 4140              	@ 0 "" 2
+ 4141              		.thumb
+ 4142              		.syntax unified
+ 4143 0016 1BB1     		cbz	r3, .L723
+ 4144              	.L722:
+ 4145 0018 0D4B     		ldr	r3, .L729
+ 4146 001a 1B68     		ldr	r3, [r3]
+ 4147 001c 022B     		cmp	r3, #2
+ 4148 001e 03D0     		beq	.L721
+ 4149              	.L723:
+ 4150 0020 1046     		mov	r0, r2
+ 4151 0022 FFF7FEFF 		bl	uxQueueSpacesAvailable
+ 4152 0026 10E0     		b	.L719
+ 4153              	.L721:
+ 4154              		.syntax unified
+ 4155              	@ 213 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 4156 0028 EFF31181 			mrs r1, basepri											
+ 4157 002c 4FF05003 		mov r3, #80												
+ 4158 0030 72B6     		cpsid i													
+ 4159 0032 83F31188 		msr basepri, r3											
+ 4160 0036 BFF36F8F 		isb														
+ 4161 003a BFF34F8F 		dsb														
+ 4162 003e 62B6     		cpsie i													
+ 4163              	
+ 4164              	@ 0 "" 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 72
+
+
+ 4165              		.thumb
+ 4166              		.syntax unified
+ 4167 0040 D36B     		ldr	r3, [r2, #60]
+ 4168 0042 906B     		ldr	r0, [r2, #56]
+ 4169 0044 181A     		subs	r0, r3, r0
+ 4170              		.syntax unified
+ 4171              	@ 233 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 4172 0046 81F31188 			msr basepri, r1	
+ 4173              	@ 0 "" 2
+ 4174              		.thumb
+ 4175              		.syntax unified
+ 4176              	.L719:
+ 4177 004a 08BD     		pop	{r3, pc}
+ 4178              	.L724:
+ 4179 004c 0020     		movs	r0, #0
+ 4180 004e 7047     		bx	lr
+ 4181              	.L730:
+ 4182              		.align	2
+ 4183              	.L729:
+ 4184 0050 00000000 		.word	KernelState
+ 4186              		.section	.text.osMessageQueueReset,"ax",%progbits
+ 4187              		.align	1
+ 4188              		.global	osMessageQueueReset
+ 4189              		.syntax unified
+ 4190              		.thumb
+ 4191              		.thumb_func
+ 4193              	osMessageQueueReset:
+ 4194              		@ args = 0, pretend = 0, frame = 0
+ 4195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4196 0000 08B5     		push	{r3, lr}
+ 4197              		.syntax unified
+ 4198              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4199 0002 EFF30583 		MRS r3, ipsr
+ 4200              	@ 0 "" 2
+ 4201              		.thumb
+ 4202              		.syntax unified
+ 4203 0006 7BB9     		cbnz	r3, .L735
+ 4204              		.syntax unified
+ 4205              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4206 0008 EFF31083 		MRS r3, primask
+ 4207              	@ 0 "" 2
+ 4208              		.thumb
+ 4209              		.syntax unified
+ 4210 000c 13B9     		cbnz	r3, .L733
+ 4211              		.syntax unified
+ 4212              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4213 000e EFF31183 		MRS r3, basepri
+ 4214              	@ 0 "" 2
+ 4215              		.thumb
+ 4216              		.syntax unified
+ 4217 0012 1BB1     		cbz	r3, .L734
+ 4218              	.L733:
+ 4219 0014 094B     		ldr	r3, .L739
+ 4220 0016 1B68     		ldr	r3, [r3]
+ 4221 0018 022B     		cmp	r3, #2
+ 4222 001a 08D0     		beq	.L736
+ 4223              	.L734:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 73
+
+
+ 4224 001c 50B1     		cbz	r0, .L737
+ 4225 001e 0021     		movs	r1, #0
+ 4226 0020 FFF7FEFF 		bl	xQueueGenericReset
+ 4227 0024 0020     		movs	r0, #0
+ 4228              	.L731:
+ 4229 0026 08BD     		pop	{r3, pc}
+ 4230              	.L735:
+ 4231 0028 6FF00500 		mvn	r0, #5
+ 4232 002c FBE7     		b	.L731
+ 4233              	.L736:
+ 4234 002e 6FF00500 		mvn	r0, #5
+ 4235 0032 F8E7     		b	.L731
+ 4236              	.L737:
+ 4237 0034 6FF00300 		mvn	r0, #3
+ 4238 0038 F5E7     		b	.L731
+ 4239              	.L740:
+ 4240 003a 00BF     		.align	2
+ 4241              	.L739:
+ 4242 003c 00000000 		.word	KernelState
+ 4244              		.section	.text.osMessageQueueDelete,"ax",%progbits
+ 4245              		.align	1
+ 4246              		.global	osMessageQueueDelete
+ 4247              		.syntax unified
+ 4248              		.thumb
+ 4249              		.thumb_func
+ 4251              	osMessageQueueDelete:
+ 4252              		@ args = 0, pretend = 0, frame = 0
+ 4253              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4254              		.syntax unified
+ 4255              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4256 0000 EFF30583 		MRS r3, ipsr
+ 4257              	@ 0 "" 2
+ 4258              		.thumb
+ 4259              		.syntax unified
+ 4260 0004 A3B9     		cbnz	r3, .L745
+ 4261 0006 10B5     		push	{r4, lr}
+ 4262 0008 0446     		mov	r4, r0
+ 4263              		.syntax unified
+ 4264              	@ 386 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4265 000a EFF31083 		MRS r3, primask
+ 4266              	@ 0 "" 2
+ 4267              		.thumb
+ 4268              		.syntax unified
+ 4269 000e 13B9     		cbnz	r3, .L743
+ 4270              		.syntax unified
+ 4271              	@ 465 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 4272 0010 EFF31183 		MRS r3, basepri
+ 4273              	@ 0 "" 2
+ 4274              		.thumb
+ 4275              		.syntax unified
+ 4276 0014 1BB1     		cbz	r3, .L744
+ 4277              	.L743:
+ 4278 0016 0B4B     		ldr	r3, .L752
+ 4279 0018 1B68     		ldr	r3, [r3]
+ 4280 001a 022B     		cmp	r3, #2
+ 4281 001c 0BD0     		beq	.L746
+ 4282              	.L744:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 74
+
+
+ 4283 001e 6CB1     		cbz	r4, .L747
+ 4284 0020 2046     		mov	r0, r4
+ 4285 0022 FFF7FEFF 		bl	vQueueUnregisterQueue
+ 4286 0026 2046     		mov	r0, r4
+ 4287 0028 FFF7FEFF 		bl	vQueueDelete
+ 4288 002c 0020     		movs	r0, #0
+ 4289              	.L741:
+ 4290 002e 10BD     		pop	{r4, pc}
+ 4291              	.L745:
+ 4292 0030 6FF00500 		mvn	r0, #5
+ 4293 0034 7047     		bx	lr
+ 4294              	.L746:
+ 4295 0036 6FF00500 		mvn	r0, #5
+ 4296 003a F8E7     		b	.L741
+ 4297              	.L747:
+ 4298 003c 6FF00300 		mvn	r0, #3
+ 4299 0040 F5E7     		b	.L741
+ 4300              	.L753:
+ 4301 0042 00BF     		.align	2
+ 4302              	.L752:
+ 4303 0044 00000000 		.word	KernelState
+ 4305              		.section	.text.vApplicationIdleHook,"ax",%progbits
+ 4306              		.align	1
+ 4307              		.weak	vApplicationIdleHook
+ 4308              		.syntax unified
+ 4309              		.thumb
+ 4310              		.thumb_func
+ 4312              	vApplicationIdleHook:
+ 4313              		@ args = 0, pretend = 0, frame = 0
+ 4314              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4315              		@ link register save eliminated.
+ 4316 0000 7047     		bx	lr
+ 4318              		.section	.text.vApplicationMallocFailedHook,"ax",%progbits
+ 4319              		.align	1
+ 4320              		.weak	vApplicationMallocFailedHook
+ 4321              		.syntax unified
+ 4322              		.thumb
+ 4323              		.thumb_func
+ 4325              	vApplicationMallocFailedHook:
+ 4326              		@ args = 0, pretend = 0, frame = 0
+ 4327              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4328              		@ link register save eliminated.
+ 4329 0000 7047     		bx	lr
+ 4331              		.section	.text.vApplicationStackOverflowHook,"ax",%progbits
+ 4332              		.align	1
+ 4333              		.weak	vApplicationStackOverflowHook
+ 4334              		.syntax unified
+ 4335              		.thumb
+ 4336              		.thumb_func
+ 4338              	vApplicationStackOverflowHook:
+ 4339              		@ args = 0, pretend = 0, frame = 0
+ 4340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4341              		@ link register save eliminated.
+ 4342 0000 7047     		bx	lr
+ 4344              		.section	.text.vApplicationGetIdleTaskMemory,"ax",%progbits
+ 4345              		.align	1
+ 4346              		.global	vApplicationGetIdleTaskMemory
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 75
+
+
+ 4347              		.syntax unified
+ 4348              		.thumb
+ 4349              		.thumb_func
+ 4351              	vApplicationGetIdleTaskMemory:
+ 4352              		@ args = 0, pretend = 0, frame = 0
+ 4353              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4354              		@ link register save eliminated.
+ 4355 0000 034B     		ldr	r3, .L758
+ 4356 0002 0360     		str	r3, [r0]
+ 4357 0004 034B     		ldr	r3, .L758+4
+ 4358 0006 0B60     		str	r3, [r1]
+ 4359 0008 4FF48073 		mov	r3, #256
+ 4360 000c 1360     		str	r3, [r2]
+ 4361 000e 7047     		bx	lr
+ 4362              	.L759:
+ 4363              		.align	2
+ 4364              	.L758:
+ 4365 0010 00000000 		.word	Idle_TCB
+ 4366 0014 00000000 		.word	Idle_Stack
+ 4368              		.section	.text.vApplicationGetTimerTaskMemory,"ax",%progbits
+ 4369              		.align	1
+ 4370              		.global	vApplicationGetTimerTaskMemory
+ 4371              		.syntax unified
+ 4372              		.thumb
+ 4373              		.thumb_func
+ 4375              	vApplicationGetTimerTaskMemory:
+ 4376              		@ args = 0, pretend = 0, frame = 0
+ 4377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 4378              		@ link register save eliminated.
+ 4379 0000 034B     		ldr	r3, .L761
+ 4380 0002 0360     		str	r3, [r0]
+ 4381 0004 034B     		ldr	r3, .L761+4
+ 4382 0006 0B60     		str	r3, [r1]
+ 4383 0008 4FF40073 		mov	r3, #512
+ 4384 000c 1360     		str	r3, [r2]
+ 4385 000e 7047     		bx	lr
+ 4386              	.L762:
+ 4387              		.align	2
+ 4388              	.L761:
+ 4389 0010 00000000 		.word	Timer_TCB
+ 4390 0014 00000000 		.word	Timer_Stack
+ 4392              		.section	.bss.Timer_Stack,"aw",%nobits
+ 4393              		.align	2
+ 4396              	Timer_Stack:
+ 4397 0000 00000000 		.space	2048
+ 4397      00000000 
+ 4397      00000000 
+ 4397      00000000 
+ 4397      00000000 
+ 4398              		.section	.bss.Timer_TCB,"aw",%nobits
+ 4399              		.align	2
+ 4402              	Timer_TCB:
+ 4403 0000 00000000 		.space	96
+ 4403      00000000 
+ 4403      00000000 
+ 4403      00000000 
+ 4403      00000000 
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 76
+
+
+ 4404              		.section	.bss.Idle_Stack,"aw",%nobits
+ 4405              		.align	2
+ 4408              	Idle_Stack:
+ 4409 0000 00000000 		.space	1024
+ 4409      00000000 
+ 4409      00000000 
+ 4409      00000000 
+ 4409      00000000 
+ 4410              		.section	.bss.Idle_TCB,"aw",%nobits
+ 4411              		.align	2
+ 4414              	Idle_TCB:
+ 4415 0000 00000000 		.space	96
+ 4415      00000000 
+ 4415      00000000 
+ 4415      00000000 
+ 4415      00000000 
+ 4416              		.section	.bss.KernelState,"aw",%nobits
+ 4417              		.align	2
+ 4420              	KernelState:
+ 4421 0000 00000000 		.space	4
+ 4422              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 77
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 cmsis_os2.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:17     .text.TimerCallback:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:22     .text.TimerCallback:00000000 TimerCallback
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:35     .text.osKernelInitialize:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:41     .text.osKernelInitialize:00000000 osKernelInitialize
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:90     .text.osKernelInitialize:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4420   .bss.KernelState:00000000 KernelState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:93     .rodata.osKernelGetInfo.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:97     .text.osKernelGetInfo:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:103    .text.osKernelGetInfo:00000000 osKernelGetInfo
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:131    .text.osKernelGetInfo:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:135    .text.osKernelGetState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:141    .text.osKernelGetState:00000000 osKernelGetState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:164    .text.osKernelGetState:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:167    .text.osKernelStart:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:173    .text.osKernelStart:00000000 osKernelStart
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:227    .text.osKernelStart:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:230    .text.osKernelLock:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:236    .text.osKernelLock:00000000 osKernelLock
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:290    .text.osKernelLock:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:293    .text.osKernelUnlock:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:299    .text.osKernelUnlock:00000000 osKernelUnlock
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:360    .text.osKernelUnlock:00000054 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:363    .text.osKernelRestoreLock:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:369    .text.osKernelRestoreLock:00000000 osKernelRestoreLock
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:439    .text.osKernelRestoreLock:00000068 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:442    .text.osKernelGetTickCount:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:448    .text.osKernelGetTickCount:00000000 osKernelGetTickCount
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:488    .text.osKernelGetTickCount:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:491    .text.osKernelGetTickFreq:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:497    .text.osKernelGetTickFreq:00000000 osKernelGetTickFreq
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:505    .text.osKernelGetSysTimerCount:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:511    .text.osKernelGetSysTimerCount:00000000 osKernelGetSysTimerCount
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:562    .text.osKernelGetSysTimerCount:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:566    .text.osKernelGetSysTimerFreq:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:572    .text.osKernelGetSysTimerFreq:00000000 osKernelGetSysTimerFreq
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:582    .text.osKernelGetSysTimerFreq:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:585    .text.osThreadNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:591    .text.osThreadNew:00000000 osThreadNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:717    .text.osThreadNew:000000c8 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:720    .text.osThreadGetName:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:726    .text.osThreadGetName:00000000 osThreadGetName
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:770    .text.osThreadGetName:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:773    .text.osThreadGetId:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:779    .text.osThreadGetId:00000000 osThreadGetId
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:787    .text.osThreadGetState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:793    .text.osThreadGetState:00000000 osThreadGetState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:830    .text.osThreadGetState:0000002a $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:864    .text.osThreadGetState:00000058 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:867    .text.osThreadGetStackSpace:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:873    .text.osThreadGetStackSpace:00000000 osThreadGetStackSpace
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:916    .text.osThreadGetStackSpace:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:919    .text.osThreadSetPriority:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:925    .text.osThreadSetPriority:00000000 osThreadSetPriority
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:981    .text.osThreadSetPriority:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:984    .text.osThreadGetPriority:00000000 $t
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 78
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:990    .text.osThreadGetPriority:00000000 osThreadGetPriority
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1037   .text.osThreadGetPriority:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1040   .text.osThreadYield:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1046   .text.osThreadYield:00000000 osThreadYield
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1100   .text.osThreadYield:00000040 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1103   .text.osThreadSuspend:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1109   .text.osThreadSuspend:00000000 osThreadSuspend
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1157   .text.osThreadSuspend:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1160   .text.osThreadResume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1166   .text.osThreadResume:00000000 osThreadResume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1214   .text.osThreadResume:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1217   .text.osThreadExit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1223   .text.osThreadExit:00000000 osThreadExit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1234   .text.osThreadTerminate:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1240   .text.osThreadTerminate:00000000 osThreadTerminate
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1297   .text.osThreadTerminate:0000004c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1300   .text.osThreadGetCount:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1306   .text.osThreadGetCount:00000000 osThreadGetCount
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1346   .text.osThreadGetCount:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1349   .text.osThreadEnumerate:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1355   .text.osThreadEnumerate:00000000 osThreadEnumerate
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1432   .text.osThreadEnumerate:00000080 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1435   .text.osThreadFlagsSet:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1441   .text.osThreadFlagsSet:00000000 osThreadFlagsSet
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1533   .text.osThreadFlagsSet:00000094 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1536   .text.osThreadFlagsClear:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1542   .text.osThreadFlagsClear:00000000 osThreadFlagsClear
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1615   .text.osThreadFlagsClear:00000070 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1618   .text.osThreadFlagsGet:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1624   .text.osThreadFlagsGet:00000000 osThreadFlagsGet
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1677   .text.osThreadFlagsGet:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1680   .text.osThreadFlagsWait:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1686   .text.osThreadFlagsWait:00000000 osThreadFlagsWait
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1800   .text.osThreadFlagsWait:000000c8 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1803   .text.osDelay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1809   .text.osDelay:00000000 osDelay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1857   .text.osDelay:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1860   .text.osDelayUntil:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1866   .text.osDelayUntil:00000000 osDelayUntil
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1923   .text.osDelayUntil:0000004c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1926   .text.osTimerNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:1932   .text.osTimerNew:00000000 osTimerNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2040   .text.osTimerNew:000000a8 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2044   .text.osTimerGetName:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2050   .text.osTimerGetName:00000000 osTimerGetName
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2094   .text.osTimerGetName:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2097   .text.osTimerStart:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2103   .text.osTimerStart:00000000 osTimerStart
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2163   .text.osTimerStart:00000050 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2166   .text.osTimerStop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2172   .text.osTimerStop:00000000 osTimerStop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2240   .text.osTimerStop:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2243   .text.osTimerIsRunning:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2249   .text.osTimerIsRunning:00000000 osTimerIsRunning
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2292   .text.osTimerIsRunning:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2295   .text.osTimerDelete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2301   .text.osTimerDelete:00000000 osTimerDelete
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 79
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2368   .text.osTimerDelete:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2371   .text.osEventFlagsNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2377   .text.osEventFlagsNew:00000000 osEventFlagsNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2449   .text.osEventFlagsNew:0000005c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2452   .text.osEventFlagsSet:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2458   .text.osEventFlagsSet:00000000 osEventFlagsSet
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2536   .text.osEventFlagsSet:00000070 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2539   .text.osEventFlagsClear:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2545   .text.osEventFlagsClear:00000000 osEventFlagsClear
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2605   .text.osEventFlagsClear:00000058 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2608   .text.osEventFlagsGet:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2614   .text.osEventFlagsGet:00000000 osEventFlagsGet
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2662   .text.osEventFlagsGet:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2665   .text.osEventFlagsWait:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2671   .text.osEventFlagsWait:00000000 osEventFlagsWait
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2759   .text.osEventFlagsWait:00000088 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2762   .text.osEventFlagsDelete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2768   .text.osEventFlagsDelete:00000000 osEventFlagsDelete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2816   .text.osEventFlagsDelete:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2819   .text.osMutexNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2825   .text.osMutexNew:00000000 osMutexNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2944   .text.osMutexNew:000000b8 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2947   .text.osMutexAcquire:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:2953   .text.osMutexAcquire:00000000 osMutexAcquire
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3031   .text.osMutexAcquire:00000078 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3034   .text.osMutexRelease:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3040   .text.osMutexRelease:00000000 osMutexRelease
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3110   .text.osMutexRelease:00000068 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3113   .text.osMutexGetOwner:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3119   .text.osMutexGetOwner:00000000 osMutexGetOwner
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3169   .text.osMutexGetOwner:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3172   .text.osMutexDelete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3178   .text.osMutexDelete:00000000 osMutexDelete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3231   .text.osMutexDelete:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3234   .text.osSemaphoreNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3240   .text.osSemaphoreNew:00000000 osSemaphoreNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3373   .text.osSemaphoreNew:000000d0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3376   .text.osSemaphoreAcquire:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3382   .text.osSemaphoreAcquire:00000000 osSemaphoreAcquire
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3471   .text.osSemaphoreAcquire:00000084 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3474   .text.osSemaphoreRelease:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3480   .text.osSemaphoreRelease:00000000 osSemaphoreRelease
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3563   .text.osSemaphoreRelease:0000007c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3566   .text.osSemaphoreGetCount:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3572   .text.osSemaphoreGetCount:00000000 osSemaphoreGetCount
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3619   .text.osSemaphoreGetCount:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3622   .text.osSemaphoreDelete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3628   .text.osSemaphoreDelete:00000000 osSemaphoreDelete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3680   .text.osSemaphoreDelete:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3683   .text.osMessageQueueNew:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3689   .text.osMessageQueueNew:00000000 osMessageQueueNew
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3805   .text.osMessageQueueNew:000000b0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3808   .text.osMessageQueuePut:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3814   .text.osMessageQueuePut:00000000 osMessageQueuePut
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3911   .text.osMessageQueuePut:00000094 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3914   .text.osMessageQueueGet:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:3920   .text.osMessageQueueGet:00000000 osMessageQueueGet
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 80
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4016   .text.osMessageQueueGet:00000094 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4019   .text.osMessageQueueGetCapacity:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4025   .text.osMessageQueueGetCapacity:00000000 osMessageQueueGetCapacity
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4037   .text.osMessageQueueGetMsgSize:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4043   .text.osMessageQueueGetMsgSize:00000000 osMessageQueueGetMsgSize
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4055   .text.osMessageQueueGetCount:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4061   .text.osMessageQueueGetCount:00000000 osMessageQueueGetCount
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4108   .text.osMessageQueueGetCount:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4111   .text.osMessageQueueGetSpace:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4117   .text.osMessageQueueGetSpace:00000000 osMessageQueueGetSpace
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4184   .text.osMessageQueueGetSpace:00000050 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4187   .text.osMessageQueueReset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4193   .text.osMessageQueueReset:00000000 osMessageQueueReset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4242   .text.osMessageQueueReset:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4245   .text.osMessageQueueDelete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4251   .text.osMessageQueueDelete:00000000 osMessageQueueDelete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4303   .text.osMessageQueueDelete:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4306   .text.vApplicationIdleHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4312   .text.vApplicationIdleHook:00000000 vApplicationIdleHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4319   .text.vApplicationMallocFailedHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4325   .text.vApplicationMallocFailedHook:00000000 vApplicationMallocFailedHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4332   .text.vApplicationStackOverflowHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4338   .text.vApplicationStackOverflowHook:00000000 vApplicationStackOverflowHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4345   .text.vApplicationGetIdleTaskMemory:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4351   .text.vApplicationGetIdleTaskMemory:00000000 vApplicationGetIdleTaskMemory
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4365   .text.vApplicationGetIdleTaskMemory:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4414   .bss.Idle_TCB:00000000 Idle_TCB
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4408   .bss.Idle_Stack:00000000 Idle_Stack
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4369   .text.vApplicationGetTimerTaskMemory:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4375   .text.vApplicationGetTimerTaskMemory:00000000 vApplicationGetTimerTaskMemory
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4389   .text.vApplicationGetTimerTaskMemory:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4402   .bss.Timer_TCB:00000000 Timer_TCB
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4396   .bss.Timer_Stack:00000000 Timer_Stack
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4393   .bss.Timer_Stack:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4399   .bss.Timer_TCB:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4405   .bss.Idle_Stack:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4411   .bss.Idle_TCB:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:4417   .bss.KernelState:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:835    .text.osThreadGetState:0000002f $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s:835    .text.osThreadGetState:00000030 $t
+
+UNDEFINED SYMBOLS
+pvTimerGetTimerID
+memcpy
+xTaskGetSchedulerState
+vTaskStartScheduler
+vTaskSuspendAll
+xTaskResumeAll
+xTaskGetTickCount
+xTaskGetTickCountFromISR
+SystemCoreClock
+xTaskCreateStatic
+xTaskCreate
+pcTaskGetName
+xTaskGetCurrentTaskHandle
+eTaskGetState
+uxTaskGetStackHighWaterMark
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwvJTTF.s 			page 81
+
+
+vTaskPrioritySet
+uxTaskPriorityGet
+vTaskSuspend
+vTaskResume
+vTaskDelete
+uxTaskGetNumberOfTasks
+pvPortMalloc
+uxTaskGetSystemState
+vPortFree
+xTaskGenericNotify
+xTaskGenericNotifyFromISR
+xTaskNotifyWait
+vTaskDelay
+vTaskDelayUntil
+xTimerCreate
+xTimerCreateStatic
+pcTimerGetName
+xTimerGenericCommand
+xTimerIsTimerActive
+xEventGroupCreate
+xEventGroupCreateStatic
+xEventGroupSetBits
+xEventGroupSetBitsFromISR
+xEventGroupClearBits
+xEventGroupGetBitsFromISR
+xEventGroupClearBitsFromISR
+xEventGroupWaitBits
+vEventGroupDelete
+xQueueCreateMutex
+vQueueAddToRegistry
+xQueueCreateMutexStatic
+xQueueTakeMutexRecursive
+xQueueSemaphoreTake
+xQueueGiveMutexRecursive
+xQueueGenericSend
+xQueueGetMutexHolder
+vQueueUnregisterQueue
+vQueueDelete
+xQueueCreateCountingSemaphore
+xQueueGenericCreate
+xQueueGenericCreateStatic
+xQueueCreateCountingSemaphoreStatic
+xQueueReceiveFromISR
+xQueueGiveFromISR
+uxQueueMessagesWaiting
+uxQueueMessagesWaitingFromISR
+xQueueGenericSendFromISR
+xQueueReceive
+uxQueueSpacesAvailable
+xQueueGenericReset

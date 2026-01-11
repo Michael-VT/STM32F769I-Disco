@@ -1,0 +1,734 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"dp83848.c"
+  15              		.text
+  16              		.section	.text.DP83848_RegisterBusIO,"ax",%progbits
+  17              		.align	1
+  18              		.global	DP83848_RegisterBusIO
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	DP83848_RegisterBusIO:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 88B1     		cbz	r0, .L3
+  28 0002 CA68     		ldr	r2, [r1, #12]
+  29 0004 92B1     		cbz	r2, .L4
+  30 0006 8A68     		ldr	r2, [r1, #8]
+  31 0008 9AB1     		cbz	r2, .L5
+  32 000a 0A69     		ldr	r2, [r1, #16]
+  33 000c A2B1     		cbz	r2, .L6
+  34 000e 0A68     		ldr	r2, [r1]
+  35 0010 8260     		str	r2, [r0, #8]
+  36 0012 4A68     		ldr	r2, [r1, #4]
+  37 0014 C260     		str	r2, [r0, #12]
+  38 0016 CA68     		ldr	r2, [r1, #12]
+  39 0018 4261     		str	r2, [r0, #20]
+  40 001a 8A68     		ldr	r2, [r1, #8]
+  41 001c 0261     		str	r2, [r0, #16]
+  42 001e 0A69     		ldr	r2, [r1, #16]
+  43 0020 8261     		str	r2, [r0, #24]
+  44 0022 0020     		movs	r0, #0
+  45 0024 7047     		bx	lr
+  46              	.L3:
+  47 0026 4FF0FF30 		mov	r0, #-1
+  48 002a 7047     		bx	lr
+  49              	.L4:
+  50 002c 4FF0FF30 		mov	r0, #-1
+  51 0030 7047     		bx	lr
+  52              	.L5:
+  53 0032 4FF0FF30 		mov	r0, #-1
+  54 0036 7047     		bx	lr
+  55              	.L6:
+  56 0038 4FF0FF30 		mov	r0, #-1
+  57 003c 7047     		bx	lr
+  59              		.section	.text.DP83848_Init,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 2
+
+
+  60              		.align	1
+  61              		.global	DP83848_Init
+  62              		.syntax unified
+  63              		.thumb
+  64              		.thumb_func
+  66              	DP83848_Init:
+  67              		@ args = 0, pretend = 0, frame = 8
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69 0000 70B5     		push	{r4, r5, r6, lr}
+  70 0002 82B0     		sub	sp, sp, #8
+  71 0004 0023     		movs	r3, #0
+  72 0006 0193     		str	r3, [sp, #4]
+  73 0008 4468     		ldr	r4, [r0, #4]
+  74 000a 0CBB     		cbnz	r4, .L14
+  75 000c 0546     		mov	r5, r0
+  76 000e 8368     		ldr	r3, [r0, #8]
+  77 0010 03B1     		cbz	r3, .L9
+  78 0012 9847     		blx	r3
+  79              	.L9:
+  80 0014 2023     		movs	r3, #32
+  81 0016 2B60     		str	r3, [r5]
+  82 0018 0026     		movs	r6, #0
+  83 001a 02E0     		b	.L10
+  84              	.L15:
+  85 001c 6FF00406 		mvn	r6, #4
+  86              	.L11:
+  87 0020 0134     		adds	r4, r4, #1
+  88              	.L10:
+  89 0022 1F2C     		cmp	r4, #31
+  90 0024 0DD8     		bhi	.L12
+  91 0026 6B69     		ldr	r3, [r5, #20]
+  92 0028 01AA     		add	r2, sp, #4
+  93 002a 1921     		movs	r1, #25
+  94 002c 2046     		mov	r0, r4
+  95 002e 9847     		blx	r3
+  96 0030 0028     		cmp	r0, #0
+  97 0032 F3DB     		blt	.L15
+  98 0034 019B     		ldr	r3, [sp, #4]
+  99 0036 03F01F03 		and	r3, r3, #31
+ 100 003a A342     		cmp	r3, r4
+ 101 003c F0D1     		bne	.L11
+ 102 003e 2C60     		str	r4, [r5]
+ 103 0040 0026     		movs	r6, #0
+ 104              	.L12:
+ 105 0042 2B68     		ldr	r3, [r5]
+ 106 0044 1F2B     		cmp	r3, #31
+ 107 0046 07D8     		bhi	.L16
+ 108 0048 1EB9     		cbnz	r6, .L7
+ 109 004a 0123     		movs	r3, #1
+ 110 004c 6B60     		str	r3, [r5, #4]
+ 111 004e 00E0     		b	.L7
+ 112              	.L14:
+ 113 0050 0026     		movs	r6, #0
+ 114              	.L7:
+ 115 0052 3046     		mov	r0, r6
+ 116 0054 02B0     		add	sp, sp, #8
+ 117              		@ sp needed
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 3
+
+
+ 118 0056 70BD     		pop	{r4, r5, r6, pc}
+ 119              	.L16:
+ 120 0058 6FF00206 		mvn	r6, #2
+ 121 005c F9E7     		b	.L7
+ 123              		.section	.text.DP83848_DeInit,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	DP83848_DeInit
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 130              	DP83848_DeInit:
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133 0000 4368     		ldr	r3, [r0, #4]
+ 134 0002 4BB1     		cbz	r3, .L21
+ 135 0004 10B5     		push	{r4, lr}
+ 136 0006 0446     		mov	r4, r0
+ 137 0008 C368     		ldr	r3, [r0, #12]
+ 138 000a 13B1     		cbz	r3, .L20
+ 139 000c 9847     		blx	r3
+ 140 000e 0028     		cmp	r0, #0
+ 141 0010 04DB     		blt	.L22
+ 142              	.L20:
+ 143 0012 0020     		movs	r0, #0
+ 144 0014 6060     		str	r0, [r4, #4]
+ 145              	.L18:
+ 146 0016 10BD     		pop	{r4, pc}
+ 147              	.L21:
+ 148 0018 0020     		movs	r0, #0
+ 149 001a 7047     		bx	lr
+ 150              	.L22:
+ 151 001c 4FF0FF30 		mov	r0, #-1
+ 152 0020 F9E7     		b	.L18
+ 154              		.section	.text.DP83848_DisablePowerDownMode,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	DP83848_DisablePowerDownMode
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	DP83848_DisablePowerDownMode:
+ 162              		@ args = 0, pretend = 0, frame = 8
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 10B5     		push	{r4, lr}
+ 165 0002 82B0     		sub	sp, sp, #8
+ 166 0004 0446     		mov	r4, r0
+ 167 0006 0021     		movs	r1, #0
+ 168 0008 0191     		str	r1, [sp, #4]
+ 169 000a 4369     		ldr	r3, [r0, #20]
+ 170 000c 01AA     		add	r2, sp, #4
+ 171 000e 0068     		ldr	r0, [r0]
+ 172 0010 9847     		blx	r3
+ 173 0012 0028     		cmp	r0, #0
+ 174 0014 0CDB     		blt	.L29
+ 175 0016 019A     		ldr	r2, [sp, #4]
+ 176 0018 22F40062 		bic	r2, r2, #2048
+ 177 001c 0192     		str	r2, [sp, #4]
+ 178 001e 2369     		ldr	r3, [r4, #16]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 4
+
+
+ 179 0020 0021     		movs	r1, #0
+ 180 0022 2068     		ldr	r0, [r4]
+ 181 0024 9847     		blx	r3
+ 182 0026 0028     		cmp	r0, #0
+ 183 0028 05DB     		blt	.L30
+ 184 002a 0020     		movs	r0, #0
+ 185              	.L27:
+ 186 002c 02B0     		add	sp, sp, #8
+ 187              		@ sp needed
+ 188 002e 10BD     		pop	{r4, pc}
+ 189              	.L29:
+ 190 0030 6FF00400 		mvn	r0, #4
+ 191 0034 FAE7     		b	.L27
+ 192              	.L30:
+ 193 0036 6FF00300 		mvn	r0, #3
+ 194 003a F7E7     		b	.L27
+ 196              		.section	.text.DP83848_EnablePowerDownMode,"ax",%progbits
+ 197              		.align	1
+ 198              		.global	DP83848_EnablePowerDownMode
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	DP83848_EnablePowerDownMode:
+ 204              		@ args = 0, pretend = 0, frame = 8
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 10B5     		push	{r4, lr}
+ 207 0002 82B0     		sub	sp, sp, #8
+ 208 0004 0446     		mov	r4, r0
+ 209 0006 0021     		movs	r1, #0
+ 210 0008 0191     		str	r1, [sp, #4]
+ 211 000a 4369     		ldr	r3, [r0, #20]
+ 212 000c 01AA     		add	r2, sp, #4
+ 213 000e 0068     		ldr	r0, [r0]
+ 214 0010 9847     		blx	r3
+ 215 0012 0028     		cmp	r0, #0
+ 216 0014 0CDB     		blt	.L34
+ 217 0016 019A     		ldr	r2, [sp, #4]
+ 218 0018 42F40062 		orr	r2, r2, #2048
+ 219 001c 0192     		str	r2, [sp, #4]
+ 220 001e 2369     		ldr	r3, [r4, #16]
+ 221 0020 0021     		movs	r1, #0
+ 222 0022 2068     		ldr	r0, [r4]
+ 223 0024 9847     		blx	r3
+ 224 0026 0028     		cmp	r0, #0
+ 225 0028 05DB     		blt	.L35
+ 226 002a 0020     		movs	r0, #0
+ 227              	.L32:
+ 228 002c 02B0     		add	sp, sp, #8
+ 229              		@ sp needed
+ 230 002e 10BD     		pop	{r4, pc}
+ 231              	.L34:
+ 232 0030 6FF00400 		mvn	r0, #4
+ 233 0034 FAE7     		b	.L32
+ 234              	.L35:
+ 235 0036 6FF00300 		mvn	r0, #3
+ 236 003a F7E7     		b	.L32
+ 238              		.section	.text.DP83848_StartAutoNego,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 5
+
+
+ 239              		.align	1
+ 240              		.global	DP83848_StartAutoNego
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 245              	DP83848_StartAutoNego:
+ 246              		@ args = 0, pretend = 0, frame = 8
+ 247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 248 0000 10B5     		push	{r4, lr}
+ 249 0002 82B0     		sub	sp, sp, #8
+ 250 0004 0446     		mov	r4, r0
+ 251 0006 0021     		movs	r1, #0
+ 252 0008 0191     		str	r1, [sp, #4]
+ 253 000a 4369     		ldr	r3, [r0, #20]
+ 254 000c 01AA     		add	r2, sp, #4
+ 255 000e 0068     		ldr	r0, [r0]
+ 256 0010 9847     		blx	r3
+ 257 0012 0028     		cmp	r0, #0
+ 258 0014 0CDB     		blt	.L39
+ 259 0016 019A     		ldr	r2, [sp, #4]
+ 260 0018 42F48052 		orr	r2, r2, #4096
+ 261 001c 0192     		str	r2, [sp, #4]
+ 262 001e 2369     		ldr	r3, [r4, #16]
+ 263 0020 0021     		movs	r1, #0
+ 264 0022 2068     		ldr	r0, [r4]
+ 265 0024 9847     		blx	r3
+ 266 0026 0028     		cmp	r0, #0
+ 267 0028 05DB     		blt	.L40
+ 268 002a 0020     		movs	r0, #0
+ 269              	.L37:
+ 270 002c 02B0     		add	sp, sp, #8
+ 271              		@ sp needed
+ 272 002e 10BD     		pop	{r4, pc}
+ 273              	.L39:
+ 274 0030 6FF00400 		mvn	r0, #4
+ 275 0034 FAE7     		b	.L37
+ 276              	.L40:
+ 277 0036 6FF00300 		mvn	r0, #3
+ 278 003a F7E7     		b	.L37
+ 280              		.section	.text.DP83848_GetLinkState,"ax",%progbits
+ 281              		.align	1
+ 282              		.global	DP83848_GetLinkState
+ 283              		.syntax unified
+ 284              		.thumb
+ 285              		.thumb_func
+ 287              	DP83848_GetLinkState:
+ 288              		@ args = 0, pretend = 0, frame = 8
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290 0000 10B5     		push	{r4, lr}
+ 291 0002 82B0     		sub	sp, sp, #8
+ 292 0004 0446     		mov	r4, r0
+ 293 0006 0023     		movs	r3, #0
+ 294 0008 0193     		str	r3, [sp, #4]
+ 295 000a 4369     		ldr	r3, [r0, #20]
+ 296 000c 01AA     		add	r2, sp, #4
+ 297 000e 0121     		movs	r1, #1
+ 298 0010 0068     		ldr	r0, [r0]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 6
+
+
+ 299 0012 9847     		blx	r3
+ 300 0014 0028     		cmp	r0, #0
+ 301 0016 38DB     		blt	.L45
+ 302 0018 6369     		ldr	r3, [r4, #20]
+ 303 001a 01AA     		add	r2, sp, #4
+ 304 001c 0121     		movs	r1, #1
+ 305 001e 2068     		ldr	r0, [r4]
+ 306 0020 9847     		blx	r3
+ 307 0022 0028     		cmp	r0, #0
+ 308 0024 34DB     		blt	.L46
+ 309 0026 019B     		ldr	r3, [sp, #4]
+ 310 0028 13F0040F 		tst	r3, #4
+ 311 002c 33D0     		beq	.L47
+ 312 002e 6369     		ldr	r3, [r4, #20]
+ 313 0030 01AA     		add	r2, sp, #4
+ 314 0032 0021     		movs	r1, #0
+ 315 0034 2068     		ldr	r0, [r4]
+ 316 0036 9847     		blx	r3
+ 317 0038 0028     		cmp	r0, #0
+ 318 003a 2FDB     		blt	.L48
+ 319 003c 019B     		ldr	r3, [sp, #4]
+ 320 003e 13F4805F 		tst	r3, #4096
+ 321 0042 0CD1     		bne	.L44
+ 322 0044 03F40452 		and	r2, r3, #8448
+ 323 0048 B2F5045F 		cmp	r2, #8448
+ 324 004c 29D0     		beq	.L49
+ 325 004e 13F4005F 		tst	r3, #8192
+ 326 0052 28D1     		bne	.L50
+ 327 0054 13F4807F 		tst	r3, #256
+ 328 0058 27D0     		beq	.L51
+ 329 005a 0420     		movs	r0, #4
+ 330 005c 1CE0     		b	.L42
+ 331              	.L44:
+ 332 005e 6369     		ldr	r3, [r4, #20]
+ 333 0060 01AA     		add	r2, sp, #4
+ 334 0062 1021     		movs	r1, #16
+ 335 0064 2068     		ldr	r0, [r4]
+ 336 0066 9847     		blx	r3
+ 337 0068 0028     		cmp	r0, #0
+ 338 006a 20DB     		blt	.L52
+ 339 006c 019B     		ldr	r3, [sp, #4]
+ 340 006e 13F0100F 		tst	r3, #16
+ 341 0072 1FD0     		beq	.L53
+ 342 0074 03F00603 		and	r3, r3, #6
+ 343 0078 042B     		cmp	r3, #4
+ 344 007a 1DD0     		beq	.L54
+ 345 007c F3B1     		cbz	r3, .L55
+ 346 007e 062B     		cmp	r3, #6
+ 347 0080 01D0     		beq	.L58
+ 348 0082 0520     		movs	r0, #5
+ 349 0084 08E0     		b	.L42
+ 350              	.L58:
+ 351 0086 0420     		movs	r0, #4
+ 352 0088 06E0     		b	.L42
+ 353              	.L45:
+ 354 008a 6FF00400 		mvn	r0, #4
+ 355 008e 03E0     		b	.L42
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 7
+
+
+ 356              	.L46:
+ 357 0090 6FF00400 		mvn	r0, #4
+ 358 0094 00E0     		b	.L42
+ 359              	.L47:
+ 360 0096 0120     		movs	r0, #1
+ 361              	.L42:
+ 362 0098 02B0     		add	sp, sp, #8
+ 363              		@ sp needed
+ 364 009a 10BD     		pop	{r4, pc}
+ 365              	.L48:
+ 366 009c 6FF00400 		mvn	r0, #4
+ 367 00a0 FAE7     		b	.L42
+ 368              	.L49:
+ 369 00a2 0220     		movs	r0, #2
+ 370 00a4 F8E7     		b	.L42
+ 371              	.L50:
+ 372 00a6 0320     		movs	r0, #3
+ 373 00a8 F6E7     		b	.L42
+ 374              	.L51:
+ 375 00aa 0520     		movs	r0, #5
+ 376 00ac F4E7     		b	.L42
+ 377              	.L52:
+ 378 00ae 6FF00400 		mvn	r0, #4
+ 379 00b2 F1E7     		b	.L42
+ 380              	.L53:
+ 381 00b4 0620     		movs	r0, #6
+ 382 00b6 EFE7     		b	.L42
+ 383              	.L54:
+ 384 00b8 0220     		movs	r0, #2
+ 385 00ba EDE7     		b	.L42
+ 386              	.L55:
+ 387 00bc 0320     		movs	r0, #3
+ 388 00be EBE7     		b	.L42
+ 390              		.section	.text.DP83848_SetLinkState,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	DP83848_SetLinkState
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ 397              	DP83848_SetLinkState:
+ 398              		@ args = 0, pretend = 0, frame = 8
+ 399              		@ frame_needed = 0, uses_anonymous_args = 0
+ 400 0000 30B5     		push	{r4, r5, lr}
+ 401 0002 83B0     		sub	sp, sp, #12
+ 402 0004 0446     		mov	r4, r0
+ 403 0006 0D46     		mov	r5, r1
+ 404 0008 0021     		movs	r1, #0
+ 405 000a 0191     		str	r1, [sp, #4]
+ 406 000c 4369     		ldr	r3, [r0, #20]
+ 407 000e 01AA     		add	r2, sp, #4
+ 408 0010 0068     		ldr	r0, [r0]
+ 409 0012 9847     		blx	r3
+ 410 0014 0028     		cmp	r0, #0
+ 411 0016 1EDB     		blt	.L64
+ 412 0018 019B     		ldr	r3, [sp, #4]
+ 413 001a 23F44453 		bic	r3, r3, #12544
+ 414 001e 0193     		str	r3, [sp, #4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 8
+
+
+ 415 0020 022D     		cmp	r5, #2
+ 416 0022 10D0     		beq	.L68
+ 417 0024 032D     		cmp	r5, #3
+ 418 0026 12D0     		beq	.L69
+ 419 0028 042D     		cmp	r5, #4
+ 420 002a 17D1     		bne	.L65
+ 421 002c 43F48073 		orr	r3, r3, #256
+ 422 0030 0193     		str	r3, [sp, #4]
+ 423              	.L62:
+ 424 0032 2369     		ldr	r3, [r4, #16]
+ 425 0034 019A     		ldr	r2, [sp, #4]
+ 426 0036 0021     		movs	r1, #0
+ 427 0038 2068     		ldr	r0, [r4]
+ 428 003a 9847     		blx	r3
+ 429 003c 0028     		cmp	r0, #0
+ 430 003e 10DB     		blt	.L66
+ 431 0040 0020     		movs	r0, #0
+ 432              	.L59:
+ 433 0042 03B0     		add	sp, sp, #12
+ 434              		@ sp needed
+ 435 0044 30BD     		pop	{r4, r5, pc}
+ 436              	.L68:
+ 437 0046 43F40453 		orr	r3, r3, #8448
+ 438 004a 0193     		str	r3, [sp, #4]
+ 439 004c F1E7     		b	.L62
+ 440              	.L69:
+ 441 004e 43F40053 		orr	r3, r3, #8192
+ 442 0052 0193     		str	r3, [sp, #4]
+ 443 0054 EDE7     		b	.L62
+ 444              	.L64:
+ 445 0056 6FF00400 		mvn	r0, #4
+ 446 005a F2E7     		b	.L59
+ 447              	.L65:
+ 448 005c 4FF0FF30 		mov	r0, #-1
+ 449 0060 EFE7     		b	.L59
+ 450              	.L66:
+ 451 0062 6FF00300 		mvn	r0, #3
+ 452 0066 ECE7     		b	.L59
+ 454              		.section	.text.DP83848_EnableLoopbackMode,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	DP83848_EnableLoopbackMode
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 461              	DP83848_EnableLoopbackMode:
+ 462              		@ args = 0, pretend = 0, frame = 8
+ 463              		@ frame_needed = 0, uses_anonymous_args = 0
+ 464 0000 10B5     		push	{r4, lr}
+ 465 0002 82B0     		sub	sp, sp, #8
+ 466 0004 0446     		mov	r4, r0
+ 467 0006 0021     		movs	r1, #0
+ 468 0008 0191     		str	r1, [sp, #4]
+ 469 000a 4369     		ldr	r3, [r0, #20]
+ 470 000c 01AA     		add	r2, sp, #4
+ 471 000e 0068     		ldr	r0, [r0]
+ 472 0010 9847     		blx	r3
+ 473 0012 0028     		cmp	r0, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 9
+
+
+ 474 0014 0CDB     		blt	.L72
+ 475 0016 019A     		ldr	r2, [sp, #4]
+ 476 0018 42F48042 		orr	r2, r2, #16384
+ 477 001c 0192     		str	r2, [sp, #4]
+ 478 001e 2369     		ldr	r3, [r4, #16]
+ 479 0020 0021     		movs	r1, #0
+ 480 0022 2068     		ldr	r0, [r4]
+ 481 0024 9847     		blx	r3
+ 482 0026 0028     		cmp	r0, #0
+ 483 0028 05DB     		blt	.L73
+ 484 002a 0020     		movs	r0, #0
+ 485              	.L70:
+ 486 002c 02B0     		add	sp, sp, #8
+ 487              		@ sp needed
+ 488 002e 10BD     		pop	{r4, pc}
+ 489              	.L72:
+ 490 0030 6FF00400 		mvn	r0, #4
+ 491 0034 FAE7     		b	.L70
+ 492              	.L73:
+ 493 0036 6FF00300 		mvn	r0, #3
+ 494 003a F7E7     		b	.L70
+ 496              		.section	.text.DP83848_DisableLoopbackMode,"ax",%progbits
+ 497              		.align	1
+ 498              		.global	DP83848_DisableLoopbackMode
+ 499              		.syntax unified
+ 500              		.thumb
+ 501              		.thumb_func
+ 503              	DP83848_DisableLoopbackMode:
+ 504              		@ args = 0, pretend = 0, frame = 8
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506 0000 10B5     		push	{r4, lr}
+ 507 0002 82B0     		sub	sp, sp, #8
+ 508 0004 0446     		mov	r4, r0
+ 509 0006 0021     		movs	r1, #0
+ 510 0008 0191     		str	r1, [sp, #4]
+ 511 000a 4369     		ldr	r3, [r0, #20]
+ 512 000c 01AA     		add	r2, sp, #4
+ 513 000e 0068     		ldr	r0, [r0]
+ 514 0010 9847     		blx	r3
+ 515 0012 0028     		cmp	r0, #0
+ 516 0014 0CDB     		blt	.L77
+ 517 0016 019A     		ldr	r2, [sp, #4]
+ 518 0018 22F48042 		bic	r2, r2, #16384
+ 519 001c 0192     		str	r2, [sp, #4]
+ 520 001e 2369     		ldr	r3, [r4, #16]
+ 521 0020 0021     		movs	r1, #0
+ 522 0022 2068     		ldr	r0, [r4]
+ 523 0024 9847     		blx	r3
+ 524 0026 0028     		cmp	r0, #0
+ 525 0028 05DB     		blt	.L78
+ 526 002a 0020     		movs	r0, #0
+ 527              	.L75:
+ 528 002c 02B0     		add	sp, sp, #8
+ 529              		@ sp needed
+ 530 002e 10BD     		pop	{r4, pc}
+ 531              	.L77:
+ 532 0030 6FF00400 		mvn	r0, #4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 10
+
+
+ 533 0034 FAE7     		b	.L75
+ 534              	.L78:
+ 535 0036 6FF00300 		mvn	r0, #3
+ 536 003a F7E7     		b	.L75
+ 538              		.section	.text.DP83848_EnableIT,"ax",%progbits
+ 539              		.align	1
+ 540              		.global	DP83848_EnableIT
+ 541              		.syntax unified
+ 542              		.thumb
+ 543              		.thumb_func
+ 545              	DP83848_EnableIT:
+ 546              		@ args = 0, pretend = 0, frame = 8
+ 547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 548 0000 30B5     		push	{r4, r5, lr}
+ 549 0002 83B0     		sub	sp, sp, #12
+ 550 0004 0446     		mov	r4, r0
+ 551 0006 0D46     		mov	r5, r1
+ 552 0008 0023     		movs	r3, #0
+ 553 000a 0193     		str	r3, [sp, #4]
+ 554 000c 4369     		ldr	r3, [r0, #20]
+ 555 000e 01AA     		add	r2, sp, #4
+ 556 0010 1121     		movs	r1, #17
+ 557 0012 0068     		ldr	r0, [r0]
+ 558 0014 9847     		blx	r3
+ 559 0016 0028     		cmp	r0, #0
+ 560 0018 0CDB     		blt	.L82
+ 561 001a 019B     		ldr	r3, [sp, #4]
+ 562 001c 45EA0302 		orr	r2, r5, r3
+ 563 0020 0192     		str	r2, [sp, #4]
+ 564 0022 2369     		ldr	r3, [r4, #16]
+ 565 0024 1121     		movs	r1, #17
+ 566 0026 2068     		ldr	r0, [r4]
+ 567 0028 9847     		blx	r3
+ 568 002a 0028     		cmp	r0, #0
+ 569 002c 05DB     		blt	.L83
+ 570 002e 0020     		movs	r0, #0
+ 571              	.L80:
+ 572 0030 03B0     		add	sp, sp, #12
+ 573              		@ sp needed
+ 574 0032 30BD     		pop	{r4, r5, pc}
+ 575              	.L82:
+ 576 0034 6FF00400 		mvn	r0, #4
+ 577 0038 FAE7     		b	.L80
+ 578              	.L83:
+ 579 003a 6FF00300 		mvn	r0, #3
+ 580 003e F7E7     		b	.L80
+ 582              		.section	.text.DP83848_DisableIT,"ax",%progbits
+ 583              		.align	1
+ 584              		.global	DP83848_DisableIT
+ 585              		.syntax unified
+ 586              		.thumb
+ 587              		.thumb_func
+ 589              	DP83848_DisableIT:
+ 590              		@ args = 0, pretend = 0, frame = 8
+ 591              		@ frame_needed = 0, uses_anonymous_args = 0
+ 592 0000 30B5     		push	{r4, r5, lr}
+ 593 0002 83B0     		sub	sp, sp, #12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 11
+
+
+ 594 0004 0446     		mov	r4, r0
+ 595 0006 0D46     		mov	r5, r1
+ 596 0008 0023     		movs	r3, #0
+ 597 000a 0193     		str	r3, [sp, #4]
+ 598 000c 4369     		ldr	r3, [r0, #20]
+ 599 000e 01AA     		add	r2, sp, #4
+ 600 0010 1121     		movs	r1, #17
+ 601 0012 0068     		ldr	r0, [r0]
+ 602 0014 9847     		blx	r3
+ 603 0016 0028     		cmp	r0, #0
+ 604 0018 0CDB     		blt	.L87
+ 605 001a 019A     		ldr	r2, [sp, #4]
+ 606 001c 22EA0502 		bic	r2, r2, r5
+ 607 0020 0192     		str	r2, [sp, #4]
+ 608 0022 2369     		ldr	r3, [r4, #16]
+ 609 0024 1121     		movs	r1, #17
+ 610 0026 2068     		ldr	r0, [r4]
+ 611 0028 9847     		blx	r3
+ 612 002a 0028     		cmp	r0, #0
+ 613 002c 05DB     		blt	.L88
+ 614 002e 0020     		movs	r0, #0
+ 615              	.L85:
+ 616 0030 03B0     		add	sp, sp, #12
+ 617              		@ sp needed
+ 618 0032 30BD     		pop	{r4, r5, pc}
+ 619              	.L87:
+ 620 0034 6FF00400 		mvn	r0, #4
+ 621 0038 FAE7     		b	.L85
+ 622              	.L88:
+ 623 003a 6FF00300 		mvn	r0, #3
+ 624 003e F7E7     		b	.L85
+ 626              		.section	.text.DP83848_ClearIT,"ax",%progbits
+ 627              		.align	1
+ 628              		.global	DP83848_ClearIT
+ 629              		.syntax unified
+ 630              		.thumb
+ 631              		.thumb_func
+ 633              	DP83848_ClearIT:
+ 634              		@ args = 0, pretend = 0, frame = 8
+ 635              		@ frame_needed = 0, uses_anonymous_args = 0
+ 636 0000 00B5     		push	{lr}
+ 637 0002 83B0     		sub	sp, sp, #12
+ 638 0004 0023     		movs	r3, #0
+ 639 0006 0193     		str	r3, [sp, #4]
+ 640 0008 4369     		ldr	r3, [r0, #20]
+ 641 000a 01AA     		add	r2, sp, #4
+ 642 000c 1221     		movs	r1, #18
+ 643 000e 0068     		ldr	r0, [r0]
+ 644 0010 9847     		blx	r3
+ 645 0012 0028     		cmp	r0, #0
+ 646 0014 03DB     		blt	.L92
+ 647 0016 0020     		movs	r0, #0
+ 648              	.L90:
+ 649 0018 03B0     		add	sp, sp, #12
+ 650              		@ sp needed
+ 651 001a 5DF804FB 		ldr	pc, [sp], #4
+ 652              	.L92:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 12
+
+
+ 653 001e 6FF00400 		mvn	r0, #4
+ 654 0022 F9E7     		b	.L90
+ 656              		.section	.text.DP83848_GetITStatus,"ax",%progbits
+ 657              		.align	1
+ 658              		.global	DP83848_GetITStatus
+ 659              		.syntax unified
+ 660              		.thumb
+ 661              		.thumb_func
+ 663              	DP83848_GetITStatus:
+ 664              		@ args = 0, pretend = 0, frame = 8
+ 665              		@ frame_needed = 0, uses_anonymous_args = 0
+ 666 0000 10B5     		push	{r4, lr}
+ 667 0002 82B0     		sub	sp, sp, #8
+ 668 0004 0C46     		mov	r4, r1
+ 669 0006 0023     		movs	r3, #0
+ 670 0008 0193     		str	r3, [sp, #4]
+ 671 000a 4369     		ldr	r3, [r0, #20]
+ 672 000c 01AA     		add	r2, sp, #4
+ 673 000e 1221     		movs	r1, #18
+ 674 0010 0068     		ldr	r0, [r0]
+ 675 0012 9847     		blx	r3
+ 676 0014 0028     		cmp	r0, #0
+ 677 0016 07DB     		blt	.L96
+ 678 0018 019B     		ldr	r3, [sp, #4]
+ 679 001a 34EA0301 		bics	r1, r4, r3
+ 680 001e 0CBF     		ite	eq
+ 681 0020 0120     		moveq	r0, #1
+ 682 0022 0020     		movne	r0, #0
+ 683              	.L94:
+ 684 0024 02B0     		add	sp, sp, #8
+ 685              		@ sp needed
+ 686 0026 10BD     		pop	{r4, pc}
+ 687              	.L96:
+ 688 0028 6FF00400 		mvn	r0, #4
+ 689 002c FAE7     		b	.L94
+ 691              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dp83848.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:17     .text.DP83848_RegisterBusIO:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:23     .text.DP83848_RegisterBusIO:00000000 DP83848_RegisterBusIO
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:60     .text.DP83848_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:66     .text.DP83848_Init:00000000 DP83848_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:124    .text.DP83848_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:130    .text.DP83848_DeInit:00000000 DP83848_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:155    .text.DP83848_DisablePowerDownMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:161    .text.DP83848_DisablePowerDownMode:00000000 DP83848_DisablePowerDownMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:197    .text.DP83848_EnablePowerDownMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:203    .text.DP83848_EnablePowerDownMode:00000000 DP83848_EnablePowerDownMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:239    .text.DP83848_StartAutoNego:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:245    .text.DP83848_StartAutoNego:00000000 DP83848_StartAutoNego
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:281    .text.DP83848_GetLinkState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:287    .text.DP83848_GetLinkState:00000000 DP83848_GetLinkState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:391    .text.DP83848_SetLinkState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:397    .text.DP83848_SetLinkState:00000000 DP83848_SetLinkState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:455    .text.DP83848_EnableLoopbackMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:461    .text.DP83848_EnableLoopbackMode:00000000 DP83848_EnableLoopbackMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:497    .text.DP83848_DisableLoopbackMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:503    .text.DP83848_DisableLoopbackMode:00000000 DP83848_DisableLoopbackMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:539    .text.DP83848_EnableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:545    .text.DP83848_EnableIT:00000000 DP83848_EnableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:583    .text.DP83848_DisableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:589    .text.DP83848_DisableIT:00000000 DP83848_DisableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:627    .text.DP83848_ClearIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:633    .text.DP83848_ClearIT:00000000 DP83848_ClearIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:657    .text.DP83848_GetITStatus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:663    .text.DP83848_GetITStatus:00000000 DP83848_GetITStatus
+
+NO UNDEFINED SYMBOLS

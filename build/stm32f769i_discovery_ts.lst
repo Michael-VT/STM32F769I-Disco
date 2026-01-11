@@ -1,0 +1,452 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f769i_discovery_ts.c"
+  15              		.text
+  16              		.section	.text.BSP_TS_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	BSP_TS_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	BSP_TS_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 70B5     		push	{r4, r5, r6, lr}
+  27 0002 0646     		mov	r6, r0
+  28 0004 0D46     		mov	r5, r1
+  29 0006 1B4C     		ldr	r4, .L9
+  30 0008 2368     		ldr	r3, [r4]
+  31 000a 1B4A     		ldr	r2, .L9+4
+  32 000c 1078     		ldrb	r0, [r2]	@ zero_extendqisi2
+  33 000e 9847     		blx	r3
+  34 0010 6368     		ldr	r3, [r4, #4]
+  35 0012 5420     		movs	r0, #84
+  36 0014 9847     		blx	r3
+  37 0016 C4B2     		uxtb	r4, r0
+  38 0018 112C     		cmp	r4, #17
+  39 001a 1FD0     		beq	.L2
+  40 001c 154B     		ldr	r3, .L9
+  41 001e 5B68     		ldr	r3, [r3, #4]
+  42 0020 7020     		movs	r0, #112
+  43 0022 9847     		blx	r3
+  44 0024 C3B2     		uxtb	r3, r0
+  45 0026 144A     		ldr	r2, .L9+4
+  46 0028 7021     		movs	r1, #112
+  47 002a 1170     		strb	r1, [r2]
+  48              	.L3:
+  49 002c 112B     		cmp	r3, #17
+  50 002e 18BF     		it	ne
+  51 0030 112C     		cmpne	r4, #17
+  52 0032 1CD1     		bne	.L7
+  53 0034 114B     		ldr	r3, .L9+8
+  54 0036 0F4A     		ldr	r2, .L9
+  55 0038 1A60     		str	r2, [r3]
+  56 003a AE42     		cmp	r6, r5
+  57 003c 13D2     		bcs	.L5
+  58 003e 104B     		ldr	r3, .L9+12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 2
+
+
+  59 0040 0122     		movs	r2, #1
+  60 0042 1A70     		strb	r2, [r3]
+  61              	.L6:
+  62 0044 0B4B     		ldr	r3, .L9
+  63 0046 9B68     		ldr	r3, [r3, #8]
+  64 0048 0B4C     		ldr	r4, .L9+4
+  65 004a 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  66 004c 9847     		blx	r3
+  67 004e 0B4B     		ldr	r3, .L9+8
+  68 0050 1B68     		ldr	r3, [r3]
+  69 0052 DB68     		ldr	r3, [r3, #12]
+  70 0054 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  71 0056 9847     		blx	r3
+  72 0058 0020     		movs	r0, #0
+  73              	.L4:
+  74 005a 70BD     		pop	{r4, r5, r6, pc}
+  75              	.L2:
+  76 005c 064B     		ldr	r3, .L9+4
+  77 005e 5422     		movs	r2, #84
+  78 0060 1A70     		strb	r2, [r3]
+  79 0062 0023     		movs	r3, #0
+  80 0064 E2E7     		b	.L3
+  81              	.L5:
+  82 0066 064B     		ldr	r3, .L9+12
+  83 0068 0C22     		movs	r2, #12
+  84 006a 1A70     		strb	r2, [r3]
+  85 006c EAE7     		b	.L6
+  86              	.L7:
+  87 006e 0320     		movs	r0, #3
+  88 0070 F3E7     		b	.L4
+  89              	.L10:
+  90 0072 00BF     		.align	2
+  91              	.L9:
+  92 0074 00000000 		.word	ft6x06_ts_drv
+  93 0078 00000000 		.word	I2C_Address
+  94 007c 00000000 		.word	ts_driver
+  95 0080 00000000 		.word	ts_orientation
+  97              		.section	.text.BSP_TS_GetState,"ax",%progbits
+  98              		.align	1
+  99              		.global	BSP_TS_GetState
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 104              	BSP_TS_GetState:
+ 105              		@ args = 0, pretend = 0, frame = 8
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 30B5     		push	{r4, r5, lr}
+ 108 0002 83B0     		sub	sp, sp, #12
+ 109 0004 0546     		mov	r5, r0
+ 110 0006 3E4B     		ldr	r3, .L25
+ 111 0008 1B68     		ldr	r3, [r3]
+ 112 000a 1B69     		ldr	r3, [r3, #16]
+ 113 000c 3D4A     		ldr	r2, .L25+4
+ 114 000e 1078     		ldrb	r0, [r2]	@ zero_extendqisi2
+ 115 0010 9847     		blx	r3
+ 116 0012 2870     		strb	r0, [r5]
+ 117 0014 0028     		cmp	r0, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 3
+
+
+ 118 0016 71D1     		bne	.L23
+ 119              	.L13:
+ 120 0018 0020     		movs	r0, #0
+ 121 001a 03B0     		add	sp, sp, #12
+ 122              		@ sp needed
+ 123 001c 30BD     		pop	{r4, r5, pc}
+ 124              	.L17:
+ 125 001e 9BB2     		uxth	r3, r3
+ 126 0020 5B1A     		subs	r3, r3, r1
+ 127 0022 9BB2     		uxth	r3, r3
+ 128 0024 53E0     		b	.L18
+ 129              	.L19:
+ 130 0026 92B2     		uxth	r2, r2
+ 131 0028 121A     		subs	r2, r2, r0
+ 132 002a 92B2     		uxth	r2, r2
+ 133 002c 5CE0     		b	.L20
+ 134              	.L21:
+ 135 002e 364B     		ldr	r3, .L25+8
+ 136 0030 53F82420 		ldr	r2, [r3, r4, lsl #2]
+ 137 0034 05EB4403 		add	r3, r5, r4, lsl #1
+ 138 0038 5A80     		strh	r2, [r3, #2]	@ movhi
+ 139 003a 344A     		ldr	r2, .L25+12
+ 140 003c 52F82420 		ldr	r2, [r2, r4, lsl #2]
+ 141 0040 DA80     		strh	r2, [r3, #6]	@ movhi
+ 142 0042 0134     		adds	r4, r4, #1
+ 143              	.L12:
+ 144 0044 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 145 0046 A342     		cmp	r3, r4
+ 146 0048 E6D9     		bls	.L13
+ 147 004a 2D4B     		ldr	r3, .L25
+ 148 004c 1B68     		ldr	r3, [r3]
+ 149 004e 5B69     		ldr	r3, [r3, #20]
+ 150 0050 0DEB4402 		add	r2, sp, r4, lsl #1
+ 151 0054 01A9     		add	r1, sp, #4
+ 152 0056 01EB4401 		add	r1, r1, r4, lsl #1
+ 153 005a 2A48     		ldr	r0, .L25+4
+ 154 005c 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
+ 155 005e 9847     		blx	r3
+ 156 0060 2B4B     		ldr	r3, .L25+16
+ 157 0062 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 158 0064 13F0080F 		tst	r3, #8
+ 159 0068 0AD0     		beq	.L14
+ 160 006a 02AA     		add	r2, sp, #8
+ 161 006c 02EB4402 		add	r2, r2, r4, lsl #1
+ 162 0070 32F8041C 		ldrh	r1, [r2, #-4]
+ 163 0074 32F8080C 		ldrh	r0, [r2, #-8]
+ 164 0078 22F8040C 		strh	r0, [r2, #-4]	@ movhi
+ 165 007c 22F8081C 		strh	r1, [r2, #-8]	@ movhi
+ 166              	.L14:
+ 167 0080 13F0020F 		tst	r3, #2
+ 168 0084 09D0     		beq	.L15
+ 169 0086 02AA     		add	r2, sp, #8
+ 170 0088 02EB4401 		add	r1, r2, r4, lsl #1
+ 171 008c 31F8040C 		ldrh	r0, [r1, #-4]
+ 172 0090 40F21F32 		movw	r2, #799
+ 173 0094 121A     		subs	r2, r2, r0
+ 174 0096 21F8042C 		strh	r2, [r1, #-4]	@ movhi
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 4
+
+
+ 175              	.L15:
+ 176 009a 13F0040F 		tst	r3, #4
+ 177 009e 09D0     		beq	.L16
+ 178 00a0 02AB     		add	r3, sp, #8
+ 179 00a2 03EB4402 		add	r2, r3, r4, lsl #1
+ 180 00a6 32F8081C 		ldrh	r1, [r2, #-8]
+ 181 00aa 40F2DF13 		movw	r3, #479
+ 182 00ae 5B1A     		subs	r3, r3, r1
+ 183 00b0 22F8083C 		strh	r3, [r2, #-8]	@ movhi
+ 184              	.L16:
+ 185 00b4 02AB     		add	r3, sp, #8
+ 186 00b6 03EB4403 		add	r3, r3, r4, lsl #1
+ 187 00ba 33F8041C 		ldrh	r1, [r3, #-4]
+ 188 00be 124B     		ldr	r3, .L25+8
+ 189 00c0 53F82430 		ldr	r3, [r3, r4, lsl #2]
+ 190 00c4 9942     		cmp	r1, r3
+ 191 00c6 AAD9     		bls	.L17
+ 192 00c8 9BB2     		uxth	r3, r3
+ 193 00ca CB1A     		subs	r3, r1, r3
+ 194 00cc 9BB2     		uxth	r3, r3
+ 195              	.L18:
+ 196 00ce 02AA     		add	r2, sp, #8
+ 197 00d0 02EB4402 		add	r2, r2, r4, lsl #1
+ 198 00d4 32F8080C 		ldrh	r0, [r2, #-8]
+ 199 00d8 0C4A     		ldr	r2, .L25+12
+ 200 00da 52F82420 		ldr	r2, [r2, r4, lsl #2]
+ 201 00de 9042     		cmp	r0, r2
+ 202 00e0 A1D9     		bls	.L19
+ 203 00e2 92B2     		uxth	r2, r2
+ 204 00e4 821A     		subs	r2, r0, r2
+ 205 00e6 92B2     		uxth	r2, r2
+ 206              	.L20:
+ 207 00e8 1344     		add	r3, r3, r2
+ 208 00ea 052B     		cmp	r3, #5
+ 209 00ec 9FDD     		ble	.L21
+ 210 00ee 064B     		ldr	r3, .L25+8
+ 211 00f0 43F82410 		str	r1, [r3, r4, lsl #2]
+ 212 00f4 054B     		ldr	r3, .L25+12
+ 213 00f6 43F82400 		str	r0, [r3, r4, lsl #2]
+ 214 00fa 98E7     		b	.L21
+ 215              	.L23:
+ 216 00fc 0024     		movs	r4, #0
+ 217 00fe A1E7     		b	.L12
+ 218              	.L26:
+ 219              		.align	2
+ 220              	.L25:
+ 221 0100 00000000 		.word	ts_driver
+ 222 0104 00000000 		.word	I2C_Address
+ 223 0108 00000000 		.word	_x.1
+ 224 010c 00000000 		.word	_y.0
+ 225 0110 00000000 		.word	ts_orientation
+ 227              		.section	.text.BSP_TS_INT_MspInit,"ax",%progbits
+ 228              		.align	1
+ 229              		.weak	BSP_TS_INT_MspInit
+ 230              		.syntax unified
+ 231              		.thumb
+ 232              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 5
+
+
+ 234              	BSP_TS_INT_MspInit:
+ 235              		@ args = 0, pretend = 0, frame = 24
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237 0000 00B5     		push	{lr}
+ 238 0002 87B0     		sub	sp, sp, #28
+ 239 0004 0C4B     		ldr	r3, .L29
+ 240 0006 1A6B     		ldr	r2, [r3, #48]
+ 241 0008 42F48072 		orr	r2, r2, #256
+ 242 000c 1A63     		str	r2, [r3, #48]
+ 243 000e 1B6B     		ldr	r3, [r3, #48]
+ 244 0010 03F48073 		and	r3, r3, #256
+ 245 0014 0093     		str	r3, [sp]
+ 246 0016 009B     		ldr	r3, [sp]
+ 247 0018 4FF40053 		mov	r3, #8192
+ 248 001c 0193     		str	r3, [sp, #4]
+ 249 001e 0023     		movs	r3, #0
+ 250 0020 0293     		str	r3, [sp, #8]
+ 251 0022 0123     		movs	r3, #1
+ 252 0024 0393     		str	r3, [sp, #12]
+ 253 0026 0323     		movs	r3, #3
+ 254 0028 0493     		str	r3, [sp, #16]
+ 255 002a 01A9     		add	r1, sp, #4
+ 256 002c 0348     		ldr	r0, .L29+4
+ 257 002e FFF7FEFF 		bl	HAL_GPIO_Init
+ 258 0032 07B0     		add	sp, sp, #28
+ 259              		@ sp needed
+ 260 0034 5DF804FB 		ldr	pc, [sp], #4
+ 261              	.L30:
+ 262              		.align	2
+ 263              	.L29:
+ 264 0038 00380240 		.word	1073887232
+ 265 003c 00200240 		.word	1073881088
+ 267              		.section	.text.BSP_TS_ITConfig,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	BSP_TS_ITConfig
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	BSP_TS_ITConfig:
+ 275              		@ args = 0, pretend = 0, frame = 24
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277 0000 00B5     		push	{lr}
+ 278 0002 87B0     		sub	sp, sp, #28
+ 279 0004 FFF7FEFF 		bl	BSP_TS_INT_MspInit
+ 280 0008 4FF40053 		mov	r3, #8192
+ 281 000c 0193     		str	r3, [sp, #4]
+ 282 000e 0123     		movs	r3, #1
+ 283 0010 0393     		str	r3, [sp, #12]
+ 284 0012 0223     		movs	r3, #2
+ 285 0014 0493     		str	r3, [sp, #16]
+ 286 0016 4FF40413 		mov	r3, #2162688
+ 287 001a 0293     		str	r3, [sp, #8]
+ 288 001c 01A9     		add	r1, sp, #4
+ 289 001e 0A48     		ldr	r0, .L33
+ 290 0020 FFF7FEFF 		bl	HAL_GPIO_Init
+ 291 0024 0022     		movs	r2, #0
+ 292 0026 0F21     		movs	r1, #15
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 6
+
+
+ 293 0028 2820     		movs	r0, #40
+ 294 002a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 295 002e 2820     		movs	r0, #40
+ 296 0030 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 297 0034 054B     		ldr	r3, .L33+4
+ 298 0036 1B68     		ldr	r3, [r3]
+ 299 0038 9B69     		ldr	r3, [r3, #24]
+ 300 003a 054A     		ldr	r2, .L33+8
+ 301 003c 1078     		ldrb	r0, [r2]	@ zero_extendqisi2
+ 302 003e 9847     		blx	r3
+ 303 0040 0020     		movs	r0, #0
+ 304 0042 07B0     		add	sp, sp, #28
+ 305              		@ sp needed
+ 306 0044 5DF804FB 		ldr	pc, [sp], #4
+ 307              	.L34:
+ 308              		.align	2
+ 309              	.L33:
+ 310 0048 00200240 		.word	1073881088
+ 311 004c 00000000 		.word	ts_driver
+ 312 0050 00000000 		.word	I2C_Address
+ 314              		.section	.bss._y.0,"aw",%nobits
+ 315              		.align	2
+ 318              	_y.0:
+ 319 0000 00000000 		.space	8
+ 319      00000000 
+ 320              		.section	.bss._x.1,"aw",%nobits
+ 321              		.align	2
+ 324              	_x.1:
+ 325 0000 00000000 		.space	8
+ 325      00000000 
+ 326              		.global	ts_gesture_id_string_tab
+ 327              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 328              		.align	2
+ 329              	.LC0:
+ 330 0000 4E6F6E65 		.ascii	"None\000"
+ 330      00
+ 331 0005 000000   		.align	2
+ 332              	.LC1:
+ 333 0008 4D6F7665 		.ascii	"Move Up\000"
+ 333      20557000 
+ 334              		.align	2
+ 335              	.LC2:
+ 336 0010 4D6F7665 		.ascii	"Move Right\000"
+ 336      20526967 
+ 336      687400
+ 337 001b 00       		.align	2
+ 338              	.LC3:
+ 339 001c 4D6F7665 		.ascii	"Move Down\000"
+ 339      20446F77 
+ 339      6E00
+ 340 0026 0000     		.align	2
+ 341              	.LC4:
+ 342 0028 4D6F7665 		.ascii	"Move Left\000"
+ 342      204C6566 
+ 342      7400
+ 343 0032 0000     		.align	2
+ 344              	.LC5:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 7
+
+
+ 345 0034 5A6F6F6D 		.ascii	"Zoom In\000"
+ 345      20496E00 
+ 346              		.align	2
+ 347              	.LC6:
+ 348 003c 5A6F6F6D 		.ascii	"Zoom Out\000"
+ 348      204F7574 
+ 348      00
+ 349              		.section	.data.ts_gesture_id_string_tab,"aw"
+ 350              		.align	2
+ 353              	ts_gesture_id_string_tab:
+ 354 0000 00000000 		.word	.LC0
+ 355 0004 08000000 		.word	.LC1
+ 356 0008 10000000 		.word	.LC2
+ 357 000c 1C000000 		.word	.LC3
+ 358 0010 28000000 		.word	.LC4
+ 359 0014 34000000 		.word	.LC5
+ 360 0018 3C000000 		.word	.LC6
+ 361              		.global	ts_event_string_tab
+ 362              		.section	.rodata.str1.4
+ 363 0045 000000   		.align	2
+ 364              	.LC7:
+ 365 0048 50726573 		.ascii	"Press down\000"
+ 365      7320646F 
+ 365      776E00
+ 366 0053 00       		.align	2
+ 367              	.LC8:
+ 368 0054 4C696674 		.ascii	"Lift up\000"
+ 368      20757000 
+ 369              		.align	2
+ 370              	.LC9:
+ 371 005c 436F6E74 		.ascii	"Contact\000"
+ 371      61637400 
+ 372              		.section	.data.ts_event_string_tab,"aw"
+ 373              		.align	2
+ 376              	ts_event_string_tab:
+ 377 0000 00000000 		.word	.LC0
+ 378 0004 48000000 		.word	.LC7
+ 379 0008 54000000 		.word	.LC8
+ 380 000c 5C000000 		.word	.LC9
+ 381              		.global	I2C_Address
+ 382              		.section	.bss.I2C_Address,"aw",%nobits
+ 385              	I2C_Address:
+ 386 0000 00       		.space	1
+ 387              		.section	.bss.ts_orientation,"aw",%nobits
+ 390              	ts_orientation:
+ 391 0000 00       		.space	1
+ 392              		.section	.bss.ts_driver,"aw",%nobits
+ 393              		.align	2
+ 396              	ts_driver:
+ 397 0000 00000000 		.space	4
+ 398              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f769i_discovery_ts.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:17     .text.BSP_TS_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:23     .text.BSP_TS_Init:00000000 BSP_TS_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:92     .text.BSP_TS_Init:00000074 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:385    .bss.I2C_Address:00000000 I2C_Address
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:396    .bss.ts_driver:00000000 ts_driver
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:390    .bss.ts_orientation:00000000 ts_orientation
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:98     .text.BSP_TS_GetState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:104    .text.BSP_TS_GetState:00000000 BSP_TS_GetState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:221    .text.BSP_TS_GetState:00000100 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:324    .bss._x.1:00000000 _x.1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:318    .bss._y.0:00000000 _y.0
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:228    .text.BSP_TS_INT_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:234    .text.BSP_TS_INT_MspInit:00000000 BSP_TS_INT_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:264    .text.BSP_TS_INT_MspInit:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:268    .text.BSP_TS_ITConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:274    .text.BSP_TS_ITConfig:00000000 BSP_TS_ITConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:310    .text.BSP_TS_ITConfig:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:315    .bss._y.0:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:321    .bss._x.1:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:353    .data.ts_gesture_id_string_tab:00000000 ts_gesture_id_string_tab
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:328    .rodata.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:350    .data.ts_gesture_id_string_tab:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:376    .data.ts_event_string_tab:00000000 ts_event_string_tab
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:373    .data.ts_event_string_tab:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:386    .bss.I2C_Address:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:391    .bss.ts_orientation:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccs7A7qO.s:393    .bss.ts_driver:00000000 $d
+
+UNDEFINED SYMBOLS
+ft6x06_ts_drv
+HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ

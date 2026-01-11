@@ -1,0 +1,562 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f7xx_hal_pwr.c"
+  15              		.text
+  16              		.section	.text.HAL_PWR_DeInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	HAL_PWR_DeInit
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_PWR_DeInit:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 044B     		ldr	r3, .L2
+  28 0002 1A6A     		ldr	r2, [r3, #32]
+  29 0004 42F08052 		orr	r2, r2, #268435456
+  30 0008 1A62     		str	r2, [r3, #32]
+  31 000a 1A6A     		ldr	r2, [r3, #32]
+  32 000c 22F08052 		bic	r2, r2, #268435456
+  33 0010 1A62     		str	r2, [r3, #32]
+  34 0012 7047     		bx	lr
+  35              	.L3:
+  36              		.align	2
+  37              	.L2:
+  38 0014 00380240 		.word	1073887232
+  40              		.section	.text.HAL_PWR_EnableBkUpAccess,"ax",%progbits
+  41              		.align	1
+  42              		.global	HAL_PWR_EnableBkUpAccess
+  43              		.syntax unified
+  44              		.thumb
+  45              		.thumb_func
+  47              	HAL_PWR_EnableBkUpAccess:
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  51 0000 024A     		ldr	r2, .L5
+  52 0002 1368     		ldr	r3, [r2]
+  53 0004 43F48073 		orr	r3, r3, #256
+  54 0008 1360     		str	r3, [r2]
+  55 000a 7047     		bx	lr
+  56              	.L6:
+  57              		.align	2
+  58              	.L5:
+  59 000c 00700040 		.word	1073770496
+  61              		.section	.text.HAL_PWR_DisableBkUpAccess,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 2
+
+
+  62              		.align	1
+  63              		.global	HAL_PWR_DisableBkUpAccess
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  68              	HAL_PWR_DisableBkUpAccess:
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71              		@ link register save eliminated.
+  72 0000 024A     		ldr	r2, .L8
+  73 0002 1368     		ldr	r3, [r2]
+  74 0004 23F48073 		bic	r3, r3, #256
+  75 0008 1360     		str	r3, [r2]
+  76 000a 7047     		bx	lr
+  77              	.L9:
+  78              		.align	2
+  79              	.L8:
+  80 000c 00700040 		.word	1073770496
+  82              		.section	.text.HAL_PWR_ConfigPVD,"ax",%progbits
+  83              		.align	1
+  84              		.global	HAL_PWR_ConfigPVD
+  85              		.syntax unified
+  86              		.thumb
+  87              		.thumb_func
+  89              	HAL_PWR_ConfigPVD:
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93 0000 1E4A     		ldr	r2, .L15
+  94 0002 1368     		ldr	r3, [r2]
+  95 0004 23F0E003 		bic	r3, r3, #224
+  96 0008 0168     		ldr	r1, [r0]
+  97 000a 0B43     		orrs	r3, r3, r1
+  98 000c 1360     		str	r3, [r2]
+  99 000e 1C4B     		ldr	r3, .L15+4
+ 100 0010 5A68     		ldr	r2, [r3, #4]
+ 101 0012 22F48032 		bic	r2, r2, #65536
+ 102 0016 5A60     		str	r2, [r3, #4]
+ 103 0018 1A68     		ldr	r2, [r3]
+ 104 001a 22F48032 		bic	r2, r2, #65536
+ 105 001e 1A60     		str	r2, [r3]
+ 106 0020 9A68     		ldr	r2, [r3, #8]
+ 107 0022 22F48032 		bic	r2, r2, #65536
+ 108 0026 9A60     		str	r2, [r3, #8]
+ 109 0028 DA68     		ldr	r2, [r3, #12]
+ 110 002a 22F48032 		bic	r2, r2, #65536
+ 111 002e DA60     		str	r2, [r3, #12]
+ 112 0030 4368     		ldr	r3, [r0, #4]
+ 113 0032 13F4803F 		tst	r3, #65536
+ 114 0036 04D0     		beq	.L11
+ 115 0038 114A     		ldr	r2, .L15+4
+ 116 003a 1368     		ldr	r3, [r2]
+ 117 003c 43F48033 		orr	r3, r3, #65536
+ 118 0040 1360     		str	r3, [r2]
+ 119              	.L11:
+ 120 0042 4368     		ldr	r3, [r0, #4]
+ 121 0044 13F4003F 		tst	r3, #131072
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 3
+
+
+ 122 0048 04D0     		beq	.L12
+ 123 004a 0D4A     		ldr	r2, .L15+4
+ 124 004c 5368     		ldr	r3, [r2, #4]
+ 125 004e 43F48033 		orr	r3, r3, #65536
+ 126 0052 5360     		str	r3, [r2, #4]
+ 127              	.L12:
+ 128 0054 4368     		ldr	r3, [r0, #4]
+ 129 0056 13F0010F 		tst	r3, #1
+ 130 005a 04D0     		beq	.L13
+ 131 005c 084A     		ldr	r2, .L15+4
+ 132 005e 9368     		ldr	r3, [r2, #8]
+ 133 0060 43F48033 		orr	r3, r3, #65536
+ 134 0064 9360     		str	r3, [r2, #8]
+ 135              	.L13:
+ 136 0066 4368     		ldr	r3, [r0, #4]
+ 137 0068 13F0020F 		tst	r3, #2
+ 138 006c 04D0     		beq	.L10
+ 139 006e 044A     		ldr	r2, .L15+4
+ 140 0070 D368     		ldr	r3, [r2, #12]
+ 141 0072 43F48033 		orr	r3, r3, #65536
+ 142 0076 D360     		str	r3, [r2, #12]
+ 143              	.L10:
+ 144 0078 7047     		bx	lr
+ 145              	.L16:
+ 146 007a 00BF     		.align	2
+ 147              	.L15:
+ 148 007c 00700040 		.word	1073770496
+ 149 0080 003C0140 		.word	1073822720
+ 151              		.section	.text.HAL_PWR_EnablePVD,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	HAL_PWR_EnablePVD
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	HAL_PWR_EnablePVD:
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+ 162 0000 024A     		ldr	r2, .L18
+ 163 0002 1368     		ldr	r3, [r2]
+ 164 0004 43F01003 		orr	r3, r3, #16
+ 165 0008 1360     		str	r3, [r2]
+ 166 000a 7047     		bx	lr
+ 167              	.L19:
+ 168              		.align	2
+ 169              	.L18:
+ 170 000c 00700040 		.word	1073770496
+ 172              		.section	.text.HAL_PWR_DisablePVD,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	HAL_PWR_DisablePVD
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 179              	HAL_PWR_DisablePVD:
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182              		@ link register save eliminated.
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 4
+
+
+ 183 0000 024A     		ldr	r2, .L21
+ 184 0002 1368     		ldr	r3, [r2]
+ 185 0004 23F01003 		bic	r3, r3, #16
+ 186 0008 1360     		str	r3, [r2]
+ 187 000a 7047     		bx	lr
+ 188              	.L22:
+ 189              		.align	2
+ 190              	.L21:
+ 191 000c 00700040 		.word	1073770496
+ 193              		.section	.text.HAL_PWR_EnableWakeUpPin,"ax",%progbits
+ 194              		.align	1
+ 195              		.global	HAL_PWR_EnableWakeUpPin
+ 196              		.syntax unified
+ 197              		.thumb
+ 198              		.thumb_func
+ 200              	HAL_PWR_EnableWakeUpPin:
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 0, uses_anonymous_args = 0
+ 203              		@ link register save eliminated.
+ 204 0000 064A     		ldr	r2, .L24
+ 205 0002 D368     		ldr	r3, [r2, #12]
+ 206 0004 00F47C51 		and	r1, r0, #16128
+ 207 0008 0B43     		orrs	r3, r3, r1
+ 208 000a D360     		str	r3, [r2, #12]
+ 209 000c 9368     		ldr	r3, [r2, #8]
+ 210 000e 23EA0103 		bic	r3, r3, r1
+ 211 0012 43EA9010 		orr	r0, r3, r0, lsr #6
+ 212 0016 9060     		str	r0, [r2, #8]
+ 213 0018 7047     		bx	lr
+ 214              	.L25:
+ 215 001a 00BF     		.align	2
+ 216              	.L24:
+ 217 001c 00700040 		.word	1073770496
+ 219              		.section	.text.HAL_PWR_DisableWakeUpPin,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	HAL_PWR_DisableWakeUpPin
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 226              	HAL_PWR_DisableWakeUpPin:
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230 0000 024A     		ldr	r2, .L27
+ 231 0002 D368     		ldr	r3, [r2, #12]
+ 232 0004 23EA0003 		bic	r3, r3, r0
+ 233 0008 D360     		str	r3, [r2, #12]
+ 234 000a 7047     		bx	lr
+ 235              	.L28:
+ 236              		.align	2
+ 237              	.L27:
+ 238 000c 00700040 		.word	1073770496
+ 240              		.section	.text.HAL_PWR_EnterSLEEPMode,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	HAL_PWR_EnterSLEEPMode
+ 243              		.syntax unified
+ 244              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 5
+
+
+ 245              		.thumb_func
+ 247              	HAL_PWR_EnterSLEEPMode:
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250              		@ link register save eliminated.
+ 251 0000 084A     		ldr	r2, .L33
+ 252 0002 1369     		ldr	r3, [r2, #16]
+ 253 0004 23F00403 		bic	r3, r3, #4
+ 254 0008 1361     		str	r3, [r2, #16]
+ 255              		.syntax unified
+ 256              	@ 879 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 257 000a BFF34F8F 		dsb 0xF
+ 258              	@ 0 "" 2
+ 259              	@ 868 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 260 000e BFF36F8F 		isb 0xF
+ 261              	@ 0 "" 2
+ 262              		.thumb
+ 263              		.syntax unified
+ 264 0012 0129     		cmp	r1, #1
+ 265 0014 03D0     		beq	.L32
+ 266              		.syntax unified
+ 267              	@ 411 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 268 0016 40BF     		sev
+ 269              	@ 0 "" 2
+ 270              	@ 412 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 271 0018 20BF     		wfe
+ 272              	@ 0 "" 2
+ 273              	@ 413 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 274 001a 20BF     		wfe
+ 275              	@ 0 "" 2
+ 276              		.thumb
+ 277              		.syntax unified
+ 278 001c 7047     		bx	lr
+ 279              	.L32:
+ 280              		.syntax unified
+ 281              	@ 406 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 282 001e 30BF     		wfi
+ 283              	@ 0 "" 2
+ 284              		.thumb
+ 285              		.syntax unified
+ 286 0020 7047     		bx	lr
+ 287              	.L34:
+ 288 0022 00BF     		.align	2
+ 289              	.L33:
+ 290 0024 00ED00E0 		.word	-536810240
+ 292              		.section	.text.HAL_PWR_EnterSTOPMode,"ax",%progbits
+ 293              		.align	1
+ 294              		.global	HAL_PWR_EnterSTOPMode
+ 295              		.syntax unified
+ 296              		.thumb
+ 297              		.thumb_func
+ 299              	HAL_PWR_EnterSTOPMode:
+ 300              		@ args = 0, pretend = 0, frame = 0
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302              		@ link register save eliminated.
+ 303 0000 0D4A     		ldr	r2, .L39
+ 304 0002 1368     		ldr	r3, [r2]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 6
+
+
+ 305 0004 23F00303 		bic	r3, r3, #3
+ 306 0008 0343     		orrs	r3, r3, r0
+ 307 000a 1360     		str	r3, [r2]
+ 308 000c 0B4A     		ldr	r2, .L39+4
+ 309 000e 1369     		ldr	r3, [r2, #16]
+ 310 0010 43F00403 		orr	r3, r3, #4
+ 311 0014 1361     		str	r3, [r2, #16]
+ 312              		.syntax unified
+ 313              	@ 879 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 314 0016 BFF34F8F 		dsb 0xF
+ 315              	@ 0 "" 2
+ 316              	@ 868 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 317 001a BFF36F8F 		isb 0xF
+ 318              	@ 0 "" 2
+ 319              		.thumb
+ 320              		.syntax unified
+ 321 001e 0129     		cmp	r1, #1
+ 322 0020 08D0     		beq	.L38
+ 323              		.syntax unified
+ 324              	@ 471 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 325 0022 40BF     		sev
+ 326              	@ 0 "" 2
+ 327              	@ 472 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 328 0024 20BF     		wfe
+ 329              	@ 0 "" 2
+ 330              	@ 473 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 331 0026 20BF     		wfe
+ 332              	@ 0 "" 2
+ 333              		.thumb
+ 334              		.syntax unified
+ 335              	.L37:
+ 336 0028 044A     		ldr	r2, .L39+4
+ 337 002a 1369     		ldr	r3, [r2, #16]
+ 338 002c 23F00403 		bic	r3, r3, #4
+ 339 0030 1361     		str	r3, [r2, #16]
+ 340 0032 7047     		bx	lr
+ 341              	.L38:
+ 342              		.syntax unified
+ 343              	@ 466 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 344 0034 30BF     		wfi
+ 345              	@ 0 "" 2
+ 346              		.thumb
+ 347              		.syntax unified
+ 348 0036 F7E7     		b	.L37
+ 349              	.L40:
+ 350              		.align	2
+ 351              	.L39:
+ 352 0038 00700040 		.word	1073770496
+ 353 003c 00ED00E0 		.word	-536810240
+ 355              		.section	.text.HAL_PWR_EnterSTANDBYMode,"ax",%progbits
+ 356              		.align	1
+ 357              		.global	HAL_PWR_EnterSTANDBYMode
+ 358              		.syntax unified
+ 359              		.thumb
+ 360              		.thumb_func
+ 362              	HAL_PWR_EnterSTANDBYMode:
+ 363              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 7
+
+
+ 364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 365              		@ link register save eliminated.
+ 366 0000 054A     		ldr	r2, .L42
+ 367 0002 1368     		ldr	r3, [r2]
+ 368 0004 43F00203 		orr	r3, r3, #2
+ 369 0008 1360     		str	r3, [r2]
+ 370 000a 044A     		ldr	r2, .L42+4
+ 371 000c 1369     		ldr	r3, [r2, #16]
+ 372 000e 43F00403 		orr	r3, r3, #4
+ 373 0012 1361     		str	r3, [r2, #16]
+ 374              		.syntax unified
+ 375              	@ 502 "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" 1
+ 376 0014 30BF     		wfi
+ 377              	@ 0 "" 2
+ 378              		.thumb
+ 379              		.syntax unified
+ 380 0016 7047     		bx	lr
+ 381              	.L43:
+ 382              		.align	2
+ 383              	.L42:
+ 384 0018 00700040 		.word	1073770496
+ 385 001c 00ED00E0 		.word	-536810240
+ 387              		.section	.text.HAL_PWR_PVDCallback,"ax",%progbits
+ 388              		.align	1
+ 389              		.weak	HAL_PWR_PVDCallback
+ 390              		.syntax unified
+ 391              		.thumb
+ 392              		.thumb_func
+ 394              	HAL_PWR_PVDCallback:
+ 395              		@ args = 0, pretend = 0, frame = 0
+ 396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 397              		@ link register save eliminated.
+ 398 0000 7047     		bx	lr
+ 400              		.section	.text.HAL_PWR_PVD_IRQHandler,"ax",%progbits
+ 401              		.align	1
+ 402              		.global	HAL_PWR_PVD_IRQHandler
+ 403              		.syntax unified
+ 404              		.thumb
+ 405              		.thumb_func
+ 407              	HAL_PWR_PVD_IRQHandler:
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410 0000 08B5     		push	{r3, lr}
+ 411 0002 064B     		ldr	r3, .L49
+ 412 0004 5B69     		ldr	r3, [r3, #20]
+ 413 0006 13F4803F 		tst	r3, #65536
+ 414 000a 00D1     		bne	.L48
+ 415              	.L45:
+ 416 000c 08BD     		pop	{r3, pc}
+ 417              	.L48:
+ 418 000e FFF7FEFF 		bl	HAL_PWR_PVDCallback
+ 419 0012 024B     		ldr	r3, .L49
+ 420 0014 4FF48032 		mov	r2, #65536
+ 421 0018 5A61     		str	r2, [r3, #20]
+ 422 001a F7E7     		b	.L45
+ 423              	.L50:
+ 424              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 8
+
+
+ 425              	.L49:
+ 426 001c 003C0140 		.word	1073822720
+ 428              		.section	.text.HAL_PWR_EnableSleepOnExit,"ax",%progbits
+ 429              		.align	1
+ 430              		.global	HAL_PWR_EnableSleepOnExit
+ 431              		.syntax unified
+ 432              		.thumb
+ 433              		.thumb_func
+ 435              	HAL_PWR_EnableSleepOnExit:
+ 436              		@ args = 0, pretend = 0, frame = 0
+ 437              		@ frame_needed = 0, uses_anonymous_args = 0
+ 438              		@ link register save eliminated.
+ 439 0000 024A     		ldr	r2, .L52
+ 440 0002 1369     		ldr	r3, [r2, #16]
+ 441 0004 43F00203 		orr	r3, r3, #2
+ 442 0008 1361     		str	r3, [r2, #16]
+ 443 000a 7047     		bx	lr
+ 444              	.L53:
+ 445              		.align	2
+ 446              	.L52:
+ 447 000c 00ED00E0 		.word	-536810240
+ 449              		.section	.text.HAL_PWR_DisableSleepOnExit,"ax",%progbits
+ 450              		.align	1
+ 451              		.global	HAL_PWR_DisableSleepOnExit
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 456              	HAL_PWR_DisableSleepOnExit:
+ 457              		@ args = 0, pretend = 0, frame = 0
+ 458              		@ frame_needed = 0, uses_anonymous_args = 0
+ 459              		@ link register save eliminated.
+ 460 0000 024A     		ldr	r2, .L55
+ 461 0002 1369     		ldr	r3, [r2, #16]
+ 462 0004 23F00203 		bic	r3, r3, #2
+ 463 0008 1361     		str	r3, [r2, #16]
+ 464 000a 7047     		bx	lr
+ 465              	.L56:
+ 466              		.align	2
+ 467              	.L55:
+ 468 000c 00ED00E0 		.word	-536810240
+ 470              		.section	.text.HAL_PWR_EnableSEVOnPend,"ax",%progbits
+ 471              		.align	1
+ 472              		.global	HAL_PWR_EnableSEVOnPend
+ 473              		.syntax unified
+ 474              		.thumb
+ 475              		.thumb_func
+ 477              	HAL_PWR_EnableSEVOnPend:
+ 478              		@ args = 0, pretend = 0, frame = 0
+ 479              		@ frame_needed = 0, uses_anonymous_args = 0
+ 480              		@ link register save eliminated.
+ 481 0000 024A     		ldr	r2, .L58
+ 482 0002 1369     		ldr	r3, [r2, #16]
+ 483 0004 43F01003 		orr	r3, r3, #16
+ 484 0008 1361     		str	r3, [r2, #16]
+ 485 000a 7047     		bx	lr
+ 486              	.L59:
+ 487              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 9
+
+
+ 488              	.L58:
+ 489 000c 00ED00E0 		.word	-536810240
+ 491              		.section	.text.HAL_PWR_DisableSEVOnPend,"ax",%progbits
+ 492              		.align	1
+ 493              		.global	HAL_PWR_DisableSEVOnPend
+ 494              		.syntax unified
+ 495              		.thumb
+ 496              		.thumb_func
+ 498              	HAL_PWR_DisableSEVOnPend:
+ 499              		@ args = 0, pretend = 0, frame = 0
+ 500              		@ frame_needed = 0, uses_anonymous_args = 0
+ 501              		@ link register save eliminated.
+ 502 0000 024A     		ldr	r2, .L61
+ 503 0002 1369     		ldr	r3, [r2, #16]
+ 504 0004 23F01003 		bic	r3, r3, #16
+ 505 0008 1361     		str	r3, [r2, #16]
+ 506 000a 7047     		bx	lr
+ 507              	.L62:
+ 508              		.align	2
+ 509              	.L61:
+ 510 000c 00ED00E0 		.word	-536810240
+ 512              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f7xx_hal_pwr.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:17     .text.HAL_PWR_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:23     .text.HAL_PWR_DeInit:00000000 HAL_PWR_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:38     .text.HAL_PWR_DeInit:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:41     .text.HAL_PWR_EnableBkUpAccess:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:47     .text.HAL_PWR_EnableBkUpAccess:00000000 HAL_PWR_EnableBkUpAccess
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:59     .text.HAL_PWR_EnableBkUpAccess:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:62     .text.HAL_PWR_DisableBkUpAccess:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:68     .text.HAL_PWR_DisableBkUpAccess:00000000 HAL_PWR_DisableBkUpAccess
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:80     .text.HAL_PWR_DisableBkUpAccess:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:83     .text.HAL_PWR_ConfigPVD:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:89     .text.HAL_PWR_ConfigPVD:00000000 HAL_PWR_ConfigPVD
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:148    .text.HAL_PWR_ConfigPVD:0000007c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:152    .text.HAL_PWR_EnablePVD:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:158    .text.HAL_PWR_EnablePVD:00000000 HAL_PWR_EnablePVD
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:170    .text.HAL_PWR_EnablePVD:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:173    .text.HAL_PWR_DisablePVD:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:179    .text.HAL_PWR_DisablePVD:00000000 HAL_PWR_DisablePVD
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:191    .text.HAL_PWR_DisablePVD:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:194    .text.HAL_PWR_EnableWakeUpPin:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:200    .text.HAL_PWR_EnableWakeUpPin:00000000 HAL_PWR_EnableWakeUpPin
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:217    .text.HAL_PWR_EnableWakeUpPin:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:220    .text.HAL_PWR_DisableWakeUpPin:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:226    .text.HAL_PWR_DisableWakeUpPin:00000000 HAL_PWR_DisableWakeUpPin
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:238    .text.HAL_PWR_DisableWakeUpPin:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:241    .text.HAL_PWR_EnterSLEEPMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:247    .text.HAL_PWR_EnterSLEEPMode:00000000 HAL_PWR_EnterSLEEPMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:290    .text.HAL_PWR_EnterSLEEPMode:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:293    .text.HAL_PWR_EnterSTOPMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:299    .text.HAL_PWR_EnterSTOPMode:00000000 HAL_PWR_EnterSTOPMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:352    .text.HAL_PWR_EnterSTOPMode:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:356    .text.HAL_PWR_EnterSTANDBYMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:362    .text.HAL_PWR_EnterSTANDBYMode:00000000 HAL_PWR_EnterSTANDBYMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:384    .text.HAL_PWR_EnterSTANDBYMode:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:388    .text.HAL_PWR_PVDCallback:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:394    .text.HAL_PWR_PVDCallback:00000000 HAL_PWR_PVDCallback
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:401    .text.HAL_PWR_PVD_IRQHandler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:407    .text.HAL_PWR_PVD_IRQHandler:00000000 HAL_PWR_PVD_IRQHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:426    .text.HAL_PWR_PVD_IRQHandler:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:429    .text.HAL_PWR_EnableSleepOnExit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:435    .text.HAL_PWR_EnableSleepOnExit:00000000 HAL_PWR_EnableSleepOnExit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:447    .text.HAL_PWR_EnableSleepOnExit:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:450    .text.HAL_PWR_DisableSleepOnExit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:456    .text.HAL_PWR_DisableSleepOnExit:00000000 HAL_PWR_DisableSleepOnExit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:468    .text.HAL_PWR_DisableSleepOnExit:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:471    .text.HAL_PWR_EnableSEVOnPend:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:477    .text.HAL_PWR_EnableSEVOnPend:00000000 HAL_PWR_EnableSEVOnPend
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:489    .text.HAL_PWR_EnableSEVOnPend:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:492    .text.HAL_PWR_DisableSEVOnPend:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:498    .text.HAL_PWR_DisableSEVOnPend:00000000 HAL_PWR_DisableSEVOnPend
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccicT0bX.s:510    .text.HAL_PWR_DisableSEVOnPend:0000000c $d
+
+NO UNDEFINED SYMBOLS

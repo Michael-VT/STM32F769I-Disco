@@ -1,0 +1,193 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f7xx_hal_msp.c"
+  15              		.text
+  16              		.section	.text.HAL_MspInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	HAL_MspInit
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_MspInit:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 00B5     		push	{lr}
+  27 0002 83B0     		sub	sp, sp, #12
+  28 0004 0D4B     		ldr	r3, .L3
+  29 0006 1A6C     		ldr	r2, [r3, #64]
+  30 0008 42F08052 		orr	r2, r2, #268435456
+  31 000c 1A64     		str	r2, [r3, #64]
+  32 000e 1A6C     		ldr	r2, [r3, #64]
+  33 0010 02F08052 		and	r2, r2, #268435456
+  34 0014 0092     		str	r2, [sp]
+  35 0016 009A     		ldr	r2, [sp]
+  36 0018 5A6C     		ldr	r2, [r3, #68]
+  37 001a 42F48042 		orr	r2, r2, #16384
+  38 001e 5A64     		str	r2, [r3, #68]
+  39 0020 5B6C     		ldr	r3, [r3, #68]
+  40 0022 03F48043 		and	r3, r3, #16384
+  41 0026 0193     		str	r3, [sp, #4]
+  42 0028 019B     		ldr	r3, [sp, #4]
+  43 002a 0022     		movs	r2, #0
+  44 002c 0F21     		movs	r1, #15
+  45 002e 6FF00100 		mvn	r0, #1
+  46 0032 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  47 0036 03B0     		add	sp, sp, #12
+  48              		@ sp needed
+  49 0038 5DF804FB 		ldr	pc, [sp], #4
+  50              	.L4:
+  51              		.align	2
+  52              	.L3:
+  53 003c 00380240 		.word	1073887232
+  55              		.section	.text.HAL_UART_MspInit,"ax",%progbits
+  56              		.align	1
+  57              		.global	HAL_UART_MspInit
+  58              		.syntax unified
+  59              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s 			page 2
+
+
+  60              		.thumb_func
+  62              	HAL_UART_MspInit:
+  63              		@ args = 0, pretend = 0, frame = 32
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  66 0002 89B0     		sub	sp, sp, #36
+  67 0004 0023     		movs	r3, #0
+  68 0006 0393     		str	r3, [sp, #12]
+  69 0008 0493     		str	r3, [sp, #16]
+  70 000a 0593     		str	r3, [sp, #20]
+  71 000c 0693     		str	r3, [sp, #24]
+  72 000e 0793     		str	r3, [sp, #28]
+  73 0010 0268     		ldr	r2, [r0]
+  74 0012 1E4B     		ldr	r3, .L9
+  75 0014 9A42     		cmp	r2, r3
+  76 0016 01D0     		beq	.L8
+  77              	.L5:
+  78 0018 09B0     		add	sp, sp, #36
+  79              		@ sp needed
+  80 001a F0BD     		pop	{r4, r5, r6, r7, pc}
+  81              	.L8:
+  82 001c 03F5F433 		add	r3, r3, #124928
+  83 0020 1A6C     		ldr	r2, [r3, #64]
+  84 0022 42F48012 		orr	r2, r2, #1048576
+  85 0026 1A64     		str	r2, [r3, #64]
+  86 0028 1A6C     		ldr	r2, [r3, #64]
+  87 002a 02F48012 		and	r2, r2, #1048576
+  88 002e 0092     		str	r2, [sp]
+  89 0030 009A     		ldr	r2, [sp]
+  90 0032 1A6B     		ldr	r2, [r3, #48]
+  91 0034 42F00402 		orr	r2, r2, #4
+  92 0038 1A63     		str	r2, [r3, #48]
+  93 003a 1A6B     		ldr	r2, [r3, #48]
+  94 003c 02F00402 		and	r2, r2, #4
+  95 0040 0192     		str	r2, [sp, #4]
+  96 0042 019A     		ldr	r2, [sp, #4]
+  97 0044 1A6B     		ldr	r2, [r3, #48]
+  98 0046 42F00802 		orr	r2, r2, #8
+  99 004a 1A63     		str	r2, [r3, #48]
+ 100 004c 1B6B     		ldr	r3, [r3, #48]
+ 101 004e 03F00803 		and	r3, r3, #8
+ 102 0052 0293     		str	r3, [sp, #8]
+ 103 0054 029B     		ldr	r3, [sp, #8]
+ 104 0056 4FF48053 		mov	r3, #4096
+ 105 005a 0393     		str	r3, [sp, #12]
+ 106 005c 0227     		movs	r7, #2
+ 107 005e 0497     		str	r7, [sp, #16]
+ 108 0060 0326     		movs	r6, #3
+ 109 0062 0696     		str	r6, [sp, #24]
+ 110 0064 0825     		movs	r5, #8
+ 111 0066 0795     		str	r5, [sp, #28]
+ 112 0068 03AC     		add	r4, sp, #12
+ 113 006a 2146     		mov	r1, r4
+ 114 006c 0848     		ldr	r0, .L9+4
+ 115 006e FFF7FEFF 		bl	HAL_GPIO_Init
+ 116 0072 0423     		movs	r3, #4
+ 117 0074 0393     		str	r3, [sp, #12]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s 			page 3
+
+
+ 118 0076 0497     		str	r7, [sp, #16]
+ 119 0078 0023     		movs	r3, #0
+ 120 007a 0593     		str	r3, [sp, #20]
+ 121 007c 0696     		str	r6, [sp, #24]
+ 122 007e 0795     		str	r5, [sp, #28]
+ 123 0080 2146     		mov	r1, r4
+ 124 0082 0448     		ldr	r0, .L9+8
+ 125 0084 FFF7FEFF 		bl	HAL_GPIO_Init
+ 126 0088 C6E7     		b	.L5
+ 127              	.L10:
+ 128 008a 00BF     		.align	2
+ 129              	.L9:
+ 130 008c 00500040 		.word	1073762304
+ 131 0090 00080240 		.word	1073874944
+ 132 0094 000C0240 		.word	1073875968
+ 134              		.section	.text.HAL_UART_MspDeInit,"ax",%progbits
+ 135              		.align	1
+ 136              		.global	HAL_UART_MspDeInit
+ 137              		.syntax unified
+ 138              		.thumb
+ 139              		.thumb_func
+ 141              	HAL_UART_MspDeInit:
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144 0000 08B5     		push	{r3, lr}
+ 145 0002 0268     		ldr	r2, [r0]
+ 146 0004 094B     		ldr	r3, .L15
+ 147 0006 9A42     		cmp	r2, r3
+ 148 0008 00D0     		beq	.L14
+ 149              	.L11:
+ 150 000a 08BD     		pop	{r3, pc}
+ 151              	.L14:
+ 152 000c 084A     		ldr	r2, .L15+4
+ 153 000e 136C     		ldr	r3, [r2, #64]
+ 154 0010 23F48013 		bic	r3, r3, #1048576
+ 155 0014 1364     		str	r3, [r2, #64]
+ 156 0016 4FF48051 		mov	r1, #4096
+ 157 001a 0648     		ldr	r0, .L15+8
+ 158 001c FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 159 0020 0421     		movs	r1, #4
+ 160 0022 0548     		ldr	r0, .L15+12
+ 161 0024 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 162 0028 EFE7     		b	.L11
+ 163              	.L16:
+ 164 002a 00BF     		.align	2
+ 165              	.L15:
+ 166 002c 00500040 		.word	1073762304
+ 167 0030 00380240 		.word	1073887232
+ 168 0034 00080240 		.word	1073874944
+ 169 0038 000C0240 		.word	1073875968
+ 171              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f7xx_hal_msp.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:17     .text.HAL_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:23     .text.HAL_MspInit:00000000 HAL_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:53     .text.HAL_MspInit:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:56     .text.HAL_UART_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:62     .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:130    .text.HAL_UART_MspInit:0000008c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:135    .text.HAL_UART_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:141    .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccVvoAAA.s:166    .text.HAL_UART_MspDeInit:0000002c $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriority
+HAL_GPIO_Init
+HAL_GPIO_DeInit

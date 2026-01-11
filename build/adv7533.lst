@@ -1,0 +1,661 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"adv7533.c"
+  15              		.text
+  16              		.section	.text.adv7533_SetOutputMode,"ax",%progbits
+  17              		.align	1
+  18              		.global	adv7533_SetOutputMode
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	adv7533_SetOutputMode:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 0020     		movs	r0, #0
+  28 0002 7047     		bx	lr
+  30              		.section	.text.adv7533_SetVolume,"ax",%progbits
+  31              		.align	1
+  32              		.global	adv7533_SetVolume
+  33              		.syntax unified
+  34              		.thumb
+  35              		.thumb_func
+  37              	adv7533_SetVolume:
+  38              		@ args = 0, pretend = 0, frame = 0
+  39              		@ frame_needed = 0, uses_anonymous_args = 0
+  40              		@ link register save eliminated.
+  41 0000 0020     		movs	r0, #0
+  42 0002 7047     		bx	lr
+  44              		.section	.text.adv7533_Reset,"ax",%progbits
+  45              		.align	1
+  46              		.global	adv7533_Reset
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	adv7533_Reset:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54              		@ link register save eliminated.
+  55 0000 0020     		movs	r0, #0
+  56 0002 7047     		bx	lr
+  58              		.section	.text.adv7533_ReadID,"ax",%progbits
+  59              		.align	1
+  60              		.global	adv7533_ReadID
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 2
+
+
+  65              	adv7533_ReadID:
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 38B5     		push	{r3, r4, r5, lr}
+  69 0002 C4B2     		uxtb	r4, r0
+  70 0004 0021     		movs	r1, #0
+  71 0006 2046     		mov	r0, r4
+  72 0008 FFF7FEFF 		bl	HDMI_IO_Read
+  73 000c 0502     		lsls	r5, r0, #8
+  74 000e 0121     		movs	r1, #1
+  75 0010 2046     		mov	r0, r4
+  76 0012 FFF7FEFF 		bl	HDMI_IO_Read
+  77 0016 2843     		orrs	r0, r0, r5
+  78 0018 38BD     		pop	{r3, r4, r5, pc}
+  80              		.section	.text.adv7533_SetMute,"ax",%progbits
+  81              		.align	1
+  82              		.global	adv7533_SetMute
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	adv7533_SetMute:
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90 0000 38B5     		push	{r3, r4, r5, lr}
+  91 0002 0D46     		mov	r5, r1
+  92 0004 C4B2     		uxtb	r4, r0
+  93 0006 0D21     		movs	r1, #13
+  94 0008 2046     		mov	r0, r4
+  95 000a FFF7FEFF 		bl	HDMI_IO_Read
+  96 000e 012D     		cmp	r5, #1
+  97 0010 07D0     		beq	.L10
+  98 0012 00F0BF02 		and	r2, r0, #191
+  99 0016 0D21     		movs	r1, #13
+ 100 0018 2046     		mov	r0, r4
+ 101 001a FFF7FEFF 		bl	HDMI_IO_Write
+ 102              	.L8:
+ 103 001e 0020     		movs	r0, #0
+ 104 0020 38BD     		pop	{r3, r4, r5, pc}
+ 105              	.L10:
+ 106 0022 40F04002 		orr	r2, r0, #64
+ 107 0026 D2B2     		uxtb	r2, r2
+ 108 0028 0D21     		movs	r1, #13
+ 109 002a 2046     		mov	r0, r4
+ 110 002c FFF7FEFF 		bl	HDMI_IO_Write
+ 111 0030 F5E7     		b	.L8
+ 113              		.section	.text.adv7533_Pause,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	adv7533_Pause
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 120              	adv7533_Pause:
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123 0000 08B5     		push	{r3, lr}
+ 124 0002 0121     		movs	r1, #1
+ 125 0004 FFF7FEFF 		bl	adv7533_SetMute
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 3
+
+
+ 126 0008 08BD     		pop	{r3, pc}
+ 128              		.section	.text.adv7533_Resume,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	adv7533_Resume
+ 131              		.syntax unified
+ 132              		.thumb
+ 133              		.thumb_func
+ 135              	adv7533_Resume:
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138 0000 08B5     		push	{r3, lr}
+ 139 0002 0021     		movs	r1, #0
+ 140 0004 FFF7FEFF 		bl	adv7533_SetMute
+ 141 0008 08BD     		pop	{r3, pc}
+ 143              		.section	.text.adv7533_Play,"ax",%progbits
+ 144              		.align	1
+ 145              		.global	adv7533_Play
+ 146              		.syntax unified
+ 147              		.thumb
+ 148              		.thumb_func
+ 150              	adv7533_Play:
+ 151              		@ args = 0, pretend = 0, frame = 0
+ 152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 153 0000 08B5     		push	{r3, lr}
+ 154 0002 0021     		movs	r1, #0
+ 155 0004 FFF7FEFF 		bl	adv7533_SetMute
+ 156 0008 08BD     		pop	{r3, pc}
+ 158              		.section	.text.adv7533_Stop,"ax",%progbits
+ 159              		.align	1
+ 160              		.global	adv7533_Stop
+ 161              		.syntax unified
+ 162              		.thumb
+ 163              		.thumb_func
+ 165              	adv7533_Stop:
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168 0000 08B5     		push	{r3, lr}
+ 169 0002 0121     		movs	r1, #1
+ 170 0004 FFF7FEFF 		bl	adv7533_SetMute
+ 171 0008 08BD     		pop	{r3, pc}
+ 173              		.section	.text.adv7533_SetFrequency,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	adv7533_SetFrequency
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	adv7533_SetFrequency:
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183 0000 38B5     		push	{r3, r4, r5, lr}
+ 184 0002 0C46     		mov	r4, r1
+ 185 0004 C5B2     		uxtb	r5, r0
+ 186 0006 1521     		movs	r1, #21
+ 187 0008 2846     		mov	r0, r5
+ 188 000a FFF7FEFF 		bl	HDMI_IO_Read
+ 189 000e 00F00F02 		and	r2, r0, #15
+ 190 0012 244B     		ldr	r3, .L30
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 4
+
+
+ 191 0014 9C42     		cmp	r4, r3
+ 192 0016 2FD0     		beq	.L20
+ 193 0018 12D8     		bhi	.L21
+ 194 001a 4AF64443 		movw	r3, #44100
+ 195 001e 9C42     		cmp	r4, r3
+ 196 0020 1ED0     		beq	.L22
+ 197 0022 4BF68033 		movw	r3, #48000
+ 198 0026 9C42     		cmp	r4, r3
+ 199 0028 1FD0     		beq	.L23
+ 200 002a B4F5FA4F 		cmp	r4, #32000
+ 201 002e 05D1     		bne	.L25
+ 202 0030 42F03002 		orr	r2, r2, #48
+ 203 0034 1521     		movs	r1, #21
+ 204 0036 2846     		mov	r0, r5
+ 205 0038 FFF7FEFF 		bl	HDMI_IO_Write
+ 206              	.L25:
+ 207 003c 0020     		movs	r0, #0
+ 208 003e 38BD     		pop	{r3, r4, r5, pc}
+ 209              	.L21:
+ 210 0040 194B     		ldr	r3, .L30+4
+ 211 0042 9C42     		cmp	r4, r3
+ 212 0044 1FD0     		beq	.L26
+ 213 0046 194B     		ldr	r3, .L30+8
+ 214 0048 9C42     		cmp	r4, r3
+ 215 004a 23D0     		beq	.L27
+ 216 004c 184B     		ldr	r3, .L30+12
+ 217 004e 9C42     		cmp	r4, r3
+ 218 0050 F4D1     		bne	.L25
+ 219 0052 42F0A002 		orr	r2, r2, #160
+ 220 0056 1521     		movs	r1, #21
+ 221 0058 2846     		mov	r0, r5
+ 222 005a FFF7FEFF 		bl	HDMI_IO_Write
+ 223 005e EDE7     		b	.L25
+ 224              	.L22:
+ 225 0060 1521     		movs	r1, #21
+ 226 0062 2846     		mov	r0, r5
+ 227 0064 FFF7FEFF 		bl	HDMI_IO_Write
+ 228 0068 E8E7     		b	.L25
+ 229              	.L23:
+ 230 006a 42F02002 		orr	r2, r2, #32
+ 231 006e 1521     		movs	r1, #21
+ 232 0070 2846     		mov	r0, r5
+ 233 0072 FFF7FEFF 		bl	HDMI_IO_Write
+ 234 0076 E1E7     		b	.L25
+ 235              	.L20:
+ 236 0078 42F08002 		orr	r2, r2, #128
+ 237 007c 1521     		movs	r1, #21
+ 238 007e 2846     		mov	r0, r5
+ 239 0080 FFF7FEFF 		bl	HDMI_IO_Write
+ 240 0084 DAE7     		b	.L25
+ 241              	.L26:
+ 242 0086 42F0C002 		orr	r2, r2, #192
+ 243 008a 1521     		movs	r1, #21
+ 244 008c 2846     		mov	r0, r5
+ 245 008e FFF7FEFF 		bl	HDMI_IO_Write
+ 246 0092 D3E7     		b	.L25
+ 247              	.L27:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 5
+
+
+ 248 0094 42F0E002 		orr	r2, r2, #224
+ 249 0098 1521     		movs	r1, #21
+ 250 009a 2846     		mov	r0, r5
+ 251 009c FFF7FEFF 		bl	HDMI_IO_Write
+ 252 00a0 CCE7     		b	.L25
+ 253              	.L31:
+ 254 00a2 00BF     		.align	2
+ 255              	.L30:
+ 256 00a4 88580100 		.word	88200
+ 257 00a8 10B10200 		.word	176400
+ 258 00ac 00EE0200 		.word	192000
+ 259 00b0 00770100 		.word	96000
+ 261              		.section	.text.adv7533_AudioInit,"ax",%progbits
+ 262              		.align	1
+ 263              		.global	adv7533_AudioInit
+ 264              		.syntax unified
+ 265              		.thumb
+ 266              		.thumb_func
+ 268              	adv7533_AudioInit:
+ 269              		@ args = 0, pretend = 0, frame = 0
+ 270              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271 0000 70B5     		push	{r4, r5, r6, lr}
+ 272 0002 0546     		mov	r5, r0
+ 273 0004 1E46     		mov	r6, r3
+ 274 0006 0521     		movs	r1, #5
+ 275 0008 7820     		movs	r0, #120
+ 276 000a FFF7FEFF 		bl	HDMI_IO_Read
+ 277 000e 00F0DF02 		and	r2, r0, #223
+ 278 0012 0521     		movs	r1, #5
+ 279 0014 7820     		movs	r0, #120
+ 280 0016 FFF7FEFF 		bl	HDMI_IO_Write
+ 281 001a ECB2     		uxtb	r4, r5
+ 282 001c 0022     		movs	r2, #0
+ 283 001e 0121     		movs	r1, #1
+ 284 0020 2046     		mov	r0, r4
+ 285 0022 FFF7FEFF 		bl	HDMI_IO_Write
+ 286 0026 1022     		movs	r2, #16
+ 287 0028 0221     		movs	r1, #2
+ 288 002a 2046     		mov	r0, r4
+ 289 002c FFF7FEFF 		bl	HDMI_IO_Write
+ 290 0030 0022     		movs	r2, #0
+ 291 0032 0321     		movs	r1, #3
+ 292 0034 2046     		mov	r0, r4
+ 293 0036 FFF7FEFF 		bl	HDMI_IO_Write
+ 294 003a 0B21     		movs	r1, #11
+ 295 003c 2046     		mov	r0, r4
+ 296 003e FFF7FEFF 		bl	HDMI_IO_Read
+ 297 0042 60F07F02 		orn	r2, r0, #127
+ 298 0046 D2B2     		uxtb	r2, r2
+ 299 0048 0B21     		movs	r1, #11
+ 300 004a 2046     		mov	r0, r4
+ 301 004c FFF7FEFF 		bl	HDMI_IO_Write
+ 302 0050 0C21     		movs	r1, #12
+ 303 0052 2046     		mov	r0, r4
+ 304 0054 FFF7FEFF 		bl	HDMI_IO_Read
+ 305 0058 40F00402 		orr	r2, r0, #4
+ 306 005c D2B2     		uxtb	r2, r2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 6
+
+
+ 307 005e 0C21     		movs	r1, #12
+ 308 0060 2046     		mov	r0, r4
+ 309 0062 FFF7FEFF 		bl	HDMI_IO_Write
+ 310 0066 3146     		mov	r1, r6
+ 311 0068 2846     		mov	r0, r5
+ 312 006a FFF7FEFF 		bl	adv7533_SetFrequency
+ 313 006e 0A21     		movs	r1, #10
+ 314 0070 7A20     		movs	r0, #122
+ 315 0072 FFF7FEFF 		bl	HDMI_IO_Read
+ 316 0076 00F0EF02 		and	r2, r0, #239
+ 317 007a 0A21     		movs	r1, #10
+ 318 007c 2046     		mov	r0, r4
+ 319 007e FFF7FEFF 		bl	HDMI_IO_Write
+ 320 0082 E421     		movs	r1, #228
+ 321 0084 2046     		mov	r0, r4
+ 322 0086 FFF7FEFF 		bl	HDMI_IO_Read
+ 323 008a 60F07F02 		orn	r2, r0, #127
+ 324 008e D2B2     		uxtb	r2, r2
+ 325 0090 E421     		movs	r1, #228
+ 326 0092 2046     		mov	r0, r4
+ 327 0094 FFF7FEFF 		bl	HDMI_IO_Write
+ 328 0098 0020     		movs	r0, #0
+ 329 009a 70BD     		pop	{r4, r5, r6, pc}
+ 331              		.section	.text.adv7533_DeInit,"ax",%progbits
+ 332              		.align	1
+ 333              		.global	adv7533_DeInit
+ 334              		.syntax unified
+ 335              		.thumb
+ 336              		.thumb_func
+ 338              	adv7533_DeInit:
+ 339              		@ args = 0, pretend = 0, frame = 0
+ 340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 341 0000 08B5     		push	{r3, lr}
+ 342 0002 FFF7FEFF 		bl	AUDIO_IO_DeInit
+ 343 0006 08BD     		pop	{r3, pc}
+ 345              		.section	.text.ADV7533_Init,"ax",%progbits
+ 346              		.align	1
+ 347              		.global	ADV7533_Init
+ 348              		.syntax unified
+ 349              		.thumb
+ 350              		.thumb_func
+ 352              	ADV7533_Init:
+ 353              		@ args = 0, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 355 0000 08B5     		push	{r3, lr}
+ 356 0002 FFF7FEFF 		bl	HDMI_IO_Init
+ 357 0006 7822     		movs	r2, #120
+ 358 0008 E121     		movs	r1, #225
+ 359 000a 7A20     		movs	r0, #122
+ 360 000c FFF7FEFF 		bl	HDMI_IO_Write
+ 361 0010 0020     		movs	r0, #0
+ 362 0012 08BD     		pop	{r3, pc}
+ 364              		.section	.text.ADV7533_PowerOn,"ax",%progbits
+ 365              		.align	1
+ 366              		.global	ADV7533_PowerOn
+ 367              		.syntax unified
+ 368              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 7
+
+
+ 369              		.thumb_func
+ 371              	ADV7533_PowerOn:
+ 372              		@ args = 0, pretend = 0, frame = 0
+ 373              		@ frame_needed = 0, uses_anonymous_args = 0
+ 374 0000 08B5     		push	{r3, lr}
+ 375 0002 4121     		movs	r1, #65
+ 376 0004 7A20     		movs	r0, #122
+ 377 0006 FFF7FEFF 		bl	HDMI_IO_Read
+ 378 000a 00F0BF02 		and	r2, r0, #191
+ 379 000e 4121     		movs	r1, #65
+ 380 0010 7A20     		movs	r0, #122
+ 381 0012 FFF7FEFF 		bl	HDMI_IO_Write
+ 382 0016 08BD     		pop	{r3, pc}
+ 384              		.section	.text.ADV7533_PowerDown,"ax",%progbits
+ 385              		.align	1
+ 386              		.global	ADV7533_PowerDown
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	ADV7533_PowerDown:
+ 392              		@ args = 0, pretend = 0, frame = 0
+ 393              		@ frame_needed = 0, uses_anonymous_args = 0
+ 394 0000 08B5     		push	{r3, lr}
+ 395 0002 4121     		movs	r1, #65
+ 396 0004 7A20     		movs	r0, #122
+ 397 0006 FFF7FEFF 		bl	HDMI_IO_Read
+ 398 000a 40F04002 		orr	r2, r0, #64
+ 399 000e D2B2     		uxtb	r2, r2
+ 400 0010 4121     		movs	r1, #65
+ 401 0012 7A20     		movs	r0, #122
+ 402 0014 FFF7FEFF 		bl	HDMI_IO_Write
+ 403 0018 08BD     		pop	{r3, pc}
+ 405              		.section	.text.ADV7533_Configure,"ax",%progbits
+ 406              		.align	1
+ 407              		.global	ADV7533_Configure
+ 408              		.syntax unified
+ 409              		.thumb
+ 410              		.thumb_func
+ 412              	ADV7533_Configure:
+ 413              		@ args = 0, pretend = 0, frame = 0
+ 414              		@ frame_needed = 0, uses_anonymous_args = 0
+ 415 0000 10B5     		push	{r4, lr}
+ 416 0002 0446     		mov	r4, r0
+ 417 0004 4121     		movs	r1, #65
+ 418 0006 7A20     		movs	r0, #122
+ 419 0008 FFF7FEFF 		bl	HDMI_IO_Read
+ 420 000c 00F0BF02 		and	r2, r0, #191
+ 421 0010 4121     		movs	r1, #65
+ 422 0012 7A20     		movs	r0, #122
+ 423 0014 FFF7FEFF 		bl	HDMI_IO_Write
+ 424 0018 D621     		movs	r1, #214
+ 425 001a 7A20     		movs	r0, #122
+ 426 001c FFF7FEFF 		bl	HDMI_IO_Read
+ 427 0020 40F04002 		orr	r2, r0, #64
+ 428 0024 D2B2     		uxtb	r2, r2
+ 429 0026 D621     		movs	r1, #214
+ 430 0028 7A20     		movs	r0, #122
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 8
+
+
+ 431 002a FFF7FEFF 		bl	HDMI_IO_Write
+ 432 002e 0321     		movs	r1, #3
+ 433 0030 7820     		movs	r0, #120
+ 434 0032 FFF7FEFF 		bl	HDMI_IO_Read
+ 435 0036 00F0FD02 		and	r2, r0, #253
+ 436 003a 0321     		movs	r1, #3
+ 437 003c 7820     		movs	r0, #120
+ 438 003e FFF7FEFF 		bl	HDMI_IO_Write
+ 439 0042 1621     		movs	r1, #22
+ 440 0044 7A20     		movs	r0, #122
+ 441 0046 FFF7FEFF 		bl	HDMI_IO_Read
+ 442 004a 00F0C102 		and	r2, r0, #193
+ 443 004e 42F02002 		orr	r2, r2, #32
+ 444 0052 1621     		movs	r1, #22
+ 445 0054 7A20     		movs	r0, #122
+ 446 0056 FFF7FEFF 		bl	HDMI_IO_Write
+ 447 005a E022     		movs	r2, #224
+ 448 005c 9A21     		movs	r1, #154
+ 449 005e 7A20     		movs	r0, #122
+ 450 0060 FFF7FEFF 		bl	HDMI_IO_Write
+ 451 0064 BA21     		movs	r1, #186
+ 452 0066 7A20     		movs	r0, #122
+ 453 0068 FFF7FEFF 		bl	HDMI_IO_Read
+ 454 006c 00F00702 		and	r2, r0, #7
+ 455 0070 42F07002 		orr	r2, r2, #112
+ 456 0074 BA21     		movs	r1, #186
+ 457 0076 7A20     		movs	r0, #122
+ 458 0078 FFF7FEFF 		bl	HDMI_IO_Write
+ 459 007c 8222     		movs	r2, #130
+ 460 007e DE21     		movs	r1, #222
+ 461 0080 7A20     		movs	r0, #122
+ 462 0082 FFF7FEFF 		bl	HDMI_IO_Write
+ 463 0086 E421     		movs	r1, #228
+ 464 0088 7A20     		movs	r0, #122
+ 465 008a FFF7FEFF 		bl	HDMI_IO_Read
+ 466 008e 40F04002 		orr	r2, r0, #64
+ 467 0092 D2B2     		uxtb	r2, r2
+ 468 0094 E421     		movs	r1, #228
+ 469 0096 7A20     		movs	r0, #122
+ 470 0098 FFF7FEFF 		bl	HDMI_IO_Write
+ 471 009c 8022     		movs	r2, #128
+ 472 009e E521     		movs	r1, #229
+ 473 00a0 7A20     		movs	r0, #122
+ 474 00a2 FFF7FEFF 		bl	HDMI_IO_Write
+ 475 00a6 1521     		movs	r1, #21
+ 476 00a8 7820     		movs	r0, #120
+ 477 00aa FFF7FEFF 		bl	HDMI_IO_Read
+ 478 00ae 1721     		movs	r1, #23
+ 479 00b0 7820     		movs	r0, #120
+ 480 00b2 FFF7FEFF 		bl	HDMI_IO_Read
+ 481 00b6 00F00F02 		and	r2, r0, #15
+ 482 00ba 42F0D002 		orr	r2, r2, #208
+ 483 00be 1721     		movs	r1, #23
+ 484 00c0 7820     		movs	r0, #120
+ 485 00c2 FFF7FEFF 		bl	HDMI_IO_Write
+ 486 00c6 2421     		movs	r1, #36
+ 487 00c8 7820     		movs	r0, #120
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 9
+
+
+ 488 00ca FFF7FEFF 		bl	HDMI_IO_Read
+ 489 00ce 00F0EF02 		and	r2, r0, #239
+ 490 00d2 2421     		movs	r1, #36
+ 491 00d4 7820     		movs	r0, #120
+ 492 00d6 FFF7FEFF 		bl	HDMI_IO_Write
+ 493 00da 5721     		movs	r1, #87
+ 494 00dc 7820     		movs	r0, #120
+ 495 00de FFF7FEFF 		bl	HDMI_IO_Read
+ 496 00e2 40F01102 		orr	r2, r0, #17
+ 497 00e6 D2B2     		uxtb	r2, r2
+ 498 00e8 5721     		movs	r1, #87
+ 499 00ea 7820     		movs	r0, #120
+ 500 00ec FFF7FEFF 		bl	HDMI_IO_Write
+ 501 00f0 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+ 502 00f2 1201     		lsls	r2, r2, #4
+ 503 00f4 02F0F002 		and	r2, r2, #240
+ 504 00f8 1C21     		movs	r1, #28
+ 505 00fa 7820     		movs	r0, #120
+ 506 00fc FFF7FEFF 		bl	HDMI_IO_Write
+ 507 0100 AF21     		movs	r1, #175
+ 508 0102 7A20     		movs	r0, #122
+ 509 0104 FFF7FEFF 		bl	HDMI_IO_Read
+ 510 0108 40F00202 		orr	r2, r0, #2
+ 511 010c D2B2     		uxtb	r2, r2
+ 512 010e AF21     		movs	r1, #175
+ 513 0110 7A20     		movs	r0, #122
+ 514 0112 FFF7FEFF 		bl	HDMI_IO_Write
+ 515 0116 0321     		movs	r1, #3
+ 516 0118 7820     		movs	r0, #120
+ 517 011a FFF7FEFF 		bl	HDMI_IO_Read
+ 518 011e 60F07F02 		orn	r2, r0, #127
+ 519 0122 D2B2     		uxtb	r2, r2
+ 520 0124 0321     		movs	r1, #3
+ 521 0126 7820     		movs	r0, #120
+ 522 0128 FFF7FEFF 		bl	HDMI_IO_Write
+ 523 012c 4021     		movs	r1, #64
+ 524 012e 7A20     		movs	r0, #122
+ 525 0130 FFF7FEFF 		bl	HDMI_IO_Read
+ 526 0134 60F07F02 		orn	r2, r0, #127
+ 527 0138 D2B2     		uxtb	r2, r2
+ 528 013a 4021     		movs	r1, #64
+ 529 013c 7A20     		movs	r0, #122
+ 530 013e FFF7FEFF 		bl	HDMI_IO_Write
+ 531 0142 4C21     		movs	r1, #76
+ 532 0144 7A20     		movs	r0, #122
+ 533 0146 FFF7FEFF 		bl	HDMI_IO_Read
+ 534 014a 00F0F002 		and	r2, r0, #240
+ 535 014e 42F00302 		orr	r2, r2, #3
+ 536 0152 4C21     		movs	r1, #76
+ 537 0154 7A20     		movs	r0, #122
+ 538 0156 FFF7FEFF 		bl	HDMI_IO_Write
+ 539 015a FC22     		movs	r2, #252
+ 540 015c 4921     		movs	r1, #73
+ 541 015e 7A20     		movs	r0, #122
+ 542 0160 FFF7FEFF 		bl	HDMI_IO_Write
+ 543 0164 2721     		movs	r1, #39
+ 544 0166 7820     		movs	r0, #120
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 10
+
+
+ 545 0168 FFF7FEFF 		bl	HDMI_IO_Read
+ 546 016c 00F07F02 		and	r2, r0, #127
+ 547 0170 2721     		movs	r1, #39
+ 548 0172 7820     		movs	r0, #120
+ 549 0174 FFF7FEFF 		bl	HDMI_IO_Write
+ 550 0178 10BD     		pop	{r4, pc}
+ 552              		.section	.text.ADV7533_PatternEnable,"ax",%progbits
+ 553              		.align	1
+ 554              		.global	ADV7533_PatternEnable
+ 555              		.syntax unified
+ 556              		.thumb
+ 557              		.thumb_func
+ 559              	ADV7533_PatternEnable:
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562 0000 08B5     		push	{r3, lr}
+ 563 0002 8022     		movs	r2, #128
+ 564 0004 5521     		movs	r1, #85
+ 565 0006 7820     		movs	r0, #120
+ 566 0008 FFF7FEFF 		bl	HDMI_IO_Write
+ 567 000c A022     		movs	r2, #160
+ 568 000e 5521     		movs	r1, #85
+ 569 0010 7820     		movs	r0, #120
+ 570 0012 FFF7FEFF 		bl	HDMI_IO_Write
+ 571 0016 8922     		movs	r2, #137
+ 572 0018 0321     		movs	r1, #3
+ 573 001a 7820     		movs	r0, #120
+ 574 001c FFF7FEFF 		bl	HDMI_IO_Write
+ 575 0020 1622     		movs	r2, #22
+ 576 0022 AF21     		movs	r1, #175
+ 577 0024 7820     		movs	r0, #120
+ 578 0026 FFF7FEFF 		bl	HDMI_IO_Write
+ 579 002a 08BD     		pop	{r3, pc}
+ 581              		.section	.text.ADV7533_PatternDisable,"ax",%progbits
+ 582              		.align	1
+ 583              		.global	ADV7533_PatternDisable
+ 584              		.syntax unified
+ 585              		.thumb
+ 586              		.thumb_func
+ 588              	ADV7533_PatternDisable:
+ 589              		@ args = 0, pretend = 0, frame = 0
+ 590              		@ frame_needed = 0, uses_anonymous_args = 0
+ 591 0000 08B5     		push	{r3, lr}
+ 592 0002 0022     		movs	r2, #0
+ 593 0004 5521     		movs	r1, #85
+ 594 0006 7820     		movs	r0, #120
+ 595 0008 FFF7FEFF 		bl	HDMI_IO_Write
+ 596 000c 08BD     		pop	{r3, pc}
+ 598              		.global	adv7533_drv
+ 599              		.section	.data.adv7533_drv,"aw"
+ 600              		.align	2
+ 603              	adv7533_drv:
+ 604 0000 00000000 		.word	adv7533_AudioInit
+ 605 0004 00000000 		.word	adv7533_DeInit
+ 606 0008 00000000 		.word	adv7533_ReadID
+ 607 000c 00000000 		.word	adv7533_Play
+ 608 0010 00000000 		.word	adv7533_Pause
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 11
+
+
+ 609 0014 00000000 		.word	adv7533_Resume
+ 610 0018 00000000 		.word	adv7533_Stop
+ 611 001c 00000000 		.word	adv7533_SetFrequency
+ 612 0020 00000000 		.word	adv7533_SetVolume
+ 613 0024 00000000 		.word	adv7533_SetMute
+ 614 0028 00000000 		.word	adv7533_SetOutputMode
+ 615 002c 00000000 		.word	adv7533_Reset
+ 616              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 adv7533.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:17     .text.adv7533_SetOutputMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:23     .text.adv7533_SetOutputMode:00000000 adv7533_SetOutputMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:31     .text.adv7533_SetVolume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:37     .text.adv7533_SetVolume:00000000 adv7533_SetVolume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:45     .text.adv7533_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:51     .text.adv7533_Reset:00000000 adv7533_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:59     .text.adv7533_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:65     .text.adv7533_ReadID:00000000 adv7533_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:81     .text.adv7533_SetMute:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:87     .text.adv7533_SetMute:00000000 adv7533_SetMute
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:114    .text.adv7533_Pause:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:120    .text.adv7533_Pause:00000000 adv7533_Pause
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:129    .text.adv7533_Resume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:135    .text.adv7533_Resume:00000000 adv7533_Resume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:144    .text.adv7533_Play:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:150    .text.adv7533_Play:00000000 adv7533_Play
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:159    .text.adv7533_Stop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:165    .text.adv7533_Stop:00000000 adv7533_Stop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:174    .text.adv7533_SetFrequency:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:180    .text.adv7533_SetFrequency:00000000 adv7533_SetFrequency
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:256    .text.adv7533_SetFrequency:000000a4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:262    .text.adv7533_AudioInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:268    .text.adv7533_AudioInit:00000000 adv7533_AudioInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:332    .text.adv7533_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:338    .text.adv7533_DeInit:00000000 adv7533_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:346    .text.ADV7533_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:352    .text.ADV7533_Init:00000000 ADV7533_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:365    .text.ADV7533_PowerOn:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:371    .text.ADV7533_PowerOn:00000000 ADV7533_PowerOn
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:385    .text.ADV7533_PowerDown:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:391    .text.ADV7533_PowerDown:00000000 ADV7533_PowerDown
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:406    .text.ADV7533_Configure:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:412    .text.ADV7533_Configure:00000000 ADV7533_Configure
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:553    .text.ADV7533_PatternEnable:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:559    .text.ADV7533_PatternEnable:00000000 ADV7533_PatternEnable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:582    .text.ADV7533_PatternDisable:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:588    .text.ADV7533_PatternDisable:00000000 ADV7533_PatternDisable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:603    .data.adv7533_drv:00000000 adv7533_drv
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccmJYw5H.s:600    .data.adv7533_drv:00000000 $d
+
+UNDEFINED SYMBOLS
+HDMI_IO_Read
+HDMI_IO_Write
+AUDIO_IO_DeInit
+HDMI_IO_Init

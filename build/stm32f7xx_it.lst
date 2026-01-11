@@ -1,0 +1,186 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f7xx_it.c"
+  15              		.text
+  16              		.section	.text.NMI_Handler,"ax",%progbits
+  17              		.align	1
+  18              		.global	NMI_Handler
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	NMI_Handler:
+  24              		@ Volatile: function does not return.
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28              	.L2:
+  29 0000 FEE7     		b	.L2
+  31              		.section	.text.HardFault_Handler,"ax",%progbits
+  32              		.align	1
+  33              		.global	HardFault_Handler
+  34              		.syntax unified
+  35              		.thumb
+  36              		.thumb_func
+  38              	HardFault_Handler:
+  39              		@ Volatile: function does not return.
+  40              		@ args = 0, pretend = 0, frame = 0
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42              		@ link register save eliminated.
+  43              	.L4:
+  44 0000 FEE7     		b	.L4
+  46              		.section	.text.MemManage_Handler,"ax",%progbits
+  47              		.align	1
+  48              		.global	MemManage_Handler
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	MemManage_Handler:
+  54              		@ Volatile: function does not return.
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+  58              	.L6:
+  59 0000 FEE7     		b	.L6
+  61              		.section	.text.BusFault_Handler,"ax",%progbits
+  62              		.align	1
+  63              		.global	BusFault_Handler
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s 			page 2
+
+
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  68              	BusFault_Handler:
+  69              		@ Volatile: function does not return.
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72              		@ link register save eliminated.
+  73              	.L8:
+  74 0000 FEE7     		b	.L8
+  76              		.section	.text.UsageFault_Handler,"ax",%progbits
+  77              		.align	1
+  78              		.global	UsageFault_Handler
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	UsageFault_Handler:
+  84              		@ Volatile: function does not return.
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87              		@ link register save eliminated.
+  88              	.L10:
+  89 0000 FEE7     		b	.L10
+  91              		.section	.text.DebugMon_Handler,"ax",%progbits
+  92              		.align	1
+  93              		.global	DebugMon_Handler
+  94              		.syntax unified
+  95              		.thumb
+  96              		.thumb_func
+  98              	DebugMon_Handler:
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+ 101              		@ link register save eliminated.
+ 102 0000 7047     		bx	lr
+ 104              		.section	.text.TIM6_DAC_IRQHandler,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	TIM6_DAC_IRQHandler
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	TIM6_DAC_IRQHandler:
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114 0000 08B5     		push	{r3, lr}
+ 115 0002 0248     		ldr	r0, .L14
+ 116 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 117 0008 08BD     		pop	{r3, pc}
+ 118              	.L15:
+ 119 000a 00BF     		.align	2
+ 120              	.L14:
+ 121 000c 00000000 		.word	htim6
+ 123              		.section	.text.OTG_HS_IRQHandler,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	OTG_HS_IRQHandler
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s 			page 3
+
+
+ 130              	OTG_HS_IRQHandler:
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133 0000 08B5     		push	{r3, lr}
+ 134 0002 0248     		ldr	r0, .L18
+ 135 0004 FFF7FEFF 		bl	HAL_PCD_IRQHandler
+ 136 0008 08BD     		pop	{r3, pc}
+ 137              	.L19:
+ 138 000a 00BF     		.align	2
+ 139              	.L18:
+ 140 000c 00000000 		.word	hpcd_USB_OTG_HS
+ 142              		.section	.text.LTDC_IRQHandler,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	LTDC_IRQHandler
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 149              	LTDC_IRQHandler:
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152 0000 08B5     		push	{r3, lr}
+ 153 0002 0248     		ldr	r0, .L22
+ 154 0004 FFF7FEFF 		bl	HAL_LTDC_IRQHandler
+ 155 0008 08BD     		pop	{r3, pc}
+ 156              	.L23:
+ 157 000a 00BF     		.align	2
+ 158              	.L22:
+ 159 000c 00000000 		.word	hltdc
+ 161              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f7xx_it.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:17     .text.NMI_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:23     .text.NMI_Handler:00000000 NMI_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:32     .text.HardFault_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:38     .text.HardFault_Handler:00000000 HardFault_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:47     .text.MemManage_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:53     .text.MemManage_Handler:00000000 MemManage_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:62     .text.BusFault_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:68     .text.BusFault_Handler:00000000 BusFault_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:77     .text.UsageFault_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:83     .text.UsageFault_Handler:00000000 UsageFault_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:92     .text.DebugMon_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:98     .text.DebugMon_Handler:00000000 DebugMon_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:105    .text.TIM6_DAC_IRQHandler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:111    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:121    .text.TIM6_DAC_IRQHandler:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:124    .text.OTG_HS_IRQHandler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:130    .text.OTG_HS_IRQHandler:00000000 OTG_HS_IRQHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:140    .text.OTG_HS_IRQHandler:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:143    .text.LTDC_IRQHandler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:149    .text.LTDC_IRQHandler:00000000 LTDC_IRQHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6cUarV.s:159    .text.LTDC_IRQHandler:0000000c $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_IRQHandler
+htim6
+HAL_PCD_IRQHandler
+hpcd_USB_OTG_HS
+HAL_LTDC_IRQHandler
+hltdc

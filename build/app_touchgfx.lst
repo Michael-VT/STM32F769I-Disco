@@ -1,0 +1,88 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"app_touchgfx.c"
+  15              		.text
+  16              		.section	.text.MX_TouchGFX_PreOSInit,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_TouchGFX_PreOSInit
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_TouchGFX_PreOSInit:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 7047     		bx	lr
+  29              		.section	.text.MX_TouchGFX_Init,"ax",%progbits
+  30              		.align	1
+  31              		.global	MX_TouchGFX_Init
+  32              		.syntax unified
+  33              		.thumb
+  34              		.thumb_func
+  36              	MX_TouchGFX_Init:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39 0000 08B5     		push	{r3, lr}
+  40 0002 FFF7FEFF 		bl	touchgfx_components_init
+  41 0006 FFF7FEFF 		bl	touchgfx_init
+  42 000a 08BD     		pop	{r3, pc}
+  44              		.section	.text.MX_TouchGFX_Process,"ax",%progbits
+  45              		.align	1
+  46              		.global	MX_TouchGFX_Process
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	MX_TouchGFX_Process:
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54 0000 08B5     		push	{r3, lr}
+  55 0002 FFF7FEFF 		bl	touchgfx_taskEntry
+  56 0006 08BD     		pop	{r3, pc}
+  58              		.section	.text.TouchGFX_Task,"ax",%progbits
+  59              		.align	1
+  60              		.global	TouchGFX_Task
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s 			page 2
+
+
+  65              	TouchGFX_Task:
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 08B5     		push	{r3, lr}
+  69 0002 FFF7FEFF 		bl	touchgfx_taskEntry
+  70 0006 08BD     		pop	{r3, pc}
+  72              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 app_touchgfx.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:17     .text.MX_TouchGFX_PreOSInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:23     .text.MX_TouchGFX_PreOSInit:00000000 MX_TouchGFX_PreOSInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:30     .text.MX_TouchGFX_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:36     .text.MX_TouchGFX_Init:00000000 MX_TouchGFX_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:45     .text.MX_TouchGFX_Process:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:51     .text.MX_TouchGFX_Process:00000000 MX_TouchGFX_Process
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:59     .text.TouchGFX_Task:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc7qV738.s:65     .text.TouchGFX_Task:00000000 TouchGFX_Task
+
+UNDEFINED SYMBOLS
+touchgfx_components_init
+touchgfx_init
+touchgfx_taskEntry

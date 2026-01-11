@@ -1,0 +1,870 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"usbd_core.c"
+  15              		.text
+  16              		.section	.text.USBD_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	USBD_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	USBD_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 98B1     		cbz	r0, .L4
+  27 0002 08B5     		push	{r3, lr}
+  28 0004 0346     		mov	r3, r0
+  29 0006 0020     		movs	r0, #0
+  30 0008 C3F8B802 		str	r0, [r3, #696]
+  31 000c C3F8C402 		str	r0, [r3, #708]
+  32 0010 C3F8D002 		str	r0, [r3, #720]
+  33 0014 09B1     		cbz	r1, .L3
+  34 0016 C3F8B412 		str	r1, [r3, #692]
+  35              	.L3:
+  36 001a 0121     		movs	r1, #1
+  37 001c 83F89C12 		strb	r1, [r3, #668]
+  38 0020 1A70     		strb	r2, [r3]
+  39 0022 1846     		mov	r0, r3
+  40 0024 FFF7FEFF 		bl	USBD_LL_Init
+  41 0028 08BD     		pop	{r3, pc}
+  42              	.L4:
+  43 002a 0320     		movs	r0, #3
+  44 002c 7047     		bx	lr
+  46              		.section	.text.USBD_DeInit,"ax",%progbits
+  47              		.align	1
+  48              		.global	USBD_DeInit
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  53              	USBD_DeInit:
+  54              		@ args = 0, pretend = 0, frame = 0
+  55              		@ frame_needed = 0, uses_anonymous_args = 0
+  56 0000 10B5     		push	{r4, lr}
+  57 0002 0446     		mov	r4, r0
+  58 0004 FFF7FEFF 		bl	USBD_LL_Stop
+  59 0008 0123     		movs	r3, #1
+  60 000a 84F89C32 		strb	r3, [r4, #668]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 2
+
+
+  61 000e D4F8B832 		ldr	r3, [r4, #696]
+  62 0012 1BB1     		cbz	r3, .L10
+  63 0014 5B68     		ldr	r3, [r3, #4]
+  64 0016 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+  65 0018 2046     		mov	r0, r4
+  66 001a 9847     		blx	r3
+  67              	.L10:
+  68 001c 0023     		movs	r3, #0
+  69 001e C4F8C432 		str	r3, [r4, #708]
+  70 0022 C4F8B432 		str	r3, [r4, #692]
+  71 0026 C4F8D032 		str	r3, [r4, #720]
+  72 002a 2046     		mov	r0, r4
+  73 002c FFF7FEFF 		bl	USBD_LL_DeInit
+  74 0030 10BD     		pop	{r4, pc}
+  76              		.section	.text.USBD_RegisterClass,"ax",%progbits
+  77              		.align	1
+  78              		.global	USBD_RegisterClass
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  83              	USBD_RegisterClass:
+  84              		@ args = 0, pretend = 0, frame = 8
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86 0000 10B5     		push	{r4, lr}
+  87 0002 82B0     		sub	sp, sp, #8
+  88 0004 0023     		movs	r3, #0
+  89 0006 ADF80630 		strh	r3, [sp, #6]	@ movhi
+  90 000a B9B1     		cbz	r1, .L15
+  91 000c 0446     		mov	r4, r0
+  92 000e C0F8B812 		str	r1, [r0, #696]
+  93 0012 D0F8D422 		ldr	r2, [r0, #724]
+  94 0016 CB6A     		ldr	r3, [r1, #44]
+  95 0018 43B1     		cbz	r3, .L14
+  96 001a AE32     		adds	r2, r2, #174
+  97 001c 50F82230 		ldr	r3, [r0, r2, lsl #2]
+  98 0020 DB6A     		ldr	r3, [r3, #44]
+  99 0022 0DF10600 		add	r0, sp, #6
+ 100 0026 9847     		blx	r3
+ 101 0028 C4F8D002 		str	r0, [r4, #720]
+ 102              	.L14:
+ 103 002c D4F8D832 		ldr	r3, [r4, #728]
+ 104 0030 0133     		adds	r3, r3, #1
+ 105 0032 C4F8D832 		str	r3, [r4, #728]
+ 106 0036 0020     		movs	r0, #0
+ 107              	.L13:
+ 108 0038 02B0     		add	sp, sp, #8
+ 109              		@ sp needed
+ 110 003a 10BD     		pop	{r4, pc}
+ 111              	.L15:
+ 112 003c 0320     		movs	r0, #3
+ 113 003e FBE7     		b	.L13
+ 115              		.section	.text.USBD_Start,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	USBD_Start
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 3
+
+
+ 122              	USBD_Start:
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125 0000 08B5     		push	{r3, lr}
+ 126 0002 FFF7FEFF 		bl	USBD_LL_Start
+ 127 0006 08BD     		pop	{r3, pc}
+ 129              		.section	.text.USBD_Stop,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	USBD_Stop
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	USBD_Stop:
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 10B5     		push	{r4, lr}
+ 140 0002 0446     		mov	r4, r0
+ 141 0004 FFF7FEFF 		bl	USBD_LL_Stop
+ 142 0008 D4F8B832 		ldr	r3, [r4, #696]
+ 143 000c 1BB1     		cbz	r3, .L20
+ 144 000e 5B68     		ldr	r3, [r3, #4]
+ 145 0010 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
+ 146 0012 2046     		mov	r0, r4
+ 147 0014 9847     		blx	r3
+ 148              	.L20:
+ 149 0016 0020     		movs	r0, #0
+ 150 0018 10BD     		pop	{r4, pc}
+ 152              		.section	.text.USBD_RunTestMode,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	USBD_RunTestMode
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	USBD_RunTestMode:
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162              		@ link register save eliminated.
+ 163 0000 0020     		movs	r0, #0
+ 164 0002 7047     		bx	lr
+ 166              		.section	.text.USBD_SetClassConfig,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	USBD_SetClassConfig
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 173              	USBD_SetClassConfig:
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176 0000 08B5     		push	{r3, lr}
+ 177 0002 D0F8B832 		ldr	r3, [r0, #696]
+ 178 0006 13B1     		cbz	r3, .L25
+ 179 0008 1B68     		ldr	r3, [r3]
+ 180 000a 9847     		blx	r3
+ 181              	.L24:
+ 182 000c 08BD     		pop	{r3, pc}
+ 183              	.L25:
+ 184 000e 0020     		movs	r0, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 4
+
+
+ 185 0010 FCE7     		b	.L24
+ 187              		.section	.text.USBD_ClrClassConfig,"ax",%progbits
+ 188              		.align	1
+ 189              		.global	USBD_ClrClassConfig
+ 190              		.syntax unified
+ 191              		.thumb
+ 192              		.thumb_func
+ 194              	USBD_ClrClassConfig:
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 0000 08B5     		push	{r3, lr}
+ 198 0002 D0F8B832 		ldr	r3, [r0, #696]
+ 199 0006 5B68     		ldr	r3, [r3, #4]
+ 200 0008 9847     		blx	r3
+ 201 000a 00B9     		cbnz	r0, .L31
+ 202              	.L28:
+ 203 000c 08BD     		pop	{r3, pc}
+ 204              	.L31:
+ 205 000e 0320     		movs	r0, #3
+ 206 0010 FCE7     		b	.L28
+ 208              		.section	.text.USBD_LL_SetupStage,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	USBD_LL_SetupStage
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 215              	USBD_LL_SetupStage:
+ 216              		@ args = 0, pretend = 0, frame = 0
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218 0000 38B5     		push	{r3, r4, r5, lr}
+ 219 0002 0446     		mov	r4, r0
+ 220 0004 00F2AA25 		addw	r5, r0, #682
+ 221 0008 2846     		mov	r0, r5
+ 222 000a FFF7FEFF 		bl	USBD_ParseSetupRequest
+ 223 000e 0123     		movs	r3, #1
+ 224 0010 C4F89432 		str	r3, [r4, #660]
+ 225 0014 B4F8B032 		ldrh	r3, [r4, #688]
+ 226 0018 C4F89832 		str	r3, [r4, #664]
+ 227 001c 94F8AA12 		ldrb	r1, [r4, #682]	@ zero_extendqisi2
+ 228 0020 01F01F03 		and	r3, r1, #31
+ 229 0024 012B     		cmp	r3, #1
+ 230 0026 07D0     		beq	.L33
+ 231 0028 022B     		cmp	r3, #2
+ 232 002a 0AD0     		beq	.L34
+ 233 002c 73B9     		cbnz	r3, .L35
+ 234 002e 2946     		mov	r1, r5
+ 235 0030 2046     		mov	r0, r4
+ 236 0032 FFF7FEFF 		bl	USBD_StdDevReq
+ 237              	.L36:
+ 238 0036 38BD     		pop	{r3, r4, r5, pc}
+ 239              	.L33:
+ 240 0038 2946     		mov	r1, r5
+ 241 003a 2046     		mov	r0, r4
+ 242 003c FFF7FEFF 		bl	USBD_StdItfReq
+ 243 0040 F9E7     		b	.L36
+ 244              	.L34:
+ 245 0042 2946     		mov	r1, r5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 5
+
+
+ 246 0044 2046     		mov	r0, r4
+ 247 0046 FFF7FEFF 		bl	USBD_StdEPReq
+ 248 004a F4E7     		b	.L36
+ 249              	.L35:
+ 250 004c 01F08001 		and	r1, r1, #128
+ 251 0050 2046     		mov	r0, r4
+ 252 0052 FFF7FEFF 		bl	USBD_LL_StallEP
+ 253 0056 EEE7     		b	.L36
+ 255              		.section	.text.USBD_LL_Reset,"ax",%progbits
+ 256              		.align	1
+ 257              		.global	USBD_LL_Reset
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 262              	USBD_LL_Reset:
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 266 0002 0446     		mov	r4, r0
+ 267 0004 0123     		movs	r3, #1
+ 268 0006 80F89C32 		strb	r3, [r0, #668]
+ 269 000a 0023     		movs	r3, #0
+ 270 000c C0F89432 		str	r3, [r0, #660]
+ 271 0010 4360     		str	r3, [r0, #4]
+ 272 0012 C0F8A432 		str	r3, [r0, #676]
+ 273 0016 80F8A032 		strb	r3, [r0, #672]
+ 274 001a D0F8B832 		ldr	r3, [r0, #696]
+ 275 001e E3B1     		cbz	r3, .L40
+ 276 0020 5B68     		ldr	r3, [r3, #4]
+ 277 0022 E3B1     		cbz	r3, .L41
+ 278 0024 0021     		movs	r1, #0
+ 279 0026 9847     		blx	r3
+ 280 0028 0746     		mov	r7, r0
+ 281 002a D0B9     		cbnz	r0, .L44
+ 282              	.L39:
+ 283 002c 4023     		movs	r3, #64
+ 284 002e 0022     		movs	r2, #0
+ 285 0030 1146     		mov	r1, r2
+ 286 0032 2046     		mov	r0, r4
+ 287 0034 FFF7FEFF 		bl	USBD_LL_OpenEP
+ 288 0038 0126     		movs	r6, #1
+ 289 003a 84F86361 		strb	r6, [r4, #355]
+ 290 003e 4025     		movs	r5, #64
+ 291 0040 A4F86051 		strh	r5, [r4, #352]	@ movhi
+ 292 0044 2B46     		mov	r3, r5
+ 293 0046 0022     		movs	r2, #0
+ 294 0048 8021     		movs	r1, #128
+ 295 004a 2046     		mov	r0, r4
+ 296 004c FFF7FEFF 		bl	USBD_LL_OpenEP
+ 297 0050 84F82360 		strb	r6, [r4, #35]
+ 298 0054 2584     		strh	r5, [r4, #32]	@ movhi
+ 299 0056 3846     		mov	r0, r7
+ 300 0058 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 301              	.L40:
+ 302 005a 0027     		movs	r7, #0
+ 303 005c E6E7     		b	.L39
+ 304              	.L41:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 6
+
+
+ 305 005e 0027     		movs	r7, #0
+ 306 0060 E4E7     		b	.L39
+ 307              	.L44:
+ 308 0062 0327     		movs	r7, #3
+ 309 0064 E2E7     		b	.L39
+ 311              		.section	.text.USBD_LL_SetSpeed,"ax",%progbits
+ 312              		.align	1
+ 313              		.global	USBD_LL_SetSpeed
+ 314              		.syntax unified
+ 315              		.thumb
+ 316              		.thumb_func
+ 318              	USBD_LL_SetSpeed:
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              		@ link register save eliminated.
+ 322 0000 0174     		strb	r1, [r0, #16]
+ 323 0002 0020     		movs	r0, #0
+ 324 0004 7047     		bx	lr
+ 326              		.section	.text.USBD_LL_Suspend,"ax",%progbits
+ 327              		.align	1
+ 328              		.global	USBD_LL_Suspend
+ 329              		.syntax unified
+ 330              		.thumb
+ 331              		.thumb_func
+ 333              	USBD_LL_Suspend:
+ 334              		@ args = 0, pretend = 0, frame = 0
+ 335              		@ frame_needed = 0, uses_anonymous_args = 0
+ 336              		@ link register save eliminated.
+ 337 0000 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 338 0004 042B     		cmp	r3, #4
+ 339 0006 04D0     		beq	.L47
+ 340 0008 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 341 000c DBB2     		uxtb	r3, r3
+ 342 000e 80F89D32 		strb	r3, [r0, #669]
+ 343              	.L47:
+ 344 0012 0423     		movs	r3, #4
+ 345 0014 80F89C32 		strb	r3, [r0, #668]
+ 346 0018 0020     		movs	r0, #0
+ 347 001a 7047     		bx	lr
+ 349              		.section	.text.USBD_LL_Resume,"ax",%progbits
+ 350              		.align	1
+ 351              		.global	USBD_LL_Resume
+ 352              		.syntax unified
+ 353              		.thumb
+ 354              		.thumb_func
+ 356              	USBD_LL_Resume:
+ 357              		@ args = 0, pretend = 0, frame = 0
+ 358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 359              		@ link register save eliminated.
+ 360 0000 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 361 0004 042B     		cmp	r3, #4
+ 362 0006 01D0     		beq	.L50
+ 363              	.L49:
+ 364 0008 0020     		movs	r0, #0
+ 365 000a 7047     		bx	lr
+ 366              	.L50:
+ 367 000c 90F89D32 		ldrb	r3, [r0, #669]	@ zero_extendqisi2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 7
+
+
+ 368 0010 DBB2     		uxtb	r3, r3
+ 369 0012 80F89C32 		strb	r3, [r0, #668]
+ 370 0016 F7E7     		b	.L49
+ 372              		.section	.text.USBD_LL_SOF,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	USBD_LL_SOF
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	USBD_LL_SOF:
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382 0000 08B5     		push	{r3, lr}
+ 383 0002 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 384 0006 032B     		cmp	r3, #3
+ 385 0008 01D0     		beq	.L54
+ 386              	.L52:
+ 387 000a 0020     		movs	r0, #0
+ 388 000c 08BD     		pop	{r3, pc}
+ 389              	.L54:
+ 390 000e D0F8B832 		ldr	r3, [r0, #696]
+ 391 0012 002B     		cmp	r3, #0
+ 392 0014 F9D0     		beq	.L52
+ 393 0016 DB69     		ldr	r3, [r3, #28]
+ 394 0018 002B     		cmp	r3, #0
+ 395 001a F6D0     		beq	.L52
+ 396 001c 9847     		blx	r3
+ 397 001e F4E7     		b	.L52
+ 399              		.section	.text.USBD_LL_IsoINIncomplete,"ax",%progbits
+ 400              		.align	1
+ 401              		.global	USBD_LL_IsoINIncomplete
+ 402              		.syntax unified
+ 403              		.thumb
+ 404              		.thumb_func
+ 406              	USBD_LL_IsoINIncomplete:
+ 407              		@ args = 0, pretend = 0, frame = 0
+ 408              		@ frame_needed = 0, uses_anonymous_args = 0
+ 409 0000 08B5     		push	{r3, lr}
+ 410 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 411 0006 AE33     		adds	r3, r3, #174
+ 412 0008 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 413 000c 53B1     		cbz	r3, .L57
+ 414 000e 90F89C22 		ldrb	r2, [r0, #668]	@ zero_extendqisi2
+ 415 0012 032A     		cmp	r2, #3
+ 416 0014 01D0     		beq	.L61
+ 417 0016 0020     		movs	r0, #0
+ 418              	.L56:
+ 419 0018 08BD     		pop	{r3, pc}
+ 420              	.L61:
+ 421 001a 1B6A     		ldr	r3, [r3, #32]
+ 422 001c 23B1     		cbz	r3, .L59
+ 423 001e 9847     		blx	r3
+ 424 0020 0020     		movs	r0, #0
+ 425 0022 F9E7     		b	.L56
+ 426              	.L57:
+ 427 0024 0320     		movs	r0, #3
+ 428 0026 F7E7     		b	.L56
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 8
+
+
+ 429              	.L59:
+ 430 0028 0020     		movs	r0, #0
+ 431 002a F5E7     		b	.L56
+ 433              		.section	.text.USBD_LL_IsoOUTIncomplete,"ax",%progbits
+ 434              		.align	1
+ 435              		.global	USBD_LL_IsoOUTIncomplete
+ 436              		.syntax unified
+ 437              		.thumb
+ 438              		.thumb_func
+ 440              	USBD_LL_IsoOUTIncomplete:
+ 441              		@ args = 0, pretend = 0, frame = 0
+ 442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 443 0000 08B5     		push	{r3, lr}
+ 444 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 445 0006 AE33     		adds	r3, r3, #174
+ 446 0008 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 447 000c 53B1     		cbz	r3, .L64
+ 448 000e 90F89C22 		ldrb	r2, [r0, #668]	@ zero_extendqisi2
+ 449 0012 032A     		cmp	r2, #3
+ 450 0014 01D0     		beq	.L68
+ 451 0016 0020     		movs	r0, #0
+ 452              	.L63:
+ 453 0018 08BD     		pop	{r3, pc}
+ 454              	.L68:
+ 455 001a 5B6A     		ldr	r3, [r3, #36]
+ 456 001c 23B1     		cbz	r3, .L66
+ 457 001e 9847     		blx	r3
+ 458 0020 0020     		movs	r0, #0
+ 459 0022 F9E7     		b	.L63
+ 460              	.L64:
+ 461 0024 0320     		movs	r0, #3
+ 462 0026 F7E7     		b	.L63
+ 463              	.L66:
+ 464 0028 0020     		movs	r0, #0
+ 465 002a F5E7     		b	.L63
+ 467              		.section	.text.USBD_LL_DevConnected,"ax",%progbits
+ 468              		.align	1
+ 469              		.global	USBD_LL_DevConnected
+ 470              		.syntax unified
+ 471              		.thumb
+ 472              		.thumb_func
+ 474              	USBD_LL_DevConnected:
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477              		@ link register save eliminated.
+ 478 0000 0020     		movs	r0, #0
+ 479 0002 7047     		bx	lr
+ 481              		.section	.text.USBD_LL_DevDisconnected,"ax",%progbits
+ 482              		.align	1
+ 483              		.global	USBD_LL_DevDisconnected
+ 484              		.syntax unified
+ 485              		.thumb
+ 486              		.thumb_func
+ 488              	USBD_LL_DevDisconnected:
+ 489              		@ args = 0, pretend = 0, frame = 0
+ 490              		@ frame_needed = 0, uses_anonymous_args = 0
+ 491 0000 08B5     		push	{r3, lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 9
+
+
+ 492 0002 0123     		movs	r3, #1
+ 493 0004 80F89C32 		strb	r3, [r0, #668]
+ 494 0008 D0F8B832 		ldr	r3, [r0, #696]
+ 495 000c 23B1     		cbz	r3, .L72
+ 496 000e 5B68     		ldr	r3, [r3, #4]
+ 497 0010 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 498 0012 9847     		blx	r3
+ 499 0014 10B9     		cbnz	r0, .L75
+ 500              	.L71:
+ 501 0016 08BD     		pop	{r3, pc}
+ 502              	.L72:
+ 503 0018 0020     		movs	r0, #0
+ 504 001a FCE7     		b	.L71
+ 505              	.L75:
+ 506 001c 0320     		movs	r0, #3
+ 507 001e FAE7     		b	.L71
+ 509              		.section	.text.USBD_CoreFindIF,"ax",%progbits
+ 510              		.align	1
+ 511              		.global	USBD_CoreFindIF
+ 512              		.syntax unified
+ 513              		.thumb
+ 514              		.thumb_func
+ 516              	USBD_CoreFindIF:
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		@ link register save eliminated.
+ 520 0000 0020     		movs	r0, #0
+ 521 0002 7047     		bx	lr
+ 523              		.section	.text.USBD_CoreFindEP,"ax",%progbits
+ 524              		.align	1
+ 525              		.global	USBD_CoreFindEP
+ 526              		.syntax unified
+ 527              		.thumb
+ 528              		.thumb_func
+ 530              	USBD_CoreFindEP:
+ 531              		@ args = 0, pretend = 0, frame = 0
+ 532              		@ frame_needed = 0, uses_anonymous_args = 0
+ 533              		@ link register save eliminated.
+ 534 0000 0020     		movs	r0, #0
+ 535 0002 7047     		bx	lr
+ 537              		.section	.text.USBD_LL_DataOutStage,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	USBD_LL_DataOutStage
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 544              	USBD_LL_DataOutStage:
+ 545              		@ args = 0, pretend = 0, frame = 0
+ 546              		@ frame_needed = 0, uses_anonymous_args = 0
+ 547 0000 38B5     		push	{r3, r4, r5, lr}
+ 548 0002 0446     		mov	r4, r0
+ 549 0004 0D46     		mov	r5, r1
+ 550 0006 0029     		cmp	r1, #0
+ 551 0008 44D1     		bne	.L79
+ 552 000a D0F89432 		ldr	r3, [r0, #660]
+ 553 000e 032B     		cmp	r3, #3
+ 554 0010 01D0     		beq	.L90
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 10
+
+
+ 555 0012 0846     		mov	r0, r1
+ 556              	.L80:
+ 557 0014 38BD     		pop	{r3, r4, r5, pc}
+ 558              	.L90:
+ 559 0016 D0F85831 		ldr	r3, [r0, #344]
+ 560 001a B0F86021 		ldrh	r2, [r0, #352]
+ 561 001e 9342     		cmp	r3, r2
+ 562 0020 09D8     		bhi	.L91
+ 563 0022 90F8AA32 		ldrb	r3, [r0, #682]	@ zero_extendqisi2
+ 564 0026 03F01F03 		and	r3, r3, #31
+ 565 002a 012B     		cmp	r3, #1
+ 566 002c 12D0     		beq	.L82
+ 567 002e 022B     		cmp	r3, #2
+ 568 0030 1ED0     		beq	.L83
+ 569 0032 0846     		mov	r0, r1
+ 570 0034 13E0     		b	.L84
+ 571              	.L91:
+ 572 0036 9B1A     		subs	r3, r3, r2
+ 573 0038 C0F85831 		str	r3, [r0, #344]
+ 574 003c D0F86411 		ldr	r1, [r0, #356]
+ 575 0040 1144     		add	r1, r1, r2
+ 576 0042 C0F86411 		str	r1, [r0, #356]
+ 577 0046 9A42     		cmp	r2, r3
+ 578 0048 38BF     		it	cc
+ 579 004a 1A46     		movcc	r2, r3
+ 580 004c FFF7FEFF 		bl	USBD_CtlContinueRx
+ 581 0050 2846     		mov	r0, r5
+ 582 0052 DFE7     		b	.L80
+ 583              	.L82:
+ 584 0054 90F8AE12 		ldrb	r1, [r0, #686]	@ zero_extendqisi2
+ 585 0058 FFF7FEFF 		bl	USBD_CoreFindIF
+ 586              	.L85:
+ 587 005c 18B9     		cbnz	r0, .L86
+ 588              	.L84:
+ 589 005e 94F89C32 		ldrb	r3, [r4, #668]	@ zero_extendqisi2
+ 590 0062 032B     		cmp	r3, #3
+ 591 0064 09D0     		beq	.L92
+ 592              	.L86:
+ 593 0066 2046     		mov	r0, r4
+ 594 0068 FFF7FEFF 		bl	USBD_CtlSendStatus
+ 595 006c 2846     		mov	r0, r5
+ 596 006e D1E7     		b	.L80
+ 597              	.L83:
+ 598 0070 90F8AE12 		ldrb	r1, [r0, #686]	@ zero_extendqisi2
+ 599 0074 FFF7FEFF 		bl	USBD_CoreFindEP
+ 600 0078 F0E7     		b	.L85
+ 601              	.L92:
+ 602 007a 00F1AE03 		add	r3, r0, #174
+ 603 007e 54F82330 		ldr	r3, [r4, r3, lsl #2]
+ 604 0082 1A69     		ldr	r2, [r3, #16]
+ 605 0084 002A     		cmp	r2, #0
+ 606 0086 EED0     		beq	.L86
+ 607 0088 C4F8D402 		str	r0, [r4, #724]
+ 608 008c 1B69     		ldr	r3, [r3, #16]
+ 609 008e 2046     		mov	r0, r4
+ 610 0090 9847     		blx	r3
+ 611 0092 E8E7     		b	.L86
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 11
+
+
+ 612              	.L79:
+ 613 0094 01F07F01 		and	r1, r1, #127
+ 614 0098 FFF7FEFF 		bl	USBD_CoreFindEP
+ 615 009c 88B9     		cbnz	r0, .L88
+ 616 009e 94F89C32 		ldrb	r3, [r4, #668]	@ zero_extendqisi2
+ 617 00a2 032B     		cmp	r3, #3
+ 618 00a4 B6D1     		bne	.L80
+ 619 00a6 00F1AE03 		add	r3, r0, #174
+ 620 00aa 54F82330 		ldr	r3, [r4, r3, lsl #2]
+ 621 00ae 9A69     		ldr	r2, [r3, #24]
+ 622 00b0 002A     		cmp	r2, #0
+ 623 00b2 AFD0     		beq	.L80
+ 624 00b4 C4F8D402 		str	r0, [r4, #724]
+ 625 00b8 9B69     		ldr	r3, [r3, #24]
+ 626 00ba 2946     		mov	r1, r5
+ 627 00bc 2046     		mov	r0, r4
+ 628 00be 9847     		blx	r3
+ 629 00c0 A8E7     		b	.L80
+ 630              	.L88:
+ 631 00c2 0020     		movs	r0, #0
+ 632 00c4 A6E7     		b	.L80
+ 634              		.section	.text.USBD_LL_DataInStage,"ax",%progbits
+ 635              		.align	1
+ 636              		.global	USBD_LL_DataInStage
+ 637              		.syntax unified
+ 638              		.thumb
+ 639              		.thumb_func
+ 641              	USBD_LL_DataInStage:
+ 642              		@ args = 0, pretend = 0, frame = 0
+ 643              		@ frame_needed = 0, uses_anonymous_args = 0
+ 644 0000 38B5     		push	{r3, r4, r5, lr}
+ 645 0002 0446     		mov	r4, r0
+ 646 0004 0D46     		mov	r5, r1
+ 647 0006 0029     		cmp	r1, #0
+ 648 0008 4BD1     		bne	.L94
+ 649 000a D0F89432 		ldr	r3, [r0, #660]
+ 650 000e 022B     		cmp	r3, #2
+ 651 0010 07D0     		beq	.L102
+ 652              	.L95:
+ 653 0012 94F8A002 		ldrb	r0, [r4, #672]	@ zero_extendqisi2
+ 654 0016 18B1     		cbz	r0, .L99
+ 655 0018 0023     		movs	r3, #0
+ 656 001a 84F8A032 		strb	r3, [r4, #672]
+ 657 001e 2846     		mov	r0, r5
+ 658              	.L99:
+ 659 0020 38BD     		pop	{r3, r4, r5, pc}
+ 660              	.L102:
+ 661 0022 8269     		ldr	r2, [r0, #24]
+ 662 0024 038C     		ldrh	r3, [r0, #32]
+ 663 0026 9A42     		cmp	r2, r3
+ 664 0028 0DD8     		bhi	.L103
+ 665 002a 9A42     		cmp	r2, r3
+ 666 002c 19D0     		beq	.L104
+ 667              	.L97:
+ 668 002e 94F89C32 		ldrb	r3, [r4, #668]	@ zero_extendqisi2
+ 669 0032 032B     		cmp	r3, #3
+ 670 0034 29D0     		beq	.L105
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 12
+
+
+ 671              	.L98:
+ 672 0036 8021     		movs	r1, #128
+ 673 0038 2046     		mov	r0, r4
+ 674 003a FFF7FEFF 		bl	USBD_LL_StallEP
+ 675 003e 2046     		mov	r0, r4
+ 676 0040 FFF7FEFF 		bl	USBD_CtlReceiveStatus
+ 677 0044 E5E7     		b	.L95
+ 678              	.L103:
+ 679 0046 D21A     		subs	r2, r2, r3
+ 680 0048 8261     		str	r2, [r0, #24]
+ 681 004a 416A     		ldr	r1, [r0, #36]
+ 682 004c 1944     		add	r1, r1, r3
+ 683 004e 4162     		str	r1, [r0, #36]
+ 684 0050 FFF7FEFF 		bl	USBD_CtlContinueSendData
+ 685 0054 0023     		movs	r3, #0
+ 686 0056 1A46     		mov	r2, r3
+ 687 0058 1946     		mov	r1, r3
+ 688 005a 2046     		mov	r0, r4
+ 689 005c FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 690 0060 D7E7     		b	.L95
+ 691              	.L104:
+ 692 0062 4269     		ldr	r2, [r0, #20]
+ 693 0064 9342     		cmp	r3, r2
+ 694 0066 E2D8     		bhi	.L97
+ 695 0068 D0F89832 		ldr	r3, [r0, #664]
+ 696 006c 9A42     		cmp	r2, r3
+ 697 006e DED2     		bcs	.L97
+ 698 0070 0022     		movs	r2, #0
+ 699 0072 1146     		mov	r1, r2
+ 700 0074 FFF7FEFF 		bl	USBD_CtlContinueSendData
+ 701 0078 0021     		movs	r1, #0
+ 702 007a C4F89812 		str	r1, [r4, #664]
+ 703 007e 0B46     		mov	r3, r1
+ 704 0080 0A46     		mov	r2, r1
+ 705 0082 2046     		mov	r0, r4
+ 706 0084 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 707 0088 C3E7     		b	.L95
+ 708              	.L105:
+ 709 008a D4F8B832 		ldr	r3, [r4, #696]
+ 710 008e DA68     		ldr	r2, [r3, #12]
+ 711 0090 002A     		cmp	r2, #0
+ 712 0092 D0D0     		beq	.L98
+ 713 0094 0022     		movs	r2, #0
+ 714 0096 C4F8D422 		str	r2, [r4, #724]
+ 715 009a DB68     		ldr	r3, [r3, #12]
+ 716 009c 2046     		mov	r0, r4
+ 717 009e 9847     		blx	r3
+ 718 00a0 C9E7     		b	.L98
+ 719              	.L94:
+ 720 00a2 41F08001 		orr	r1, r1, #128
+ 721 00a6 FFF7FEFF 		bl	USBD_CoreFindEP
+ 722 00aa 88B9     		cbnz	r0, .L100
+ 723 00ac 94F89C32 		ldrb	r3, [r4, #668]	@ zero_extendqisi2
+ 724 00b0 032B     		cmp	r3, #3
+ 725 00b2 B5D1     		bne	.L99
+ 726 00b4 00F1AE03 		add	r3, r0, #174
+ 727 00b8 54F82330 		ldr	r3, [r4, r3, lsl #2]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 13
+
+
+ 728 00bc 5A69     		ldr	r2, [r3, #20]
+ 729 00be 002A     		cmp	r2, #0
+ 730 00c0 AED0     		beq	.L99
+ 731 00c2 C4F8D402 		str	r0, [r4, #724]
+ 732 00c6 5B69     		ldr	r3, [r3, #20]
+ 733 00c8 2946     		mov	r1, r5
+ 734 00ca 2046     		mov	r0, r4
+ 735 00cc 9847     		blx	r3
+ 736 00ce A7E7     		b	.L99
+ 737              	.L100:
+ 738 00d0 0020     		movs	r0, #0
+ 739 00d2 A5E7     		b	.L99
+ 741              		.section	.text.USBD_GetNextDesc,"ax",%progbits
+ 742              		.align	1
+ 743              		.global	USBD_GetNextDesc
+ 744              		.syntax unified
+ 745              		.thumb
+ 746              		.thumb_func
+ 748              	USBD_GetNextDesc:
+ 749              		@ args = 0, pretend = 0, frame = 0
+ 750              		@ frame_needed = 0, uses_anonymous_args = 0
+ 751              		@ link register save eliminated.
+ 752 0000 0B88     		ldrh	r3, [r1]
+ 753 0002 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+ 754 0004 1344     		add	r3, r3, r2
+ 755 0006 0B80     		strh	r3, [r1]	@ movhi
+ 756 0008 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 757 000a 1844     		add	r0, r0, r3
+ 758 000c 7047     		bx	lr
+ 760              		.section	.text.USBD_GetEpDesc,"ax",%progbits
+ 761              		.align	1
+ 762              		.global	USBD_GetEpDesc
+ 763              		.syntax unified
+ 764              		.thumb
+ 765              		.thumb_func
+ 767              	USBD_GetEpDesc:
+ 768              		@ args = 0, pretend = 0, frame = 8
+ 769              		@ frame_needed = 0, uses_anonymous_args = 0
+ 770 0000 4288     		ldrh	r2, [r0, #2]	@ unaligned
+ 771 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 772 0004 9A42     		cmp	r2, r3
+ 773 0006 18D9     		bls	.L111
+ 774 0008 30B5     		push	{r4, r5, lr}
+ 775 000a 83B0     		sub	sp, sp, #12
+ 776 000c 0446     		mov	r4, r0
+ 777 000e 0D46     		mov	r5, r1
+ 778 0010 ADF80630 		strh	r3, [sp, #6]	@ movhi
+ 779              	.L109:
+ 780 0014 6388     		ldrh	r3, [r4, #2]	@ unaligned
+ 781 0016 BDF80620 		ldrh	r2, [sp, #6]
+ 782 001a 9A42     		cmp	r2, r3
+ 783 001c 0AD2     		bcs	.L116
+ 784 001e 0DF10601 		add	r1, sp, #6
+ 785 0022 FFF7FEFF 		bl	USBD_GetNextDesc
+ 786 0026 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+ 787 0028 052B     		cmp	r3, #5
+ 788 002a F3D1     		bne	.L109
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 14
+
+
+ 789 002c 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
+ 790 002e AB42     		cmp	r3, r5
+ 791 0030 F0D1     		bne	.L109
+ 792 0032 00E0     		b	.L107
+ 793              	.L116:
+ 794 0034 0020     		movs	r0, #0
+ 795              	.L107:
+ 796 0036 03B0     		add	sp, sp, #12
+ 797              		@ sp needed
+ 798 0038 30BD     		pop	{r4, r5, pc}
+ 799              	.L111:
+ 800 003a 0020     		movs	r0, #0
+ 801 003c 7047     		bx	lr
+ 803              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usbd_core.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:17     .text.USBD_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:23     .text.USBD_Init:00000000 USBD_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:47     .text.USBD_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:53     .text.USBD_DeInit:00000000 USBD_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:77     .text.USBD_RegisterClass:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:83     .text.USBD_RegisterClass:00000000 USBD_RegisterClass
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:116    .text.USBD_Start:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:122    .text.USBD_Start:00000000 USBD_Start
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:130    .text.USBD_Stop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:136    .text.USBD_Stop:00000000 USBD_Stop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:153    .text.USBD_RunTestMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:159    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:167    .text.USBD_SetClassConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:173    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:188    .text.USBD_ClrClassConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:194    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:209    .text.USBD_LL_SetupStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:215    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:256    .text.USBD_LL_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:262    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:312    .text.USBD_LL_SetSpeed:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:318    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:327    .text.USBD_LL_Suspend:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:333    .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:350    .text.USBD_LL_Resume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:356    .text.USBD_LL_Resume:00000000 USBD_LL_Resume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:373    .text.USBD_LL_SOF:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:379    .text.USBD_LL_SOF:00000000 USBD_LL_SOF
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:400    .text.USBD_LL_IsoINIncomplete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:406    .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:434    .text.USBD_LL_IsoOUTIncomplete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:440    .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:468    .text.USBD_LL_DevConnected:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:474    .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:482    .text.USBD_LL_DevDisconnected:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:488    .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:510    .text.USBD_CoreFindIF:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:516    .text.USBD_CoreFindIF:00000000 USBD_CoreFindIF
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:524    .text.USBD_CoreFindEP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:530    .text.USBD_CoreFindEP:00000000 USBD_CoreFindEP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:538    .text.USBD_LL_DataOutStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:544    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:635    .text.USBD_LL_DataInStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:641    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:742    .text.USBD_GetNextDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:748    .text.USBD_GetNextDesc:00000000 USBD_GetNextDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:761    .text.USBD_GetEpDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s:767    .text.USBD_GetEpDesc:00000000 USBD_GetEpDesc
+
+UNDEFINED SYMBOLS
+USBD_LL_Init
+USBD_LL_Stop
+USBD_LL_DeInit
+USBD_LL_Start
+USBD_ParseSetupRequest
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccFXYw22.s 			page 16
+
+
+USBD_StdDevReq
+USBD_StdItfReq
+USBD_StdEPReq
+USBD_LL_StallEP
+USBD_LL_OpenEP
+USBD_CtlContinueRx
+USBD_CtlSendStatus
+USBD_CtlReceiveStatus
+USBD_CtlContinueSendData
+USBD_LL_PrepareReceive

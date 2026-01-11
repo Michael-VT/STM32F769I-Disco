@@ -1,0 +1,381 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f769i_discovery_eeprom.c"
+  15              		.text
+  16              		.section	.text.BSP_EEPROM_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	BSP_EEPROM_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	BSP_EEPROM_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 FFF7FEFF 		bl	EEPROM_IO_Init
+  28 0006 0C4B     		ldr	r3, .L7
+  29 0008 A022     		movs	r2, #160
+  30 000a 1A80     		strh	r2, [r3]	@ movhi
+  31 000c 1888     		ldrh	r0, [r3]
+  32 000e 40F6B831 		movw	r1, #3000
+  33 0012 80B2     		uxth	r0, r0
+  34 0014 FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+  35 0018 08B9     		cbnz	r0, .L6
+  36 001a 0020     		movs	r0, #0
+  37              	.L1:
+  38 001c 08BD     		pop	{r3, pc}
+  39              	.L6:
+  40 001e 064B     		ldr	r3, .L7
+  41 0020 A622     		movs	r2, #166
+  42 0022 1A80     		strh	r2, [r3]	@ movhi
+  43 0024 1888     		ldrh	r0, [r3]
+  44 0026 40F6B831 		movw	r1, #3000
+  45 002a 80B2     		uxth	r0, r0
+  46 002c FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+  47 0030 0028     		cmp	r0, #0
+  48 0032 F3D0     		beq	.L1
+  49 0034 0120     		movs	r0, #1
+  50 0036 F1E7     		b	.L1
+  51              	.L8:
+  52              		.align	2
+  53              	.L7:
+  54 0038 00000000 		.word	EEPROMAddress
+  56              		.section	.text.BSP_EEPROM_DeInit,"ax",%progbits
+  57              		.align	1
+  58              		.global	BSP_EEPROM_DeInit
+  59              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 2
+
+
+  60              		.thumb
+  61              		.thumb_func
+  63              	BSP_EEPROM_DeInit:
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		@ link register save eliminated.
+  67 0000 0020     		movs	r0, #0
+  68 0002 7047     		bx	lr
+  70              		.section	.text.BSP_EEPROM_TIMEOUT_UserCallback,"ax",%progbits
+  71              		.align	1
+  72              		.weak	BSP_EEPROM_TIMEOUT_UserCallback
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	BSP_EEPROM_TIMEOUT_UserCallback:
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  81 0000 7047     		bx	lr
+  83              		.section	.text.BSP_EEPROM_ReadBuffer,"ax",%progbits
+  84              		.align	1
+  85              		.global	BSP_EEPROM_ReadBuffer
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  90              	BSP_EEPROM_ReadBuffer:
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93 0000 08B5     		push	{r3, lr}
+  94 0002 1388     		ldrh	r3, [r2]
+  95 0004 084A     		ldr	r2, .L16
+  96 0006 1380     		strh	r3, [r2]	@ movhi
+  97 0008 084A     		ldr	r2, .L16+4
+  98 000a B2F800C0 		ldrh	ip, [r2]
+  99 000e 0246     		mov	r2, r0
+ 100 0010 1FFA8CF0 		uxth	r0, ip
+ 101 0014 FFF7FEFF 		bl	EEPROM_IO_ReadData
+ 102 0018 08B9     		cbnz	r0, .L15
+ 103 001a 0020     		movs	r0, #0
+ 104              	.L11:
+ 105 001c 08BD     		pop	{r3, pc}
+ 106              	.L15:
+ 107 001e FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 108 0022 0120     		movs	r0, #1
+ 109 0024 FAE7     		b	.L11
+ 110              	.L17:
+ 111 0026 00BF     		.align	2
+ 112              	.L16:
+ 113 0028 00000000 		.word	EEPROMDataRead
+ 114 002c 00000000 		.word	EEPROMAddress
+ 116              		.section	.text.BSP_EEPROM_WaitEepromStandbyState,"ax",%progbits
+ 117              		.align	1
+ 118              		.global	BSP_EEPROM_WaitEepromStandbyState
+ 119              		.syntax unified
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	BSP_EEPROM_WaitEepromStandbyState:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 3
+
+
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126 0000 08B5     		push	{r3, lr}
+ 127 0002 074B     		ldr	r3, .L23
+ 128 0004 1888     		ldrh	r0, [r3]
+ 129 0006 40F6B831 		movw	r1, #3000
+ 130 000a 80B2     		uxth	r0, r0
+ 131 000c FFF7FEFF 		bl	EEPROM_IO_IsDeviceReady
+ 132 0010 08B9     		cbnz	r0, .L22
+ 133 0012 0020     		movs	r0, #0
+ 134              	.L18:
+ 135 0014 08BD     		pop	{r3, pc}
+ 136              	.L22:
+ 137 0016 FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 138 001a 0220     		movs	r0, #2
+ 139 001c FAE7     		b	.L18
+ 140              	.L24:
+ 141 001e 00BF     		.align	2
+ 142              	.L23:
+ 143 0020 00000000 		.word	EEPROMAddress
+ 145              		.section	.text.BSP_EEPROM_WritePage,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	BSP_EEPROM_WritePage
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ 152              	BSP_EEPROM_WritePage:
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155 0000 10B5     		push	{r4, lr}
+ 156 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 157 0004 0B4A     		ldr	r2, .L33
+ 158 0006 1370     		strb	r3, [r2]
+ 159 0008 0B4A     		ldr	r2, .L33+4
+ 160 000a 1488     		ldrh	r4, [r2]
+ 161 000c 0246     		mov	r2, r0
+ 162 000e A0B2     		uxth	r0, r4
+ 163 0010 FFF7FEFF 		bl	EEPROM_IO_WriteData
+ 164 0014 40B9     		cbnz	r0, .L31
+ 165 0016 0024     		movs	r4, #0
+ 166              	.L26:
+ 167 0018 0520     		movs	r0, #5
+ 168 001a FFF7FEFF 		bl	HAL_Delay
+ 169 001e FFF7FEFF 		bl	BSP_EEPROM_WaitEepromStandbyState
+ 170 0022 28B9     		cbnz	r0, .L32
+ 171              	.L25:
+ 172 0024 2046     		mov	r0, r4
+ 173 0026 10BD     		pop	{r4, pc}
+ 174              	.L31:
+ 175 0028 FFF7FEFF 		bl	BSP_EEPROM_TIMEOUT_UserCallback
+ 176 002c 0124     		movs	r4, #1
+ 177 002e F3E7     		b	.L26
+ 178              	.L32:
+ 179 0030 0124     		movs	r4, #1
+ 180 0032 F7E7     		b	.L25
+ 181              	.L34:
+ 182              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 4
+
+
+ 183              	.L33:
+ 184 0034 00000000 		.word	EEPROMDataWrite
+ 185 0038 00000000 		.word	EEPROMAddress
+ 187              		.section	.text.BSP_EEPROM_WriteBuffer,"ax",%progbits
+ 188              		.align	1
+ 189              		.global	BSP_EEPROM_WriteBuffer
+ 190              		.syntax unified
+ 191              		.thumb
+ 192              		.thumb_func
+ 194              	BSP_EEPROM_WriteBuffer:
+ 195              		@ args = 0, pretend = 0, frame = 8
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 198 0004 82B0     		sub	sp, sp, #8
+ 199 0006 0546     		mov	r5, r0
+ 200 0008 0C46     		mov	r4, r1
+ 201 000a 1646     		mov	r6, r2
+ 202 000c 0023     		movs	r3, #0
+ 203 000e 8DF80730 		strb	r3, [sp, #7]
+ 204 0012 01F00302 		and	r2, r1, #3
+ 205 0016 06F00307 		and	r7, r6, #3
+ 206 001a 6ABB     		cbnz	r2, .L36
+ 207 001c B308     		lsrs	r3, r6, #2
+ 208 001e 032E     		cmp	r6, #3
+ 209 0020 12D9     		bls	.L48
+ 210              	.L37:
+ 211 0022 5A1E     		subs	r2, r3, #1
+ 212 0024 96B2     		uxth	r6, r2
+ 213 0026 D3B1     		cbz	r3, .L49
+ 214 0028 0423     		movs	r3, #4
+ 215 002a 8DF80730 		strb	r3, [sp, #7]
+ 216 002e 0DF10702 		add	r2, sp, #7
+ 217 0032 2146     		mov	r1, r4
+ 218 0034 2846     		mov	r0, r5
+ 219 0036 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 220 003a 0346     		mov	r3, r0
+ 221 003c 58B9     		cbnz	r0, .L35
+ 222 003e 0434     		adds	r4, r4, #4
+ 223 0040 A4B2     		uxth	r4, r4
+ 224 0042 0435     		adds	r5, r5, #4
+ 225 0044 3346     		mov	r3, r6
+ 226 0046 ECE7     		b	.L37
+ 227              	.L48:
+ 228 0048 8DF80770 		strb	r7, [sp, #7]
+ 229 004c 0DF10702 		add	r2, sp, #7
+ 230 0050 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 231 0054 0346     		mov	r3, r0
+ 232              	.L35:
+ 233 0056 1846     		mov	r0, r3
+ 234 0058 02B0     		add	sp, sp, #8
+ 235              		@ sp needed
+ 236 005a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 237              	.L49:
+ 238 005e 0FB9     		cbnz	r7, .L50
+ 239 0060 0023     		movs	r3, #0
+ 240 0062 F8E7     		b	.L35
+ 241              	.L50:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 5
+
+
+ 242 0064 8DF80770 		strb	r7, [sp, #7]
+ 243 0068 0DF10702 		add	r2, sp, #7
+ 244 006c 2146     		mov	r1, r4
+ 245 006e 2846     		mov	r0, r5
+ 246 0070 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 247 0074 0346     		mov	r3, r0
+ 248 0076 EEE7     		b	.L35
+ 249              	.L36:
+ 250 0078 C2F10408 		rsb	r8, r2, #4
+ 251 007c 1FFA88F8 		uxth	r8, r8
+ 252 0080 032E     		cmp	r6, #3
+ 253 0082 22D8     		bhi	.L40
+ 254 0084 B045     		cmp	r8, r6
+ 255 0086 18D2     		bcs	.L41
+ 256 0088 5FFA88F7 		uxtb	r7, r8
+ 257 008c 8DF80770 		strb	r7, [sp, #7]
+ 258 0090 0DF10702 		add	r2, sp, #7
+ 259 0094 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 260 0098 0346     		mov	r3, r0
+ 261 009a 0028     		cmp	r0, #0
+ 262 009c DBD1     		bne	.L35
+ 263 009e F71B     		subs	r7, r6, r7
+ 264 00a0 8DF80770 		strb	r7, [sp, #7]
+ 265 00a4 04EB0801 		add	r1, r4, r8
+ 266 00a8 0DF10702 		add	r2, sp, #7
+ 267 00ac 89B2     		uxth	r1, r1
+ 268 00ae 05EB0800 		add	r0, r5, r8
+ 269 00b2 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 270 00b6 0346     		mov	r3, r0
+ 271 00b8 CDE7     		b	.L35
+ 272              	.L41:
+ 273 00ba 8DF80770 		strb	r7, [sp, #7]
+ 274 00be 0DF10702 		add	r2, sp, #7
+ 275 00c2 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 276 00c6 0346     		mov	r3, r0
+ 277 00c8 C5E7     		b	.L35
+ 278              	.L40:
+ 279 00ca 043A     		subs	r2, r2, #4
+ 280 00cc 3244     		add	r2, r2, r6
+ 281 00ce C2F38D07 		ubfx	r7, r2, #2, #14
+ 282 00d2 02F00306 		and	r6, r2, #3
+ 283 00d6 B8F1000F 		cmp	r8, #0
+ 284 00da 14D1     		bne	.L51
+ 285              	.L43:
+ 286 00dc 7B1E     		subs	r3, r7, #1
+ 287 00de 1FFA83F8 		uxth	r8, r3
+ 288 00e2 EFB1     		cbz	r7, .L52
+ 289 00e4 0423     		movs	r3, #4
+ 290 00e6 8DF80730 		strb	r3, [sp, #7]
+ 291 00ea 0DF10702 		add	r2, sp, #7
+ 292 00ee 2146     		mov	r1, r4
+ 293 00f0 2846     		mov	r0, r5
+ 294 00f2 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 295 00f6 0346     		mov	r3, r0
+ 296 00f8 0028     		cmp	r0, #0
+ 297 00fa ACD1     		bne	.L35
+ 298 00fc 0434     		adds	r4, r4, #4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 6
+
+
+ 299 00fe A4B2     		uxth	r4, r4
+ 300 0100 0435     		adds	r5, r5, #4
+ 301 0102 4746     		mov	r7, r8
+ 302 0104 EAE7     		b	.L43
+ 303              	.L51:
+ 304 0106 8DF80780 		strb	r8, [sp, #7]
+ 305 010a 0DF10702 		add	r2, sp, #7
+ 306 010e FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 307 0112 0346     		mov	r3, r0
+ 308 0114 0028     		cmp	r0, #0
+ 309 0116 9ED1     		bne	.L35
+ 310 0118 4444     		add	r4, r4, r8
+ 311 011a A4B2     		uxth	r4, r4
+ 312 011c 4544     		add	r5, r5, r8
+ 313 011e DDE7     		b	.L43
+ 314              	.L52:
+ 315 0120 0EB9     		cbnz	r6, .L53
+ 316 0122 0023     		movs	r3, #0
+ 317 0124 97E7     		b	.L35
+ 318              	.L53:
+ 319 0126 8DF80760 		strb	r6, [sp, #7]
+ 320 012a 0DF10702 		add	r2, sp, #7
+ 321 012e 2146     		mov	r1, r4
+ 322 0130 2846     		mov	r0, r5
+ 323 0132 FFF7FEFF 		bl	BSP_EEPROM_WritePage
+ 324 0136 0346     		mov	r3, r0
+ 325 0138 8DE7     		b	.L35
+ 327              		.global	EEPROMDataWrite
+ 328              		.section	.bss.EEPROMDataWrite,"aw",%nobits
+ 331              	EEPROMDataWrite:
+ 332 0000 00       		.space	1
+ 333              		.global	EEPROMDataRead
+ 334              		.section	.bss.EEPROMDataRead,"aw",%nobits
+ 335              		.align	1
+ 338              	EEPROMDataRead:
+ 339 0000 0000     		.space	2
+ 340              		.global	EEPROMAddress
+ 341              		.section	.bss.EEPROMAddress,"aw",%nobits
+ 342              		.align	1
+ 345              	EEPROMAddress:
+ 346 0000 0000     		.space	2
+ 347              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f769i_discovery_eeprom.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:17     .text.BSP_EEPROM_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:23     .text.BSP_EEPROM_Init:00000000 BSP_EEPROM_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:54     .text.BSP_EEPROM_Init:00000038 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:345    .bss.EEPROMAddress:00000000 EEPROMAddress
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:57     .text.BSP_EEPROM_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:63     .text.BSP_EEPROM_DeInit:00000000 BSP_EEPROM_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:71     .text.BSP_EEPROM_TIMEOUT_UserCallback:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:77     .text.BSP_EEPROM_TIMEOUT_UserCallback:00000000 BSP_EEPROM_TIMEOUT_UserCallback
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:84     .text.BSP_EEPROM_ReadBuffer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:90     .text.BSP_EEPROM_ReadBuffer:00000000 BSP_EEPROM_ReadBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:113    .text.BSP_EEPROM_ReadBuffer:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:338    .bss.EEPROMDataRead:00000000 EEPROMDataRead
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:117    .text.BSP_EEPROM_WaitEepromStandbyState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:123    .text.BSP_EEPROM_WaitEepromStandbyState:00000000 BSP_EEPROM_WaitEepromStandbyState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:143    .text.BSP_EEPROM_WaitEepromStandbyState:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:146    .text.BSP_EEPROM_WritePage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:152    .text.BSP_EEPROM_WritePage:00000000 BSP_EEPROM_WritePage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:184    .text.BSP_EEPROM_WritePage:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:331    .bss.EEPROMDataWrite:00000000 EEPROMDataWrite
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:188    .text.BSP_EEPROM_WriteBuffer:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:194    .text.BSP_EEPROM_WriteBuffer:00000000 BSP_EEPROM_WriteBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:332    .bss.EEPROMDataWrite:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:335    .bss.EEPROMDataRead:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccYfRJe.s:342    .bss.EEPROMAddress:00000000 $d
+
+UNDEFINED SYMBOLS
+EEPROM_IO_Init
+EEPROM_IO_IsDeviceReady
+EEPROM_IO_ReadData
+EEPROM_IO_WriteData
+HAL_Delay

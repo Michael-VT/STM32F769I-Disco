@@ -513,9 +513,7 @@ uint8_t BSP_LCD_InitEx(LCD_OrientationTypeDef orientation)
   /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)
   *  depending on configuration set in 'hdsivideo_handle'.
   */
-
-	  OTM8009A_Init(OTM8009A_FORMAT_RBG565, orientation);
-//	  OTM8009A_Init(OTM8009A_FORMAT_RGB888, orientation);
+  OTM8009A_Init(OTM8009A_FORMAT_RGB888, orientation);
 
 /***********************End OTM8009A Initialization****************************/ 
  }

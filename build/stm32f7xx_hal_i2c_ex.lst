@@ -1,0 +1,200 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f7xx_hal_i2c_ex.c"
+  15              		.text
+  16              		.section	.text.HAL_I2CEx_ConfigAnalogFilter,"ax",%progbits
+  17              		.align	1
+  18              		.global	HAL_I2CEx_ConfigAnalogFilter
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	HAL_I2CEx_ConfigAnalogFilter:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 0346     		mov	r3, r0
+  28 0002 90F84120 		ldrb	r2, [r0, #65]	@ zero_extendqisi2
+  29 0006 202A     		cmp	r2, #32
+  30 0008 23D1     		bne	.L3
+  31 000a 90F84020 		ldrb	r2, [r0, #64]	@ zero_extendqisi2
+  32 000e 012A     		cmp	r2, #1
+  33 0010 21D0     		beq	.L4
+  34 0012 0122     		movs	r2, #1
+  35 0014 80F84020 		strb	r2, [r0, #64]
+  36 0018 2422     		movs	r2, #36
+  37 001a 80F84120 		strb	r2, [r0, #65]
+  38 001e 0068     		ldr	r0, [r0]
+  39 0020 0268     		ldr	r2, [r0]
+  40 0022 22F00102 		bic	r2, r2, #1
+  41 0026 0260     		str	r2, [r0]
+  42 0028 1868     		ldr	r0, [r3]
+  43 002a 0268     		ldr	r2, [r0]
+  44 002c 22F48052 		bic	r2, r2, #4096
+  45 0030 0260     		str	r2, [r0]
+  46 0032 1868     		ldr	r0, [r3]
+  47 0034 0268     		ldr	r2, [r0]
+  48 0036 0A43     		orrs	r2, r2, r1
+  49 0038 0260     		str	r2, [r0]
+  50 003a 1968     		ldr	r1, [r3]
+  51 003c 0A68     		ldr	r2, [r1]
+  52 003e 42F00102 		orr	r2, r2, #1
+  53 0042 0A60     		str	r2, [r1]
+  54 0044 2022     		movs	r2, #32
+  55 0046 83F84120 		strb	r2, [r3, #65]
+  56 004a 0020     		movs	r0, #0
+  57 004c 83F84000 		strb	r0, [r3, #64]
+  58 0050 7047     		bx	lr
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s 			page 2
+
+
+  59              	.L3:
+  60 0052 0220     		movs	r0, #2
+  61 0054 7047     		bx	lr
+  62              	.L4:
+  63 0056 0220     		movs	r0, #2
+  64 0058 7047     		bx	lr
+  66              		.section	.text.HAL_I2CEx_ConfigDigitalFilter,"ax",%progbits
+  67              		.align	1
+  68              		.global	HAL_I2CEx_ConfigDigitalFilter
+  69              		.syntax unified
+  70              		.thumb
+  71              		.thumb_func
+  73              	HAL_I2CEx_ConfigDigitalFilter:
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              		@ link register save eliminated.
+  77 0000 0346     		mov	r3, r0
+  78 0002 90F84120 		ldrb	r2, [r0, #65]	@ zero_extendqisi2
+  79 0006 202A     		cmp	r2, #32
+  80 0008 21D1     		bne	.L7
+  81 000a 90F84020 		ldrb	r2, [r0, #64]	@ zero_extendqisi2
+  82 000e 012A     		cmp	r2, #1
+  83 0010 1FD0     		beq	.L8
+  84 0012 0122     		movs	r2, #1
+  85 0014 80F84020 		strb	r2, [r0, #64]
+  86 0018 2422     		movs	r2, #36
+  87 001a 80F84120 		strb	r2, [r0, #65]
+  88 001e 0068     		ldr	r0, [r0]
+  89 0020 0268     		ldr	r2, [r0]
+  90 0022 22F00102 		bic	r2, r2, #1
+  91 0026 0260     		str	r2, [r0]
+  92 0028 1868     		ldr	r0, [r3]
+  93 002a 0268     		ldr	r2, [r0]
+  94 002c 22F47062 		bic	r2, r2, #3840
+  95 0030 42EA0122 		orr	r2, r2, r1, lsl #8
+  96 0034 0260     		str	r2, [r0]
+  97 0036 1968     		ldr	r1, [r3]
+  98 0038 0A68     		ldr	r2, [r1]
+  99 003a 42F00102 		orr	r2, r2, #1
+ 100 003e 0A60     		str	r2, [r1]
+ 101 0040 2022     		movs	r2, #32
+ 102 0042 83F84120 		strb	r2, [r3, #65]
+ 103 0046 0020     		movs	r0, #0
+ 104 0048 83F84000 		strb	r0, [r3, #64]
+ 105 004c 7047     		bx	lr
+ 106              	.L7:
+ 107 004e 0220     		movs	r0, #2
+ 108 0050 7047     		bx	lr
+ 109              	.L8:
+ 110 0052 0220     		movs	r0, #2
+ 111 0054 7047     		bx	lr
+ 113              		.section	.text.HAL_I2CEx_EnableFastModePlus,"ax",%progbits
+ 114              		.align	1
+ 115              		.global	HAL_I2CEx_EnableFastModePlus
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s 			page 3
+
+
+ 120              	HAL_I2CEx_EnableFastModePlus:
+ 121              		@ args = 0, pretend = 0, frame = 8
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+ 124 0000 82B0     		sub	sp, sp, #8
+ 125 0002 084B     		ldr	r3, .L11
+ 126 0004 5A6C     		ldr	r2, [r3, #68]
+ 127 0006 42F48042 		orr	r2, r2, #16384
+ 128 000a 5A64     		str	r2, [r3, #68]
+ 129 000c 5B6C     		ldr	r3, [r3, #68]
+ 130 000e 03F48043 		and	r3, r3, #16384
+ 131 0012 0193     		str	r3, [sp, #4]
+ 132 0014 019B     		ldr	r3, [sp, #4]
+ 133 0016 044A     		ldr	r2, .L11+4
+ 134 0018 5368     		ldr	r3, [r2, #4]
+ 135 001a 0343     		orrs	r3, r3, r0
+ 136 001c 5360     		str	r3, [r2, #4]
+ 137 001e 02B0     		add	sp, sp, #8
+ 138              		@ sp needed
+ 139 0020 7047     		bx	lr
+ 140              	.L12:
+ 141 0022 00BF     		.align	2
+ 142              	.L11:
+ 143 0024 00380240 		.word	1073887232
+ 144 0028 00380140 		.word	1073821696
+ 146              		.section	.text.HAL_I2CEx_DisableFastModePlus,"ax",%progbits
+ 147              		.align	1
+ 148              		.global	HAL_I2CEx_DisableFastModePlus
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	HAL_I2CEx_DisableFastModePlus:
+ 154              		@ args = 0, pretend = 0, frame = 8
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+ 157 0000 82B0     		sub	sp, sp, #8
+ 158 0002 084B     		ldr	r3, .L15
+ 159 0004 5A6C     		ldr	r2, [r3, #68]
+ 160 0006 42F48042 		orr	r2, r2, #16384
+ 161 000a 5A64     		str	r2, [r3, #68]
+ 162 000c 5B6C     		ldr	r3, [r3, #68]
+ 163 000e 03F48043 		and	r3, r3, #16384
+ 164 0012 0193     		str	r3, [sp, #4]
+ 165 0014 019B     		ldr	r3, [sp, #4]
+ 166 0016 044A     		ldr	r2, .L15+4
+ 167 0018 5368     		ldr	r3, [r2, #4]
+ 168 001a 23EA0003 		bic	r3, r3, r0
+ 169 001e 5360     		str	r3, [r2, #4]
+ 170 0020 02B0     		add	sp, sp, #8
+ 171              		@ sp needed
+ 172 0022 7047     		bx	lr
+ 173              	.L16:
+ 174              		.align	2
+ 175              	.L15:
+ 176 0024 00380240 		.word	1073887232
+ 177 0028 00380140 		.word	1073821696
+ 179              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s 			page 4
+
+
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f7xx_hal_i2c_ex.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:17     .text.HAL_I2CEx_ConfigAnalogFilter:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:23     .text.HAL_I2CEx_ConfigAnalogFilter:00000000 HAL_I2CEx_ConfigAnalogFilter
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:67     .text.HAL_I2CEx_ConfigDigitalFilter:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:73     .text.HAL_I2CEx_ConfigDigitalFilter:00000000 HAL_I2CEx_ConfigDigitalFilter
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:114    .text.HAL_I2CEx_EnableFastModePlus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:120    .text.HAL_I2CEx_EnableFastModePlus:00000000 HAL_I2CEx_EnableFastModePlus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:143    .text.HAL_I2CEx_EnableFastModePlus:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:147    .text.HAL_I2CEx_DisableFastModePlus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:153    .text.HAL_I2CEx_DisableFastModePlus:00000000 HAL_I2CEx_DisableFastModePlus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc6q2lnu.s:176    .text.HAL_I2CEx_DisableFastModePlus:00000024 $d
+
+NO UNDEFINED SYMBOLS

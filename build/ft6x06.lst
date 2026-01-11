@@ -1,0 +1,346 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"ft6x06.c"
+  15              		.text
+  16              		.section	.text.ft6x06_Reset,"ax",%progbits
+  17              		.align	1
+  18              		.global	ft6x06_Reset
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	ft6x06_Reset:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 7047     		bx	lr
+  29              		.section	.text.ft6x06_TS_ITStatus,"ax",%progbits
+  30              		.align	1
+  31              		.global	ft6x06_TS_ITStatus
+  32              		.syntax unified
+  33              		.thumb
+  34              		.thumb_func
+  36              	ft6x06_TS_ITStatus:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 0020     		movs	r0, #0
+  41 0002 7047     		bx	lr
+  43              		.section	.text.ft6x06_TS_ClearIT,"ax",%progbits
+  44              		.align	1
+  45              		.global	ft6x06_TS_ClearIT
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  50              	ft6x06_TS_ClearIT:
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+  54 0000 7047     		bx	lr
+  56              		.section	.text.ft6x06_GetInstance,"ax",%progbits
+  57              		.align	1
+  58              		.syntax unified
+  59              		.thumb
+  60              		.thumb_func
+  62              	ft6x06_GetInstance:
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 2
+
+
+  65              		@ link register save eliminated.
+  66 0000 0346     		mov	r3, r0
+  67 0002 0020     		movs	r0, #0
+  68              	.L5:
+  69 0004 0128     		cmp	r0, #1
+  70 0006 06D8     		bhi	.L8
+  71 0008 044A     		ldr	r2, .L9
+  72 000a 125C     		ldrb	r2, [r2, r0]	@ zero_extendqisi2
+  73 000c 9A42     		cmp	r2, r3
+  74 000e 03D0     		beq	.L6
+  75 0010 0130     		adds	r0, r0, #1
+  76 0012 C0B2     		uxtb	r0, r0
+  77 0014 F6E7     		b	.L5
+  78              	.L8:
+  79 0016 FF20     		movs	r0, #255
+  80              	.L6:
+  81 0018 7047     		bx	lr
+  82              	.L10:
+  83 001a 00BF     		.align	2
+  84              	.L9:
+  85 001c 00000000 		.word	ft6x06
+  87              		.section	.text.ft6x06_Init,"ax",%progbits
+  88              		.align	1
+  89              		.global	ft6x06_Init
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	ft6x06_Init:
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97 0000 10B5     		push	{r4, lr}
+  98 0002 0446     		mov	r4, r0
+  99 0004 FFF7FEFF 		bl	ft6x06_GetInstance
+ 100 0008 FF28     		cmp	r0, #255
+ 101 000a 00D0     		beq	.L14
+ 102              	.L11:
+ 103 000c 10BD     		pop	{r4, pc}
+ 104              	.L14:
+ 105 000e 0020     		movs	r0, #0
+ 106 0010 FFF7FEFF 		bl	ft6x06_GetInstance
+ 107 0014 0128     		cmp	r0, #1
+ 108 0016 F9D8     		bhi	.L11
+ 109 0018 024B     		ldr	r3, .L15
+ 110 001a 1C54     		strb	r4, [r3, r0]
+ 111 001c FFF7FEFF 		bl	TS_IO_Init
+ 112 0020 F4E7     		b	.L11
+ 113              	.L16:
+ 114 0022 00BF     		.align	2
+ 115              	.L15:
+ 116 0024 00000000 		.word	ft6x06
+ 118              		.section	.text.ft6x06_ReadID,"ax",%progbits
+ 119              		.align	1
+ 120              		.global	ft6x06_ReadID
+ 121              		.syntax unified
+ 122              		.thumb
+ 123              		.thumb_func
+ 125              	ft6x06_ReadID:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 3
+
+
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 10B5     		push	{r4, lr}
+ 129 0002 0446     		mov	r4, r0
+ 130 0004 FFF7FEFF 		bl	TS_IO_Init
+ 131 0008 A821     		movs	r1, #168
+ 132 000a E0B2     		uxtb	r0, r4
+ 133 000c FFF7FEFF 		bl	TS_IO_Read
+ 134 0010 10BD     		pop	{r4, pc}
+ 136              		.section	.text.ft6x06_TS_DetectTouch,"ax",%progbits
+ 137              		.align	1
+ 138              		.global	ft6x06_TS_DetectTouch
+ 139              		.syntax unified
+ 140              		.thumb
+ 141              		.thumb_func
+ 143              	ft6x06_TS_DetectTouch:
+ 144              		@ args = 0, pretend = 0, frame = 8
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ 146 0000 00B5     		push	{lr}
+ 147 0002 83B0     		sub	sp, sp, #12
+ 148 0004 0023     		movs	r3, #0
+ 149 0006 8DF80730 		strb	r3, [sp, #7]
+ 150 000a 0221     		movs	r1, #2
+ 151 000c C0B2     		uxtb	r0, r0
+ 152 000e FFF7FEFF 		bl	TS_IO_Read
+ 153 0012 8DF80700 		strb	r0, [sp, #7]
+ 154 0016 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 155 001a 03F00F03 		and	r3, r3, #15
+ 156 001e 8DF80730 		strb	r3, [sp, #7]
+ 157 0022 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 158 0026 022B     		cmp	r3, #2
+ 159 0028 02D9     		bls	.L20
+ 160 002a 0023     		movs	r3, #0
+ 161 002c 8DF80730 		strb	r3, [sp, #7]
+ 162              	.L20:
+ 163 0030 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 164 0034 044B     		ldr	r3, .L22
+ 165 0036 5A70     		strb	r2, [r3, #1]
+ 166 0038 0022     		movs	r2, #0
+ 167 003a 9A70     		strb	r2, [r3, #2]
+ 168 003c 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 169 0040 03B0     		add	sp, sp, #12
+ 170              		@ sp needed
+ 171 0042 5DF804FB 		ldr	pc, [sp], #4
+ 172              	.L23:
+ 173 0046 00BF     		.align	2
+ 174              	.L22:
+ 175 0048 00000000 		.word	ft6x06_handle
+ 177              		.section	.text.ft6x06_TS_GetXY,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	ft6x06_TS_GetXY
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 184              	ft6x06_TS_GetXY:
+ 185              		@ args = 0, pretend = 0, frame = 8
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 4
+
+
+ 187 0000 30B5     		push	{r4, r5, lr}
+ 188 0002 83B0     		sub	sp, sp, #12
+ 189 0004 1446     		mov	r4, r2
+ 190 0006 164B     		ldr	r3, .L30
+ 191 0008 9A78     		ldrb	r2, [r3, #2]	@ zero_extendqisi2
+ 192 000a 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 193 000c 9A42     		cmp	r2, r3
+ 194 000e 22D2     		bcs	.L24
+ 195 0010 0D46     		mov	r5, r1
+ 196 0012 1AB1     		cbz	r2, .L27
+ 197 0014 012A     		cmp	r2, #1
+ 198 0016 20D1     		bne	.L28
+ 199 0018 0921     		movs	r1, #9
+ 200 001a 00E0     		b	.L26
+ 201              	.L27:
+ 202 001c 0321     		movs	r1, #3
+ 203              	.L26:
+ 204 001e 0423     		movs	r3, #4
+ 205 0020 0DEB0302 		add	r2, sp, r3
+ 206 0024 C0B2     		uxtb	r0, r0
+ 207 0026 FFF7FEFF 		bl	TS_IO_ReadMultiple
+ 208 002a 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 209 002e 1B02     		lsls	r3, r3, #8
+ 210 0030 03F47063 		and	r3, r3, #3840
+ 211 0034 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 212 0038 1343     		orrs	r3, r3, r2
+ 213 003a 2B80     		strh	r3, [r5]	@ movhi
+ 214 003c 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 215 0040 1B02     		lsls	r3, r3, #8
+ 216 0042 03F47063 		and	r3, r3, #3840
+ 217 0046 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 218 004a 1343     		orrs	r3, r3, r2
+ 219 004c 2380     		strh	r3, [r4]	@ movhi
+ 220 004e 044A     		ldr	r2, .L30
+ 221 0050 9378     		ldrb	r3, [r2, #2]	@ zero_extendqisi2
+ 222 0052 0133     		adds	r3, r3, #1
+ 223 0054 9370     		strb	r3, [r2, #2]
+ 224              	.L24:
+ 225 0056 03B0     		add	sp, sp, #12
+ 226              		@ sp needed
+ 227 0058 30BD     		pop	{r4, r5, pc}
+ 228              	.L28:
+ 229 005a 0021     		movs	r1, #0
+ 230 005c DFE7     		b	.L26
+ 231              	.L31:
+ 232 005e 00BF     		.align	2
+ 233              	.L30:
+ 234 0060 00000000 		.word	ft6x06_handle
+ 236              		.section	.text.ft6x06_TS_EnableIT,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	ft6x06_TS_EnableIT
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 243              	ft6x06_TS_EnableIT:
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 5
+
+
+ 246 0000 08B5     		push	{r3, lr}
+ 247 0002 0122     		movs	r2, #1
+ 248 0004 A421     		movs	r1, #164
+ 249 0006 C0B2     		uxtb	r0, r0
+ 250 0008 FFF7FEFF 		bl	TS_IO_Write
+ 251 000c 08BD     		pop	{r3, pc}
+ 253              		.section	.text.ft6x06_TS_DisableIT,"ax",%progbits
+ 254              		.align	1
+ 255              		.global	ft6x06_TS_DisableIT
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 260              	ft6x06_TS_DisableIT:
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263 0000 08B5     		push	{r3, lr}
+ 264 0002 0022     		movs	r2, #0
+ 265 0004 A421     		movs	r1, #164
+ 266 0006 C0B2     		uxtb	r0, r0
+ 267 0008 FFF7FEFF 		bl	TS_IO_Write
+ 268 000c 08BD     		pop	{r3, pc}
+ 270              		.section	.text.ft6x06_TS_Start,"ax",%progbits
+ 271              		.align	1
+ 272              		.global	ft6x06_TS_Start
+ 273              		.syntax unified
+ 274              		.thumb
+ 275              		.thumb_func
+ 277              	ft6x06_TS_Start:
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280 0000 08B5     		push	{r3, lr}
+ 281 0002 FFF7FEFF 		bl	ft6x06_TS_DisableIT
+ 282 0006 08BD     		pop	{r3, pc}
+ 284              		.section	.bss.ft6x06_handle,"aw",%nobits
+ 285              		.align	2
+ 288              	ft6x06_handle:
+ 289 0000 000000   		.space	3
+ 290              		.global	ft6x06
+ 291              		.section	.bss.ft6x06,"aw",%nobits
+ 292              		.align	2
+ 295              	ft6x06:
+ 296 0000 0000     		.space	2
+ 297              		.global	ft6x06_ts_drv
+ 298              		.section	.data.ft6x06_ts_drv,"aw"
+ 299              		.align	2
+ 302              	ft6x06_ts_drv:
+ 303 0000 00000000 		.word	ft6x06_Init
+ 304 0004 00000000 		.word	ft6x06_ReadID
+ 305 0008 00000000 		.word	ft6x06_Reset
+ 306 000c 00000000 		.word	ft6x06_TS_Start
+ 307 0010 00000000 		.word	ft6x06_TS_DetectTouch
+ 308 0014 00000000 		.word	ft6x06_TS_GetXY
+ 309 0018 00000000 		.word	ft6x06_TS_EnableIT
+ 310 001c 00000000 		.word	ft6x06_TS_ClearIT
+ 311 0020 00000000 		.word	ft6x06_TS_ITStatus
+ 312 0024 00000000 		.word	ft6x06_TS_DisableIT
+ 313              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 6
+
+
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ft6x06.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:17     .text.ft6x06_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:23     .text.ft6x06_Reset:00000000 ft6x06_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:30     .text.ft6x06_TS_ITStatus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:36     .text.ft6x06_TS_ITStatus:00000000 ft6x06_TS_ITStatus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:44     .text.ft6x06_TS_ClearIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:50     .text.ft6x06_TS_ClearIT:00000000 ft6x06_TS_ClearIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:57     .text.ft6x06_GetInstance:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:62     .text.ft6x06_GetInstance:00000000 ft6x06_GetInstance
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:85     .text.ft6x06_GetInstance:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:295    .bss.ft6x06:00000000 ft6x06
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:88     .text.ft6x06_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:94     .text.ft6x06_Init:00000000 ft6x06_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:116    .text.ft6x06_Init:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:119    .text.ft6x06_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:125    .text.ft6x06_ReadID:00000000 ft6x06_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:137    .text.ft6x06_TS_DetectTouch:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:143    .text.ft6x06_TS_DetectTouch:00000000 ft6x06_TS_DetectTouch
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:175    .text.ft6x06_TS_DetectTouch:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:288    .bss.ft6x06_handle:00000000 ft6x06_handle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:178    .text.ft6x06_TS_GetXY:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:184    .text.ft6x06_TS_GetXY:00000000 ft6x06_TS_GetXY
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:234    .text.ft6x06_TS_GetXY:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:237    .text.ft6x06_TS_EnableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:243    .text.ft6x06_TS_EnableIT:00000000 ft6x06_TS_EnableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:254    .text.ft6x06_TS_DisableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:260    .text.ft6x06_TS_DisableIT:00000000 ft6x06_TS_DisableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:271    .text.ft6x06_TS_Start:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:277    .text.ft6x06_TS_Start:00000000 ft6x06_TS_Start
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:285    .bss.ft6x06_handle:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:292    .bss.ft6x06:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:302    .data.ft6x06_ts_drv:00000000 ft6x06_ts_drv
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccbzVfcN.s:299    .data.ft6x06_ts_drv:00000000 $d
+
+UNDEFINED SYMBOLS
+TS_IO_Init
+TS_IO_Read
+TS_IO_ReadMultiple
+TS_IO_Write

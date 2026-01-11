@@ -1,0 +1,362 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"syscalls.c"
+  15              		.text
+  16              		.section	.text.initialise_monitor_handles,"ax",%progbits
+  17              		.align	1
+  18              		.global	initialise_monitor_handles
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	initialise_monitor_handles:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 7047     		bx	lr
+  29              		.section	.text._getpid,"ax",%progbits
+  30              		.align	1
+  31              		.global	_getpid
+  32              		.syntax unified
+  33              		.thumb
+  34              		.thumb_func
+  36              	_getpid:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 0120     		movs	r0, #1
+  41 0002 7047     		bx	lr
+  43              		.section	.text._kill,"ax",%progbits
+  44              		.align	1
+  45              		.global	_kill
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  50              	_kill:
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53 0000 08B5     		push	{r3, lr}
+  54 0002 FFF7FEFF 		bl	__errno
+  55 0006 1623     		movs	r3, #22
+  56 0008 0360     		str	r3, [r0]
+  57 000a 4FF0FF30 		mov	r0, #-1
+  58 000e 08BD     		pop	{r3, pc}
+  60              		.section	.text._exit,"ax",%progbits
+  61              		.align	1
+  62              		.global	_exit
+  63              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 2
+
+
+  64              		.thumb
+  65              		.thumb_func
+  67              	_exit:
+  68              		@ Volatile: function does not return.
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71 0000 08B5     		push	{r3, lr}
+  72 0002 4FF0FF31 		mov	r1, #-1
+  73 0006 FFF7FEFF 		bl	_kill
+  74              	.L6:
+  75 000a FEE7     		b	.L6
+  77              		.section	.text._read,"ax",%progbits
+  78              		.align	1
+  79              		.weak	_read
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	_read:
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87 0000 70B5     		push	{r4, r5, r6, lr}
+  88 0002 0C46     		mov	r4, r1
+  89 0004 1646     		mov	r6, r2
+  90 0006 0025     		movs	r5, #0
+  91 0008 06E0     		b	.L9
+  92              	.L10:
+  93 000a FFF7FEFF 		bl	__io_getchar
+  94 000e 2146     		mov	r1, r4
+  95 0010 01F8010B 		strb	r0, [r1], #1
+  96 0014 0135     		adds	r5, r5, #1
+  97 0016 0C46     		mov	r4, r1
+  98              	.L9:
+  99 0018 B542     		cmp	r5, r6
+ 100 001a F6DB     		blt	.L10
+ 101 001c 3046     		mov	r0, r6
+ 102 001e 70BD     		pop	{r4, r5, r6, pc}
+ 104              		.section	.text._write,"ax",%progbits
+ 105              		.align	1
+ 106              		.weak	_write
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	_write:
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114 0000 70B5     		push	{r4, r5, r6, lr}
+ 115 0002 0C46     		mov	r4, r1
+ 116 0004 1646     		mov	r6, r2
+ 117 0006 0025     		movs	r5, #0
+ 118 0008 04E0     		b	.L13
+ 119              	.L14:
+ 120 000a 14F8010B 		ldrb	r0, [r4], #1	@ zero_extendqisi2
+ 121 000e FFF7FEFF 		bl	__io_putchar
+ 122 0012 0135     		adds	r5, r5, #1
+ 123              	.L13:
+ 124 0014 B542     		cmp	r5, r6
+ 125 0016 F8DB     		blt	.L14
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 3
+
+
+ 126 0018 3046     		mov	r0, r6
+ 127 001a 70BD     		pop	{r4, r5, r6, pc}
+ 129              		.section	.text._close,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	_close
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 136              	_close:
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139              		@ link register save eliminated.
+ 140 0000 4FF0FF30 		mov	r0, #-1
+ 141 0004 7047     		bx	lr
+ 143              		.section	.text._fstat,"ax",%progbits
+ 144              		.align	1
+ 145              		.global	_fstat
+ 146              		.syntax unified
+ 147              		.thumb
+ 148              		.thumb_func
+ 150              	_fstat:
+ 151              		@ args = 0, pretend = 0, frame = 0
+ 152              		@ frame_needed = 0, uses_anonymous_args = 0
+ 153              		@ link register save eliminated.
+ 154 0000 4FF40053 		mov	r3, #8192
+ 155 0004 4B60     		str	r3, [r1, #4]
+ 156 0006 0020     		movs	r0, #0
+ 157 0008 7047     		bx	lr
+ 159              		.section	.text._isatty,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	_isatty
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 166              	_isatty:
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 0120     		movs	r0, #1
+ 171 0002 7047     		bx	lr
+ 173              		.section	.text._lseek,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	_lseek
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	_lseek:
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184 0000 0020     		movs	r0, #0
+ 185 0002 7047     		bx	lr
+ 187              		.section	.text._open,"ax",%progbits
+ 188              		.align	1
+ 189              		.global	_open
+ 190              		.syntax unified
+ 191              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 4
+
+
+ 192              		.thumb_func
+ 194              	_open:
+ 195              		@ args = 4, pretend = 12, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 1
+ 197              		@ link register save eliminated.
+ 198 0000 0EB4     		push	{r1, r2, r3}
+ 199 0002 4FF0FF30 		mov	r0, #-1
+ 200 0006 03B0     		add	sp, sp, #12
+ 201 0008 7047     		bx	lr
+ 203              		.section	.text._wait,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	_wait
+ 206              		.syntax unified
+ 207              		.thumb
+ 208              		.thumb_func
+ 210              	_wait:
+ 211              		@ args = 0, pretend = 0, frame = 0
+ 212              		@ frame_needed = 0, uses_anonymous_args = 0
+ 213 0000 08B5     		push	{r3, lr}
+ 214 0002 FFF7FEFF 		bl	__errno
+ 215 0006 0A23     		movs	r3, #10
+ 216 0008 0360     		str	r3, [r0]
+ 217 000a 4FF0FF30 		mov	r0, #-1
+ 218 000e 08BD     		pop	{r3, pc}
+ 220              		.section	.text._unlink,"ax",%progbits
+ 221              		.align	1
+ 222              		.global	_unlink
+ 223              		.syntax unified
+ 224              		.thumb
+ 225              		.thumb_func
+ 227              	_unlink:
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230 0000 08B5     		push	{r3, lr}
+ 231 0002 FFF7FEFF 		bl	__errno
+ 232 0006 0223     		movs	r3, #2
+ 233 0008 0360     		str	r3, [r0]
+ 234 000a 4FF0FF30 		mov	r0, #-1
+ 235 000e 08BD     		pop	{r3, pc}
+ 237              		.section	.text._times,"ax",%progbits
+ 238              		.align	1
+ 239              		.global	_times
+ 240              		.syntax unified
+ 241              		.thumb
+ 242              		.thumb_func
+ 244              	_times:
+ 245              		@ args = 0, pretend = 0, frame = 0
+ 246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+ 248 0000 4FF0FF30 		mov	r0, #-1
+ 249 0004 7047     		bx	lr
+ 251              		.section	.text._stat,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	_stat
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 5
+
+
+ 258              	_stat:
+ 259              		@ args = 0, pretend = 0, frame = 0
+ 260              		@ frame_needed = 0, uses_anonymous_args = 0
+ 261              		@ link register save eliminated.
+ 262 0000 4FF40053 		mov	r3, #8192
+ 263 0004 4B60     		str	r3, [r1, #4]
+ 264 0006 0020     		movs	r0, #0
+ 265 0008 7047     		bx	lr
+ 267              		.section	.text._link,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	_link
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	_link:
+ 275              		@ args = 0, pretend = 0, frame = 0
+ 276              		@ frame_needed = 0, uses_anonymous_args = 0
+ 277 0000 08B5     		push	{r3, lr}
+ 278 0002 FFF7FEFF 		bl	__errno
+ 279 0006 1F23     		movs	r3, #31
+ 280 0008 0360     		str	r3, [r0]
+ 281 000a 4FF0FF30 		mov	r0, #-1
+ 282 000e 08BD     		pop	{r3, pc}
+ 284              		.section	.text._fork,"ax",%progbits
+ 285              		.align	1
+ 286              		.global	_fork
+ 287              		.syntax unified
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	_fork:
+ 292              		@ args = 0, pretend = 0, frame = 0
+ 293              		@ frame_needed = 0, uses_anonymous_args = 0
+ 294 0000 08B5     		push	{r3, lr}
+ 295 0002 FFF7FEFF 		bl	__errno
+ 296 0006 0B23     		movs	r3, #11
+ 297 0008 0360     		str	r3, [r0]
+ 298 000a 4FF0FF30 		mov	r0, #-1
+ 299 000e 08BD     		pop	{r3, pc}
+ 301              		.section	.text._execve,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	_execve
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	_execve:
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311 0000 08B5     		push	{r3, lr}
+ 312 0002 FFF7FEFF 		bl	__errno
+ 313 0006 0C23     		movs	r3, #12
+ 314 0008 0360     		str	r3, [r0]
+ 315 000a 4FF0FF30 		mov	r0, #-1
+ 316 000e 08BD     		pop	{r3, pc}
+ 318              		.global	environ
+ 319              		.section	.data.environ,"aw"
+ 320              		.align	2
+ 323              	environ:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 6
+
+
+ 324 0000 00000000 		.word	__env
+ 325              		.global	__env
+ 326              		.section	.bss.__env,"aw",%nobits
+ 327              		.align	2
+ 330              	__env:
+ 331 0000 00000000 		.space	4
+ 332              		.weak	__io_putchar
+ 333              		.weak	__io_getchar
+ 334              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 syscalls.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:17     .text.initialise_monitor_handles:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:23     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:30     .text._getpid:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:36     .text._getpid:00000000 _getpid
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:44     .text._kill:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:50     .text._kill:00000000 _kill
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:61     .text._exit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:67     .text._exit:00000000 _exit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:78     .text._read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:84     .text._read:00000000 _read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:105    .text._write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:111    .text._write:00000000 _write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:130    .text._close:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:136    .text._close:00000000 _close
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:144    .text._fstat:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:150    .text._fstat:00000000 _fstat
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:160    .text._isatty:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:166    .text._isatty:00000000 _isatty
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:174    .text._lseek:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:180    .text._lseek:00000000 _lseek
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:188    .text._open:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:194    .text._open:00000000 _open
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:204    .text._wait:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:210    .text._wait:00000000 _wait
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:221    .text._unlink:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:227    .text._unlink:00000000 _unlink
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:238    .text._times:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:244    .text._times:00000000 _times
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:252    .text._stat:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:258    .text._stat:00000000 _stat
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:268    .text._link:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:274    .text._link:00000000 _link
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:285    .text._fork:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:291    .text._fork:00000000 _fork
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:302    .text._execve:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:308    .text._execve:00000000 _execve
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:323    .data.environ:00000000 environ
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:320    .data.environ:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:330    .bss.__env:00000000 __env
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJLtMpq.s:327    .bss.__env:00000000 $d
+
+UNDEFINED SYMBOLS
+__errno
+__io_getchar
+__io_putchar

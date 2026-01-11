@@ -1,0 +1,85 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"esp8266.c"
+  15              		.text
+  16              		.section	.text.ESP8266_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	ESP8266_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	ESP8266_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 7047     		bx	lr
+  29              		.section	.text.ESP8266_SendCommand,"ax",%progbits
+  30              		.align	1
+  31              		.global	ESP8266_SendCommand
+  32              		.syntax unified
+  33              		.thumb
+  34              		.thumb_func
+  36              	ESP8266_SendCommand:
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39 0000 10B5     		push	{r4, lr}
+  40 0002 0446     		mov	r4, r0
+  41 0004 FFF7FEFF 		bl	strlen
+  42 0008 6423     		movs	r3, #100
+  43 000a 82B2     		uxth	r2, r0
+  44 000c 2146     		mov	r1, r4
+  45 000e 0248     		ldr	r0, .L4
+  46 0010 FFF7FEFF 		bl	HAL_UART_Transmit
+  47 0014 0020     		movs	r0, #0
+  48 0016 10BD     		pop	{r4, pc}
+  49              	.L5:
+  50              		.align	2
+  51              	.L4:
+  52 0018 00000000 		.word	huart5
+  54              		.section	.text.ESP8266_Receive,"ax",%progbits
+  55              		.align	1
+  56              		.global	ESP8266_Receive
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+  61              	ESP8266_Receive:
+  62              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 2
+
+
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 0020     		movs	r0, #0
+  66 0002 7047     		bx	lr
+  68              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 esp8266.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:17     .text.ESP8266_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:23     .text.ESP8266_Init:00000000 ESP8266_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:30     .text.ESP8266_SendCommand:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:36     .text.ESP8266_SendCommand:00000000 ESP8266_SendCommand
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:52     .text.ESP8266_SendCommand:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:55     .text.ESP8266_Receive:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:61     .text.ESP8266_Receive:00000000 ESP8266_Receive
+
+UNDEFINED SYMBOLS
+strlen
+HAL_UART_Transmit
+huart5

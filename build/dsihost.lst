@@ -1,0 +1,338 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"dsihost.c"
+  15              		.text
+  16              		.section	.text.MX_DSIHOST_DSI_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_DSIHOST_DSI_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_DSIHOST_DSI_Init:
+  24              		@ args = 0, pretend = 0, frame = 184
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 30B5     		push	{r4, r5, lr}
+  27 0002 AFB0     		sub	sp, sp, #188
+  28 0004 2BAD     		add	r5, sp, #172
+  29 0006 0024     		movs	r4, #0
+  30 0008 2B94     		str	r4, [sp, #172]
+  31 000a 2C94     		str	r4, [sp, #176]
+  32 000c 2D94     		str	r4, [sp, #180]
+  33 000e 2422     		movs	r2, #36
+  34 0010 2146     		mov	r1, r4
+  35 0012 22A8     		add	r0, sp, #136
+  36 0014 FFF7FEFF 		bl	memset
+  37 0018 1C94     		str	r4, [sp, #112]
+  38 001a 1D94     		str	r4, [sp, #116]
+  39 001c 1E94     		str	r4, [sp, #120]
+  40 001e 1F94     		str	r4, [sp, #124]
+  41 0020 2094     		str	r4, [sp, #128]
+  42 0022 2194     		str	r4, [sp, #132]
+  43 0024 6C22     		movs	r2, #108
+  44 0026 2146     		mov	r1, r4
+  45 0028 01A8     		add	r0, sp, #4
+  46 002a FFF7FEFF 		bl	memset
+  47 002e 4948     		ldr	r0, .L19
+  48 0030 494B     		ldr	r3, .L19+4
+  49 0032 0360     		str	r3, [r0]
+  50 0034 4460     		str	r4, [r0, #4]
+  51 0036 0423     		movs	r3, #4
+  52 0038 8360     		str	r3, [r0, #8]
+  53 003a C460     		str	r4, [r0, #12]
+  54 003c 1423     		movs	r3, #20
+  55 003e 2B93     		str	r3, [sp, #172]
+  56 0040 0123     		movs	r3, #1
+  57 0042 2C93     		str	r3, [sp, #176]
+  58 0044 2946     		mov	r1, r5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 2
+
+
+  59 0046 FFF7FEFF 		bl	HAL_DSI_Init
+  60 004a 0028     		cmp	r0, #0
+  61 004c 69D1     		bne	.L11
+  62              	.L2:
+  63 004e 0123     		movs	r3, #1
+  64 0050 2293     		str	r3, [sp, #136]
+  65 0052 0023     		movs	r3, #0
+  66 0054 2393     		str	r3, [sp, #140]
+  67 0056 2493     		str	r3, [sp, #144]
+  68 0058 2593     		str	r3, [sp, #148]
+  69 005a 2693     		str	r3, [sp, #152]
+  70 005c 2793     		str	r3, [sp, #156]
+  71 005e 2893     		str	r3, [sp, #160]
+  72 0060 2993     		str	r3, [sp, #164]
+  73 0062 2A93     		str	r3, [sp, #168]
+  74 0064 22A9     		add	r1, sp, #136
+  75 0066 3B48     		ldr	r0, .L19
+  76 0068 FFF7FEFF 		bl	HAL_DSI_ConfigHostTimeouts
+  77 006c 0028     		cmp	r0, #0
+  78 006e 5BD1     		bne	.L12
+  79              	.L3:
+  80 0070 1C23     		movs	r3, #28
+  81 0072 1C93     		str	r3, [sp, #112]
+  82 0074 2123     		movs	r3, #33
+  83 0076 1D93     		str	r3, [sp, #116]
+  84 0078 0F23     		movs	r3, #15
+  85 007a 1E93     		str	r3, [sp, #120]
+  86 007c 1923     		movs	r3, #25
+  87 007e 1F93     		str	r3, [sp, #124]
+  88 0080 0023     		movs	r3, #0
+  89 0082 2093     		str	r3, [sp, #128]
+  90 0084 2193     		str	r3, [sp, #132]
+  91 0086 1CA9     		add	r1, sp, #112
+  92 0088 3248     		ldr	r0, .L19
+  93 008a FFF7FEFF 		bl	HAL_DSI_ConfigPhyTimer
+  94 008e 0028     		cmp	r0, #0
+  95 0090 4DD1     		bne	.L13
+  96              	.L4:
+  97 0092 0421     		movs	r1, #4
+  98 0094 2F48     		ldr	r0, .L19
+  99 0096 FFF7FEFF 		bl	HAL_DSI_ConfigFlowControl
+ 100 009a 0028     		cmp	r0, #0
+ 101 009c 4AD1     		bne	.L14
+ 102              	.L5:
+ 103 009e 42F21071 		movw	r1, #10000
+ 104 00a2 2C48     		ldr	r0, .L19
+ 105 00a4 FFF7FEFF 		bl	HAL_DSI_SetLowPowerRXFilter
+ 106 00a8 0028     		cmp	r0, #0
+ 107 00aa 46D1     		bne	.L15
+ 108              	.L6:
+ 109 00ac 0021     		movs	r1, #0
+ 110 00ae 2948     		ldr	r0, .L19
+ 111 00b0 FFF7FEFF 		bl	HAL_DSI_ConfigErrorMonitor
+ 112 00b4 0028     		cmp	r0, #0
+ 113 00b6 43D1     		bne	.L16
+ 114              	.L7:
+ 115 00b8 0023     		movs	r3, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 3
+
+
+ 116 00ba 0193     		str	r3, [sp, #4]
+ 117 00bc 0522     		movs	r2, #5
+ 118 00be 0292     		str	r2, [sp, #8]
+ 119 00c0 0393     		str	r3, [sp, #12]
+ 120 00c2 0493     		str	r3, [sp, #16]
+ 121 00c4 0122     		movs	r2, #1
+ 122 00c6 0592     		str	r2, [sp, #20]
+ 123 00c8 4FF44871 		mov	r1, #800
+ 124 00cc 0691     		str	r1, [sp, #24]
+ 125 00ce 0793     		str	r3, [sp, #28]
+ 126 00d0 0421     		movs	r1, #4
+ 127 00d2 0891     		str	r1, [sp, #32]
+ 128 00d4 0221     		movs	r1, #2
+ 129 00d6 0991     		str	r1, [sp, #36]
+ 130 00d8 0A93     		str	r3, [sp, #40]
+ 131 00da 0B92     		str	r2, [sp, #44]
+ 132 00dc 3F21     		movs	r1, #63
+ 133 00de 0C91     		str	r1, [sp, #48]
+ 134 00e0 40F28641 		movw	r1, #1158
+ 135 00e4 0D91     		str	r1, [sp, #52]
+ 136 00e6 0E92     		str	r2, [sp, #56]
+ 137 00e8 1C22     		movs	r2, #28
+ 138 00ea 0F92     		str	r2, [sp, #60]
+ 139 00ec 0D22     		movs	r2, #13
+ 140 00ee 1092     		str	r2, [sp, #64]
+ 141 00f0 4FF4F072 		mov	r2, #480
+ 142 00f4 1192     		str	r2, [sp, #68]
+ 143 00f6 1293     		str	r3, [sp, #72]
+ 144 00f8 1393     		str	r3, [sp, #76]
+ 145 00fa 1493     		str	r3, [sp, #80]
+ 146 00fc 1593     		str	r3, [sp, #84]
+ 147 00fe 1693     		str	r3, [sp, #88]
+ 148 0100 1793     		str	r3, [sp, #92]
+ 149 0102 1893     		str	r3, [sp, #96]
+ 150 0104 1993     		str	r3, [sp, #100]
+ 151 0106 1A93     		str	r3, [sp, #104]
+ 152 0108 1B93     		str	r3, [sp, #108]
+ 153 010a 01A9     		add	r1, sp, #4
+ 154 010c 1148     		ldr	r0, .L19
+ 155 010e FFF7FEFF 		bl	HAL_DSI_ConfigVideoMode
+ 156 0112 C0B9     		cbnz	r0, .L17
+ 157              	.L8:
+ 158 0114 0021     		movs	r1, #0
+ 159 0116 0F48     		ldr	r0, .L19
+ 160 0118 FFF7FEFF 		bl	HAL_DSI_SetGenericVCID
+ 161 011c B0B9     		cbnz	r0, .L18
+ 162              	.L1:
+ 163 011e 2FB0     		add	sp, sp, #188
+ 164              		@ sp needed
+ 165 0120 30BD     		pop	{r4, r5, pc}
+ 166              	.L11:
+ 167 0122 FFF7FEFF 		bl	Error_Handler
+ 168 0126 92E7     		b	.L2
+ 169              	.L12:
+ 170 0128 FFF7FEFF 		bl	Error_Handler
+ 171 012c A0E7     		b	.L3
+ 172              	.L13:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 4
+
+
+ 173 012e FFF7FEFF 		bl	Error_Handler
+ 174 0132 AEE7     		b	.L4
+ 175              	.L14:
+ 176 0134 FFF7FEFF 		bl	Error_Handler
+ 177 0138 B1E7     		b	.L5
+ 178              	.L15:
+ 179 013a FFF7FEFF 		bl	Error_Handler
+ 180 013e B5E7     		b	.L6
+ 181              	.L16:
+ 182 0140 FFF7FEFF 		bl	Error_Handler
+ 183 0144 B8E7     		b	.L7
+ 184              	.L17:
+ 185 0146 FFF7FEFF 		bl	Error_Handler
+ 186 014a E3E7     		b	.L8
+ 187              	.L18:
+ 188 014c FFF7FEFF 		bl	Error_Handler
+ 189 0150 E5E7     		b	.L1
+ 190              	.L20:
+ 191 0152 00BF     		.align	2
+ 192              	.L19:
+ 193 0154 00000000 		.word	hdsi
+ 194 0158 006C0140 		.word	1073835008
+ 196              		.section	.text.HAL_DSI_MspInit,"ax",%progbits
+ 197              		.align	1
+ 198              		.global	HAL_DSI_MspInit
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 203              	HAL_DSI_MspInit:
+ 204              		@ args = 0, pretend = 0, frame = 32
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 00B5     		push	{lr}
+ 207 0002 89B0     		sub	sp, sp, #36
+ 208 0004 0023     		movs	r3, #0
+ 209 0006 0393     		str	r3, [sp, #12]
+ 210 0008 0493     		str	r3, [sp, #16]
+ 211 000a 0593     		str	r3, [sp, #20]
+ 212 000c 0693     		str	r3, [sp, #24]
+ 213 000e 0793     		str	r3, [sp, #28]
+ 214 0010 0268     		ldr	r2, [r0]
+ 215 0012 124B     		ldr	r3, .L25
+ 216 0014 9A42     		cmp	r2, r3
+ 217 0016 02D0     		beq	.L24
+ 218              	.L21:
+ 219 0018 09B0     		add	sp, sp, #36
+ 220              		@ sp needed
+ 221 001a 5DF804FB 		ldr	pc, [sp], #4
+ 222              	.L24:
+ 223 001e 03F54C43 		add	r3, r3, #52224
+ 224 0022 5A6C     		ldr	r2, [r3, #68]
+ 225 0024 42F00062 		orr	r2, r2, #134217728
+ 226 0028 5A64     		str	r2, [r3, #68]
+ 227 002a 5A6C     		ldr	r2, [r3, #68]
+ 228 002c 02F00062 		and	r2, r2, #134217728
+ 229 0030 0192     		str	r2, [sp, #4]
+ 230 0032 019A     		ldr	r2, [sp, #4]
+ 231 0034 1A6B     		ldr	r2, [r3, #48]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 5
+
+
+ 232 0036 42F40072 		orr	r2, r2, #512
+ 233 003a 1A63     		str	r2, [r3, #48]
+ 234 003c 1B6B     		ldr	r3, [r3, #48]
+ 235 003e 03F40073 		and	r3, r3, #512
+ 236 0042 0293     		str	r3, [sp, #8]
+ 237 0044 029B     		ldr	r3, [sp, #8]
+ 238 0046 0423     		movs	r3, #4
+ 239 0048 0393     		str	r3, [sp, #12]
+ 240 004a 0223     		movs	r3, #2
+ 241 004c 0493     		str	r3, [sp, #16]
+ 242 004e 0D23     		movs	r3, #13
+ 243 0050 0793     		str	r3, [sp, #28]
+ 244 0052 03A9     		add	r1, sp, #12
+ 245 0054 0248     		ldr	r0, .L25+4
+ 246 0056 FFF7FEFF 		bl	HAL_GPIO_Init
+ 247 005a DDE7     		b	.L21
+ 248              	.L26:
+ 249              		.align	2
+ 250              	.L25:
+ 251 005c 006C0140 		.word	1073835008
+ 252 0060 00240240 		.word	1073882112
+ 254              		.section	.text.HAL_DSI_MspDeInit,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	HAL_DSI_MspDeInit
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 261              	HAL_DSI_MspDeInit:
+ 262              		@ args = 0, pretend = 0, frame = 0
+ 263              		@ frame_needed = 0, uses_anonymous_args = 0
+ 264 0000 08B5     		push	{r3, lr}
+ 265 0002 0268     		ldr	r2, [r0]
+ 266 0004 064B     		ldr	r3, .L31
+ 267 0006 9A42     		cmp	r2, r3
+ 268 0008 00D0     		beq	.L30
+ 269              	.L27:
+ 270 000a 08BD     		pop	{r3, pc}
+ 271              	.L30:
+ 272 000c 054A     		ldr	r2, .L31+4
+ 273 000e 536C     		ldr	r3, [r2, #68]
+ 274 0010 23F00063 		bic	r3, r3, #134217728
+ 275 0014 5364     		str	r3, [r2, #68]
+ 276 0016 0421     		movs	r1, #4
+ 277 0018 0348     		ldr	r0, .L31+8
+ 278 001a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 279 001e F4E7     		b	.L27
+ 280              	.L32:
+ 281              		.align	2
+ 282              	.L31:
+ 283 0020 006C0140 		.word	1073835008
+ 284 0024 00380240 		.word	1073887232
+ 285 0028 00240240 		.word	1073882112
+ 287              		.global	hdsi
+ 288              		.section	.bss.hdsi,"aw",%nobits
+ 289              		.align	2
+ 292              	hdsi:
+ 293 0000 00000000 		.space	28
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 6
+
+
+ 293      00000000 
+ 293      00000000 
+ 293      00000000 
+ 293      00000000 
+ 294              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dsihost.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:17     .text.MX_DSIHOST_DSI_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:23     .text.MX_DSIHOST_DSI_Init:00000000 MX_DSIHOST_DSI_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:193    .text.MX_DSIHOST_DSI_Init:00000154 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:292    .bss.hdsi:00000000 hdsi
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:197    .text.HAL_DSI_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:203    .text.HAL_DSI_MspInit:00000000 HAL_DSI_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:251    .text.HAL_DSI_MspInit:0000005c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:255    .text.HAL_DSI_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:261    .text.HAL_DSI_MspDeInit:00000000 HAL_DSI_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:283    .text.HAL_DSI_MspDeInit:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccA3Ulju.s:289    .bss.hdsi:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_DSI_Init
+HAL_DSI_ConfigHostTimeouts
+HAL_DSI_ConfigPhyTimer
+HAL_DSI_ConfigFlowControl
+HAL_DSI_SetLowPowerRXFilter
+HAL_DSI_ConfigErrorMonitor
+HAL_DSI_ConfigVideoMode
+HAL_DSI_SetGenericVCID
+Error_Handler
+HAL_GPIO_Init
+HAL_GPIO_DeInit

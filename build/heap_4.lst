@@ -1,0 +1,498 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"heap_4.c"
+  15              		.text
+  16              		.section	.text.prvHeapInit,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	prvHeapInit:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 134A     		ldr	r2, .L4
+  27 0002 12F0070F 		tst	r2, #7
+  28 0006 1FD0     		beq	.L3
+  29 0008 D11D     		adds	r1, r2, #7
+  30 000a 21F00701 		bic	r1, r1, #7
+  31 000e 4FF6FF73 		movw	r3, #65535
+  32 0012 5B1A     		subs	r3, r3, r1
+  33 0014 1344     		add	r3, r3, r2
+  34 0016 0A46     		mov	r2, r1
+  35              	.L2:
+  36 0018 0E48     		ldr	r0, .L4+4
+  37 001a 0260     		str	r2, [r0]
+  38 001c 0021     		movs	r1, #0
+  39 001e 4160     		str	r1, [r0, #4]
+  40 0020 1344     		add	r3, r3, r2
+  41 0022 083B     		subs	r3, r3, #8
+  42 0024 23F00703 		bic	r3, r3, #7
+  43 0028 0B48     		ldr	r0, .L4+8
+  44 002a 0360     		str	r3, [r0]
+  45 002c 5960     		str	r1, [r3, #4]
+  46 002e 1960     		str	r1, [r3]
+  47 0030 991A     		subs	r1, r3, r2
+  48 0032 5160     		str	r1, [r2, #4]
+  49 0034 1360     		str	r3, [r2]
+  50 0036 094B     		ldr	r3, .L4+12
+  51 0038 1960     		str	r1, [r3]
+  52 003a 094B     		ldr	r3, .L4+16
+  53 003c 1960     		str	r1, [r3]
+  54 003e 094B     		ldr	r3, .L4+20
+  55 0040 4FF00042 		mov	r2, #-2147483648
+  56 0044 1A60     		str	r2, [r3]
+  57 0046 7047     		bx	lr
+  58              	.L3:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 2
+
+
+  59 0048 4FF6FF73 		movw	r3, #65535
+  60 004c E4E7     		b	.L2
+  61              	.L5:
+  62 004e 00BF     		.align	2
+  63              	.L4:
+  64 0050 00000000 		.word	ucHeap
+  65 0054 00000000 		.word	xStart
+  66 0058 00000000 		.word	pxEnd
+  67 005c 00000000 		.word	xMinimumEverFreeBytesRemaining
+  68 0060 00000000 		.word	xFreeBytesRemaining
+  69 0064 00000000 		.word	xBlockAllocatedBit
+  71              		.section	.text.prvInsertBlockIntoFreeList,"ax",%progbits
+  72              		.align	1
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	prvInsertBlockIntoFreeList:
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  81 0000 164B     		ldr	r3, .L21
+  82              	.L7:
+  83 0002 1A46     		mov	r2, r3
+  84 0004 1B68     		ldr	r3, [r3]
+  85 0006 8342     		cmp	r3, r0
+  86 0008 FBD3     		bcc	.L7
+  87 000a 5168     		ldr	r1, [r2, #4]
+  88 000c 02EB010C 		add	ip, r2, r1
+  89 0010 8445     		cmp	ip, r0
+  90 0012 09D0     		beq	.L19
+  91              	.L8:
+  92 0014 4168     		ldr	r1, [r0, #4]
+  93 0016 00EB010C 		add	ip, r0, r1
+  94 001a 6345     		cmp	r3, ip
+  95 001c 09D0     		beq	.L20
+  96 001e 0360     		str	r3, [r0]
+  97 0020 9042     		cmp	r0, r2
+  98 0022 19D0     		beq	.L16
+  99 0024 1060     		str	r0, [r2]
+ 100 0026 7047     		bx	lr
+ 101              	.L19:
+ 102 0028 4068     		ldr	r0, [r0, #4]
+ 103 002a 0144     		add	r1, r1, r0
+ 104 002c 5160     		str	r1, [r2, #4]
+ 105 002e 1046     		mov	r0, r2
+ 106 0030 F0E7     		b	.L8
+ 107              	.L20:
+ 108 0032 10B4     		push	{r4}
+ 109 0034 0A4C     		ldr	r4, .L21+4
+ 110 0036 2468     		ldr	r4, [r4]
+ 111 0038 A342     		cmp	r3, r4
+ 112 003a 0BD0     		beq	.L10
+ 113 003c 5B68     		ldr	r3, [r3, #4]
+ 114 003e 1944     		add	r1, r1, r3
+ 115 0040 4160     		str	r1, [r0, #4]
+ 116 0042 1368     		ldr	r3, [r2]
+ 117 0044 1B68     		ldr	r3, [r3]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 3
+
+
+ 118 0046 0360     		str	r3, [r0]
+ 119              	.L11:
+ 120 0048 9042     		cmp	r0, r2
+ 121 004a 00D0     		beq	.L6
+ 122 004c 1060     		str	r0, [r2]
+ 123              	.L6:
+ 124 004e 5DF8044B 		ldr	r4, [sp], #4
+ 125 0052 7047     		bx	lr
+ 126              	.L10:
+ 127 0054 0460     		str	r4, [r0]
+ 128 0056 F7E7     		b	.L11
+ 129              	.L16:
+ 130 0058 7047     		bx	lr
+ 131              	.L22:
+ 132 005a 00BF     		.align	2
+ 133              	.L21:
+ 134 005c 00000000 		.word	xStart
+ 135 0060 00000000 		.word	pxEnd
+ 137              		.section	.text.pvPortMalloc,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	pvPortMalloc
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	pvPortMalloc:
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147 0000 38B5     		push	{r3, r4, r5, lr}
+ 148 0002 0446     		mov	r4, r0
+ 149 0004 FFF7FEFF 		bl	vTaskSuspendAll
+ 150 0008 3D4B     		ldr	r3, .L49
+ 151 000a 1B68     		ldr	r3, [r3]
+ 152 000c ABB1     		cbz	r3, .L44
+ 153              	.L24:
+ 154 000e 3D4B     		ldr	r3, .L49+4
+ 155 0010 1B68     		ldr	r3, [r3]
+ 156 0012 1C42     		tst	r4, r3
+ 157 0014 14D1     		bne	.L45
+ 158 0016 002C     		cmp	r4, #0
+ 159 0018 6AD0     		beq	.L41
+ 160 001a 04F10802 		add	r2, r4, #8
+ 161 001e 14F0070F 		tst	r4, #7
+ 162 0022 02D0     		beq	.L28
+ 163 0024 22F00702 		bic	r2, r2, #7
+ 164 0028 0832     		adds	r2, r2, #8
+ 165              	.L28:
+ 166 002a E2B1     		cbz	r2, .L46
+ 167 002c 364B     		ldr	r3, .L49+8
+ 168 002e 1B68     		ldr	r3, [r3]
+ 169 0030 9342     		cmp	r3, r2
+ 170 0032 1CD3     		bcc	.L47
+ 171 0034 3549     		ldr	r1, .L49+12
+ 172 0036 0C68     		ldr	r4, [r1]
+ 173 0038 1FE0     		b	.L32
+ 174              	.L44:
+ 175 003a FFF7FEFF 		bl	prvHeapInit
+ 176 003e E6E7     		b	.L24
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 4
+
+
+ 177              	.L45:
+ 178 0040 FFF7FEFF 		bl	xTaskResumeAll
+ 179 0044 0025     		movs	r5, #0
+ 180              	.L26:
+ 181 0046 FFF7FEFF 		bl	vApplicationMallocFailedHook
+ 182              	.L38:
+ 183 004a 15F0070F 		tst	r5, #7
+ 184 004e 55D0     		beq	.L23
+ 185              		.syntax unified
+ 186              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 187 0050 4FF05003 			mov r3, #80												
+ 188 0054 72B6     		cpsid i													
+ 189 0056 83F31188 		msr basepri, r3											
+ 190 005a BFF36F8F 		isb														
+ 191 005e BFF34F8F 		dsb														
+ 192 0062 62B6     		cpsie i													
+ 193              	
+ 194              	@ 0 "" 2
+ 195              		.thumb
+ 196              		.syntax unified
+ 197              	.L40:
+ 198 0064 FEE7     		b	.L40
+ 199              	.L46:
+ 200 0066 FFF7FEFF 		bl	xTaskResumeAll
+ 201 006a 0025     		movs	r5, #0
+ 202 006c EBE7     		b	.L26
+ 203              	.L47:
+ 204 006e FFF7FEFF 		bl	xTaskResumeAll
+ 205 0072 0025     		movs	r5, #0
+ 206 0074 E7E7     		b	.L26
+ 207              	.L42:
+ 208 0076 2146     		mov	r1, r4
+ 209 0078 1C46     		mov	r4, r3
+ 210              	.L32:
+ 211 007a 6368     		ldr	r3, [r4, #4]
+ 212 007c 9342     		cmp	r3, r2
+ 213 007e 02D2     		bcs	.L31
+ 214 0080 2368     		ldr	r3, [r4]
+ 215 0082 002B     		cmp	r3, #0
+ 216 0084 F7D1     		bne	.L42
+ 217              	.L31:
+ 218 0086 1E4B     		ldr	r3, .L49
+ 219 0088 1B68     		ldr	r3, [r3]
+ 220 008a A342     		cmp	r3, r4
+ 221 008c 16D0     		beq	.L48
+ 222 008e 0D68     		ldr	r5, [r1]
+ 223 0090 0835     		adds	r5, r5, #8
+ 224 0092 2368     		ldr	r3, [r4]
+ 225 0094 0B60     		str	r3, [r1]
+ 226 0096 6368     		ldr	r3, [r4, #4]
+ 227 0098 9B1A     		subs	r3, r3, r2
+ 228 009a 102B     		cmp	r3, #16
+ 229 009c 16D9     		bls	.L34
+ 230 009e A018     		adds	r0, r4, r2
+ 231 00a0 10F0070F 		tst	r0, #7
+ 232 00a4 0ED0     		beq	.L35
+ 233              		.syntax unified
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 5
+
+
+ 234              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 235 00a6 4FF05003 			mov r3, #80												
+ 236 00aa 72B6     		cpsid i													
+ 237 00ac 83F31188 		msr basepri, r3											
+ 238 00b0 BFF36F8F 		isb														
+ 239 00b4 BFF34F8F 		dsb														
+ 240 00b8 62B6     		cpsie i													
+ 241              	
+ 242              	@ 0 "" 2
+ 243              		.thumb
+ 244              		.syntax unified
+ 245              	.L36:
+ 246 00ba FEE7     		b	.L36
+ 247              	.L48:
+ 248 00bc FFF7FEFF 		bl	xTaskResumeAll
+ 249 00c0 0025     		movs	r5, #0
+ 250 00c2 C0E7     		b	.L26
+ 251              	.L35:
+ 252 00c4 4360     		str	r3, [r0, #4]
+ 253 00c6 6260     		str	r2, [r4, #4]
+ 254 00c8 FFF7FEFF 		bl	prvInsertBlockIntoFreeList
+ 255              	.L34:
+ 256 00cc 6268     		ldr	r2, [r4, #4]
+ 257 00ce 0E49     		ldr	r1, .L49+8
+ 258 00d0 0B68     		ldr	r3, [r1]
+ 259 00d2 9B1A     		subs	r3, r3, r2
+ 260 00d4 0B60     		str	r3, [r1]
+ 261 00d6 0E49     		ldr	r1, .L49+16
+ 262 00d8 0968     		ldr	r1, [r1]
+ 263 00da 8B42     		cmp	r3, r1
+ 264 00dc 01D2     		bcs	.L37
+ 265 00de 0C49     		ldr	r1, .L49+16
+ 266 00e0 0B60     		str	r3, [r1]
+ 267              	.L37:
+ 268 00e2 084B     		ldr	r3, .L49+4
+ 269 00e4 1B68     		ldr	r3, [r3]
+ 270 00e6 1343     		orrs	r3, r3, r2
+ 271 00e8 6360     		str	r3, [r4, #4]
+ 272 00ea 0023     		movs	r3, #0
+ 273 00ec 2360     		str	r3, [r4]
+ 274 00ee 00E0     		b	.L27
+ 275              	.L41:
+ 276 00f0 0025     		movs	r5, #0
+ 277              	.L27:
+ 278 00f2 FFF7FEFF 		bl	xTaskResumeAll
+ 279 00f6 002D     		cmp	r5, #0
+ 280 00f8 A7D1     		bne	.L38
+ 281 00fa A4E7     		b	.L26
+ 282              	.L23:
+ 283 00fc 2846     		mov	r0, r5
+ 284 00fe 38BD     		pop	{r3, r4, r5, pc}
+ 285              	.L50:
+ 286              		.align	2
+ 287              	.L49:
+ 288 0100 00000000 		.word	pxEnd
+ 289 0104 00000000 		.word	xBlockAllocatedBit
+ 290 0108 00000000 		.word	xFreeBytesRemaining
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 6
+
+
+ 291 010c 00000000 		.word	xStart
+ 292 0110 00000000 		.word	xMinimumEverFreeBytesRemaining
+ 294              		.section	.text.vPortFree,"ax",%progbits
+ 295              		.align	1
+ 296              		.global	vPortFree
+ 297              		.syntax unified
+ 298              		.thumb
+ 299              		.thumb_func
+ 301              	vPortFree:
+ 302              		@ args = 0, pretend = 0, frame = 0
+ 303              		@ frame_needed = 0, uses_anonymous_args = 0
+ 304 0000 0028     		cmp	r0, #0
+ 305 0002 34D0     		beq	.L58
+ 306 0004 38B5     		push	{r3, r4, r5, lr}
+ 307 0006 0446     		mov	r4, r0
+ 308 0008 A0F10805 		sub	r5, r0, #8
+ 309 000c 50F8043C 		ldr	r3, [r0, #-4]
+ 310 0010 174A     		ldr	r2, .L61
+ 311 0012 1268     		ldr	r2, [r2]
+ 312 0014 1342     		tst	r3, r2
+ 313 0016 0AD1     		bne	.L53
+ 314              		.syntax unified
+ 315              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 316 0018 4FF05003 			mov r3, #80												
+ 317 001c 72B6     		cpsid i													
+ 318 001e 83F31188 		msr basepri, r3											
+ 319 0022 BFF36F8F 		isb														
+ 320 0026 BFF34F8F 		dsb														
+ 321 002a 62B6     		cpsie i													
+ 322              	
+ 323              	@ 0 "" 2
+ 324              		.thumb
+ 325              		.syntax unified
+ 326              	.L54:
+ 327 002c FEE7     		b	.L54
+ 328              	.L53:
+ 329 002e 50F8081C 		ldr	r1, [r0, #-8]
+ 330 0032 51B1     		cbz	r1, .L55
+ 331              		.syntax unified
+ 332              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 333 0034 4FF05003 			mov r3, #80												
+ 334 0038 72B6     		cpsid i													
+ 335 003a 83F31188 		msr basepri, r3											
+ 336 003e BFF36F8F 		isb														
+ 337 0042 BFF34F8F 		dsb														
+ 338 0046 62B6     		cpsie i													
+ 339              	
+ 340              	@ 0 "" 2
+ 341              		.thumb
+ 342              		.syntax unified
+ 343              	.L56:
+ 344 0048 FEE7     		b	.L56
+ 345              	.L55:
+ 346 004a 23EA0203 		bic	r3, r3, r2
+ 347 004e 40F8043C 		str	r3, [r0, #-4]
+ 348 0052 FFF7FEFF 		bl	vTaskSuspendAll
+ 349 0056 54F8041C 		ldr	r1, [r4, #-4]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 7
+
+
+ 350 005a 064A     		ldr	r2, .L61+4
+ 351 005c 1368     		ldr	r3, [r2]
+ 352 005e 0B44     		add	r3, r3, r1
+ 353 0060 1360     		str	r3, [r2]
+ 354 0062 2846     		mov	r0, r5
+ 355 0064 FFF7FEFF 		bl	prvInsertBlockIntoFreeList
+ 356 0068 FFF7FEFF 		bl	xTaskResumeAll
+ 357 006c 38BD     		pop	{r3, r4, r5, pc}
+ 358              	.L58:
+ 359 006e 7047     		bx	lr
+ 360              	.L62:
+ 361              		.align	2
+ 362              	.L61:
+ 363 0070 00000000 		.word	xBlockAllocatedBit
+ 364 0074 00000000 		.word	xFreeBytesRemaining
+ 366              		.section	.text.xPortGetFreeHeapSize,"ax",%progbits
+ 367              		.align	1
+ 368              		.global	xPortGetFreeHeapSize
+ 369              		.syntax unified
+ 370              		.thumb
+ 371              		.thumb_func
+ 373              	xPortGetFreeHeapSize:
+ 374              		@ args = 0, pretend = 0, frame = 0
+ 375              		@ frame_needed = 0, uses_anonymous_args = 0
+ 376              		@ link register save eliminated.
+ 377 0000 014B     		ldr	r3, .L64
+ 378 0002 1868     		ldr	r0, [r3]
+ 379 0004 7047     		bx	lr
+ 380              	.L65:
+ 381 0006 00BF     		.align	2
+ 382              	.L64:
+ 383 0008 00000000 		.word	xFreeBytesRemaining
+ 385              		.section	.text.xPortGetMinimumEverFreeHeapSize,"ax",%progbits
+ 386              		.align	1
+ 387              		.global	xPortGetMinimumEverFreeHeapSize
+ 388              		.syntax unified
+ 389              		.thumb
+ 390              		.thumb_func
+ 392              	xPortGetMinimumEverFreeHeapSize:
+ 393              		@ args = 0, pretend = 0, frame = 0
+ 394              		@ frame_needed = 0, uses_anonymous_args = 0
+ 395              		@ link register save eliminated.
+ 396 0000 014B     		ldr	r3, .L67
+ 397 0002 1868     		ldr	r0, [r3]
+ 398 0004 7047     		bx	lr
+ 399              	.L68:
+ 400 0006 00BF     		.align	2
+ 401              	.L67:
+ 402 0008 00000000 		.word	xMinimumEverFreeBytesRemaining
+ 404              		.section	.text.vPortInitialiseBlocks,"ax",%progbits
+ 405              		.align	1
+ 406              		.global	vPortInitialiseBlocks
+ 407              		.syntax unified
+ 408              		.thumb
+ 409              		.thumb_func
+ 411              	vPortInitialiseBlocks:
+ 412              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 8
+
+
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		@ link register save eliminated.
+ 415 0000 7047     		bx	lr
+ 417              		.section	.bss.xBlockAllocatedBit,"aw",%nobits
+ 418              		.align	2
+ 421              	xBlockAllocatedBit:
+ 422 0000 00000000 		.space	4
+ 423              		.section	.bss.xMinimumEverFreeBytesRemaining,"aw",%nobits
+ 424              		.align	2
+ 427              	xMinimumEverFreeBytesRemaining:
+ 428 0000 00000000 		.space	4
+ 429              		.section	.bss.xFreeBytesRemaining,"aw",%nobits
+ 430              		.align	2
+ 433              	xFreeBytesRemaining:
+ 434 0000 00000000 		.space	4
+ 435              		.section	.bss.pxEnd,"aw",%nobits
+ 436              		.align	2
+ 439              	pxEnd:
+ 440 0000 00000000 		.space	4
+ 441              		.section	.bss.xStart,"aw",%nobits
+ 442              		.align	2
+ 445              	xStart:
+ 446 0000 00000000 		.space	8
+ 446      00000000 
+ 447              		.section	.bss.ucHeap,"aw",%nobits
+ 448              		.align	2
+ 451              	ucHeap:
+ 452 0000 00000000 		.space	65535
+ 452      00000000 
+ 452      00000000 
+ 452      00000000 
+ 452      00000000 
+ 453              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 heap_4.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:17     .text.prvHeapInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:22     .text.prvHeapInit:00000000 prvHeapInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:64     .text.prvHeapInit:00000050 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:451    .bss.ucHeap:00000000 ucHeap
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:445    .bss.xStart:00000000 xStart
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:439    .bss.pxEnd:00000000 pxEnd
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:427    .bss.xMinimumEverFreeBytesRemaining:00000000 xMinimumEverFreeBytesRemaining
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:433    .bss.xFreeBytesRemaining:00000000 xFreeBytesRemaining
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:421    .bss.xBlockAllocatedBit:00000000 xBlockAllocatedBit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:72     .text.prvInsertBlockIntoFreeList:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:77     .text.prvInsertBlockIntoFreeList:00000000 prvInsertBlockIntoFreeList
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:134    .text.prvInsertBlockIntoFreeList:0000005c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:138    .text.pvPortMalloc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:144    .text.pvPortMalloc:00000000 pvPortMalloc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:288    .text.pvPortMalloc:00000100 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:295    .text.vPortFree:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:301    .text.vPortFree:00000000 vPortFree
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:363    .text.vPortFree:00000070 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:367    .text.xPortGetFreeHeapSize:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:373    .text.xPortGetFreeHeapSize:00000000 xPortGetFreeHeapSize
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:383    .text.xPortGetFreeHeapSize:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:386    .text.xPortGetMinimumEverFreeHeapSize:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:392    .text.xPortGetMinimumEverFreeHeapSize:00000000 xPortGetMinimumEverFreeHeapSize
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:402    .text.xPortGetMinimumEverFreeHeapSize:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:405    .text.vPortInitialiseBlocks:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:411    .text.vPortInitialiseBlocks:00000000 vPortInitialiseBlocks
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:418    .bss.xBlockAllocatedBit:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:424    .bss.xMinimumEverFreeBytesRemaining:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:430    .bss.xFreeBytesRemaining:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:436    .bss.pxEnd:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:442    .bss.xStart:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc6C70G.s:448    .bss.ucHeap:00000000 $d
+
+UNDEFINED SYMBOLS
+vTaskSuspendAll
+xTaskResumeAll
+vApplicationMallocFailedHook

@@ -1,0 +1,145 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"crc.c"
+  15              		.text
+  16              		.section	.text.MX_CRC_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_CRC_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_CRC_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 0848     		ldr	r0, .L5
+  28 0004 084B     		ldr	r3, .L5+4
+  29 0006 0360     		str	r3, [r0]
+  30 0008 0023     		movs	r3, #0
+  31 000a 0371     		strb	r3, [r0, #4]
+  32 000c 4371     		strb	r3, [r0, #5]
+  33 000e 4361     		str	r3, [r0, #20]
+  34 0010 8361     		str	r3, [r0, #24]
+  35 0012 0123     		movs	r3, #1
+  36 0014 0362     		str	r3, [r0, #32]
+  37 0016 FFF7FEFF 		bl	HAL_CRC_Init
+  38 001a 00B9     		cbnz	r0, .L4
+  39              	.L1:
+  40 001c 08BD     		pop	{r3, pc}
+  41              	.L4:
+  42 001e FFF7FEFF 		bl	Error_Handler
+  43 0022 FBE7     		b	.L1
+  44              	.L6:
+  45              		.align	2
+  46              	.L5:
+  47 0024 00000000 		.word	hcrc
+  48 0028 00300240 		.word	1073885184
+  50              		.section	.text.HAL_CRC_MspInit,"ax",%progbits
+  51              		.align	1
+  52              		.global	HAL_CRC_MspInit
+  53              		.syntax unified
+  54              		.thumb
+  55              		.thumb_func
+  57              	HAL_CRC_MspInit:
+  58              		@ args = 0, pretend = 0, frame = 8
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s 			page 2
+
+
+  61 0000 0268     		ldr	r2, [r0]
+  62 0002 094B     		ldr	r3, .L14
+  63 0004 9A42     		cmp	r2, r3
+  64 0006 00D0     		beq	.L13
+  65 0008 7047     		bx	lr
+  66              	.L13:
+  67 000a 82B0     		sub	sp, sp, #8
+  68 000c 03F50063 		add	r3, r3, #2048
+  69 0010 1A6B     		ldr	r2, [r3, #48]
+  70 0012 42F48052 		orr	r2, r2, #4096
+  71 0016 1A63     		str	r2, [r3, #48]
+  72 0018 1B6B     		ldr	r3, [r3, #48]
+  73 001a 03F48053 		and	r3, r3, #4096
+  74 001e 0193     		str	r3, [sp, #4]
+  75 0020 019B     		ldr	r3, [sp, #4]
+  76 0022 02B0     		add	sp, sp, #8
+  77              		@ sp needed
+  78 0024 7047     		bx	lr
+  79              	.L15:
+  80 0026 00BF     		.align	2
+  81              	.L14:
+  82 0028 00300240 		.word	1073885184
+  84              		.section	.text.HAL_CRC_MspDeInit,"ax",%progbits
+  85              		.align	1
+  86              		.global	HAL_CRC_MspDeInit
+  87              		.syntax unified
+  88              		.thumb
+  89              		.thumb_func
+  91              	HAL_CRC_MspDeInit:
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+  95 0000 0268     		ldr	r2, [r0]
+  96 0002 054B     		ldr	r3, .L19
+  97 0004 9A42     		cmp	r2, r3
+  98 0006 00D0     		beq	.L18
+  99              	.L16:
+ 100 0008 7047     		bx	lr
+ 101              	.L18:
+ 102 000a 044A     		ldr	r2, .L19+4
+ 103 000c 136B     		ldr	r3, [r2, #48]
+ 104 000e 23F48053 		bic	r3, r3, #4096
+ 105 0012 1363     		str	r3, [r2, #48]
+ 106 0014 F8E7     		b	.L16
+ 107              	.L20:
+ 108 0016 00BF     		.align	2
+ 109              	.L19:
+ 110 0018 00300240 		.word	1073885184
+ 111 001c 00380240 		.word	1073887232
+ 113              		.global	hcrc
+ 114              		.section	.bss.hcrc,"aw",%nobits
+ 115              		.align	2
+ 118              	hcrc:
+ 119 0000 00000000 		.space	36
+ 119      00000000 
+ 119      00000000 
+ 119      00000000 
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s 			page 3
+
+
+ 119      00000000 
+ 120              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 crc.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:17     .text.MX_CRC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:23     .text.MX_CRC_Init:00000000 MX_CRC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:47     .text.MX_CRC_Init:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:118    .bss.hcrc:00000000 hcrc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:51     .text.HAL_CRC_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:57     .text.HAL_CRC_MspInit:00000000 HAL_CRC_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:82     .text.HAL_CRC_MspInit:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:85     .text.HAL_CRC_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:91     .text.HAL_CRC_MspDeInit:00000000 HAL_CRC_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:110    .text.HAL_CRC_MspDeInit:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNYxyjX.s:115    .bss.hcrc:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_CRC_Init
+Error_Handler

@@ -1,0 +1,1497 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"wm8994.c"
+  15              		.text
+  16              		.section	.text.CODEC_IO_Write,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	CODEC_IO_Write:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 08B5     		push	{r3, lr}
+  26 0002 FFF7FEFF 		bl	AUDIO_IO_Write
+  27 0006 0020     		movs	r0, #0
+  28 0008 08BD     		pop	{r3, pc}
+  30              		.section	.text.wm8994_SetMute,"ax",%progbits
+  31              		.align	1
+  32              		.global	wm8994_SetMute
+  33              		.syntax unified
+  34              		.thumb
+  35              		.thumb_func
+  37              	wm8994_SetMute:
+  38              		@ args = 0, pretend = 0, frame = 0
+  39              		@ frame_needed = 0, uses_anonymous_args = 0
+  40 0000 38B5     		push	{r3, r4, r5, lr}
+  41 0002 0346     		mov	r3, r0
+  42 0004 134A     		ldr	r2, .L8
+  43 0006 1068     		ldr	r0, [r2]
+  44 0008 80B1     		cbz	r0, .L3
+  45 000a 0129     		cmp	r1, #1
+  46 000c 0FD0     		beq	.L7
+  47 000e DDB2     		uxtb	r5, r3
+  48 0010 1022     		movs	r2, #16
+  49 0012 4FF48461 		mov	r1, #1056
+  50 0016 2846     		mov	r0, r5
+  51 0018 FFF7FEFF 		bl	CODEC_IO_Write
+  52 001c 0446     		mov	r4, r0
+  53 001e 1022     		movs	r2, #16
+  54 0020 40F22241 		movw	r1, #1058
+  55 0024 2846     		mov	r0, r5
+  56 0026 FFF7FEFF 		bl	CODEC_IO_Write
+  57 002a 2044     		add	r0, r0, r4
+  58              	.L3:
+  59 002c 38BD     		pop	{r3, r4, r5, pc}
+  60              	.L7:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 2
+
+
+  61 002e DDB2     		uxtb	r5, r3
+  62 0030 4FF40072 		mov	r2, #512
+  63 0034 4FF48461 		mov	r1, #1056
+  64 0038 2846     		mov	r0, r5
+  65 003a FFF7FEFF 		bl	CODEC_IO_Write
+  66 003e 0446     		mov	r4, r0
+  67 0040 4FF40072 		mov	r2, #512
+  68 0044 40F22241 		movw	r1, #1058
+  69 0048 2846     		mov	r0, r5
+  70 004a FFF7FEFF 		bl	CODEC_IO_Write
+  71 004e 2044     		add	r0, r0, r4
+  72 0050 ECE7     		b	.L3
+  73              	.L9:
+  74 0052 00BF     		.align	2
+  75              	.L8:
+  76 0054 00000000 		.word	outputEnabled
+  78              		.section	.text.wm8994_Play,"ax",%progbits
+  79              		.align	1
+  80              		.global	wm8994_Play
+  81              		.syntax unified
+  82              		.thumb
+  83              		.thumb_func
+  85              	wm8994_Play:
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88 0000 08B5     		push	{r3, lr}
+  89 0002 0021     		movs	r1, #0
+  90 0004 FFF7FEFF 		bl	wm8994_SetMute
+  91 0008 08BD     		pop	{r3, pc}
+  93              		.section	.text.wm8994_Resume,"ax",%progbits
+  94              		.align	1
+  95              		.global	wm8994_Resume
+  96              		.syntax unified
+  97              		.thumb
+  98              		.thumb_func
+ 100              	wm8994_Resume:
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103 0000 08B5     		push	{r3, lr}
+ 104 0002 0021     		movs	r1, #0
+ 105 0004 FFF7FEFF 		bl	wm8994_SetMute
+ 106 0008 08BD     		pop	{r3, pc}
+ 108              		.section	.text.wm8994_Pause,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	wm8994_Pause
+ 111              		.syntax unified
+ 112              		.thumb
+ 113              		.thumb_func
+ 115              	wm8994_Pause:
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118 0000 38B5     		push	{r3, r4, r5, lr}
+ 119 0002 0546     		mov	r5, r0
+ 120 0004 0121     		movs	r1, #1
+ 121 0006 FFF7FEFF 		bl	wm8994_SetMute
+ 122 000a 0446     		mov	r4, r0
+ 123 000c 0122     		movs	r2, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 3
+
+
+ 124 000e 0221     		movs	r1, #2
+ 125 0010 E8B2     		uxtb	r0, r5
+ 126 0012 FFF7FEFF 		bl	CODEC_IO_Write
+ 127 0016 2044     		add	r0, r0, r4
+ 128 0018 38BD     		pop	{r3, r4, r5, pc}
+ 130              		.section	.text.wm8994_Stop,"ax",%progbits
+ 131              		.align	1
+ 132              		.global	wm8994_Stop
+ 133              		.syntax unified
+ 134              		.thumb
+ 135              		.thumb_func
+ 137              	wm8994_Stop:
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140 0000 70B5     		push	{r4, r5, r6, lr}
+ 141 0002 1D4B     		ldr	r3, .L20
+ 142 0004 1C68     		ldr	r4, [r3]
+ 143 0006 0CB9     		cbnz	r4, .L19
+ 144              	.L16:
+ 145 0008 2046     		mov	r0, r4
+ 146 000a 70BD     		pop	{r4, r5, r6, pc}
+ 147              	.L19:
+ 148 000c 0546     		mov	r5, r0
+ 149 000e 0E46     		mov	r6, r1
+ 150 0010 0121     		movs	r1, #1
+ 151 0012 FFF7FEFF 		bl	wm8994_SetMute
+ 152 0016 0446     		mov	r4, r0
+ 153 0018 022E     		cmp	r6, #2
+ 154 001a F5D0     		beq	.L16
+ 155 001c EDB2     		uxtb	r5, r5
+ 156 001e 4FF40072 		mov	r2, #512
+ 157 0022 4FF48461 		mov	r1, #1056
+ 158 0026 2846     		mov	r0, r5
+ 159 0028 FFF7FEFF 		bl	CODEC_IO_Write
+ 160 002c 0444     		add	r4, r4, r0
+ 161 002e 4FF40072 		mov	r2, #512
+ 162 0032 40F22241 		movw	r1, #1058
+ 163 0036 2846     		mov	r0, r5
+ 164 0038 FFF7FEFF 		bl	CODEC_IO_Write
+ 165 003c 0444     		add	r4, r4, r0
+ 166 003e 0022     		movs	r2, #0
+ 167 0040 2D21     		movs	r1, #45
+ 168 0042 2846     		mov	r0, r5
+ 169 0044 FFF7FEFF 		bl	CODEC_IO_Write
+ 170 0048 0444     		add	r4, r4, r0
+ 171 004a 0022     		movs	r2, #0
+ 172 004c 2E21     		movs	r1, #46
+ 173 004e 2846     		mov	r0, r5
+ 174 0050 FFF7FEFF 		bl	CODEC_IO_Write
+ 175 0054 0444     		add	r4, r4, r0
+ 176 0056 0022     		movs	r2, #0
+ 177 0058 0521     		movs	r1, #5
+ 178 005a 2846     		mov	r0, r5
+ 179 005c FFF7FEFF 		bl	CODEC_IO_Write
+ 180 0060 0444     		add	r4, r4, r0
+ 181 0062 0022     		movs	r2, #0
+ 182 0064 1146     		mov	r1, r2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 4
+
+
+ 183 0066 2846     		mov	r0, r5
+ 184 0068 FFF7FEFF 		bl	CODEC_IO_Write
+ 185 006c 0444     		add	r4, r4, r0
+ 186 006e 024B     		ldr	r3, .L20
+ 187 0070 0022     		movs	r2, #0
+ 188 0072 1A60     		str	r2, [r3]
+ 189 0074 C8E7     		b	.L16
+ 190              	.L21:
+ 191 0076 00BF     		.align	2
+ 192              	.L20:
+ 193 0078 00000000 		.word	outputEnabled
+ 195              		.section	.text.wm8994_SetVolume,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	wm8994_SetVolume
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 202              	wm8994_SetVolume:
+ 203              		@ args = 0, pretend = 0, frame = 0
+ 204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 205 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 206 0004 0646     		mov	r6, r0
+ 207 0006 0C46     		mov	r4, r1
+ 208 0008 6429     		cmp	r1, #100
+ 209 000a 45D8     		bhi	.L29
+ 210 000c C1EB8117 		rsb	r7, r1, r1, lsl #6
+ 211 0010 464B     		ldr	r3, .L33
+ 212 0012 83FB0723 		smull	r2, r3, r3, r7
+ 213 0016 FF17     		asrs	r7, r7, #31
+ 214 0018 C7EB6317 		rsb	r7, r7, r3, asr #5
+ 215 001c FFB2     		uxtb	r7, r7
+ 216              	.L23:
+ 217 001e 444B     		ldr	r3, .L33+4
+ 218 0020 1D68     		ldr	r5, [r3]
+ 219 0022 45B1     		cbz	r5, .L24
+ 220 0024 3E2F     		cmp	r7, #62
+ 221 0026 39D8     		bhi	.L32
+ 222 0028 002C     		cmp	r4, #0
+ 223 002a 5AD1     		bne	.L26
+ 224 002c 0121     		movs	r1, #1
+ 225 002e 3046     		mov	r0, r6
+ 226 0030 FFF7FEFF 		bl	wm8994_SetMute
+ 227 0034 0546     		mov	r5, r0
+ 228              	.L24:
+ 229 0036 3F4B     		ldr	r3, .L33+8
+ 230 0038 1B68     		ldr	r3, [r3]
+ 231 003a 53B3     		cbz	r3, .L22
+ 232 003c 632C     		cmp	r4, #99
+ 233 003e 72D8     		bhi	.L30
+ 234 0040 C4EB0414 		rsb	r4, r4, r4, lsl #4
+ 235 0044 2401     		lsls	r4, r4, #4
+ 236 0046 394B     		ldr	r3, .L33
+ 237 0048 83FB0423 		smull	r2, r3, r3, r4
+ 238 004c E417     		asrs	r4, r4, #31
+ 239 004e C4EB6314 		rsb	r4, r4, r3, asr #5
+ 240 0052 E4B2     		uxtb	r4, r4
+ 241              	.L28:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 5
+
+
+ 242 0054 F6B2     		uxtb	r6, r6
+ 243 0056 44F48074 		orr	r4, r4, #256
+ 244 005a 2246     		mov	r2, r4
+ 245 005c 4FF48061 		mov	r1, #1024
+ 246 0060 3046     		mov	r0, r6
+ 247 0062 FFF7FEFF 		bl	CODEC_IO_Write
+ 248 0066 0544     		add	r5, r5, r0
+ 249 0068 2246     		mov	r2, r4
+ 250 006a 40F20141 		movw	r1, #1025
+ 251 006e 3046     		mov	r0, r6
+ 252 0070 FFF7FEFF 		bl	CODEC_IO_Write
+ 253 0074 0544     		add	r5, r5, r0
+ 254 0076 2246     		mov	r2, r4
+ 255 0078 40F20441 		movw	r1, #1028
+ 256 007c 3046     		mov	r0, r6
+ 257 007e FFF7FEFF 		bl	CODEC_IO_Write
+ 258 0082 0544     		add	r5, r5, r0
+ 259 0084 2246     		mov	r2, r4
+ 260 0086 40F20541 		movw	r1, #1029
+ 261 008a 3046     		mov	r0, r6
+ 262 008c FFF7FEFF 		bl	CODEC_IO_Write
+ 263 0090 0544     		add	r5, r5, r0
+ 264              	.L22:
+ 265 0092 2846     		mov	r0, r5
+ 266 0094 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 267              	.L29:
+ 268 0098 6427     		movs	r7, #100
+ 269 009a C0E7     		b	.L23
+ 270              	.L32:
+ 271 009c 0021     		movs	r1, #0
+ 272 009e 3046     		mov	r0, r6
+ 273 00a0 FFF7FEFF 		bl	wm8994_SetMute
+ 274 00a4 0746     		mov	r7, r0
+ 275 00a6 F5B2     		uxtb	r5, r6
+ 276 00a8 40F27F12 		movw	r2, #383
+ 277 00ac 1C21     		movs	r1, #28
+ 278 00ae 2846     		mov	r0, r5
+ 279 00b0 FFF7FEFF 		bl	CODEC_IO_Write
+ 280 00b4 0744     		add	r7, r7, r0
+ 281 00b6 40F27F12 		movw	r2, #383
+ 282 00ba 1D21     		movs	r1, #29
+ 283 00bc 2846     		mov	r0, r5
+ 284 00be FFF7FEFF 		bl	CODEC_IO_Write
+ 285 00c2 0744     		add	r7, r7, r0
+ 286 00c4 40F27F12 		movw	r2, #383
+ 287 00c8 2621     		movs	r1, #38
+ 288 00ca 2846     		mov	r0, r5
+ 289 00cc FFF7FEFF 		bl	CODEC_IO_Write
+ 290 00d0 0744     		add	r7, r7, r0
+ 291 00d2 40F27F12 		movw	r2, #383
+ 292 00d6 2721     		movs	r1, #39
+ 293 00d8 2846     		mov	r0, r5
+ 294 00da FFF7FEFF 		bl	CODEC_IO_Write
+ 295 00de C519     		adds	r5, r0, r7
+ 296 00e0 A9E7     		b	.L24
+ 297              	.L26:
+ 298 00e2 0021     		movs	r1, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 6
+
+
+ 299 00e4 3046     		mov	r0, r6
+ 300 00e6 FFF7FEFF 		bl	wm8994_SetMute
+ 301 00ea 8046     		mov	r8, r0
+ 302 00ec F5B2     		uxtb	r5, r6
+ 303 00ee 47F4A077 		orr	r7, r7, #320
+ 304 00f2 3A46     		mov	r2, r7
+ 305 00f4 1C21     		movs	r1, #28
+ 306 00f6 2846     		mov	r0, r5
+ 307 00f8 FFF7FEFF 		bl	CODEC_IO_Write
+ 308 00fc 8044     		add	r8, r8, r0
+ 309 00fe 3A46     		mov	r2, r7
+ 310 0100 1D21     		movs	r1, #29
+ 311 0102 2846     		mov	r0, r5
+ 312 0104 FFF7FEFF 		bl	CODEC_IO_Write
+ 313 0108 8044     		add	r8, r8, r0
+ 314 010a 3A46     		mov	r2, r7
+ 315 010c 2621     		movs	r1, #38
+ 316 010e 2846     		mov	r0, r5
+ 317 0110 FFF7FEFF 		bl	CODEC_IO_Write
+ 318 0114 8044     		add	r8, r8, r0
+ 319 0116 3A46     		mov	r2, r7
+ 320 0118 2721     		movs	r1, #39
+ 321 011a 2846     		mov	r0, r5
+ 322 011c FFF7FEFF 		bl	CODEC_IO_Write
+ 323 0120 00EB0805 		add	r5, r0, r8
+ 324 0124 87E7     		b	.L24
+ 325              	.L30:
+ 326 0126 EF24     		movs	r4, #239
+ 327 0128 94E7     		b	.L28
+ 328              	.L34:
+ 329 012a 00BF     		.align	2
+ 330              	.L33:
+ 331 012c 1F85EB51 		.word	1374389535
+ 332 0130 00000000 		.word	outputEnabled
+ 333 0134 00000000 		.word	inputEnabled
+ 335              		.section	.text.wm8994_Init,"ax",%progbits
+ 336              		.align	1
+ 337              		.global	wm8994_Init
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	wm8994_Init:
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 346 0004 8046     		mov	r8, r0
+ 347 0006 9146     		mov	r9, r2
+ 348 0008 9A46     		mov	r10, r3
+ 349 000a CFB2     		uxtb	r7, r1
+ 350 000c 01F47F45 		and	r5, r1, #65280
+ 351 0010 FFF7FEFF 		bl	AUDIO_IO_Init
+ 352 0014 5FFA88F4 		uxtb	r4, r8
+ 353 0018 0322     		movs	r2, #3
+ 354 001a 4FF48171 		mov	r1, #258
+ 355 001e 2046     		mov	r0, r4
+ 356 0020 FFF7FEFF 		bl	CODEC_IO_Write
+ 357 0024 0646     		mov	r6, r0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 7
+
+
+ 358 0026 0022     		movs	r2, #0
+ 359 0028 40F61701 		movw	r1, #2071
+ 360 002c 2046     		mov	r0, r4
+ 361 002e FFF7FEFF 		bl	CODEC_IO_Write
+ 362 0032 0644     		add	r6, r6, r0
+ 363 0034 0022     		movs	r2, #0
+ 364 0036 4FF48171 		mov	r1, #258
+ 365 003a 2046     		mov	r0, r4
+ 366 003c FFF7FEFF 		bl	CODEC_IO_Write
+ 367 0040 00EB060B 		add	fp, r0, r6
+ 368 0044 6C22     		movs	r2, #108
+ 369 0046 3921     		movs	r1, #57
+ 370 0048 2046     		mov	r0, r4
+ 371 004a FFF7FEFF 		bl	CODEC_IO_Write
+ 372 004e 8344     		add	fp, fp, r0
+ 373 0050 D5B3     		cbz	r5, .L36
+ 374 0052 1322     		movs	r2, #19
+ 375 0054 0121     		movs	r1, #1
+ 376 0056 2046     		mov	r0, r4
+ 377 0058 FFF7FEFF 		bl	CODEC_IO_Write
+ 378 005c 00EB0B06 		add	r6, r0, fp
+ 379              	.L37:
+ 380 0060 3220     		movs	r0, #50
+ 381 0062 FFF7FEFF 		bl	AUDIO_IO_Delay
+ 382 0066 002F     		cmp	r7, #0
+ 383 0068 00F0C980 		beq	.L38
+ 384 006c DB4B     		ldr	r3, .L84
+ 385 006e 0122     		movs	r2, #1
+ 386 0070 1A60     		str	r2, [r3]
+ 387 0072 022F     		cmp	r7, #2
+ 388 0074 30D0     		beq	.L39
+ 389 0076 032F     		cmp	r7, #3
+ 390 0078 52D0     		beq	.L40
+ 391 007a 9742     		cmp	r7, r2
+ 392 007c 40F09B80 		bne	.L41
+ 393 0080 40F60C42 		movw	r2, #3084
+ 394 0084 0521     		movs	r1, #5
+ 395 0086 2046     		mov	r0, r4
+ 396 0088 FFF7FEFF 		bl	CODEC_IO_Write
+ 397 008c 0644     		add	r6, r6, r0
+ 398 008e 0022     		movs	r2, #0
+ 399 0090 40F20161 		movw	r1, #1537
+ 400 0094 2046     		mov	r0, r4
+ 401 0096 FFF7FEFF 		bl	CODEC_IO_Write
+ 402 009a 0644     		add	r6, r6, r0
+ 403 009c 0022     		movs	r2, #0
+ 404 009e 40F20261 		movw	r1, #1538
+ 405 00a2 2046     		mov	r0, r4
+ 406 00a4 FFF7FEFF 		bl	CODEC_IO_Write
+ 407 00a8 0644     		add	r6, r6, r0
+ 408 00aa 0222     		movs	r2, #2
+ 409 00ac 40F20461 		movw	r1, #1540
+ 410 00b0 2046     		mov	r0, r4
+ 411 00b2 FFF7FEFF 		bl	CODEC_IO_Write
+ 412 00b6 0644     		add	r6, r6, r0
+ 413 00b8 0222     		movs	r2, #2
+ 414 00ba 40F20561 		movw	r1, #1541
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 8
+
+
+ 415 00be 2046     		mov	r0, r4
+ 416 00c0 FFF7FEFF 		bl	CODEC_IO_Write
+ 417 00c4 0644     		add	r6, r6, r0
+ 418 00c6 9DE0     		b	.L42
+ 419              	.L36:
+ 420 00c8 0322     		movs	r2, #3
+ 421 00ca 0121     		movs	r1, #1
+ 422 00cc 2046     		mov	r0, r4
+ 423 00ce FFF7FEFF 		bl	CODEC_IO_Write
+ 424 00d2 00EB0B06 		add	r6, r0, fp
+ 425 00d6 C3E7     		b	.L37
+ 426              	.L39:
+ 427 00d8 40F20332 		movw	r2, #771
+ 428 00dc 0521     		movs	r1, #5
+ 429 00de 2046     		mov	r0, r4
+ 430 00e0 FFF7FEFF 		bl	CODEC_IO_Write
+ 431 00e4 0644     		add	r6, r6, r0
+ 432 00e6 0122     		movs	r2, #1
+ 433 00e8 40F20161 		movw	r1, #1537
+ 434 00ec 2046     		mov	r0, r4
+ 435 00ee FFF7FEFF 		bl	CODEC_IO_Write
+ 436 00f2 0644     		add	r6, r6, r0
+ 437 00f4 0122     		movs	r2, #1
+ 438 00f6 40F20261 		movw	r1, #1538
+ 439 00fa 2046     		mov	r0, r4
+ 440 00fc FFF7FEFF 		bl	CODEC_IO_Write
+ 441 0100 0644     		add	r6, r6, r0
+ 442 0102 0022     		movs	r2, #0
+ 443 0104 40F20461 		movw	r1, #1540
+ 444 0108 2046     		mov	r0, r4
+ 445 010a FFF7FEFF 		bl	CODEC_IO_Write
+ 446 010e 0644     		add	r6, r6, r0
+ 447 0110 0022     		movs	r2, #0
+ 448 0112 40F20561 		movw	r1, #1541
+ 449 0116 2046     		mov	r0, r4
+ 450 0118 FFF7FEFF 		bl	CODEC_IO_Write
+ 451 011c 0644     		add	r6, r6, r0
+ 452 011e 71E0     		b	.L42
+ 453              	.L40:
+ 454 0120 B5F5006F 		cmp	r5, #2048
+ 455 0124 23D0     		beq	.L77
+ 456 0126 40F60F72 		movw	r2, #3855
+ 457 012a 0521     		movs	r1, #5
+ 458 012c 2046     		mov	r0, r4
+ 459 012e FFF7FEFF 		bl	CODEC_IO_Write
+ 460 0132 0644     		add	r6, r6, r0
+ 461 0134 0122     		movs	r2, #1
+ 462 0136 40F20161 		movw	r1, #1537
+ 463 013a 2046     		mov	r0, r4
+ 464 013c FFF7FEFF 		bl	CODEC_IO_Write
+ 465 0140 0644     		add	r6, r6, r0
+ 466 0142 0122     		movs	r2, #1
+ 467 0144 40F20261 		movw	r1, #1538
+ 468 0148 2046     		mov	r0, r4
+ 469 014a FFF7FEFF 		bl	CODEC_IO_Write
+ 470 014e 0644     		add	r6, r6, r0
+ 471 0150 0222     		movs	r2, #2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 9
+
+
+ 472 0152 40F20461 		movw	r1, #1540
+ 473 0156 2046     		mov	r0, r4
+ 474 0158 FFF7FEFF 		bl	CODEC_IO_Write
+ 475 015c 0644     		add	r6, r6, r0
+ 476 015e 0222     		movs	r2, #2
+ 477 0160 40F20561 		movw	r1, #1541
+ 478 0164 2046     		mov	r0, r4
+ 479 0166 FFF7FEFF 		bl	CODEC_IO_Write
+ 480 016a 0644     		add	r6, r6, r0
+ 481 016c 4AE0     		b	.L42
+ 482              	.L77:
+ 483 016e 40F60F72 		movw	r2, #3855
+ 484 0172 0521     		movs	r1, #5
+ 485 0174 2046     		mov	r0, r4
+ 486 0176 FFF7FEFF 		bl	CODEC_IO_Write
+ 487 017a 0644     		add	r6, r6, r0
+ 488 017c 0322     		movs	r2, #3
+ 489 017e 40F20161 		movw	r1, #1537
+ 490 0182 2046     		mov	r0, r4
+ 491 0184 FFF7FEFF 		bl	CODEC_IO_Write
+ 492 0188 0644     		add	r6, r6, r0
+ 493 018a 0322     		movs	r2, #3
+ 494 018c 40F20261 		movw	r1, #1538
+ 495 0190 2046     		mov	r0, r4
+ 496 0192 FFF7FEFF 		bl	CODEC_IO_Write
+ 497 0196 0644     		add	r6, r6, r0
+ 498 0198 0322     		movs	r2, #3
+ 499 019a 40F20461 		movw	r1, #1540
+ 500 019e 2046     		mov	r0, r4
+ 501 01a0 FFF7FEFF 		bl	CODEC_IO_Write
+ 502 01a4 0644     		add	r6, r6, r0
+ 503 01a6 0322     		movs	r2, #3
+ 504 01a8 40F20561 		movw	r1, #1541
+ 505 01ac 2046     		mov	r0, r4
+ 506 01ae FFF7FEFF 		bl	CODEC_IO_Write
+ 507 01b2 0644     		add	r6, r6, r0
+ 508 01b4 26E0     		b	.L42
+ 509              	.L41:
+ 510 01b6 40F20332 		movw	r2, #771
+ 511 01ba 0521     		movs	r1, #5
+ 512 01bc 2046     		mov	r0, r4
+ 513 01be FFF7FEFF 		bl	CODEC_IO_Write
+ 514 01c2 0644     		add	r6, r6, r0
+ 515 01c4 0122     		movs	r2, #1
+ 516 01c6 40F20161 		movw	r1, #1537
+ 517 01ca 2046     		mov	r0, r4
+ 518 01cc FFF7FEFF 		bl	CODEC_IO_Write
+ 519 01d0 0644     		add	r6, r6, r0
+ 520 01d2 0122     		movs	r2, #1
+ 521 01d4 40F20261 		movw	r1, #1538
+ 522 01d8 2046     		mov	r0, r4
+ 523 01da FFF7FEFF 		bl	CODEC_IO_Write
+ 524 01de 0644     		add	r6, r6, r0
+ 525 01e0 0022     		movs	r2, #0
+ 526 01e2 40F20461 		movw	r1, #1540
+ 527 01e6 2046     		mov	r0, r4
+ 528 01e8 FFF7FEFF 		bl	CODEC_IO_Write
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 10
+
+
+ 529 01ec 0644     		add	r6, r6, r0
+ 530 01ee 0022     		movs	r2, #0
+ 531 01f0 40F20561 		movw	r1, #1541
+ 532 01f4 2046     		mov	r0, r4
+ 533 01f6 FFF7FEFF 		bl	CODEC_IO_Write
+ 534 01fa 0644     		add	r6, r6, r0
+ 535 01fc 02E0     		b	.L42
+ 536              	.L38:
+ 537 01fe 774B     		ldr	r3, .L84
+ 538 0200 0022     		movs	r2, #0
+ 539 0202 1A60     		str	r2, [r3]
+ 540              	.L42:
+ 541 0204 002D     		cmp	r5, #0
+ 542 0206 00F0ED80 		beq	.L44
+ 543 020a 754B     		ldr	r3, .L84+4
+ 544 020c 0122     		movs	r2, #1
+ 545 020e 1A60     		str	r2, [r3]
+ 546 0210 B5F5407F 		cmp	r5, #768
+ 547 0214 77D0     		beq	.L45
+ 548 0216 32D8     		bhi	.L46
+ 549 0218 B5F5807F 		cmp	r5, #256
+ 550 021c 00F0B080 		beq	.L47
+ 551 0220 B5F5007F 		cmp	r5, #512
+ 552 0224 40F0D780 		bne	.L49
+ 553 0228 4FF44362 		mov	r2, #3120
+ 554 022c 0421     		movs	r1, #4
+ 555 022e 2046     		mov	r0, r4
+ 556 0230 FFF7FEFF 		bl	CODEC_IO_Write
+ 557 0234 0644     		add	r6, r6, r0
+ 558 0236 DB22     		movs	r2, #219
+ 559 0238 4FF48A61 		mov	r1, #1104
+ 560 023c 2046     		mov	r0, r4
+ 561 023e FFF7FEFF 		bl	CODEC_IO_Write
+ 562 0242 0644     		add	r6, r6, r0
+ 563 0244 4FF4C042 		mov	r2, #24576
+ 564 0248 0221     		movs	r1, #2
+ 565 024a 2046     		mov	r0, r4
+ 566 024c FFF7FEFF 		bl	CODEC_IO_Write
+ 567 0250 0644     		add	r6, r6, r0
+ 568 0252 0222     		movs	r2, #2
+ 569 0254 4FF4C161 		mov	r1, #1544
+ 570 0258 2046     		mov	r0, r4
+ 571 025a FFF7FEFF 		bl	CODEC_IO_Write
+ 572 025e 0644     		add	r6, r6, r0
+ 573 0260 0222     		movs	r2, #2
+ 574 0262 40F20961 		movw	r1, #1545
+ 575 0266 2046     		mov	r0, r4
+ 576 0268 FFF7FEFF 		bl	CODEC_IO_Write
+ 577 026c 0644     		add	r6, r6, r0
+ 578 026e 0E22     		movs	r2, #14
+ 579 0270 4FF4E061 		mov	r1, #1792
+ 580 0274 2046     		mov	r0, r4
+ 581 0276 FFF7FEFF 		bl	CODEC_IO_Write
+ 582 027a 0644     		add	r6, r6, r0
+ 583 027c B5E0     		b	.L51
+ 584              	.L46:
+ 585 027e B5F5006F 		cmp	r5, #2048
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 11
+
+
+ 586 0282 40F0A880 		bne	.L49
+ 587 0286 40F63C72 		movw	r2, #3900
+ 588 028a 0421     		movs	r1, #4
+ 589 028c 2046     		mov	r0, r4
+ 590 028e FFF7FEFF 		bl	CODEC_IO_Write
+ 591 0292 0644     		add	r6, r6, r0
+ 592 0294 DB22     		movs	r2, #219
+ 593 0296 4FF48A61 		mov	r1, #1104
+ 594 029a 2046     		mov	r0, r4
+ 595 029c FFF7FEFF 		bl	CODEC_IO_Write
+ 596 02a0 0644     		add	r6, r6, r0
+ 597 02a2 DB22     		movs	r2, #219
+ 598 02a4 4FF48861 		mov	r1, #1088
+ 599 02a8 2046     		mov	r0, r4
+ 600 02aa FFF7FEFF 		bl	CODEC_IO_Write
+ 601 02ae 0644     		add	r6, r6, r0
+ 602 02b0 46F2A032 		movw	r2, #25504
+ 603 02b4 0221     		movs	r1, #2
+ 604 02b6 2046     		mov	r0, r4
+ 605 02b8 FFF7FEFF 		bl	CODEC_IO_Write
+ 606 02bc 0644     		add	r6, r6, r0
+ 607 02be 0222     		movs	r2, #2
+ 608 02c0 40F20661 		movw	r1, #1542
+ 609 02c4 2046     		mov	r0, r4
+ 610 02c6 FFF7FEFF 		bl	CODEC_IO_Write
+ 611 02ca 0644     		add	r6, r6, r0
+ 612 02cc 0222     		movs	r2, #2
+ 613 02ce 40F20761 		movw	r1, #1543
+ 614 02d2 2046     		mov	r0, r4
+ 615 02d4 FFF7FEFF 		bl	CODEC_IO_Write
+ 616 02d8 0644     		add	r6, r6, r0
+ 617 02da 0222     		movs	r2, #2
+ 618 02dc 4FF4C161 		mov	r1, #1544
+ 619 02e0 2046     		mov	r0, r4
+ 620 02e2 FFF7FEFF 		bl	CODEC_IO_Write
+ 621 02e6 0644     		add	r6, r6, r0
+ 622 02e8 0222     		movs	r2, #2
+ 623 02ea 40F20961 		movw	r1, #1545
+ 624 02ee 2046     		mov	r0, r4
+ 625 02f0 FFF7FEFF 		bl	CODEC_IO_Write
+ 626 02f4 0644     		add	r6, r6, r0
+ 627 02f6 0D22     		movs	r2, #13
+ 628 02f8 4FF4E061 		mov	r1, #1792
+ 629 02fc 2046     		mov	r0, r4
+ 630 02fe FFF7FEFF 		bl	CODEC_IO_Write
+ 631 0302 0644     		add	r6, r6, r0
+ 632 0304 71E0     		b	.L51
+ 633              	.L45:
+ 634 0306 1122     		movs	r2, #17
+ 635 0308 2821     		movs	r1, #40
+ 636 030a 2046     		mov	r0, r4
+ 637 030c FFF7FEFF 		bl	CODEC_IO_Write
+ 638 0310 0644     		add	r6, r6, r0
+ 639 0312 3522     		movs	r2, #53
+ 640 0314 2921     		movs	r1, #41
+ 641 0316 2046     		mov	r0, r4
+ 642 0318 FFF7FEFF 		bl	CODEC_IO_Write
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 12
+
+
+ 643 031c 0644     		add	r6, r6, r0
+ 644 031e 3522     		movs	r2, #53
+ 645 0320 2A21     		movs	r1, #42
+ 646 0322 2046     		mov	r0, r4
+ 647 0324 FFF7FEFF 		bl	CODEC_IO_Write
+ 648 0328 0644     		add	r6, r6, r0
+ 649 032a 40F20332 		movw	r2, #771
+ 650 032e 0421     		movs	r1, #4
+ 651 0330 2046     		mov	r0, r4
+ 652 0332 FFF7FEFF 		bl	CODEC_IO_Write
+ 653 0336 0644     		add	r6, r6, r0
+ 654 0338 DB22     		movs	r2, #219
+ 655 033a 4FF48861 		mov	r1, #1088
+ 656 033e 2046     		mov	r0, r4
+ 657 0340 FFF7FEFF 		bl	CODEC_IO_Write
+ 658 0344 0644     		add	r6, r6, r0
+ 659 0346 46F25032 		movw	r2, #25424
+ 660 034a 0221     		movs	r1, #2
+ 661 034c 2046     		mov	r0, r4
+ 662 034e FFF7FEFF 		bl	CODEC_IO_Write
+ 663 0352 0644     		add	r6, r6, r0
+ 664 0354 0222     		movs	r2, #2
+ 665 0356 40F20661 		movw	r1, #1542
+ 666 035a 2046     		mov	r0, r4
+ 667 035c FFF7FEFF 		bl	CODEC_IO_Write
+ 668 0360 0644     		add	r6, r6, r0
+ 669 0362 0222     		movs	r2, #2
+ 670 0364 40F20761 		movw	r1, #1543
+ 671 0368 2046     		mov	r0, r4
+ 672 036a FFF7FEFF 		bl	CODEC_IO_Write
+ 673 036e 0644     		add	r6, r6, r0
+ 674 0370 0D22     		movs	r2, #13
+ 675 0372 4FF4E061 		mov	r1, #1792
+ 676 0376 2046     		mov	r0, r4
+ 677 0378 FFF7FEFF 		bl	CODEC_IO_Write
+ 678 037c 0644     		add	r6, r6, r0
+ 679 037e 34E0     		b	.L51
+ 680              	.L47:
+ 681 0380 4FF44372 		mov	r2, #780
+ 682 0384 0421     		movs	r1, #4
+ 683 0386 2046     		mov	r0, r4
+ 684 0388 FFF7FEFF 		bl	CODEC_IO_Write
+ 685 038c 0644     		add	r6, r6, r0
+ 686 038e DB22     		movs	r2, #219
+ 687 0390 4FF48861 		mov	r1, #1088
+ 688 0394 2046     		mov	r0, r4
+ 689 0396 FFF7FEFF 		bl	CODEC_IO_Write
+ 690 039a 0644     		add	r6, r6, r0
+ 691 039c 46F25032 		movw	r2, #25424
+ 692 03a0 0221     		movs	r1, #2
+ 693 03a2 2046     		mov	r0, r4
+ 694 03a4 FFF7FEFF 		bl	CODEC_IO_Write
+ 695 03a8 0644     		add	r6, r6, r0
+ 696 03aa 0222     		movs	r2, #2
+ 697 03ac 40F20661 		movw	r1, #1542
+ 698 03b0 2046     		mov	r0, r4
+ 699 03b2 FFF7FEFF 		bl	CODEC_IO_Write
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 13
+
+
+ 700 03b6 0644     		add	r6, r6, r0
+ 701 03b8 0222     		movs	r2, #2
+ 702 03ba 40F20761 		movw	r1, #1543
+ 703 03be 2046     		mov	r0, r4
+ 704 03c0 FFF7FEFF 		bl	CODEC_IO_Write
+ 705 03c4 0644     		add	r6, r6, r0
+ 706 03c6 0D22     		movs	r2, #13
+ 707 03c8 4FF4E061 		mov	r1, #1792
+ 708 03cc 2046     		mov	r0, r4
+ 709 03ce FFF7FEFF 		bl	CODEC_IO_Write
+ 710 03d2 0644     		add	r6, r6, r0
+ 711 03d4 09E0     		b	.L51
+ 712              	.L49:
+ 713 03d6 0136     		adds	r6, r6, #1
+ 714 03d8 07E0     		b	.L51
+ 715              	.L85:
+ 716 03da 00BF     		.align	2
+ 717              	.L84:
+ 718 03dc 00000000 		.word	outputEnabled
+ 719 03e0 00000000 		.word	inputEnabled
+ 720              	.L44:
+ 721 03e4 E44B     		ldr	r3, .L86
+ 722 03e6 0022     		movs	r2, #0
+ 723 03e8 1A60     		str	r2, [r3]
+ 724              	.L51:
+ 725 03ea BAF5FA4F 		cmp	r10, #32000
+ 726 03ee 00F02181 		beq	.L52
+ 727 03f2 21D8     		bhi	.L53
+ 728 03f4 BAF57A5F 		cmp	r10, #16000
+ 729 03f8 00F01481 		beq	.L54
+ 730 03fc 0FD8     		bhi	.L55
+ 731 03fe BAF5FA5F 		cmp	r10, #8000
+ 732 0402 2FD0     		beq	.L56
+ 733 0404 42F61133 		movw	r3, #11025
+ 734 0408 9A45     		cmp	r10, r3
+ 735 040a 40F02B81 		bne	.L58
+ 736 040e 1322     		movs	r2, #19
+ 737 0410 4FF40471 		mov	r1, #528
+ 738 0414 2046     		mov	r0, r4
+ 739 0416 FFF7FEFF 		bl	CODEC_IO_Write
+ 740 041a 0644     		add	r6, r6, r0
+ 741 041c 29E0     		b	.L63
+ 742              	.L55:
+ 743 041e 45F22263 		movw	r3, #22050
+ 744 0422 9A45     		cmp	r10, r3
+ 745 0424 40F01E81 		bne	.L58
+ 746 0428 4322     		movs	r2, #67
+ 747 042a 4FF40471 		mov	r1, #528
+ 748 042e 2046     		mov	r0, r4
+ 749 0430 FFF7FEFF 		bl	CODEC_IO_Write
+ 750 0434 0644     		add	r6, r6, r0
+ 751 0436 1CE0     		b	.L63
+ 752              	.L53:
+ 753 0438 4BF68033 		movw	r3, #48000
+ 754 043c 9A45     		cmp	r10, r3
+ 755 043e 00F00181 		beq	.L60
+ 756 0442 CE4B     		ldr	r3, .L86+4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 14
+
+
+ 757 0444 9A45     		cmp	r10, r3
+ 758 0446 00F00581 		beq	.L61
+ 759 044a 4AF64443 		movw	r3, #44100
+ 760 044e 9A45     		cmp	r10, r3
+ 761 0450 40F00881 		bne	.L58
+ 762 0454 7322     		movs	r2, #115
+ 763 0456 4FF40471 		mov	r1, #528
+ 764 045a 2046     		mov	r0, r4
+ 765 045c FFF7FEFF 		bl	CODEC_IO_Write
+ 766 0460 0644     		add	r6, r6, r0
+ 767 0462 06E0     		b	.L63
+ 768              	.L56:
+ 769 0464 0322     		movs	r2, #3
+ 770 0466 4FF40471 		mov	r1, #528
+ 771 046a 2046     		mov	r0, r4
+ 772 046c FFF7FEFF 		bl	CODEC_IO_Write
+ 773 0470 0644     		add	r6, r6, r0
+ 774              	.L63:
+ 775 0472 B5F5006F 		cmp	r5, #2048
+ 776 0476 00F0FD80 		beq	.L78
+ 777 047a 44F21002 		movw	r2, #16400
+ 778 047e 4FF44071 		mov	r1, #768
+ 779 0482 2046     		mov	r0, r4
+ 780 0484 FFF7FEFF 		bl	CODEC_IO_Write
+ 781 0488 0644     		add	r6, r6, r0
+ 782              	.L65:
+ 783 048a 0022     		movs	r2, #0
+ 784 048c 40F20231 		movw	r1, #770
+ 785 0490 2046     		mov	r0, r4
+ 786 0492 FFF7FEFF 		bl	CODEC_IO_Write
+ 787 0496 0644     		add	r6, r6, r0
+ 788 0498 0A22     		movs	r2, #10
+ 789 049a 4FF40271 		mov	r1, #520
+ 790 049e 2046     		mov	r0, r4
+ 791 04a0 FFF7FEFF 		bl	CODEC_IO_Write
+ 792 04a4 00EB060A 		add	r10, r0, r6
+ 793 04a8 0122     		movs	r2, #1
+ 794 04aa 4FF40071 		mov	r1, #512
+ 795 04ae 2046     		mov	r0, r4
+ 796 04b0 FFF7FEFF 		bl	CODEC_IO_Write
+ 797 04b4 8244     		add	r10, r10, r0
+ 798 04b6 002F     		cmp	r7, #0
+ 799 04b8 00F09A80 		beq	.L66
+ 800 04bc 022F     		cmp	r7, #2
+ 801 04be 00F0E280 		beq	.L79
+ 802              	.L67:
+ 803 04c2 4FF44072 		mov	r2, #768
+ 804 04c6 0321     		movs	r1, #3
+ 805 04c8 2046     		mov	r0, r4
+ 806 04ca FFF7FEFF 		bl	CODEC_IO_Write
+ 807 04ce 00EB0A06 		add	r6, r0, r10
+ 808 04d2 0022     		movs	r2, #0
+ 809 04d4 2221     		movs	r1, #34
+ 810 04d6 2046     		mov	r0, r4
+ 811 04d8 FFF7FEFF 		bl	CODEC_IO_Write
+ 812 04dc 0644     		add	r6, r6, r0
+ 813 04de 0022     		movs	r2, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 15
+
+
+ 814 04e0 2321     		movs	r1, #35
+ 815 04e2 2046     		mov	r0, r4
+ 816 04e4 FFF7FEFF 		bl	CODEC_IO_Write
+ 817 04e8 0644     		add	r6, r6, r0
+ 818 04ea 4FF44072 		mov	r2, #768
+ 819 04ee 3621     		movs	r1, #54
+ 820 04f0 2046     		mov	r0, r4
+ 821 04f2 FFF7FEFF 		bl	CODEC_IO_Write
+ 822 04f6 0644     		add	r6, r6, r0
+ 823 04f8 43F20302 		movw	r2, #12291
+ 824 04fc 0121     		movs	r1, #1
+ 825 04fe 2046     		mov	r0, r4
+ 826 0500 FFF7FEFF 		bl	CODEC_IO_Write
+ 827 0504 0644     		add	r6, r6, r0
+ 828 0506 B5F5006F 		cmp	r5, #2048
+ 829 050a 00F0F280 		beq	.L80
+ 830 050e 0522     		movs	r2, #5
+ 831 0510 5121     		movs	r1, #81
+ 832 0512 2046     		mov	r0, r4
+ 833 0514 FFF7FEFF 		bl	CODEC_IO_Write
+ 834 0518 0644     		add	r6, r6, r0
+ 835              	.L71:
+ 836 051a 43F20332 		movw	r2, #13059
+ 837 051e 0121     		movs	r1, #1
+ 838 0520 2046     		mov	r0, r4
+ 839 0522 FFF7FEFF 		bl	CODEC_IO_Write
+ 840 0526 0644     		add	r6, r6, r0
+ 841 0528 2222     		movs	r2, #34
+ 842 052a 6021     		movs	r1, #96
+ 843 052c 2046     		mov	r0, r4
+ 844 052e FFF7FEFF 		bl	CODEC_IO_Write
+ 845 0532 0644     		add	r6, r6, r0
+ 846 0534 49F62572 		movw	r2, #40741
+ 847 0538 4C21     		movs	r1, #76
+ 848 053a 2046     		mov	r0, r4
+ 849 053c FFF7FEFF 		bl	CODEC_IO_Write
+ 850 0540 0644     		add	r6, r6, r0
+ 851 0542 0F20     		movs	r0, #15
+ 852 0544 FFF7FEFF 		bl	AUDIO_IO_Delay
+ 853 0548 0122     		movs	r2, #1
+ 854 054a 2D21     		movs	r1, #45
+ 855 054c 2046     		mov	r0, r4
+ 856 054e FFF7FEFF 		bl	CODEC_IO_Write
+ 857 0552 0644     		add	r6, r6, r0
+ 858 0554 0122     		movs	r2, #1
+ 859 0556 2E21     		movs	r1, #46
+ 860 0558 2046     		mov	r0, r4
+ 861 055a FFF7FEFF 		bl	CODEC_IO_Write
+ 862 055e 0644     		add	r6, r6, r0
+ 863 0560 4FF44C72 		mov	r2, #816
+ 864 0564 0321     		movs	r1, #3
+ 865 0566 2046     		mov	r0, r4
+ 866 0568 FFF7FEFF 		bl	CODEC_IO_Write
+ 867 056c 0644     		add	r6, r6, r0
+ 868 056e 3322     		movs	r2, #51
+ 869 0570 5421     		movs	r1, #84
+ 870 0572 2046     		mov	r0, r4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 16
+
+
+ 871 0574 FFF7FEFF 		bl	CODEC_IO_Write
+ 872 0578 0644     		add	r6, r6, r0
+ 873 057a 40F20110 		movw	r0, #257
+ 874 057e FFF7FEFF 		bl	AUDIO_IO_Delay
+ 875 0582 EE22     		movs	r2, #238
+ 876 0584 6021     		movs	r1, #96
+ 877 0586 2046     		mov	r0, r4
+ 878 0588 FFF7FEFF 		bl	CODEC_IO_Write
+ 879 058c 0644     		add	r6, r6, r0
+ 880 058e C022     		movs	r2, #192
+ 881 0590 4FF4C261 		mov	r1, #1552
+ 882 0594 2046     		mov	r0, r4
+ 883 0596 FFF7FEFF 		bl	CODEC_IO_Write
+ 884 059a 0644     		add	r6, r6, r0
+ 885 059c C022     		movs	r2, #192
+ 886 059e 40F21161 		movw	r1, #1553
+ 887 05a2 2046     		mov	r0, r4
+ 888 05a4 FFF7FEFF 		bl	CODEC_IO_Write
+ 889 05a8 0644     		add	r6, r6, r0
+ 890 05aa 1022     		movs	r2, #16
+ 891 05ac 4FF48461 		mov	r1, #1056
+ 892 05b0 2046     		mov	r0, r4
+ 893 05b2 FFF7FEFF 		bl	CODEC_IO_Write
+ 894 05b6 0644     		add	r6, r6, r0
+ 895 05b8 C022     		movs	r2, #192
+ 896 05ba 40F21261 		movw	r1, #1554
+ 897 05be 2046     		mov	r0, r4
+ 898 05c0 FFF7FEFF 		bl	CODEC_IO_Write
+ 899 05c4 0644     		add	r6, r6, r0
+ 900 05c6 C022     		movs	r2, #192
+ 901 05c8 40F21361 		movw	r1, #1555
+ 902 05cc 2046     		mov	r0, r4
+ 903 05ce FFF7FEFF 		bl	CODEC_IO_Write
+ 904 05d2 0644     		add	r6, r6, r0
+ 905 05d4 1022     		movs	r2, #16
+ 906 05d6 40F22241 		movw	r1, #1058
+ 907 05da 2046     		mov	r0, r4
+ 908 05dc FFF7FEFF 		bl	CODEC_IO_Write
+ 909 05e0 00EB060A 		add	r10, r0, r6
+ 910 05e4 4946     		mov	r1, r9
+ 911 05e6 4046     		mov	r0, r8
+ 912 05e8 FFF7FEFF 		bl	wm8994_SetVolume
+ 913 05ec 43F20337 		movw	r7, #13059
+ 914              	.L66:
+ 915 05f0 ADB1     		cbz	r5, .L35
+ 916 05f2 B5F5007F 		cmp	r5, #512
+ 917 05f6 18BF     		it	ne
+ 918 05f8 B5F5807F 		cmpne	r5, #256
+ 919 05fc 00F08180 		beq	.L81
+ 920 0600 B5F5006F 		cmp	r5, #2048
+ 921 0604 00F09680 		beq	.L82
+ 922 0608 B5F5806F 		cmp	r5, #1024
+ 923 060c 18BF     		it	ne
+ 924 060e B5F5407F 		cmpne	r5, #768
+ 925 0612 00F0B780 		beq	.L83
+ 926              	.L74:
+ 927 0616 4946     		mov	r1, r9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 17
+
+
+ 928 0618 4046     		mov	r0, r8
+ 929 061a FFF7FEFF 		bl	wm8994_SetVolume
+ 930              	.L35:
+ 931 061e 5046     		mov	r0, r10
+ 932 0620 BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 933              	.L54:
+ 934 0624 3322     		movs	r2, #51
+ 935 0626 4FF40471 		mov	r1, #528
+ 936 062a 2046     		mov	r0, r4
+ 937 062c FFF7FEFF 		bl	CODEC_IO_Write
+ 938 0630 0644     		add	r6, r6, r0
+ 939 0632 1EE7     		b	.L63
+ 940              	.L52:
+ 941 0634 6322     		movs	r2, #99
+ 942 0636 4FF40471 		mov	r1, #528
+ 943 063a 2046     		mov	r0, r4
+ 944 063c FFF7FEFF 		bl	CODEC_IO_Write
+ 945 0640 0644     		add	r6, r6, r0
+ 946 0642 16E7     		b	.L63
+ 947              	.L60:
+ 948 0644 8322     		movs	r2, #131
+ 949 0646 4FF40471 		mov	r1, #528
+ 950 064a 2046     		mov	r0, r4
+ 951 064c FFF7FEFF 		bl	CODEC_IO_Write
+ 952 0650 0644     		add	r6, r6, r0
+ 953 0652 0EE7     		b	.L63
+ 954              	.L61:
+ 955 0654 A322     		movs	r2, #163
+ 956 0656 4FF40471 		mov	r1, #528
+ 957 065a 2046     		mov	r0, r4
+ 958 065c FFF7FEFF 		bl	CODEC_IO_Write
+ 959 0660 0644     		add	r6, r6, r0
+ 960 0662 06E7     		b	.L63
+ 961              	.L58:
+ 962 0664 8322     		movs	r2, #131
+ 963 0666 4FF40471 		mov	r1, #528
+ 964 066a 2046     		mov	r0, r4
+ 965 066c FFF7FEFF 		bl	CODEC_IO_Write
+ 966 0670 0644     		add	r6, r6, r0
+ 967 0672 FEE6     		b	.L63
+ 968              	.L78:
+ 969 0674 44F21802 		movw	r2, #16408
+ 970 0678 4FF44071 		mov	r1, #768
+ 971 067c 2046     		mov	r0, r4
+ 972 067e FFF7FEFF 		bl	CODEC_IO_Write
+ 973 0682 0644     		add	r6, r6, r0
+ 974 0684 01E7     		b	.L65
+ 975              	.L79:
+ 976 0686 4FF48072 		mov	r2, #256
+ 977 068a 2D21     		movs	r1, #45
+ 978 068c 2046     		mov	r0, r4
+ 979 068e FFF7FEFF 		bl	CODEC_IO_Write
+ 980 0692 00EB0A07 		add	r7, r0, r10
+ 981 0696 4FF48072 		mov	r2, #256
+ 982 069a 2E21     		movs	r1, #46
+ 983 069c 2046     		mov	r0, r4
+ 984 069e FFF7FEFF 		bl	CODEC_IO_Write
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 18
+
+
+ 985 06a2 0744     		add	r7, r7, r0
+ 986 06a4 364B     		ldr	r3, .L86+8
+ 987 06a6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 988 06a8 BBB1     		cbz	r3, .L68
+ 989 06aa 4FF40142 		mov	r2, #33024
+ 990 06ae 4FF48871 		mov	r1, #272
+ 991 06b2 2046     		mov	r0, r4
+ 992 06b4 FFF7FEFF 		bl	CODEC_IO_Write
+ 993 06b8 0744     		add	r7, r7, r0
+ 994 06ba 314B     		ldr	r3, .L86+8
+ 995 06bc 0022     		movs	r2, #0
+ 996 06be 1A70     		strb	r2, [r3]
+ 997 06c0 4FF49670 		mov	r0, #300
+ 998 06c4 FFF7FEFF 		bl	AUDIO_IO_Delay
+ 999              	.L69:
+ 1000 06c8 0022     		movs	r2, #0
+ 1001 06ca 4FF48461 		mov	r1, #1056
+ 1002 06ce 2046     		mov	r0, r4
+ 1003 06d0 FFF7FEFF 		bl	CODEC_IO_Write
+ 1004 06d4 00EB070A 		add	r10, r0, r7
+ 1005 06d8 F3E6     		b	.L67
+ 1006              	.L68:
+ 1007 06da 48F20812 		movw	r2, #33032
+ 1008 06de 4FF48871 		mov	r1, #272
+ 1009 06e2 2046     		mov	r0, r4
+ 1010 06e4 FFF7FEFF 		bl	CODEC_IO_Write
+ 1011 06e8 0744     		add	r7, r7, r0
+ 1012 06ea 3220     		movs	r0, #50
+ 1013 06ec FFF7FEFF 		bl	AUDIO_IO_Delay
+ 1014 06f0 EAE7     		b	.L69
+ 1015              	.L80:
+ 1016 06f2 40F20522 		movw	r2, #517
+ 1017 06f6 5121     		movs	r1, #81
+ 1018 06f8 2046     		mov	r0, r4
+ 1019 06fa FFF7FEFF 		bl	CODEC_IO_Write
+ 1020 06fe 0644     		add	r6, r6, r0
+ 1021 0700 0BE7     		b	.L71
+ 1022              	.L81:
+ 1023 0702 47F01302 		orr	r2, r7, #19
+ 1024 0706 0121     		movs	r1, #1
+ 1025 0708 2046     		mov	r0, r4
+ 1026 070a FFF7FEFF 		bl	CODEC_IO_Write
+ 1027 070e 00EB0A05 		add	r5, r0, r10
+ 1028 0712 0222     		movs	r2, #2
+ 1029 0714 4FF4C461 		mov	r1, #1568
+ 1030 0718 2046     		mov	r0, r4
+ 1031 071a FFF7FEFF 		bl	CODEC_IO_Write
+ 1032 071e 0544     		add	r5, r5, r0
+ 1033 0720 4FF46052 		mov	r2, #14336
+ 1034 0724 40F21141 		movw	r1, #1041
+ 1035 0728 2046     		mov	r0, r4
+ 1036 072a FFF7FEFF 		bl	CODEC_IO_Write
+ 1037 072e 00EB050A 		add	r10, r0, r5
+ 1038 0732 70E7     		b	.L74
+ 1039              	.L82:
+ 1040 0734 47F01302 		orr	r2, r7, #19
+ 1041 0738 0121     		movs	r1, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 19
+
+
+ 1042 073a 2046     		mov	r0, r4
+ 1043 073c FFF7FEFF 		bl	CODEC_IO_Write
+ 1044 0740 00EB0A05 		add	r5, r0, r10
+ 1045 0744 0222     		movs	r2, #2
+ 1046 0746 4FF4C461 		mov	r1, #1568
+ 1047 074a 2046     		mov	r0, r4
+ 1048 074c FFF7FEFF 		bl	CODEC_IO_Write
+ 1049 0750 0544     		add	r5, r5, r0
+ 1050 0752 4FF4C052 		mov	r2, #6144
+ 1051 0756 4FF48261 		mov	r1, #1040
+ 1052 075a 2046     		mov	r0, r4
+ 1053 075c FFF7FEFF 		bl	CODEC_IO_Write
+ 1054 0760 0544     		add	r5, r5, r0
+ 1055 0762 4FF4C052 		mov	r2, #6144
+ 1056 0766 40F21141 		movw	r1, #1041
+ 1057 076a 2046     		mov	r0, r4
+ 1058 076c FFF7FEFF 		bl	CODEC_IO_Write
+ 1059 0770 00EB050A 		add	r10, r0, r5
+ 1060 0774 4FE7     		b	.L74
+ 1061              	.L87:
+ 1062 0776 00BF     		.align	2
+ 1063              	.L86:
+ 1064 0778 00000000 		.word	inputEnabled
+ 1065 077c 00770100 		.word	96000
+ 1066 0780 00000000 		.word	ColdStartup
+ 1067              	.L83:
+ 1068 0784 0B22     		movs	r2, #11
+ 1069 0786 1821     		movs	r1, #24
+ 1070 0788 2046     		mov	r0, r4
+ 1071 078a FFF7FEFF 		bl	CODEC_IO_Write
+ 1072 078e 00EB0A05 		add	r5, r0, r10
+ 1073 0792 0B22     		movs	r2, #11
+ 1074 0794 1A21     		movs	r1, #26
+ 1075 0796 2046     		mov	r0, r4
+ 1076 0798 FFF7FEFF 		bl	CODEC_IO_Write
+ 1077 079c 0544     		add	r5, r5, r0
+ 1078 079e 4FF4C052 		mov	r2, #6144
+ 1079 07a2 4FF48261 		mov	r1, #1040
+ 1080 07a6 2046     		mov	r0, r4
+ 1081 07a8 FFF7FEFF 		bl	CODEC_IO_Write
+ 1082 07ac 00EB050A 		add	r10, r0, r5
+ 1083 07b0 31E7     		b	.L74
+ 1085 07b2 00BF     		.section	.text.wm8994_SetOutputMode,"ax",%progbits
+ 1086              		.align	1
+ 1087              		.global	wm8994_SetOutputMode
+ 1088              		.syntax unified
+ 1089              		.thumb
+ 1090              		.thumb_func
+ 1092              	wm8994_SetOutputMode:
+ 1093              		@ args = 0, pretend = 0, frame = 0
+ 1094              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1095 0000 38B5     		push	{r3, r4, r5, lr}
+ 1096 0002 0229     		cmp	r1, #2
+ 1097 0004 28D0     		beq	.L89
+ 1098 0006 0329     		cmp	r1, #3
+ 1099 0008 4BD0     		beq	.L90
+ 1100 000a 0129     		cmp	r1, #1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 20
+
+
+ 1101 000c 6ED1     		bne	.L91
+ 1102 000e C4B2     		uxtb	r4, r0
+ 1103 0010 40F60C42 		movw	r2, #3084
+ 1104 0014 0521     		movs	r1, #5
+ 1105 0016 2046     		mov	r0, r4
+ 1106 0018 FFF7FEFF 		bl	CODEC_IO_Write
+ 1107 001c 0546     		mov	r5, r0
+ 1108 001e 0022     		movs	r2, #0
+ 1109 0020 40F20161 		movw	r1, #1537
+ 1110 0024 2046     		mov	r0, r4
+ 1111 0026 FFF7FEFF 		bl	CODEC_IO_Write
+ 1112 002a 0544     		add	r5, r5, r0
+ 1113 002c 0022     		movs	r2, #0
+ 1114 002e 40F20261 		movw	r1, #1538
+ 1115 0032 2046     		mov	r0, r4
+ 1116 0034 FFF7FEFF 		bl	CODEC_IO_Write
+ 1117 0038 0544     		add	r5, r5, r0
+ 1118 003a 0222     		movs	r2, #2
+ 1119 003c 40F20461 		movw	r1, #1540
+ 1120 0040 2046     		mov	r0, r4
+ 1121 0042 FFF7FEFF 		bl	CODEC_IO_Write
+ 1122 0046 0544     		add	r5, r5, r0
+ 1123 0048 0222     		movs	r2, #2
+ 1124 004a 40F20561 		movw	r1, #1541
+ 1125 004e 2046     		mov	r0, r4
+ 1126 0050 FFF7FEFF 		bl	CODEC_IO_Write
+ 1127 0054 2844     		add	r0, r0, r5
+ 1128              	.L88:
+ 1129 0056 38BD     		pop	{r3, r4, r5, pc}
+ 1130              	.L89:
+ 1131 0058 C4B2     		uxtb	r4, r0
+ 1132 005a 40F20332 		movw	r2, #771
+ 1133 005e 0521     		movs	r1, #5
+ 1134 0060 2046     		mov	r0, r4
+ 1135 0062 FFF7FEFF 		bl	CODEC_IO_Write
+ 1136 0066 0546     		mov	r5, r0
+ 1137 0068 0122     		movs	r2, #1
+ 1138 006a 40F20161 		movw	r1, #1537
+ 1139 006e 2046     		mov	r0, r4
+ 1140 0070 FFF7FEFF 		bl	CODEC_IO_Write
+ 1141 0074 0544     		add	r5, r5, r0
+ 1142 0076 0122     		movs	r2, #1
+ 1143 0078 40F20261 		movw	r1, #1538
+ 1144 007c 2046     		mov	r0, r4
+ 1145 007e FFF7FEFF 		bl	CODEC_IO_Write
+ 1146 0082 0544     		add	r5, r5, r0
+ 1147 0084 0022     		movs	r2, #0
+ 1148 0086 40F20461 		movw	r1, #1540
+ 1149 008a 2046     		mov	r0, r4
+ 1150 008c FFF7FEFF 		bl	CODEC_IO_Write
+ 1151 0090 0544     		add	r5, r5, r0
+ 1152 0092 0022     		movs	r2, #0
+ 1153 0094 40F20561 		movw	r1, #1541
+ 1154 0098 2046     		mov	r0, r4
+ 1155 009a FFF7FEFF 		bl	CODEC_IO_Write
+ 1156 009e 2844     		add	r0, r0, r5
+ 1157 00a0 D9E7     		b	.L88
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 21
+
+
+ 1158              	.L90:
+ 1159 00a2 C4B2     		uxtb	r4, r0
+ 1160 00a4 40F60F72 		movw	r2, #3855
+ 1161 00a8 0521     		movs	r1, #5
+ 1162 00aa 2046     		mov	r0, r4
+ 1163 00ac FFF7FEFF 		bl	CODEC_IO_Write
+ 1164 00b0 0546     		mov	r5, r0
+ 1165 00b2 0122     		movs	r2, #1
+ 1166 00b4 40F20161 		movw	r1, #1537
+ 1167 00b8 2046     		mov	r0, r4
+ 1168 00ba FFF7FEFF 		bl	CODEC_IO_Write
+ 1169 00be 0544     		add	r5, r5, r0
+ 1170 00c0 0122     		movs	r2, #1
+ 1171 00c2 40F20261 		movw	r1, #1538
+ 1172 00c6 2046     		mov	r0, r4
+ 1173 00c8 FFF7FEFF 		bl	CODEC_IO_Write
+ 1174 00cc 0544     		add	r5, r5, r0
+ 1175 00ce 0222     		movs	r2, #2
+ 1176 00d0 40F20461 		movw	r1, #1540
+ 1177 00d4 2046     		mov	r0, r4
+ 1178 00d6 FFF7FEFF 		bl	CODEC_IO_Write
+ 1179 00da 0544     		add	r5, r5, r0
+ 1180 00dc 0222     		movs	r2, #2
+ 1181 00de 40F20561 		movw	r1, #1541
+ 1182 00e2 2046     		mov	r0, r4
+ 1183 00e4 FFF7FEFF 		bl	CODEC_IO_Write
+ 1184 00e8 2844     		add	r0, r0, r5
+ 1185 00ea B4E7     		b	.L88
+ 1186              	.L91:
+ 1187 00ec C4B2     		uxtb	r4, r0
+ 1188 00ee 40F20332 		movw	r2, #771
+ 1189 00f2 0521     		movs	r1, #5
+ 1190 00f4 2046     		mov	r0, r4
+ 1191 00f6 FFF7FEFF 		bl	CODEC_IO_Write
+ 1192 00fa 0546     		mov	r5, r0
+ 1193 00fc 0122     		movs	r2, #1
+ 1194 00fe 40F20161 		movw	r1, #1537
+ 1195 0102 2046     		mov	r0, r4
+ 1196 0104 FFF7FEFF 		bl	CODEC_IO_Write
+ 1197 0108 0544     		add	r5, r5, r0
+ 1198 010a 0122     		movs	r2, #1
+ 1199 010c 40F20261 		movw	r1, #1538
+ 1200 0110 2046     		mov	r0, r4
+ 1201 0112 FFF7FEFF 		bl	CODEC_IO_Write
+ 1202 0116 0544     		add	r5, r5, r0
+ 1203 0118 0022     		movs	r2, #0
+ 1204 011a 40F20461 		movw	r1, #1540
+ 1205 011e 2046     		mov	r0, r4
+ 1206 0120 FFF7FEFF 		bl	CODEC_IO_Write
+ 1207 0124 0544     		add	r5, r5, r0
+ 1208 0126 0022     		movs	r2, #0
+ 1209 0128 40F20561 		movw	r1, #1541
+ 1210 012c 2046     		mov	r0, r4
+ 1211 012e FFF7FEFF 		bl	CODEC_IO_Write
+ 1212 0132 2844     		add	r0, r0, r5
+ 1213 0134 8FE7     		b	.L88
+ 1215              		.section	.text.wm8994_SetFrequency,"ax",%progbits
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 22
+
+
+ 1216              		.align	1
+ 1217              		.global	wm8994_SetFrequency
+ 1218              		.syntax unified
+ 1219              		.thumb
+ 1220              		.thumb_func
+ 1222              	wm8994_SetFrequency:
+ 1223              		@ args = 0, pretend = 0, frame = 0
+ 1224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1225 0000 08B5     		push	{r3, lr}
+ 1226 0002 B1F5FA4F 		cmp	r1, #32000
+ 1227 0006 3DD0     		beq	.L95
+ 1228 0008 1CD8     		bhi	.L96
+ 1229 000a B1F57A5F 		cmp	r1, #16000
+ 1230 000e 32D0     		beq	.L97
+ 1231 0010 0DD8     		bhi	.L98
+ 1232 0012 B1F5FA5F 		cmp	r1, #8000
+ 1233 0016 27D0     		beq	.L99
+ 1234 0018 42F61133 		movw	r3, #11025
+ 1235 001c 9942     		cmp	r1, r3
+ 1236 001e 46D1     		bne	.L101
+ 1237 0020 1322     		movs	r2, #19
+ 1238 0022 4FF40471 		mov	r1, #528
+ 1239 0026 C0B2     		uxtb	r0, r0
+ 1240 0028 FFF7FEFF 		bl	CODEC_IO_Write
+ 1241 002c 22E0     		b	.L94
+ 1242              	.L98:
+ 1243 002e 45F22263 		movw	r3, #22050
+ 1244 0032 9942     		cmp	r1, r3
+ 1245 0034 3BD1     		bne	.L101
+ 1246 0036 4322     		movs	r2, #67
+ 1247 0038 4FF40471 		mov	r1, #528
+ 1248 003c C0B2     		uxtb	r0, r0
+ 1249 003e FFF7FEFF 		bl	CODEC_IO_Write
+ 1250 0042 17E0     		b	.L94
+ 1251              	.L96:
+ 1252 0044 4BF68033 		movw	r3, #48000
+ 1253 0048 9942     		cmp	r1, r3
+ 1254 004a 22D0     		beq	.L103
+ 1255 004c 1B4B     		ldr	r3, .L108
+ 1256 004e 9942     		cmp	r1, r3
+ 1257 0050 26D0     		beq	.L104
+ 1258 0052 4AF64443 		movw	r3, #44100
+ 1259 0056 9942     		cmp	r1, r3
+ 1260 0058 29D1     		bne	.L101
+ 1261 005a 7322     		movs	r2, #115
+ 1262 005c 4FF40471 		mov	r1, #528
+ 1263 0060 C0B2     		uxtb	r0, r0
+ 1264 0062 FFF7FEFF 		bl	CODEC_IO_Write
+ 1265 0066 05E0     		b	.L94
+ 1266              	.L99:
+ 1267 0068 0322     		movs	r2, #3
+ 1268 006a 4FF40471 		mov	r1, #528
+ 1269 006e C0B2     		uxtb	r0, r0
+ 1270 0070 FFF7FEFF 		bl	CODEC_IO_Write
+ 1271              	.L94:
+ 1272 0074 08BD     		pop	{r3, pc}
+ 1273              	.L97:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 23
+
+
+ 1274 0076 3322     		movs	r2, #51
+ 1275 0078 4FF40471 		mov	r1, #528
+ 1276 007c C0B2     		uxtb	r0, r0
+ 1277 007e FFF7FEFF 		bl	CODEC_IO_Write
+ 1278 0082 F7E7     		b	.L94
+ 1279              	.L95:
+ 1280 0084 6322     		movs	r2, #99
+ 1281 0086 4FF40471 		mov	r1, #528
+ 1282 008a C0B2     		uxtb	r0, r0
+ 1283 008c FFF7FEFF 		bl	CODEC_IO_Write
+ 1284 0090 F0E7     		b	.L94
+ 1285              	.L103:
+ 1286 0092 8322     		movs	r2, #131
+ 1287 0094 4FF40471 		mov	r1, #528
+ 1288 0098 C0B2     		uxtb	r0, r0
+ 1289 009a FFF7FEFF 		bl	CODEC_IO_Write
+ 1290 009e E9E7     		b	.L94
+ 1291              	.L104:
+ 1292 00a0 A322     		movs	r2, #163
+ 1293 00a2 4FF40471 		mov	r1, #528
+ 1294 00a6 C0B2     		uxtb	r0, r0
+ 1295 00a8 FFF7FEFF 		bl	CODEC_IO_Write
+ 1296 00ac E2E7     		b	.L94
+ 1297              	.L101:
+ 1298 00ae 8322     		movs	r2, #131
+ 1299 00b0 4FF40471 		mov	r1, #528
+ 1300 00b4 C0B2     		uxtb	r0, r0
+ 1301 00b6 FFF7FEFF 		bl	CODEC_IO_Write
+ 1302 00ba DBE7     		b	.L94
+ 1303              	.L109:
+ 1304              		.align	2
+ 1305              	.L108:
+ 1306 00bc 00770100 		.word	96000
+ 1308              		.section	.text.wm8994_Reset,"ax",%progbits
+ 1309              		.align	1
+ 1310              		.global	wm8994_Reset
+ 1311              		.syntax unified
+ 1312              		.thumb
+ 1313              		.thumb_func
+ 1315              	wm8994_Reset:
+ 1316              		@ args = 0, pretend = 0, frame = 0
+ 1317              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1318 0000 08B5     		push	{r3, lr}
+ 1319 0002 0022     		movs	r2, #0
+ 1320 0004 1146     		mov	r1, r2
+ 1321 0006 C0B2     		uxtb	r0, r0
+ 1322 0008 FFF7FEFF 		bl	CODEC_IO_Write
+ 1323 000c 0023     		movs	r3, #0
+ 1324 000e 024A     		ldr	r2, .L112
+ 1325 0010 1360     		str	r3, [r2]
+ 1326 0012 024A     		ldr	r2, .L112+4
+ 1327 0014 1360     		str	r3, [r2]
+ 1328 0016 08BD     		pop	{r3, pc}
+ 1329              	.L113:
+ 1330              		.align	2
+ 1331              	.L112:
+ 1332 0018 00000000 		.word	outputEnabled
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 24
+
+
+ 1333 001c 00000000 		.word	inputEnabled
+ 1335              		.section	.text.wm8994_DeInit,"ax",%progbits
+ 1336              		.align	1
+ 1337              		.global	wm8994_DeInit
+ 1338              		.syntax unified
+ 1339              		.thumb
+ 1340              		.thumb_func
+ 1342              	wm8994_DeInit:
+ 1343              		@ args = 0, pretend = 0, frame = 0
+ 1344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1345 0000 08B5     		push	{r3, lr}
+ 1346 0002 FFF7FEFF 		bl	AUDIO_IO_DeInit
+ 1347 0006 08BD     		pop	{r3, pc}
+ 1349              		.section	.text.wm8994_ReadID,"ax",%progbits
+ 1350              		.align	1
+ 1351              		.global	wm8994_ReadID
+ 1352              		.syntax unified
+ 1353              		.thumb
+ 1354              		.thumb_func
+ 1356              	wm8994_ReadID:
+ 1357              		@ args = 0, pretend = 0, frame = 0
+ 1358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1359 0000 10B5     		push	{r4, lr}
+ 1360 0002 0446     		mov	r4, r0
+ 1361 0004 FFF7FEFF 		bl	AUDIO_IO_Init
+ 1362 0008 0021     		movs	r1, #0
+ 1363 000a E0B2     		uxtb	r0, r4
+ 1364 000c FFF7FEFF 		bl	AUDIO_IO_Read
+ 1365 0010 10BD     		pop	{r4, pc}
+ 1367              		.section	.data.ColdStartup,"aw"
+ 1370              	ColdStartup:
+ 1371 0000 01       		.byte	1
+ 1372              		.section	.bss.inputEnabled,"aw",%nobits
+ 1373              		.align	2
+ 1376              	inputEnabled:
+ 1377 0000 00000000 		.space	4
+ 1378              		.section	.bss.outputEnabled,"aw",%nobits
+ 1379              		.align	2
+ 1382              	outputEnabled:
+ 1383 0000 00000000 		.space	4
+ 1384              		.global	wm8994_drv
+ 1385              		.section	.data.wm8994_drv,"aw"
+ 1386              		.align	2
+ 1389              	wm8994_drv:
+ 1390 0000 00000000 		.word	wm8994_Init
+ 1391 0004 00000000 		.word	wm8994_DeInit
+ 1392 0008 00000000 		.word	wm8994_ReadID
+ 1393 000c 00000000 		.word	wm8994_Play
+ 1394 0010 00000000 		.word	wm8994_Pause
+ 1395 0014 00000000 		.word	wm8994_Resume
+ 1396 0018 00000000 		.word	wm8994_Stop
+ 1397 001c 00000000 		.word	wm8994_SetFrequency
+ 1398 0020 00000000 		.word	wm8994_SetVolume
+ 1399 0024 00000000 		.word	wm8994_SetMute
+ 1400 0028 00000000 		.word	wm8994_SetOutputMode
+ 1401 002c 00000000 		.word	wm8994_Reset
+ 1402              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 25
+
+
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 wm8994.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:17     .text.CODEC_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:22     .text.CODEC_IO_Write:00000000 CODEC_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:31     .text.wm8994_SetMute:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:37     .text.wm8994_SetMute:00000000 wm8994_SetMute
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:76     .text.wm8994_SetMute:00000054 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1382   .bss.outputEnabled:00000000 outputEnabled
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:79     .text.wm8994_Play:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:85     .text.wm8994_Play:00000000 wm8994_Play
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:94     .text.wm8994_Resume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:100    .text.wm8994_Resume:00000000 wm8994_Resume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:109    .text.wm8994_Pause:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:115    .text.wm8994_Pause:00000000 wm8994_Pause
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:131    .text.wm8994_Stop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:137    .text.wm8994_Stop:00000000 wm8994_Stop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:193    .text.wm8994_Stop:00000078 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:196    .text.wm8994_SetVolume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:202    .text.wm8994_SetVolume:00000000 wm8994_SetVolume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:331    .text.wm8994_SetVolume:0000012c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1376   .bss.inputEnabled:00000000 inputEnabled
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:336    .text.wm8994_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:342    .text.wm8994_Init:00000000 wm8994_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:718    .text.wm8994_Init:000003dc $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:721    .text.wm8994_Init:000003e4 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1064   .text.wm8994_Init:00000778 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1370   .data.ColdStartup:00000000 ColdStartup
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1068   .text.wm8994_Init:00000784 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1086   .text.wm8994_SetOutputMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1092   .text.wm8994_SetOutputMode:00000000 wm8994_SetOutputMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1216   .text.wm8994_SetFrequency:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1222   .text.wm8994_SetFrequency:00000000 wm8994_SetFrequency
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1306   .text.wm8994_SetFrequency:000000bc $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1309   .text.wm8994_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1315   .text.wm8994_Reset:00000000 wm8994_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1332   .text.wm8994_Reset:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1336   .text.wm8994_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1342   .text.wm8994_DeInit:00000000 wm8994_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1350   .text.wm8994_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1356   .text.wm8994_ReadID:00000000 wm8994_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1373   .bss.inputEnabled:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1379   .bss.outputEnabled:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1389   .data.wm8994_drv:00000000 wm8994_drv
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccOve1Ph.s:1386   .data.wm8994_drv:00000000 $d
+
+UNDEFINED SYMBOLS
+AUDIO_IO_Write
+AUDIO_IO_Init
+AUDIO_IO_Delay
+AUDIO_IO_DeInit
+AUDIO_IO_Read

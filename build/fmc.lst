@@ -1,0 +1,316 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"fmc.c"
+  15              		.text
+  16              		.section	.text.HAL_FMC_MspInit,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	HAL_FMC_MspInit:
+  23              		@ args = 0, pretend = 0, frame = 24
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  26 0004 86B0     		sub	sp, sp, #24
+  27 0006 0023     		movs	r3, #0
+  28 0008 0193     		str	r3, [sp, #4]
+  29 000a 0293     		str	r3, [sp, #8]
+  30 000c 0393     		str	r3, [sp, #12]
+  31 000e 0493     		str	r3, [sp, #16]
+  32 0010 0593     		str	r3, [sp, #20]
+  33 0012 304B     		ldr	r3, .L6
+  34 0014 1B68     		ldr	r3, [r3]
+  35 0016 13B1     		cbz	r3, .L5
+  36              	.L1:
+  37 0018 06B0     		add	sp, sp, #24
+  38              		@ sp needed
+  39 001a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+  40              	.L5:
+  41 001e 2D4B     		ldr	r3, .L6
+  42 0020 0122     		movs	r2, #1
+  43 0022 1A60     		str	r2, [r3]
+  44 0024 2C4B     		ldr	r3, .L6+4
+  45 0026 9A6B     		ldr	r2, [r3, #56]
+  46 0028 42F00102 		orr	r2, r2, #1
+  47 002c 9A63     		str	r2, [r3, #56]
+  48 002e 9B6B     		ldr	r3, [r3, #56]
+  49 0030 03F00103 		and	r3, r3, #1
+  50 0034 0093     		str	r3, [sp]
+  51 0036 009B     		ldr	r3, [sp]
+  52 0038 4FF68373 		movw	r3, #65411
+  53 003c 0193     		str	r3, [sp, #4]
+  54 003e 0227     		movs	r7, #2
+  55 0040 0297     		str	r7, [sp, #8]
+  56 0042 0326     		movs	r6, #3
+  57 0044 0496     		str	r6, [sp, #16]
+  58 0046 0C25     		movs	r5, #12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 2
+
+
+  59 0048 0595     		str	r5, [sp, #20]
+  60 004a 01AC     		add	r4, sp, #4
+  61 004c 2146     		mov	r1, r4
+  62 004e 2348     		ldr	r0, .L6+8
+  63 0050 FFF7FEFF 		bl	HAL_GPIO_Init
+  64 0054 48F23713 		movw	r3, #33079
+  65 0058 0193     		str	r3, [sp, #4]
+  66 005a 0297     		str	r7, [sp, #8]
+  67 005c 4FF00008 		mov	r8, #0
+  68 0060 CDF80C80 		str	r8, [sp, #12]
+  69 0064 0496     		str	r6, [sp, #16]
+  70 0066 0595     		str	r5, [sp, #20]
+  71 0068 2146     		mov	r1, r4
+  72 006a 1D48     		ldr	r0, .L6+12
+  73 006c FFF7FEFF 		bl	HAL_GPIO_Init
+  74 0070 4CF20373 		movw	r3, #50947
+  75 0074 0193     		str	r3, [sp, #4]
+  76 0076 0297     		str	r7, [sp, #8]
+  77 0078 CDF80C80 		str	r8, [sp, #12]
+  78 007c 0496     		str	r6, [sp, #16]
+  79 007e 0595     		str	r5, [sp, #20]
+  80 0080 2146     		mov	r1, r4
+  81 0082 1848     		ldr	r0, .L6+16
+  82 0084 FFF7FEFF 		bl	HAL_GPIO_Init
+  83 0088 40F2FF63 		movw	r3, #1791
+  84 008c 0193     		str	r3, [sp, #4]
+  85 008e 0297     		str	r7, [sp, #8]
+  86 0090 CDF80C80 		str	r8, [sp, #12]
+  87 0094 0496     		str	r6, [sp, #16]
+  88 0096 0595     		str	r5, [sp, #20]
+  89 0098 2146     		mov	r1, r4
+  90 009a 1348     		ldr	r0, .L6+20
+  91 009c FFF7FEFF 		bl	HAL_GPIO_Init
+  92 00a0 4FF63F03 		movw	r3, #63551
+  93 00a4 0193     		str	r3, [sp, #4]
+  94 00a6 0297     		str	r7, [sp, #8]
+  95 00a8 CDF80C80 		str	r8, [sp, #12]
+  96 00ac 0496     		str	r6, [sp, #16]
+  97 00ae 0595     		str	r5, [sp, #20]
+  98 00b0 2146     		mov	r1, r4
+  99 00b2 0E48     		ldr	r0, .L6+24
+ 100 00b4 FFF7FEFF 		bl	HAL_GPIO_Init
+ 101 00b8 4FF62C73 		movw	r3, #65324
+ 102 00bc 0193     		str	r3, [sp, #4]
+ 103 00be 0297     		str	r7, [sp, #8]
+ 104 00c0 CDF80C80 		str	r8, [sp, #12]
+ 105 00c4 0496     		str	r6, [sp, #16]
+ 106 00c6 0595     		str	r5, [sp, #20]
+ 107 00c8 2146     		mov	r1, r4
+ 108 00ca 0948     		ldr	r0, .L6+28
+ 109 00cc FFF7FEFF 		bl	HAL_GPIO_Init
+ 110 00d0 A2E7     		b	.L1
+ 111              	.L7:
+ 112 00d2 00BF     		.align	2
+ 113              	.L6:
+ 114 00d4 00000000 		.word	FMC_Initialized
+ 115 00d8 00380240 		.word	1073887232
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 3
+
+
+ 116 00dc 00100240 		.word	1073876992
+ 117 00e0 00180240 		.word	1073879040
+ 118 00e4 000C0240 		.word	1073875968
+ 119 00e8 00200240 		.word	1073881088
+ 120 00ec 00140240 		.word	1073878016
+ 121 00f0 001C0240 		.word	1073880064
+ 123              		.section	.text.HAL_FMC_MspDeInit,"ax",%progbits
+ 124              		.align	1
+ 125              		.syntax unified
+ 126              		.thumb
+ 127              		.thumb_func
+ 129              	HAL_FMC_MspDeInit:
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132 0000 08B5     		push	{r3, lr}
+ 133 0002 154B     		ldr	r3, .L12
+ 134 0004 1B68     		ldr	r3, [r3]
+ 135 0006 03B1     		cbz	r3, .L11
+ 136              	.L8:
+ 137 0008 08BD     		pop	{r3, pc}
+ 138              	.L11:
+ 139 000a 134B     		ldr	r3, .L12
+ 140 000c 0122     		movs	r2, #1
+ 141 000e 1A60     		str	r2, [r3]
+ 142 0010 124A     		ldr	r2, .L12+4
+ 143 0012 936B     		ldr	r3, [r2, #56]
+ 144 0014 23F00103 		bic	r3, r3, #1
+ 145 0018 9363     		str	r3, [r2, #56]
+ 146 001a 4FF68371 		movw	r1, #65411
+ 147 001e 1048     		ldr	r0, .L12+8
+ 148 0020 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 149 0024 48F23711 		movw	r1, #33079
+ 150 0028 0E48     		ldr	r0, .L12+12
+ 151 002a FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 152 002e 4CF20371 		movw	r1, #50947
+ 153 0032 0D48     		ldr	r0, .L12+16
+ 154 0034 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 155 0038 40F2FF61 		movw	r1, #1791
+ 156 003c 0B48     		ldr	r0, .L12+20
+ 157 003e FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 158 0042 4FF63F01 		movw	r1, #63551
+ 159 0046 0A48     		ldr	r0, .L12+24
+ 160 0048 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 161 004c 4FF62C71 		movw	r1, #65324
+ 162 0050 0848     		ldr	r0, .L12+28
+ 163 0052 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 164 0056 D7E7     		b	.L8
+ 165              	.L13:
+ 166              		.align	2
+ 167              	.L12:
+ 168 0058 00000000 		.word	FMC_DeInitialized
+ 169 005c 00380240 		.word	1073887232
+ 170 0060 00100240 		.word	1073876992
+ 171 0064 00180240 		.word	1073879040
+ 172 0068 000C0240 		.word	1073875968
+ 173 006c 00200240 		.word	1073881088
+ 174 0070 00140240 		.word	1073878016
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 4
+
+
+ 175 0074 001C0240 		.word	1073880064
+ 177              		.section	.text.MX_FMC_Init,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	MX_FMC_Init
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 184              	MX_FMC_Init:
+ 185              		@ args = 0, pretend = 0, frame = 32
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187 0000 10B5     		push	{r4, lr}
+ 188 0002 88B0     		sub	sp, sp, #32
+ 189 0004 01A9     		add	r1, sp, #4
+ 190 0006 0023     		movs	r3, #0
+ 191 0008 0193     		str	r3, [sp, #4]
+ 192 000a 4B60     		str	r3, [r1, #4]
+ 193 000c 8B60     		str	r3, [r1, #8]
+ 194 000e CB60     		str	r3, [r1, #12]
+ 195 0010 0B61     		str	r3, [r1, #16]
+ 196 0012 4B61     		str	r3, [r1, #20]
+ 197 0014 8B61     		str	r3, [r1, #24]
+ 198 0016 0F48     		ldr	r0, .L18
+ 199 0018 0F4A     		ldr	r2, .L18+4
+ 200 001a 0260     		str	r2, [r0]
+ 201 001c 4360     		str	r3, [r0, #4]
+ 202 001e 8360     		str	r3, [r0, #8]
+ 203 0020 0822     		movs	r2, #8
+ 204 0022 C260     		str	r2, [r0, #12]
+ 205 0024 1022     		movs	r2, #16
+ 206 0026 0261     		str	r2, [r0, #16]
+ 207 0028 4361     		str	r3, [r0, #20]
+ 208 002a 8024     		movs	r4, #128
+ 209 002c 8461     		str	r4, [r0, #24]
+ 210 002e C361     		str	r3, [r0, #28]
+ 211 0030 0362     		str	r3, [r0, #32]
+ 212 0032 4362     		str	r3, [r0, #36]
+ 213 0034 8362     		str	r3, [r0, #40]
+ 214 0036 0192     		str	r2, [sp, #4]
+ 215 0038 0292     		str	r2, [sp, #8]
+ 216 003a 0392     		str	r2, [sp, #12]
+ 217 003c 0492     		str	r2, [sp, #16]
+ 218 003e 0592     		str	r2, [sp, #20]
+ 219 0040 0692     		str	r2, [sp, #24]
+ 220 0042 0792     		str	r2, [sp, #28]
+ 221 0044 FFF7FEFF 		bl	HAL_SDRAM_Init
+ 222 0048 08B9     		cbnz	r0, .L17
+ 223              	.L14:
+ 224 004a 08B0     		add	sp, sp, #32
+ 225              		@ sp needed
+ 226 004c 10BD     		pop	{r4, pc}
+ 227              	.L17:
+ 228 004e FFF7FEFF 		bl	Error_Handler
+ 229 0052 FAE7     		b	.L14
+ 230              	.L19:
+ 231              		.align	2
+ 232              	.L18:
+ 233 0054 00000000 		.word	hsdram1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 5
+
+
+ 234 0058 400100A0 		.word	-1610612416
+ 236              		.section	.text.HAL_SDRAM_MspInit,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	HAL_SDRAM_MspInit
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 243              	HAL_SDRAM_MspInit:
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246 0000 08B5     		push	{r3, lr}
+ 247 0002 FFF7FEFF 		bl	HAL_FMC_MspInit
+ 248 0006 08BD     		pop	{r3, pc}
+ 250              		.section	.text.HAL_SDRAM_MspDeInit,"ax",%progbits
+ 251              		.align	1
+ 252              		.global	HAL_SDRAM_MspDeInit
+ 253              		.syntax unified
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	HAL_SDRAM_MspDeInit:
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 0000 08B5     		push	{r3, lr}
+ 261 0002 FFF7FEFF 		bl	HAL_FMC_MspDeInit
+ 262 0006 08BD     		pop	{r3, pc}
+ 264              		.section	.bss.FMC_DeInitialized,"aw",%nobits
+ 265              		.align	2
+ 268              	FMC_DeInitialized:
+ 269 0000 00000000 		.space	4
+ 270              		.section	.bss.FMC_Initialized,"aw",%nobits
+ 271              		.align	2
+ 274              	FMC_Initialized:
+ 275 0000 00000000 		.space	4
+ 276              		.global	hsdram1
+ 277              		.section	.bss.hsdram1,"aw",%nobits
+ 278              		.align	2
+ 281              	hsdram1:
+ 282 0000 00000000 		.space	52
+ 282      00000000 
+ 282      00000000 
+ 282      00000000 
+ 282      00000000 
+ 283              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 fmc.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:17     .text.HAL_FMC_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:22     .text.HAL_FMC_MspInit:00000000 HAL_FMC_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:114    .text.HAL_FMC_MspInit:000000d4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:274    .bss.FMC_Initialized:00000000 FMC_Initialized
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:124    .text.HAL_FMC_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:129    .text.HAL_FMC_MspDeInit:00000000 HAL_FMC_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:168    .text.HAL_FMC_MspDeInit:00000058 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:268    .bss.FMC_DeInitialized:00000000 FMC_DeInitialized
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:178    .text.MX_FMC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:184    .text.MX_FMC_Init:00000000 MX_FMC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:233    .text.MX_FMC_Init:00000054 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:281    .bss.hsdram1:00000000 hsdram1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:237    .text.HAL_SDRAM_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:243    .text.HAL_SDRAM_MspInit:00000000 HAL_SDRAM_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:251    .text.HAL_SDRAM_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:257    .text.HAL_SDRAM_MspDeInit:00000000 HAL_SDRAM_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:265    .bss.FMC_DeInitialized:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:271    .bss.FMC_Initialized:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccDny97E.s:278    .bss.hsdram1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_GPIO_DeInit
+HAL_SDRAM_Init
+Error_Handler

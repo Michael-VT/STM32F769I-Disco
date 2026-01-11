@@ -1,0 +1,1231 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"stm32f769i_discovery.c"
+  15              		.text
+  16              		.section	.text.I2Cx_MspInit,"ax",%progbits
+  17              		.align	1
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  22              	I2Cx_MspInit:
+  23              		@ args = 0, pretend = 0, frame = 40
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  26 0002 8BB0     		sub	sp, sp, #44
+  27 0004 4A4B     		ldr	r3, .L6
+  28 0006 8342     		cmp	r3, r0
+  29 0008 44D0     		beq	.L5
+  30 000a 4A4C     		ldr	r4, .L6+4
+  31 000c 236B     		ldr	r3, [r4, #48]
+  32 000e 43F00203 		orr	r3, r3, #2
+  33 0012 2363     		str	r3, [r4, #48]
+  34 0014 236B     		ldr	r3, [r4, #48]
+  35 0016 03F00203 		and	r3, r3, #2
+  36 001a 0393     		str	r3, [sp, #12]
+  37 001c 039B     		ldr	r3, [sp, #12]
+  38 001e 4FF48073 		mov	r3, #256
+  39 0022 0593     		str	r3, [sp, #20]
+  40 0024 1223     		movs	r3, #18
+  41 0026 0693     		str	r3, [sp, #24]
+  42 0028 0025     		movs	r5, #0
+  43 002a 0795     		str	r5, [sp, #28]
+  44 002c 0223     		movs	r3, #2
+  45 002e 0893     		str	r3, [sp, #32]
+  46 0030 0423     		movs	r3, #4
+  47 0032 0993     		str	r3, [sp, #36]
+  48 0034 05AF     		add	r7, sp, #20
+  49 0036 404E     		ldr	r6, .L6+8
+  50 0038 3946     		mov	r1, r7
+  51 003a 3046     		mov	r0, r6
+  52 003c FFF7FEFF 		bl	HAL_GPIO_Init
+  53 0040 4FF40073 		mov	r3, #512
+  54 0044 0593     		str	r3, [sp, #20]
+  55 0046 3946     		mov	r1, r7
+  56 0048 3046     		mov	r0, r6
+  57 004a FFF7FEFF 		bl	HAL_GPIO_Init
+  58 004e 236C     		ldr	r3, [r4, #64]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 2
+
+
+  59 0050 43F40013 		orr	r3, r3, #2097152
+  60 0054 2364     		str	r3, [r4, #64]
+  61 0056 236C     		ldr	r3, [r4, #64]
+  62 0058 03F40013 		and	r3, r3, #2097152
+  63 005c 0493     		str	r3, [sp, #16]
+  64 005e 049B     		ldr	r3, [sp, #16]
+  65 0060 236A     		ldr	r3, [r4, #32]
+  66 0062 43F40013 		orr	r3, r3, #2097152
+  67 0066 2362     		str	r3, [r4, #32]
+  68 0068 236A     		ldr	r3, [r4, #32]
+  69 006a 23F40013 		bic	r3, r3, #2097152
+  70 006e 2362     		str	r3, [r4, #32]
+  71 0070 2A46     		mov	r2, r5
+  72 0072 0F21     		movs	r1, #15
+  73 0074 1F20     		movs	r0, #31
+  74 0076 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  75 007a 1F20     		movs	r0, #31
+  76 007c FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  77 0080 2A46     		mov	r2, r5
+  78 0082 0F21     		movs	r1, #15
+  79 0084 2020     		movs	r0, #32
+  80 0086 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  81 008a 2020     		movs	r0, #32
+  82 008c FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  83              	.L1:
+  84 0090 0BB0     		add	sp, sp, #44
+  85              		@ sp needed
+  86 0092 F0BD     		pop	{r4, r5, r6, r7, pc}
+  87              	.L5:
+  88 0094 274C     		ldr	r4, .L6+4
+  89 0096 236B     		ldr	r3, [r4, #48]
+  90 0098 43F00803 		orr	r3, r3, #8
+  91 009c 2363     		str	r3, [r4, #48]
+  92 009e 236B     		ldr	r3, [r4, #48]
+  93 00a0 03F00803 		and	r3, r3, #8
+  94 00a4 0093     		str	r3, [sp]
+  95 00a6 009B     		ldr	r3, [sp]
+  96 00a8 236B     		ldr	r3, [r4, #48]
+  97 00aa 43F00203 		orr	r3, r3, #2
+  98 00ae 2363     		str	r3, [r4, #48]
+  99 00b0 236B     		ldr	r3, [r4, #48]
+ 100 00b2 03F00203 		and	r3, r3, #2
+ 101 00b6 0193     		str	r3, [sp, #4]
+ 102 00b8 019B     		ldr	r3, [sp, #4]
+ 103 00ba 4FF48053 		mov	r3, #4096
+ 104 00be 0593     		str	r3, [sp, #20]
+ 105 00c0 1223     		movs	r3, #18
+ 106 00c2 0693     		str	r3, [sp, #24]
+ 107 00c4 0025     		movs	r5, #0
+ 108 00c6 0795     		str	r5, [sp, #28]
+ 109 00c8 0223     		movs	r3, #2
+ 110 00ca 0893     		str	r3, [sp, #32]
+ 111 00cc 0423     		movs	r3, #4
+ 112 00ce 0993     		str	r3, [sp, #36]
+ 113 00d0 05AE     		add	r6, sp, #20
+ 114 00d2 3146     		mov	r1, r6
+ 115 00d4 1948     		ldr	r0, .L6+12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 3
+
+
+ 116 00d6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 117 00da 8023     		movs	r3, #128
+ 118 00dc 0593     		str	r3, [sp, #20]
+ 119 00de 0B23     		movs	r3, #11
+ 120 00e0 0993     		str	r3, [sp, #36]
+ 121 00e2 3146     		mov	r1, r6
+ 122 00e4 1448     		ldr	r0, .L6+8
+ 123 00e6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 124 00ea 236C     		ldr	r3, [r4, #64]
+ 125 00ec 43F08073 		orr	r3, r3, #16777216
+ 126 00f0 2364     		str	r3, [r4, #64]
+ 127 00f2 236C     		ldr	r3, [r4, #64]
+ 128 00f4 03F08073 		and	r3, r3, #16777216
+ 129 00f8 0293     		str	r3, [sp, #8]
+ 130 00fa 029B     		ldr	r3, [sp, #8]
+ 131 00fc 236A     		ldr	r3, [r4, #32]
+ 132 00fe 43F08073 		orr	r3, r3, #16777216
+ 133 0102 2362     		str	r3, [r4, #32]
+ 134 0104 236A     		ldr	r3, [r4, #32]
+ 135 0106 23F08073 		bic	r3, r3, #16777216
+ 136 010a 2362     		str	r3, [r4, #32]
+ 137 010c 2A46     		mov	r2, r5
+ 138 010e 0F21     		movs	r1, #15
+ 139 0110 5F20     		movs	r0, #95
+ 140 0112 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 141 0116 5F20     		movs	r0, #95
+ 142 0118 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 143 011c 2A46     		mov	r2, r5
+ 144 011e 0F21     		movs	r1, #15
+ 145 0120 6020     		movs	r0, #96
+ 146 0122 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 147 0126 6020     		movs	r0, #96
+ 148 0128 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 149 012c B0E7     		b	.L1
+ 150              	.L7:
+ 151 012e 00BF     		.align	2
+ 152              	.L6:
+ 153 0130 00000000 		.word	hI2cAudioHandler
+ 154 0134 00380240 		.word	1073887232
+ 155 0138 00040240 		.word	1073873920
+ 156 013c 000C0240 		.word	1073875968
+ 158              		.section	.text.I2Cx_Init,"ax",%progbits
+ 159              		.align	1
+ 160              		.syntax unified
+ 161              		.thumb
+ 162              		.thumb_func
+ 164              	I2Cx_Init:
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167 0000 10B5     		push	{r4, lr}
+ 168 0002 0446     		mov	r4, r0
+ 169 0004 FFF7FEFF 		bl	HAL_I2C_GetState
+ 170 0008 A0B9     		cbnz	r0, .L8
+ 171 000a 0C4B     		ldr	r3, .L14
+ 172 000c 9C42     		cmp	r4, r3
+ 173 000e 12D0     		beq	.L13
+ 174 0010 0B4B     		ldr	r3, .L14+4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 4
+
+
+ 175 0012 2360     		str	r3, [r4]
+ 176              	.L11:
+ 177 0014 0B4B     		ldr	r3, .L14+8
+ 178 0016 6360     		str	r3, [r4, #4]
+ 179 0018 0023     		movs	r3, #0
+ 180 001a A360     		str	r3, [r4, #8]
+ 181 001c 0122     		movs	r2, #1
+ 182 001e E260     		str	r2, [r4, #12]
+ 183 0020 2361     		str	r3, [r4, #16]
+ 184 0022 6361     		str	r3, [r4, #20]
+ 185 0024 E361     		str	r3, [r4, #28]
+ 186 0026 2362     		str	r3, [r4, #32]
+ 187 0028 2046     		mov	r0, r4
+ 188 002a FFF7FEFF 		bl	I2Cx_MspInit
+ 189 002e 2046     		mov	r0, r4
+ 190 0030 FFF7FEFF 		bl	HAL_I2C_Init
+ 191              	.L8:
+ 192 0034 10BD     		pop	{r4, pc}
+ 193              	.L13:
+ 194 0036 044B     		ldr	r3, .L14+12
+ 195 0038 2360     		str	r3, [r4]
+ 196 003a EBE7     		b	.L11
+ 197              	.L15:
+ 198              		.align	2
+ 199              	.L14:
+ 200 003c 00000000 		.word	hI2cAudioHandler
+ 201 0040 00540040 		.word	1073763328
+ 202 0044 32279140 		.word	1083254578
+ 203 0048 00600040 		.word	1073766400
+ 205              		.section	.text.I2Cx_Error,"ax",%progbits
+ 206              		.align	1
+ 207              		.syntax unified
+ 208              		.thumb
+ 209              		.thumb_func
+ 211              	I2Cx_Error:
+ 212              		@ args = 0, pretend = 0, frame = 0
+ 213              		@ frame_needed = 0, uses_anonymous_args = 0
+ 214 0000 10B5     		push	{r4, lr}
+ 215 0002 0446     		mov	r4, r0
+ 216 0004 FFF7FEFF 		bl	HAL_I2C_DeInit
+ 217 0008 2046     		mov	r0, r4
+ 218 000a FFF7FEFF 		bl	I2Cx_Init
+ 219 000e 10BD     		pop	{r4, pc}
+ 221              		.section	.text.I2Cx_WriteMultiple,"ax",%progbits
+ 222              		.align	1
+ 223              		.syntax unified
+ 224              		.thumb
+ 225              		.thumb_func
+ 227              	I2Cx_WriteMultiple:
+ 228              		@ args = 8, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230 0000 70B5     		push	{r4, r5, r6, lr}
+ 231 0002 84B0     		sub	sp, sp, #16
+ 232 0004 0446     		mov	r4, r0
+ 233 0006 0D46     		mov	r5, r1
+ 234 0008 4FF47A76 		mov	r6, #1000
+ 235 000c 0296     		str	r6, [sp, #8]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 5
+
+
+ 236 000e BDF82460 		ldrh	r6, [sp, #36]
+ 237 0012 0196     		str	r6, [sp, #4]
+ 238 0014 089E     		ldr	r6, [sp, #32]
+ 239 0016 0096     		str	r6, [sp]
+ 240 0018 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 241 001c 0646     		mov	r6, r0
+ 242 001e 10B9     		cbnz	r0, .L21
+ 243              	.L19:
+ 244 0020 3046     		mov	r0, r6
+ 245 0022 04B0     		add	sp, sp, #16
+ 246              		@ sp needed
+ 247 0024 70BD     		pop	{r4, r5, r6, pc}
+ 248              	.L21:
+ 249 0026 2946     		mov	r1, r5
+ 250 0028 2046     		mov	r0, r4
+ 251 002a FFF7FEFF 		bl	I2Cx_Error
+ 252 002e F7E7     		b	.L19
+ 254              		.section	.text.I2Cx_ReadMultiple,"ax",%progbits
+ 255              		.align	1
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 260              	I2Cx_ReadMultiple:
+ 261              		@ args = 8, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263 0000 70B5     		push	{r4, r5, r6, lr}
+ 264 0002 84B0     		sub	sp, sp, #16
+ 265 0004 0446     		mov	r4, r0
+ 266 0006 0D46     		mov	r5, r1
+ 267 0008 4FF47A76 		mov	r6, #1000
+ 268 000c 0296     		str	r6, [sp, #8]
+ 269 000e BDF82460 		ldrh	r6, [sp, #36]
+ 270 0012 0196     		str	r6, [sp, #4]
+ 271 0014 089E     		ldr	r6, [sp, #32]
+ 272 0016 0096     		str	r6, [sp]
+ 273 0018 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 274 001c 0646     		mov	r6, r0
+ 275 001e 10B9     		cbnz	r0, .L25
+ 276              	.L23:
+ 277 0020 3046     		mov	r0, r6
+ 278 0022 04B0     		add	sp, sp, #16
+ 279              		@ sp needed
+ 280 0024 70BD     		pop	{r4, r5, r6, pc}
+ 281              	.L25:
+ 282 0026 2946     		mov	r1, r5
+ 283 0028 2046     		mov	r0, r4
+ 284 002a FFF7FEFF 		bl	I2Cx_Error
+ 285 002e F7E7     		b	.L23
+ 287              		.section	.text.I2Cx_IsDeviceReady,"ax",%progbits
+ 288              		.align	1
+ 289              		.syntax unified
+ 290              		.thumb
+ 291              		.thumb_func
+ 293              	I2Cx_IsDeviceReady:
+ 294              		@ args = 0, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296 0000 08B5     		push	{r3, lr}
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 6
+
+
+ 297 0002 4FF47A73 		mov	r3, #1000
+ 298 0006 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 299 000a 08BD     		pop	{r3, pc}
+ 301              		.section	.text.BSP_GetVersion,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	BSP_GetVersion
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	BSP_GetVersion:
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 312 0000 0048     		ldr	r0, .L29
+ 313 0002 7047     		bx	lr
+ 314              	.L30:
+ 315              		.align	2
+ 316              	.L29:
+ 317 0004 00010202 		.word	33685760
+ 319              		.section	.text.BSP_LED_Init,"ax",%progbits
+ 320              		.align	1
+ 321              		.global	BSP_LED_Init
+ 322              		.syntax unified
+ 323              		.thumb
+ 324              		.thumb_func
+ 326              	BSP_LED_Init:
+ 327              		@ args = 0, pretend = 0, frame = 24
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329 0000 00B5     		push	{lr}
+ 330 0002 87B0     		sub	sp, sp, #28
+ 331 0004 0D4B     		ldr	r3, .L33
+ 332 0006 1A6B     		ldr	r2, [r3, #48]
+ 333 0008 42F40072 		orr	r2, r2, #512
+ 334 000c 1A63     		str	r2, [r3, #48]
+ 335 000e 1B6B     		ldr	r3, [r3, #48]
+ 336 0010 03F40073 		and	r3, r3, #512
+ 337 0014 0093     		str	r3, [sp]
+ 338 0016 009B     		ldr	r3, [sp]
+ 339 0018 094B     		ldr	r3, .L33+4
+ 340 001a 53F82030 		ldr	r3, [r3, r0, lsl #2]
+ 341 001e 0193     		str	r3, [sp, #4]
+ 342 0020 0123     		movs	r3, #1
+ 343 0022 0293     		str	r3, [sp, #8]
+ 344 0024 0393     		str	r3, [sp, #12]
+ 345 0026 0323     		movs	r3, #3
+ 346 0028 0493     		str	r3, [sp, #16]
+ 347 002a 01A9     		add	r1, sp, #4
+ 348 002c 054B     		ldr	r3, .L33+8
+ 349 002e 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 350 0032 FFF7FEFF 		bl	HAL_GPIO_Init
+ 351 0036 07B0     		add	sp, sp, #28
+ 352              		@ sp needed
+ 353 0038 5DF804FB 		ldr	pc, [sp], #4
+ 354              	.L34:
+ 355              		.align	2
+ 356              	.L33:
+ 357 003c 00380240 		.word	1073887232
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 7
+
+
+ 358 0040 00000000 		.word	GPIO_PIN
+ 359 0044 00000000 		.word	GPIO_PORT
+ 361              		.section	.text.BSP_LED_DeInit,"ax",%progbits
+ 362              		.align	1
+ 363              		.global	BSP_LED_DeInit
+ 364              		.syntax unified
+ 365              		.thumb
+ 366              		.thumb_func
+ 368              	BSP_LED_DeInit:
+ 369              		@ args = 0, pretend = 0, frame = 24
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371 0000 70B5     		push	{r4, r5, r6, lr}
+ 372 0002 86B0     		sub	sp, sp, #24
+ 373 0004 0446     		mov	r4, r0
+ 374 0006 094B     		ldr	r3, .L37
+ 375 0008 53F82050 		ldr	r5, [r3, r0, lsl #2]
+ 376 000c 0195     		str	r5, [sp, #4]
+ 377 000e 084E     		ldr	r6, .L37+4
+ 378 0010 0022     		movs	r2, #0
+ 379 0012 A9B2     		uxth	r1, r5
+ 380 0014 56F82000 		ldr	r0, [r6, r0, lsl #2]
+ 381 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 382 001c 2946     		mov	r1, r5
+ 383 001e 56F82400 		ldr	r0, [r6, r4, lsl #2]
+ 384 0022 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 385 0026 06B0     		add	sp, sp, #24
+ 386              		@ sp needed
+ 387 0028 70BD     		pop	{r4, r5, r6, pc}
+ 388              	.L38:
+ 389 002a 00BF     		.align	2
+ 390              	.L37:
+ 391 002c 00000000 		.word	GPIO_PIN
+ 392 0030 00000000 		.word	GPIO_PORT
+ 394              		.section	.text.BSP_LED_On,"ax",%progbits
+ 395              		.align	1
+ 396              		.global	BSP_LED_On
+ 397              		.syntax unified
+ 398              		.thumb
+ 399              		.thumb_func
+ 401              	BSP_LED_On:
+ 402              		@ args = 0, pretend = 0, frame = 0
+ 403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 404 0000 08B5     		push	{r3, lr}
+ 405 0002 0122     		movs	r2, #1
+ 406 0004 044B     		ldr	r3, .L41
+ 407 0006 33F82010 		ldrh	r1, [r3, r0, lsl #2]
+ 408 000a 044B     		ldr	r3, .L41+4
+ 409 000c 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 410 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 411 0014 08BD     		pop	{r3, pc}
+ 412              	.L42:
+ 413 0016 00BF     		.align	2
+ 414              	.L41:
+ 415 0018 00000000 		.word	GPIO_PIN
+ 416 001c 00000000 		.word	GPIO_PORT
+ 418              		.section	.text.BSP_LED_Off,"ax",%progbits
+ 419              		.align	1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 8
+
+
+ 420              		.global	BSP_LED_Off
+ 421              		.syntax unified
+ 422              		.thumb
+ 423              		.thumb_func
+ 425              	BSP_LED_Off:
+ 426              		@ args = 0, pretend = 0, frame = 0
+ 427              		@ frame_needed = 0, uses_anonymous_args = 0
+ 428 0000 08B5     		push	{r3, lr}
+ 429 0002 0022     		movs	r2, #0
+ 430 0004 044B     		ldr	r3, .L45
+ 431 0006 33F82010 		ldrh	r1, [r3, r0, lsl #2]
+ 432 000a 044B     		ldr	r3, .L45+4
+ 433 000c 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 434 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 435 0014 08BD     		pop	{r3, pc}
+ 436              	.L46:
+ 437 0016 00BF     		.align	2
+ 438              	.L45:
+ 439 0018 00000000 		.word	GPIO_PIN
+ 440 001c 00000000 		.word	GPIO_PORT
+ 442              		.section	.text.BSP_LED_Toggle,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	BSP_LED_Toggle
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 449              	BSP_LED_Toggle:
+ 450              		@ args = 0, pretend = 0, frame = 0
+ 451              		@ frame_needed = 0, uses_anonymous_args = 0
+ 452 0000 08B5     		push	{r3, lr}
+ 453 0002 044B     		ldr	r3, .L49
+ 454 0004 33F82010 		ldrh	r1, [r3, r0, lsl #2]
+ 455 0008 034B     		ldr	r3, .L49+4
+ 456 000a 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 457 000e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 458 0012 08BD     		pop	{r3, pc}
+ 459              	.L50:
+ 460              		.align	2
+ 461              	.L49:
+ 462 0014 00000000 		.word	GPIO_PIN
+ 463 0018 00000000 		.word	GPIO_PORT
+ 465              		.section	.text.BSP_PB_Init,"ax",%progbits
+ 466              		.align	1
+ 467              		.global	BSP_PB_Init
+ 468              		.syntax unified
+ 469              		.thumb
+ 470              		.thumb_func
+ 472              	BSP_PB_Init:
+ 473              		@ args = 0, pretend = 0, frame = 24
+ 474              		@ frame_needed = 0, uses_anonymous_args = 0
+ 475 0000 30B5     		push	{r4, r5, lr}
+ 476 0002 87B0     		sub	sp, sp, #28
+ 477 0004 0546     		mov	r5, r0
+ 478 0006 1B4B     		ldr	r3, .L57
+ 479 0008 1A6B     		ldr	r2, [r3, #48]
+ 480 000a 42F00102 		orr	r2, r2, #1
+ 481 000e 1A63     		str	r2, [r3, #48]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 9
+
+
+ 482 0010 1B6B     		ldr	r3, [r3, #48]
+ 483 0012 03F00103 		and	r3, r3, #1
+ 484 0016 0093     		str	r3, [sp]
+ 485 0018 009B     		ldr	r3, [sp]
+ 486 001a 0C46     		mov	r4, r1
+ 487 001c 19B1     		cbz	r1, .L55
+ 488              	.L52:
+ 489 001e 012C     		cmp	r4, #1
+ 490 0020 0FD0     		beq	.L56
+ 491              	.L51:
+ 492 0022 07B0     		add	sp, sp, #28
+ 493              		@ sp needed
+ 494 0024 30BD     		pop	{r4, r5, pc}
+ 495              	.L55:
+ 496 0026 0123     		movs	r3, #1
+ 497 0028 0193     		str	r3, [sp, #4]
+ 498 002a 0023     		movs	r3, #0
+ 499 002c 0293     		str	r3, [sp, #8]
+ 500 002e 0393     		str	r3, [sp, #12]
+ 501 0030 0223     		movs	r3, #2
+ 502 0032 0493     		str	r3, [sp, #16]
+ 503 0034 01A9     		add	r1, sp, #4
+ 504 0036 104B     		ldr	r3, .L57+4
+ 505 0038 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 506 003c FFF7FEFF 		bl	HAL_GPIO_Init
+ 507 0040 EDE7     		b	.L52
+ 508              	.L56:
+ 509 0042 0123     		movs	r3, #1
+ 510 0044 0193     		str	r3, [sp, #4]
+ 511 0046 0024     		movs	r4, #0
+ 512 0048 0394     		str	r4, [sp, #12]
+ 513 004a 0223     		movs	r3, #2
+ 514 004c 0493     		str	r3, [sp, #16]
+ 515 004e 4FF48813 		mov	r3, #1114112
+ 516 0052 0293     		str	r3, [sp, #8]
+ 517 0054 01A9     		add	r1, sp, #4
+ 518 0056 084B     		ldr	r3, .L57+4
+ 519 0058 53F82500 		ldr	r0, [r3, r5, lsl #2]
+ 520 005c FFF7FEFF 		bl	HAL_GPIO_Init
+ 521 0060 2246     		mov	r2, r4
+ 522 0062 0F21     		movs	r1, #15
+ 523 0064 0620     		movs	r0, #6
+ 524 0066 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 525 006a 0620     		movs	r0, #6
+ 526 006c FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 527 0070 D7E7     		b	.L51
+ 528              	.L58:
+ 529 0072 00BF     		.align	2
+ 530              	.L57:
+ 531 0074 00380240 		.word	1073887232
+ 532 0078 00000000 		.word	BUTTON_PORT
+ 534              		.section	.text.BSP_PB_DeInit,"ax",%progbits
+ 535              		.align	1
+ 536              		.global	BSP_PB_DeInit
+ 537              		.syntax unified
+ 538              		.thumb
+ 539              		.thumb_func
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 10
+
+
+ 541              	BSP_PB_DeInit:
+ 542              		@ args = 0, pretend = 0, frame = 24
+ 543              		@ frame_needed = 0, uses_anonymous_args = 0
+ 544 0000 30B5     		push	{r4, r5, lr}
+ 545 0002 87B0     		sub	sp, sp, #28
+ 546 0004 0446     		mov	r4, r0
+ 547 0006 0125     		movs	r5, #1
+ 548 0008 0195     		str	r5, [sp, #4]
+ 549 000a 0620     		movs	r0, #6
+ 550 000c FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 551 0010 2946     		mov	r1, r5
+ 552 0012 034B     		ldr	r3, .L61
+ 553 0014 53F82400 		ldr	r0, [r3, r4, lsl #2]
+ 554 0018 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 555 001c 07B0     		add	sp, sp, #28
+ 556              		@ sp needed
+ 557 001e 30BD     		pop	{r4, r5, pc}
+ 558              	.L62:
+ 559              		.align	2
+ 560              	.L61:
+ 561 0020 00000000 		.word	BUTTON_PORT
+ 563              		.section	.text.BSP_PB_GetState,"ax",%progbits
+ 564              		.align	1
+ 565              		.global	BSP_PB_GetState
+ 566              		.syntax unified
+ 567              		.thumb
+ 568              		.thumb_func
+ 570              	BSP_PB_GetState:
+ 571              		@ args = 0, pretend = 0, frame = 0
+ 572              		@ frame_needed = 0, uses_anonymous_args = 0
+ 573 0000 08B5     		push	{r3, lr}
+ 574 0002 0121     		movs	r1, #1
+ 575 0004 024B     		ldr	r3, .L65
+ 576 0006 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 577 000a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 578 000e 08BD     		pop	{r3, pc}
+ 579              	.L66:
+ 580              		.align	2
+ 581              	.L65:
+ 582 0010 00000000 		.word	BUTTON_PORT
+ 584              		.section	.text.AUDIO_IO_Init,"ax",%progbits
+ 585              		.align	1
+ 586              		.global	AUDIO_IO_Init
+ 587              		.syntax unified
+ 588              		.thumb
+ 589              		.thumb_func
+ 591              	AUDIO_IO_Init:
+ 592              		@ args = 0, pretend = 0, frame = 0
+ 593              		@ frame_needed = 0, uses_anonymous_args = 0
+ 594 0000 08B5     		push	{r3, lr}
+ 595 0002 0248     		ldr	r0, .L69
+ 596 0004 FFF7FEFF 		bl	I2Cx_Init
+ 597 0008 08BD     		pop	{r3, pc}
+ 598              	.L70:
+ 599 000a 00BF     		.align	2
+ 600              	.L69:
+ 601 000c 00000000 		.word	hI2cAudioHandler
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 11
+
+
+ 603              		.section	.text.AUDIO_IO_DeInit,"ax",%progbits
+ 604              		.align	1
+ 605              		.global	AUDIO_IO_DeInit
+ 606              		.syntax unified
+ 607              		.thumb
+ 608              		.thumb_func
+ 610              	AUDIO_IO_DeInit:
+ 611              		@ args = 0, pretend = 0, frame = 0
+ 612              		@ frame_needed = 0, uses_anonymous_args = 0
+ 613              		@ link register save eliminated.
+ 614 0000 7047     		bx	lr
+ 616              		.section	.text.AUDIO_IO_Write,"ax",%progbits
+ 617              		.align	1
+ 618              		.global	AUDIO_IO_Write
+ 619              		.syntax unified
+ 620              		.thumb
+ 621              		.thumb_func
+ 623              	AUDIO_IO_Write:
+ 624              		@ args = 0, pretend = 0, frame = 8
+ 625              		@ frame_needed = 0, uses_anonymous_args = 0
+ 626 0000 00B5     		push	{lr}
+ 627 0002 85B0     		sub	sp, sp, #20
+ 628 0004 ADF80E20 		strh	r2, [sp, #14]	@ movhi
+ 629 0008 92B2     		uxth	r2, r2
+ 630 000a 130A     		lsrs	r3, r2, #8
+ 631 000c ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ 632 0010 43EA0223 		orr	r3, r3, r2, lsl #8
+ 633 0014 ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ 634 0018 0223     		movs	r3, #2
+ 635 001a 0193     		str	r3, [sp, #4]
+ 636 001c 0DF10E02 		add	r2, sp, #14
+ 637 0020 0092     		str	r2, [sp]
+ 638 0022 0A46     		mov	r2, r1
+ 639 0024 0146     		mov	r1, r0
+ 640 0026 0348     		ldr	r0, .L74
+ 641 0028 FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 642 002c 05B0     		add	sp, sp, #20
+ 643              		@ sp needed
+ 644 002e 5DF804FB 		ldr	pc, [sp], #4
+ 645              	.L75:
+ 646 0032 00BF     		.align	2
+ 647              	.L74:
+ 648 0034 00000000 		.word	hI2cAudioHandler
+ 650              		.section	.text.AUDIO_IO_Read,"ax",%progbits
+ 651              		.align	1
+ 652              		.global	AUDIO_IO_Read
+ 653              		.syntax unified
+ 654              		.thumb
+ 655              		.thumb_func
+ 657              	AUDIO_IO_Read:
+ 658              		@ args = 0, pretend = 0, frame = 8
+ 659              		@ frame_needed = 0, uses_anonymous_args = 0
+ 660 0000 00B5     		push	{lr}
+ 661 0002 85B0     		sub	sp, sp, #20
+ 662 0004 0A46     		mov	r2, r1
+ 663 0006 0023     		movs	r3, #0
+ 664 0008 ADF80E30 		strh	r3, [sp, #14]	@ movhi
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 12
+
+
+ 665 000c 0223     		movs	r3, #2
+ 666 000e 0193     		str	r3, [sp, #4]
+ 667 0010 0DF10E01 		add	r1, sp, #14
+ 668 0014 0091     		str	r1, [sp]
+ 669 0016 0146     		mov	r1, r0
+ 670 0018 0648     		ldr	r0, .L78
+ 671 001a FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 672 001e BDF80E30 		ldrh	r3, [sp, #14]
+ 673 0022 1802     		lsls	r0, r3, #8
+ 674 0024 40EA1320 		orr	r0, r0, r3, lsr #8
+ 675 0028 80B2     		uxth	r0, r0
+ 676 002a ADF80E00 		strh	r0, [sp, #14]	@ movhi
+ 677 002e 05B0     		add	sp, sp, #20
+ 678              		@ sp needed
+ 679 0030 5DF804FB 		ldr	pc, [sp], #4
+ 680              	.L79:
+ 681              		.align	2
+ 682              	.L78:
+ 683 0034 00000000 		.word	hI2cAudioHandler
+ 685              		.section	.text.AUDIO_IO_Delay,"ax",%progbits
+ 686              		.align	1
+ 687              		.global	AUDIO_IO_Delay
+ 688              		.syntax unified
+ 689              		.thumb
+ 690              		.thumb_func
+ 692              	AUDIO_IO_Delay:
+ 693              		@ args = 0, pretend = 0, frame = 0
+ 694              		@ frame_needed = 0, uses_anonymous_args = 0
+ 695 0000 08B5     		push	{r3, lr}
+ 696 0002 FFF7FEFF 		bl	HAL_Delay
+ 697 0006 08BD     		pop	{r3, pc}
+ 699              		.section	.text.EEPROM_IO_Init,"ax",%progbits
+ 700              		.align	1
+ 701              		.global	EEPROM_IO_Init
+ 702              		.syntax unified
+ 703              		.thumb
+ 704              		.thumb_func
+ 706              	EEPROM_IO_Init:
+ 707              		@ args = 0, pretend = 0, frame = 0
+ 708              		@ frame_needed = 0, uses_anonymous_args = 0
+ 709 0000 08B5     		push	{r3, lr}
+ 710 0002 0248     		ldr	r0, .L84
+ 711 0004 FFF7FEFF 		bl	I2Cx_Init
+ 712 0008 08BD     		pop	{r3, pc}
+ 713              	.L85:
+ 714 000a 00BF     		.align	2
+ 715              	.L84:
+ 716 000c 00000000 		.word	hI2cExtHandler
+ 718              		.section	.text.EEPROM_IO_WriteData,"ax",%progbits
+ 719              		.align	1
+ 720              		.global	EEPROM_IO_WriteData
+ 721              		.syntax unified
+ 722              		.thumb
+ 723              		.thumb_func
+ 725              	EEPROM_IO_WriteData:
+ 726              		@ args = 0, pretend = 0, frame = 0
+ 727              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 13
+
+
+ 728 0000 00B5     		push	{lr}
+ 729 0002 83B0     		sub	sp, sp, #12
+ 730 0004 9BB2     		uxth	r3, r3
+ 731 0006 0193     		str	r3, [sp, #4]
+ 732 0008 0092     		str	r2, [sp]
+ 733 000a 0223     		movs	r3, #2
+ 734 000c 0A46     		mov	r2, r1
+ 735 000e C1B2     		uxtb	r1, r0
+ 736 0010 0248     		ldr	r0, .L88
+ 737 0012 FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 738 0016 03B0     		add	sp, sp, #12
+ 739              		@ sp needed
+ 740 0018 5DF804FB 		ldr	pc, [sp], #4
+ 741              	.L89:
+ 742              		.align	2
+ 743              	.L88:
+ 744 001c 00000000 		.word	hI2cExtHandler
+ 746              		.section	.text.EEPROM_IO_ReadData,"ax",%progbits
+ 747              		.align	1
+ 748              		.global	EEPROM_IO_ReadData
+ 749              		.syntax unified
+ 750              		.thumb
+ 751              		.thumb_func
+ 753              	EEPROM_IO_ReadData:
+ 754              		@ args = 0, pretend = 0, frame = 0
+ 755              		@ frame_needed = 0, uses_anonymous_args = 0
+ 756 0000 00B5     		push	{lr}
+ 757 0002 83B0     		sub	sp, sp, #12
+ 758 0004 9BB2     		uxth	r3, r3
+ 759 0006 0193     		str	r3, [sp, #4]
+ 760 0008 0092     		str	r2, [sp]
+ 761 000a 0223     		movs	r3, #2
+ 762 000c 0A46     		mov	r2, r1
+ 763 000e C1B2     		uxtb	r1, r0
+ 764 0010 0248     		ldr	r0, .L92
+ 765 0012 FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 766 0016 03B0     		add	sp, sp, #12
+ 767              		@ sp needed
+ 768 0018 5DF804FB 		ldr	pc, [sp], #4
+ 769              	.L93:
+ 770              		.align	2
+ 771              	.L92:
+ 772 001c 00000000 		.word	hI2cExtHandler
+ 774              		.section	.text.EEPROM_IO_IsDeviceReady,"ax",%progbits
+ 775              		.align	1
+ 776              		.global	EEPROM_IO_IsDeviceReady
+ 777              		.syntax unified
+ 778              		.thumb
+ 779              		.thumb_func
+ 781              	EEPROM_IO_IsDeviceReady:
+ 782              		@ args = 0, pretend = 0, frame = 0
+ 783              		@ frame_needed = 0, uses_anonymous_args = 0
+ 784 0000 08B5     		push	{r3, lr}
+ 785 0002 0A46     		mov	r2, r1
+ 786 0004 0146     		mov	r1, r0
+ 787 0006 0248     		ldr	r0, .L96
+ 788 0008 FFF7FEFF 		bl	I2Cx_IsDeviceReady
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 14
+
+
+ 789 000c 08BD     		pop	{r3, pc}
+ 790              	.L97:
+ 791 000e 00BF     		.align	2
+ 792              	.L96:
+ 793 0010 00000000 		.word	hI2cExtHandler
+ 795              		.section	.text.TS_IO_Init,"ax",%progbits
+ 796              		.align	1
+ 797              		.global	TS_IO_Init
+ 798              		.syntax unified
+ 799              		.thumb
+ 800              		.thumb_func
+ 802              	TS_IO_Init:
+ 803              		@ args = 0, pretend = 0, frame = 0
+ 804              		@ frame_needed = 0, uses_anonymous_args = 0
+ 805 0000 08B5     		push	{r3, lr}
+ 806 0002 0248     		ldr	r0, .L100
+ 807 0004 FFF7FEFF 		bl	I2Cx_Init
+ 808 0008 08BD     		pop	{r3, pc}
+ 809              	.L101:
+ 810 000a 00BF     		.align	2
+ 811              	.L100:
+ 812 000c 00000000 		.word	hI2cAudioHandler
+ 814              		.section	.text.TS_IO_Write,"ax",%progbits
+ 815              		.align	1
+ 816              		.global	TS_IO_Write
+ 817              		.syntax unified
+ 818              		.thumb
+ 819              		.thumb_func
+ 821              	TS_IO_Write:
+ 822              		@ args = 0, pretend = 0, frame = 8
+ 823              		@ frame_needed = 0, uses_anonymous_args = 0
+ 824 0000 00B5     		push	{lr}
+ 825 0002 85B0     		sub	sp, sp, #20
+ 826 0004 8DF80F20 		strb	r2, [sp, #15]
+ 827 0008 0123     		movs	r3, #1
+ 828 000a 0193     		str	r3, [sp, #4]
+ 829 000c 0DF10F02 		add	r2, sp, #15
+ 830 0010 0092     		str	r2, [sp]
+ 831 0012 0A46     		mov	r2, r1
+ 832 0014 0146     		mov	r1, r0
+ 833 0016 0348     		ldr	r0, .L104
+ 834 0018 FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 835 001c 05B0     		add	sp, sp, #20
+ 836              		@ sp needed
+ 837 001e 5DF804FB 		ldr	pc, [sp], #4
+ 838              	.L105:
+ 839 0022 00BF     		.align	2
+ 840              	.L104:
+ 841 0024 00000000 		.word	hI2cAudioHandler
+ 843              		.section	.text.TS_IO_Read,"ax",%progbits
+ 844              		.align	1
+ 845              		.global	TS_IO_Read
+ 846              		.syntax unified
+ 847              		.thumb
+ 848              		.thumb_func
+ 850              	TS_IO_Read:
+ 851              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 15
+
+
+ 852              		@ frame_needed = 0, uses_anonymous_args = 0
+ 853 0000 00B5     		push	{lr}
+ 854 0002 85B0     		sub	sp, sp, #20
+ 855 0004 0A46     		mov	r2, r1
+ 856 0006 0023     		movs	r3, #0
+ 857 0008 8DF80F30 		strb	r3, [sp, #15]
+ 858 000c 0123     		movs	r3, #1
+ 859 000e 0193     		str	r3, [sp, #4]
+ 860 0010 0DF10F01 		add	r1, sp, #15
+ 861 0014 0091     		str	r1, [sp]
+ 862 0016 0146     		mov	r1, r0
+ 863 0018 0348     		ldr	r0, .L108
+ 864 001a FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 865 001e 9DF80F00 		ldrb	r0, [sp, #15]	@ zero_extendqisi2
+ 866 0022 05B0     		add	sp, sp, #20
+ 867              		@ sp needed
+ 868 0024 5DF804FB 		ldr	pc, [sp], #4
+ 869              	.L109:
+ 870              		.align	2
+ 871              	.L108:
+ 872 0028 00000000 		.word	hI2cAudioHandler
+ 874              		.section	.text.TS_IO_ReadMultiple,"ax",%progbits
+ 875              		.align	1
+ 876              		.global	TS_IO_ReadMultiple
+ 877              		.syntax unified
+ 878              		.thumb
+ 879              		.thumb_func
+ 881              	TS_IO_ReadMultiple:
+ 882              		@ args = 0, pretend = 0, frame = 0
+ 883              		@ frame_needed = 0, uses_anonymous_args = 0
+ 884 0000 00B5     		push	{lr}
+ 885 0002 83B0     		sub	sp, sp, #12
+ 886 0004 0193     		str	r3, [sp, #4]
+ 887 0006 0092     		str	r2, [sp]
+ 888 0008 0123     		movs	r3, #1
+ 889 000a 0A46     		mov	r2, r1
+ 890 000c 0146     		mov	r1, r0
+ 891 000e 0348     		ldr	r0, .L112
+ 892 0010 FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 893 0014 03B0     		add	sp, sp, #12
+ 894              		@ sp needed
+ 895 0016 5DF804FB 		ldr	pc, [sp], #4
+ 896              	.L113:
+ 897 001a 00BF     		.align	2
+ 898              	.L112:
+ 899 001c 00000000 		.word	hI2cAudioHandler
+ 901              		.section	.text.TS_IO_WriteMultiple,"ax",%progbits
+ 902              		.align	1
+ 903              		.global	TS_IO_WriteMultiple
+ 904              		.syntax unified
+ 905              		.thumb
+ 906              		.thumb_func
+ 908              	TS_IO_WriteMultiple:
+ 909              		@ args = 0, pretend = 0, frame = 0
+ 910              		@ frame_needed = 0, uses_anonymous_args = 0
+ 911 0000 00B5     		push	{lr}
+ 912 0002 83B0     		sub	sp, sp, #12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 16
+
+
+ 913 0004 0193     		str	r3, [sp, #4]
+ 914 0006 0092     		str	r2, [sp]
+ 915 0008 0123     		movs	r3, #1
+ 916 000a 0A46     		mov	r2, r1
+ 917 000c 0146     		mov	r1, r0
+ 918 000e 0348     		ldr	r0, .L116
+ 919 0010 FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 920 0014 03B0     		add	sp, sp, #12
+ 921              		@ sp needed
+ 922 0016 5DF804FB 		ldr	pc, [sp], #4
+ 923              	.L117:
+ 924 001a 00BF     		.align	2
+ 925              	.L116:
+ 926 001c 00000000 		.word	hI2cAudioHandler
+ 928              		.section	.text.TS_IO_Delay,"ax",%progbits
+ 929              		.align	1
+ 930              		.global	TS_IO_Delay
+ 931              		.syntax unified
+ 932              		.thumb
+ 933              		.thumb_func
+ 935              	TS_IO_Delay:
+ 936              		@ args = 0, pretend = 0, frame = 0
+ 937              		@ frame_needed = 0, uses_anonymous_args = 0
+ 938 0000 08B5     		push	{r3, lr}
+ 939 0002 FFF7FEFF 		bl	HAL_Delay
+ 940 0006 08BD     		pop	{r3, pc}
+ 942              		.section	.text.OTM8009A_IO_Delay,"ax",%progbits
+ 943              		.align	1
+ 944              		.global	OTM8009A_IO_Delay
+ 945              		.syntax unified
+ 946              		.thumb
+ 947              		.thumb_func
+ 949              	OTM8009A_IO_Delay:
+ 950              		@ args = 0, pretend = 0, frame = 0
+ 951              		@ frame_needed = 0, uses_anonymous_args = 0
+ 952 0000 08B5     		push	{r3, lr}
+ 953 0002 FFF7FEFF 		bl	HAL_Delay
+ 954 0006 08BD     		pop	{r3, pc}
+ 956              		.section	.text.NT35510_IO_Delay,"ax",%progbits
+ 957              		.align	1
+ 958              		.global	NT35510_IO_Delay
+ 959              		.syntax unified
+ 960              		.thumb
+ 961              		.thumb_func
+ 963              	NT35510_IO_Delay:
+ 964              		@ args = 0, pretend = 0, frame = 0
+ 965              		@ frame_needed = 0, uses_anonymous_args = 0
+ 966 0000 08B5     		push	{r3, lr}
+ 967 0002 FFF7FEFF 		bl	HAL_Delay
+ 968 0006 08BD     		pop	{r3, pc}
+ 970              		.section	.text.HDMI_IO_Init,"ax",%progbits
+ 971              		.align	1
+ 972              		.global	HDMI_IO_Init
+ 973              		.syntax unified
+ 974              		.thumb
+ 975              		.thumb_func
+ 977              	HDMI_IO_Init:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 17
+
+
+ 978              		@ args = 0, pretend = 0, frame = 0
+ 979              		@ frame_needed = 0, uses_anonymous_args = 0
+ 980 0000 08B5     		push	{r3, lr}
+ 981 0002 0248     		ldr	r0, .L126
+ 982 0004 FFF7FEFF 		bl	I2Cx_Init
+ 983 0008 08BD     		pop	{r3, pc}
+ 984              	.L127:
+ 985 000a 00BF     		.align	2
+ 986              	.L126:
+ 987 000c 00000000 		.word	hI2cAudioHandler
+ 989              		.section	.text.HDMI_IO_Write,"ax",%progbits
+ 990              		.align	1
+ 991              		.global	HDMI_IO_Write
+ 992              		.syntax unified
+ 993              		.thumb
+ 994              		.thumb_func
+ 996              	HDMI_IO_Write:
+ 997              		@ args = 0, pretend = 0, frame = 8
+ 998              		@ frame_needed = 0, uses_anonymous_args = 0
+ 999 0000 00B5     		push	{lr}
+ 1000 0002 85B0     		sub	sp, sp, #20
+ 1001 0004 8DF80F20 		strb	r2, [sp, #15]
+ 1002 0008 0123     		movs	r3, #1
+ 1003 000a 0193     		str	r3, [sp, #4]
+ 1004 000c 0DF10F02 		add	r2, sp, #15
+ 1005 0010 0092     		str	r2, [sp]
+ 1006 0012 0A46     		mov	r2, r1
+ 1007 0014 0146     		mov	r1, r0
+ 1008 0016 0348     		ldr	r0, .L130
+ 1009 0018 FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 1010 001c 05B0     		add	sp, sp, #20
+ 1011              		@ sp needed
+ 1012 001e 5DF804FB 		ldr	pc, [sp], #4
+ 1013              	.L131:
+ 1014 0022 00BF     		.align	2
+ 1015              	.L130:
+ 1016 0024 00000000 		.word	hI2cAudioHandler
+ 1018              		.section	.text.HDMI_IO_Read,"ax",%progbits
+ 1019              		.align	1
+ 1020              		.global	HDMI_IO_Read
+ 1021              		.syntax unified
+ 1022              		.thumb
+ 1023              		.thumb_func
+ 1025              	HDMI_IO_Read:
+ 1026              		@ args = 0, pretend = 0, frame = 8
+ 1027              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1028 0000 00B5     		push	{lr}
+ 1029 0002 85B0     		sub	sp, sp, #20
+ 1030 0004 0A46     		mov	r2, r1
+ 1031 0006 0023     		movs	r3, #0
+ 1032 0008 8DF80F30 		strb	r3, [sp, #15]
+ 1033 000c 0123     		movs	r3, #1
+ 1034 000e 0193     		str	r3, [sp, #4]
+ 1035 0010 0DF10F01 		add	r1, sp, #15
+ 1036 0014 0091     		str	r1, [sp]
+ 1037 0016 0146     		mov	r1, r0
+ 1038 0018 0348     		ldr	r0, .L134
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 18
+
+
+ 1039 001a FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 1040 001e 9DF80F00 		ldrb	r0, [sp, #15]	@ zero_extendqisi2
+ 1041 0022 05B0     		add	sp, sp, #20
+ 1042              		@ sp needed
+ 1043 0024 5DF804FB 		ldr	pc, [sp], #4
+ 1044              	.L135:
+ 1045              		.align	2
+ 1046              	.L134:
+ 1047 0028 00000000 		.word	hI2cAudioHandler
+ 1049              		.section	.text.HDMI_IO_Delay,"ax",%progbits
+ 1050              		.align	1
+ 1051              		.global	HDMI_IO_Delay
+ 1052              		.syntax unified
+ 1053              		.thumb
+ 1054              		.thumb_func
+ 1056              	HDMI_IO_Delay:
+ 1057              		@ args = 0, pretend = 0, frame = 0
+ 1058              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1059 0000 08B5     		push	{r3, lr}
+ 1060 0002 FFF7FEFF 		bl	HAL_Delay
+ 1061 0006 08BD     		pop	{r3, pc}
+ 1063              		.section	.bss.hI2cExtHandler,"aw",%nobits
+ 1064              		.align	2
+ 1067              	hI2cExtHandler:
+ 1068 0000 00000000 		.space	84
+ 1068      00000000 
+ 1068      00000000 
+ 1068      00000000 
+ 1068      00000000 
+ 1069              		.section	.bss.hI2cAudioHandler,"aw",%nobits
+ 1070              		.align	2
+ 1073              	hI2cAudioHandler:
+ 1074 0000 00000000 		.space	84
+ 1074      00000000 
+ 1074      00000000 
+ 1074      00000000 
+ 1074      00000000 
+ 1075              		.global	BUTTON_IRQn
+ 1076              		.section	.rodata.BUTTON_IRQn,"a"
+ 1077              		.align	2
+ 1080              	BUTTON_IRQn:
+ 1081 0000 0600     		.short	6
+ 1082              		.global	BUTTON_PIN
+ 1083              		.section	.rodata.BUTTON_PIN,"a"
+ 1084              		.align	2
+ 1087              	BUTTON_PIN:
+ 1088 0000 0100     		.short	1
+ 1089              		.global	BUTTON_PORT
+ 1090              		.section	.data.BUTTON_PORT,"aw"
+ 1091              		.align	2
+ 1094              	BUTTON_PORT:
+ 1095 0000 00000240 		.word	1073872896
+ 1096              		.global	GPIO_PORT
+ 1097              		.section	.data.GPIO_PORT,"aw"
+ 1098              		.align	2
+ 1101              	GPIO_PORT:
+ 1102 0000 00240240 		.word	1073882112
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 19
+
+
+ 1103 0004 00240240 		.word	1073882112
+ 1104              		.global	GPIO_PIN
+ 1105              		.section	.data.GPIO_PIN,"aw"
+ 1106              		.align	2
+ 1109              	GPIO_PIN:
+ 1110 0000 00200000 		.word	8192
+ 1111 0004 20000000 		.word	32
+ 1112              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f769i_discovery.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:17     .text.I2Cx_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:22     .text.I2Cx_MspInit:00000000 I2Cx_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:153    .text.I2Cx_MspInit:00000130 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1073   .bss.hI2cAudioHandler:00000000 hI2cAudioHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:159    .text.I2Cx_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:164    .text.I2Cx_Init:00000000 I2Cx_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:200    .text.I2Cx_Init:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:206    .text.I2Cx_Error:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:211    .text.I2Cx_Error:00000000 I2Cx_Error
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:222    .text.I2Cx_WriteMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:227    .text.I2Cx_WriteMultiple:00000000 I2Cx_WriteMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:255    .text.I2Cx_ReadMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:260    .text.I2Cx_ReadMultiple:00000000 I2Cx_ReadMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:288    .text.I2Cx_IsDeviceReady:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:293    .text.I2Cx_IsDeviceReady:00000000 I2Cx_IsDeviceReady
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:302    .text.BSP_GetVersion:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:308    .text.BSP_GetVersion:00000000 BSP_GetVersion
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:317    .text.BSP_GetVersion:00000004 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:320    .text.BSP_LED_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:326    .text.BSP_LED_Init:00000000 BSP_LED_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:357    .text.BSP_LED_Init:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1109   .data.GPIO_PIN:00000000 GPIO_PIN
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1101   .data.GPIO_PORT:00000000 GPIO_PORT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:362    .text.BSP_LED_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:368    .text.BSP_LED_DeInit:00000000 BSP_LED_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:391    .text.BSP_LED_DeInit:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:395    .text.BSP_LED_On:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:401    .text.BSP_LED_On:00000000 BSP_LED_On
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:415    .text.BSP_LED_On:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:419    .text.BSP_LED_Off:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:425    .text.BSP_LED_Off:00000000 BSP_LED_Off
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:439    .text.BSP_LED_Off:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:443    .text.BSP_LED_Toggle:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:449    .text.BSP_LED_Toggle:00000000 BSP_LED_Toggle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:462    .text.BSP_LED_Toggle:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:466    .text.BSP_PB_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:472    .text.BSP_PB_Init:00000000 BSP_PB_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:531    .text.BSP_PB_Init:00000074 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1094   .data.BUTTON_PORT:00000000 BUTTON_PORT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:535    .text.BSP_PB_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:541    .text.BSP_PB_DeInit:00000000 BSP_PB_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:561    .text.BSP_PB_DeInit:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:564    .text.BSP_PB_GetState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:570    .text.BSP_PB_GetState:00000000 BSP_PB_GetState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:582    .text.BSP_PB_GetState:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:585    .text.AUDIO_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:591    .text.AUDIO_IO_Init:00000000 AUDIO_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:601    .text.AUDIO_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:604    .text.AUDIO_IO_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:610    .text.AUDIO_IO_DeInit:00000000 AUDIO_IO_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:617    .text.AUDIO_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:623    .text.AUDIO_IO_Write:00000000 AUDIO_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:648    .text.AUDIO_IO_Write:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:651    .text.AUDIO_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:657    .text.AUDIO_IO_Read:00000000 AUDIO_IO_Read
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 21
+
+
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:683    .text.AUDIO_IO_Read:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:686    .text.AUDIO_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:692    .text.AUDIO_IO_Delay:00000000 AUDIO_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:700    .text.EEPROM_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:706    .text.EEPROM_IO_Init:00000000 EEPROM_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:716    .text.EEPROM_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1067   .bss.hI2cExtHandler:00000000 hI2cExtHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:719    .text.EEPROM_IO_WriteData:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:725    .text.EEPROM_IO_WriteData:00000000 EEPROM_IO_WriteData
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:744    .text.EEPROM_IO_WriteData:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:747    .text.EEPROM_IO_ReadData:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:753    .text.EEPROM_IO_ReadData:00000000 EEPROM_IO_ReadData
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:772    .text.EEPROM_IO_ReadData:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:775    .text.EEPROM_IO_IsDeviceReady:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:781    .text.EEPROM_IO_IsDeviceReady:00000000 EEPROM_IO_IsDeviceReady
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:793    .text.EEPROM_IO_IsDeviceReady:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:796    .text.TS_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:802    .text.TS_IO_Init:00000000 TS_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:812    .text.TS_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:815    .text.TS_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:821    .text.TS_IO_Write:00000000 TS_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:841    .text.TS_IO_Write:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:844    .text.TS_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:850    .text.TS_IO_Read:00000000 TS_IO_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:872    .text.TS_IO_Read:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:875    .text.TS_IO_ReadMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:881    .text.TS_IO_ReadMultiple:00000000 TS_IO_ReadMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:899    .text.TS_IO_ReadMultiple:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:902    .text.TS_IO_WriteMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:908    .text.TS_IO_WriteMultiple:00000000 TS_IO_WriteMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:926    .text.TS_IO_WriteMultiple:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:929    .text.TS_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:935    .text.TS_IO_Delay:00000000 TS_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:943    .text.OTM8009A_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:949    .text.OTM8009A_IO_Delay:00000000 OTM8009A_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:957    .text.NT35510_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:963    .text.NT35510_IO_Delay:00000000 NT35510_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:971    .text.HDMI_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:977    .text.HDMI_IO_Init:00000000 HDMI_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:987    .text.HDMI_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:990    .text.HDMI_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:996    .text.HDMI_IO_Write:00000000 HDMI_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1016   .text.HDMI_IO_Write:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1019   .text.HDMI_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1025   .text.HDMI_IO_Read:00000000 HDMI_IO_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1047   .text.HDMI_IO_Read:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1050   .text.HDMI_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1056   .text.HDMI_IO_Delay:00000000 HDMI_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1064   .bss.hI2cExtHandler:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1070   .bss.hI2cAudioHandler:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1080   .rodata.BUTTON_IRQn:00000000 BUTTON_IRQn
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1077   .rodata.BUTTON_IRQn:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1087   .rodata.BUTTON_PIN:00000000 BUTTON_PIN
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1084   .rodata.BUTTON_PIN:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1091   .data.BUTTON_PORT:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1098   .data.GPIO_PORT:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s:1106   .data.GPIO_PIN:00000000 $d
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc9cnDie.s 			page 22
+
+
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_I2C_GetState
+HAL_I2C_Init
+HAL_I2C_DeInit
+HAL_I2C_Mem_Write
+HAL_I2C_Mem_Read
+HAL_I2C_IsDeviceReady
+HAL_GPIO_WritePin
+HAL_GPIO_DeInit
+HAL_GPIO_TogglePin
+HAL_NVIC_DisableIRQ
+HAL_GPIO_ReadPin
+HAL_Delay

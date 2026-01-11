@@ -1,0 +1,157 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"dma2d.c"
+  15              		.text
+  16              		.section	.text.MX_DMA2D_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_DMA2D_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_DMA2D_Init:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 08B5     		push	{r3, lr}
+  27 0002 0E48     		ldr	r0, .L7
+  28 0004 0E4B     		ldr	r3, .L7+4
+  29 0006 0360     		str	r3, [r0]
+  30 0008 0023     		movs	r3, #0
+  31 000a 4360     		str	r3, [r0, #4]
+  32 000c 8360     		str	r3, [r0, #8]
+  33 000e C360     		str	r3, [r0, #12]
+  34 0010 8363     		str	r3, [r0, #56]
+  35 0012 C363     		str	r3, [r0, #60]
+  36 0014 0364     		str	r3, [r0, #64]
+  37 0016 4364     		str	r3, [r0, #68]
+  38 0018 8364     		str	r3, [r0, #72]
+  39 001a C364     		str	r3, [r0, #76]
+  40 001c FFF7FEFF 		bl	HAL_DMA2D_Init
+  41 0020 28B9     		cbnz	r0, .L5
+  42              	.L2:
+  43 0022 0121     		movs	r1, #1
+  44 0024 0548     		ldr	r0, .L7
+  45 0026 FFF7FEFF 		bl	HAL_DMA2D_ConfigLayer
+  46 002a 18B9     		cbnz	r0, .L6
+  47              	.L1:
+  48 002c 08BD     		pop	{r3, pc}
+  49              	.L5:
+  50 002e FFF7FEFF 		bl	Error_Handler
+  51 0032 F6E7     		b	.L2
+  52              	.L6:
+  53 0034 FFF7FEFF 		bl	Error_Handler
+  54 0038 F8E7     		b	.L1
+  55              	.L8:
+  56 003a 00BF     		.align	2
+  57              	.L7:
+  58 003c 00000000 		.word	hdma2d
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s 			page 2
+
+
+  59 0040 00B00240 		.word	1073917952
+  61              		.section	.text.HAL_DMA2D_MspInit,"ax",%progbits
+  62              		.align	1
+  63              		.global	HAL_DMA2D_MspInit
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  68              	HAL_DMA2D_MspInit:
+  69              		@ args = 0, pretend = 0, frame = 8
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71              		@ link register save eliminated.
+  72 0000 0268     		ldr	r2, [r0]
+  73 0002 094B     		ldr	r3, .L16
+  74 0004 9A42     		cmp	r2, r3
+  75 0006 00D0     		beq	.L15
+  76 0008 7047     		bx	lr
+  77              	.L15:
+  78 000a 82B0     		sub	sp, sp, #8
+  79 000c A3F5F043 		sub	r3, r3, #30720
+  80 0010 1A6B     		ldr	r2, [r3, #48]
+  81 0012 42F40002 		orr	r2, r2, #8388608
+  82 0016 1A63     		str	r2, [r3, #48]
+  83 0018 1B6B     		ldr	r3, [r3, #48]
+  84 001a 03F40003 		and	r3, r3, #8388608
+  85 001e 0193     		str	r3, [sp, #4]
+  86 0020 019B     		ldr	r3, [sp, #4]
+  87 0022 02B0     		add	sp, sp, #8
+  88              		@ sp needed
+  89 0024 7047     		bx	lr
+  90              	.L17:
+  91 0026 00BF     		.align	2
+  92              	.L16:
+  93 0028 00B00240 		.word	1073917952
+  95              		.section	.text.HAL_DMA2D_MspDeInit,"ax",%progbits
+  96              		.align	1
+  97              		.global	HAL_DMA2D_MspDeInit
+  98              		.syntax unified
+  99              		.thumb
+ 100              		.thumb_func
+ 102              	HAL_DMA2D_MspDeInit:
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              		@ link register save eliminated.
+ 106 0000 0268     		ldr	r2, [r0]
+ 107 0002 054B     		ldr	r3, .L21
+ 108 0004 9A42     		cmp	r2, r3
+ 109 0006 00D0     		beq	.L20
+ 110              	.L18:
+ 111 0008 7047     		bx	lr
+ 112              	.L20:
+ 113 000a 044A     		ldr	r2, .L21+4
+ 114 000c 136B     		ldr	r3, [r2, #48]
+ 115 000e 23F40003 		bic	r3, r3, #8388608
+ 116 0012 1363     		str	r3, [r2, #48]
+ 117 0014 F8E7     		b	.L18
+ 118              	.L22:
+ 119 0016 00BF     		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s 			page 3
+
+
+ 120              	.L21:
+ 121 0018 00B00240 		.word	1073917952
+ 122 001c 00380240 		.word	1073887232
+ 124              		.global	hdma2d
+ 125              		.section	.bss.hdma2d,"aw",%nobits
+ 126              		.align	2
+ 129              	hdma2d:
+ 130 0000 00000000 		.space	88
+ 130      00000000 
+ 130      00000000 
+ 130      00000000 
+ 130      00000000 
+ 131              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dma2d.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:17     .text.MX_DMA2D_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:23     .text.MX_DMA2D_Init:00000000 MX_DMA2D_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:58     .text.MX_DMA2D_Init:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:129    .bss.hdma2d:00000000 hdma2d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:62     .text.HAL_DMA2D_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:68     .text.HAL_DMA2D_MspInit:00000000 HAL_DMA2D_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:93     .text.HAL_DMA2D_MspInit:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:96     .text.HAL_DMA2D_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:102    .text.HAL_DMA2D_MspDeInit:00000000 HAL_DMA2D_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:121    .text.HAL_DMA2D_MspDeInit:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccvDy8rs.s:126    .bss.hdma2d:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_DMA2D_Init
+HAL_DMA2D_ConfigLayer
+Error_Handler

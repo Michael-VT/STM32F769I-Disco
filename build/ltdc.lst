@@ -1,0 +1,241 @@
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-d16
+   4              		.eabi_attribute 28, 1
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"ltdc.c"
+  15              		.text
+  16              		.section	.text.MX_LTDC_Init,"ax",%progbits
+  17              		.align	1
+  18              		.global	MX_LTDC_Init
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  23              	MX_LTDC_Init:
+  24              		@ args = 0, pretend = 0, frame = 56
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 00B5     		push	{lr}
+  27 0002 8FB0     		sub	sp, sp, #60
+  28 0004 3422     		movs	r2, #52
+  29 0006 0021     		movs	r1, #0
+  30 0008 01A8     		add	r0, sp, #4
+  31 000a FFF7FEFF 		bl	memset
+  32 000e 2848     		ldr	r0, .L7
+  33 0010 284B     		ldr	r3, .L7+4
+  34 0012 0360     		str	r3, [r0]
+  35 0014 0023     		movs	r3, #0
+  36 0016 4360     		str	r3, [r0, #4]
+  37 0018 8360     		str	r3, [r0, #8]
+  38 001a C360     		str	r3, [r0, #12]
+  39 001c 4FF08052 		mov	r2, #268435456
+  40 0020 0261     		str	r2, [r0, #16]
+  41 0022 4361     		str	r3, [r0, #20]
+  42 0024 8361     		str	r3, [r0, #24]
+  43 0026 3022     		movs	r2, #48
+  44 0028 C261     		str	r2, [r0, #28]
+  45 002a 1C22     		movs	r2, #28
+  46 002c 0262     		str	r2, [r0, #32]
+  47 002e 4FF45472 		mov	r2, #848
+  48 0032 4262     		str	r2, [r0, #36]
+  49 0034 4FF4FE72 		mov	r2, #508
+  50 0038 8262     		str	r2, [r0, #40]
+  51 003a 4FF45E72 		mov	r2, #888
+  52 003e C262     		str	r2, [r0, #44]
+  53 0040 40F20922 		movw	r2, #521
+  54 0044 0263     		str	r2, [r0, #48]
+  55 0046 80F83430 		strb	r3, [r0, #52]
+  56 004a 80F83530 		strb	r3, [r0, #53]
+  57 004e 80F83630 		strb	r3, [r0, #54]
+  58 0052 FFF7FEFF 		bl	HAL_LTDC_Init
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s 			page 2
+
+
+  59 0056 28BB     		cbnz	r0, .L5
+  60              	.L2:
+  61 0058 0022     		movs	r2, #0
+  62 005a 0192     		str	r2, [sp, #4]
+  63 005c 4FF44871 		mov	r1, #800
+  64 0060 0291     		str	r1, [sp, #8]
+  65 0062 0392     		str	r2, [sp, #12]
+  66 0064 4FF4F073 		mov	r3, #480
+  67 0068 0493     		str	r3, [sp, #16]
+  68 006a 0220     		movs	r0, #2
+  69 006c 0590     		str	r0, [sp, #20]
+  70 006e FF20     		movs	r0, #255
+  71 0070 0690     		str	r0, [sp, #24]
+  72 0072 0792     		str	r2, [sp, #28]
+  73 0074 4FF4C060 		mov	r0, #1536
+  74 0078 0890     		str	r0, [sp, #32]
+  75 007a 0720     		movs	r0, #7
+  76 007c 0990     		str	r0, [sp, #36]
+  77 007e 4FF04040 		mov	r0, #-1073741824
+  78 0082 0A90     		str	r0, [sp, #40]
+  79 0084 0B91     		str	r1, [sp, #44]
+  80 0086 0C93     		str	r3, [sp, #48]
+  81 0088 8DF83420 		strb	r2, [sp, #52]
+  82 008c 8DF83520 		strb	r2, [sp, #53]
+  83 0090 8DF83620 		strb	r2, [sp, #54]
+  84 0094 01A9     		add	r1, sp, #4
+  85 0096 0648     		ldr	r0, .L7
+  86 0098 FFF7FEFF 		bl	HAL_LTDC_ConfigLayer
+  87 009c 28B9     		cbnz	r0, .L6
+  88              	.L1:
+  89 009e 0FB0     		add	sp, sp, #60
+  90              		@ sp needed
+  91 00a0 5DF804FB 		ldr	pc, [sp], #4
+  92              	.L5:
+  93 00a4 FFF7FEFF 		bl	Error_Handler
+  94 00a8 D6E7     		b	.L2
+  95              	.L6:
+  96 00aa FFF7FEFF 		bl	Error_Handler
+  97 00ae F6E7     		b	.L1
+  98              	.L8:
+  99              		.align	2
+ 100              	.L7:
+ 101 00b0 00000000 		.word	hltdc
+ 102 00b4 00680140 		.word	1073833984
+ 104              		.section	.text.HAL_LTDC_MspInit,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	HAL_LTDC_MspInit
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	HAL_LTDC_MspInit:
+ 112              		@ args = 0, pretend = 0, frame = 152
+ 113              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114 0000 10B5     		push	{r4, lr}
+ 115 0002 A6B0     		sub	sp, sp, #152
+ 116 0004 0446     		mov	r4, r0
+ 117 0006 9022     		movs	r2, #144
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s 			page 3
+
+
+ 118 0008 0021     		movs	r1, #0
+ 119 000a 02A8     		add	r0, sp, #8
+ 120 000c FFF7FEFF 		bl	memset
+ 121 0010 2268     		ldr	r2, [r4]
+ 122 0012 154B     		ldr	r3, .L15
+ 123 0014 9A42     		cmp	r2, r3
+ 124 0016 01D0     		beq	.L13
+ 125              	.L9:
+ 126 0018 26B0     		add	sp, sp, #152
+ 127              		@ sp needed
+ 128 001a 10BD     		pop	{r4, pc}
+ 129              	.L13:
+ 130 001c 0823     		movs	r3, #8
+ 131 001e 0293     		str	r3, [sp, #8]
+ 132 0020 C023     		movs	r3, #192
+ 133 0022 0793     		str	r3, [sp, #28]
+ 134 0024 0223     		movs	r3, #2
+ 135 0026 0993     		str	r3, [sp, #36]
+ 136 0028 0323     		movs	r3, #3
+ 137 002a 0893     		str	r3, [sp, #32]
+ 138 002c 0123     		movs	r3, #1
+ 139 002e 0A93     		str	r3, [sp, #40]
+ 140 0030 0C93     		str	r3, [sp, #48]
+ 141 0032 02A8     		add	r0, sp, #8
+ 142 0034 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 143 0038 90B9     		cbnz	r0, .L14
+ 144              	.L11:
+ 145 003a 0C4B     		ldr	r3, .L15+4
+ 146 003c 5A6C     		ldr	r2, [r3, #68]
+ 147 003e 42F08062 		orr	r2, r2, #67108864
+ 148 0042 5A64     		str	r2, [r3, #68]
+ 149 0044 5B6C     		ldr	r3, [r3, #68]
+ 150 0046 03F08063 		and	r3, r3, #67108864
+ 151 004a 0193     		str	r3, [sp, #4]
+ 152 004c 019B     		ldr	r3, [sp, #4]
+ 153 004e 0022     		movs	r2, #0
+ 154 0050 0521     		movs	r1, #5
+ 155 0052 5820     		movs	r0, #88
+ 156 0054 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 157 0058 5820     		movs	r0, #88
+ 158 005a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 159 005e DBE7     		b	.L9
+ 160              	.L14:
+ 161 0060 FFF7FEFF 		bl	Error_Handler
+ 162 0064 E9E7     		b	.L11
+ 163              	.L16:
+ 164 0066 00BF     		.align	2
+ 165              	.L15:
+ 166 0068 00680140 		.word	1073833984
+ 167 006c 00380240 		.word	1073887232
+ 169              		.section	.text.HAL_LTDC_MspDeInit,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	HAL_LTDC_MspDeInit
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	HAL_LTDC_MspDeInit:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s 			page 4
+
+
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179 0000 08B5     		push	{r3, lr}
+ 180 0002 0268     		ldr	r2, [r0]
+ 181 0004 064B     		ldr	r3, .L21
+ 182 0006 9A42     		cmp	r2, r3
+ 183 0008 00D0     		beq	.L20
+ 184              	.L17:
+ 185 000a 08BD     		pop	{r3, pc}
+ 186              	.L20:
+ 187 000c 054A     		ldr	r2, .L21+4
+ 188 000e 536C     		ldr	r3, [r2, #68]
+ 189 0010 23F08063 		bic	r3, r3, #67108864
+ 190 0014 5364     		str	r3, [r2, #68]
+ 191 0016 5820     		movs	r0, #88
+ 192 0018 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 193 001c F5E7     		b	.L17
+ 194              	.L22:
+ 195 001e 00BF     		.align	2
+ 196              	.L21:
+ 197 0020 00680140 		.word	1073833984
+ 198 0024 00380240 		.word	1073887232
+ 200              		.global	hltdc
+ 201              		.section	.bss.hltdc,"aw",%nobits
+ 202              		.align	2
+ 205              	hltdc:
+ 206 0000 00000000 		.space	168
+ 206      00000000 
+ 206      00000000 
+ 206      00000000 
+ 206      00000000 
+ 207              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ltdc.c
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:17     .text.MX_LTDC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:23     .text.MX_LTDC_Init:00000000 MX_LTDC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:101    .text.MX_LTDC_Init:000000b0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:205    .bss.hltdc:00000000 hltdc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:105    .text.HAL_LTDC_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:111    .text.HAL_LTDC_MspInit:00000000 HAL_LTDC_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:166    .text.HAL_LTDC_MspInit:00000068 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:170    .text.HAL_LTDC_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:176    .text.HAL_LTDC_MspDeInit:00000000 HAL_LTDC_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:197    .text.HAL_LTDC_MspDeInit:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc3TST9i.s:202    .bss.hltdc:00000000 $d
+
+UNDEFINED SYMBOLS
+memset
+HAL_LTDC_Init
+HAL_LTDC_ConfigLayer
+Error_Handler
+HAL_RCCEx_PeriphCLKConfig
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_NVIC_DisableIRQ

@@ -424,14 +424,7 @@ uint8_t OTM8009A_Init(uint32_t ColorCoding, uint32_t orientation)
   /* Send Command GRAM memory write (no parameters) : this initiates frame write via other DSI commands sent by */
   /* DSI host from LTDC incoming pixels in video mode */
   DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData45);
-  /* Grok Start */
-  /* Send Command Display On */
-  DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData44);
 
-  /* Включаем Tearing Effect (TEON) — без этого часто тёмный экран */
-//  HAL_DSI_ShortWrite(&hdsi, 0, DSI_DCS_SHORT_PKT_WRITE_P1, 0x35, 0x00);
-  OTM8009A_IO_Delay(50);
-  /* Grok End */
   return 0;
 }
 
