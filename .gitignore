@@ -5,3 +5,5 @@ Debug/
 *.d
 *.list
 *.mk
+*.lst
+
