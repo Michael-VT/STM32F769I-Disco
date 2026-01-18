@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -16,328 +16,351 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 1
   13              		.eabi_attribute 18, 4
   14              		.file	"main.c"
   15              		.text
-  16              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+  16              		.section	.text.UART_Read,"ax",%progbits
   17              		.align	1
-  18              		.global	HAL_TIM_PeriodElapsedCallback
+  18              		.global	UART_Read
   19              		.syntax unified
   20              		.thumb
   21              		.thumb_func
-  23              	HAL_TIM_PeriodElapsedCallback:
+  23              	UART_Read:
   24              		@ args = 0, pretend = 0, frame = 0
   25              		@ frame_needed = 0, uses_anonymous_args = 0
-  26 0000 08B5     		push	{r3, lr}
-  27 0002 0268     		ldr	r2, [r0]
-  28 0004 034B     		ldr	r3, .L5
-  29 0006 9A42     		cmp	r2, r3
-  30 0008 00D0     		beq	.L4
-  31              	.L1:
-  32 000a 08BD     		pop	{r3, pc}
-  33              	.L4:
-  34 000c FFF7FEFF 		bl	HAL_IncTick
-  35 0010 FBE7     		b	.L1
-  36              	.L6:
-  37 0012 00BF     		.align	2
-  38              	.L5:
-  39 0014 00100040 		.word	1073745920
-  41              		.section	.text.Error_Handler,"ax",%progbits
-  42              		.align	1
-  43              		.global	Error_Handler
-  44              		.syntax unified
-  45              		.thumb
-  46              		.thumb_func
-  48              	Error_Handler:
-  49              		@ Volatile: function does not return.
-  50              		@ args = 0, pretend = 0, frame = 0
-  51              		@ frame_needed = 0, uses_anonymous_args = 0
-  52              		@ link register save eliminated.
-  53              		.syntax unified
-  54              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
-  55 0000 72B6     		cpsid i
-  56              	@ 0 "" 2
-  57              		.thumb
-  58              		.syntax unified
-  59              	.L8:
-  60 0002 FEE7     		b	.L8
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 2
+  26              		@ link register save eliminated.
+  27 0000 8446     		mov	ip, r0
+  28 0002 0020     		movs	r0, #0
+  29 0004 8842     		cmp	r0, r1
+  30 0006 17D2     		bcs	.L10
+  31 0008 10B4     		push	{r4}
+  32              	.L7:
+  33 000a 0C4B     		ldr	r3, .L11
+  34 000c 1A68     		ldr	r2, [r3]
+  35 000e 0C4B     		ldr	r3, .L11+4
+  36 0010 1B68     		ldr	r3, [r3]
+  37 0012 9A42     		cmp	r2, r3
+  38 0014 0DD0     		beq	.L1
+  39 0016 094A     		ldr	r2, .L11
+  40 0018 1368     		ldr	r3, [r2]
+  41 001a 0A4C     		ldr	r4, .L11+8
+  42 001c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
+  43 001e 0CF80030 		strb	r3, [ip, r0]
+  44 0022 1368     		ldr	r3, [r2]
+  45 0024 0133     		adds	r3, r3, #1
+  46 0026 C3F30A03 		ubfx	r3, r3, #0, #11
+  47 002a 1360     		str	r3, [r2]
+  48 002c 0130     		adds	r0, r0, #1
+  49 002e 8842     		cmp	r0, r1
+  50 0030 EBD3     		bcc	.L7
+  51              	.L1:
+  52 0032 5DF8044B 		ldr	r4, [sp], #4
+  53 0036 7047     		bx	lr
+  54              	.L10:
+  55 0038 7047     		bx	lr
+  56              	.L12:
+  57 003a 00BF     		.align	2
+  58              	.L11:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 2
 
 
-  62              		.section	.text.SystemClock_Config,"ax",%progbits
-  63              		.align	1
-  64              		.global	SystemClock_Config
-  65              		.syntax unified
-  66              		.thumb
-  67              		.thumb_func
-  69              	SystemClock_Config:
-  70              		@ args = 0, pretend = 0, frame = 224
-  71              		@ frame_needed = 0, uses_anonymous_args = 0
-  72 0000 10B5     		push	{r4, lr}
-  73 0002 B8B0     		sub	sp, sp, #224
-  74 0004 2BAC     		add	r4, sp, #172
-  75 0006 3422     		movs	r2, #52
-  76 0008 0021     		movs	r1, #0
-  77 000a 2046     		mov	r0, r4
-  78 000c FFF7FEFF 		bl	memset
-  79 0010 0023     		movs	r3, #0
-  80 0012 2693     		str	r3, [sp, #152]
-  81 0014 2793     		str	r3, [sp, #156]
-  82 0016 2893     		str	r3, [sp, #160]
-  83 0018 2993     		str	r3, [sp, #164]
-  84 001a 2A93     		str	r3, [sp, #168]
-  85 001c FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
-  86 0020 2F4B     		ldr	r3, .L19
-  87 0022 1A6C     		ldr	r2, [r3, #64]
-  88 0024 42F08052 		orr	r2, r2, #268435456
-  89 0028 1A64     		str	r2, [r3, #64]
-  90 002a 1B6C     		ldr	r3, [r3, #64]
-  91 002c 03F08053 		and	r3, r3, #268435456
-  92 0030 0093     		str	r3, [sp]
-  93 0032 009B     		ldr	r3, [sp]
-  94 0034 2B4B     		ldr	r3, .L19+4
-  95 0036 1A68     		ldr	r2, [r3]
-  96 0038 42F44042 		orr	r2, r2, #49152
-  97 003c 1A60     		str	r2, [r3]
-  98 003e 1B68     		ldr	r3, [r3]
-  99 0040 03F44043 		and	r3, r3, #49152
- 100 0044 0193     		str	r3, [sp, #4]
- 101 0046 019B     		ldr	r3, [sp, #4]
- 102 0048 0323     		movs	r3, #3
- 103 004a 2B93     		str	r3, [sp, #172]
- 104 004c 4FF48033 		mov	r3, #65536
- 105 0050 2C93     		str	r3, [sp, #176]
- 106 0052 0123     		movs	r3, #1
- 107 0054 2E93     		str	r3, [sp, #184]
- 108 0056 1023     		movs	r3, #16
- 109 0058 2F93     		str	r3, [sp, #188]
- 110 005a 0223     		movs	r3, #2
- 111 005c 3193     		str	r3, [sp, #196]
- 112 005e 4FF48002 		mov	r2, #4194304
- 113 0062 3292     		str	r2, [sp, #200]
- 114 0064 1922     		movs	r2, #25
- 115 0066 3392     		str	r2, [sp, #204]
- 116 0068 4FF4D872 		mov	r2, #432
- 117 006c 3492     		str	r2, [sp, #208]
- 118 006e 3593     		str	r3, [sp, #212]
- 119 0070 0922     		movs	r2, #9
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 3
+  59 003c 00000000 		.word	UartRxTail
+  60 0040 00000000 		.word	UartRxHead
+  61 0044 00000000 		.word	UartRxBuffer
+  63              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+  64              		.align	1
+  65              		.global	HAL_TIM_PeriodElapsedCallback
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	HAL_TIM_PeriodElapsedCallback:
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 08B5     		push	{r3, lr}
+  74 0002 0268     		ldr	r2, [r0]
+  75 0004 034B     		ldr	r3, .L17
+  76 0006 9A42     		cmp	r2, r3
+  77 0008 00D0     		beq	.L16
+  78              	.L13:
+  79 000a 08BD     		pop	{r3, pc}
+  80              	.L16:
+  81 000c FFF7FEFF 		bl	HAL_IncTick
+  82 0010 FBE7     		b	.L13
+  83              	.L18:
+  84 0012 00BF     		.align	2
+  85              	.L17:
+  86 0014 00100040 		.word	1073745920
+  88              		.section	.text.Error_Handler,"ax",%progbits
+  89              		.align	1
+  90              		.global	Error_Handler
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  95              	Error_Handler:
+  96              		@ Volatile: function does not return.
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              		@ link register save eliminated.
+ 100              		.syntax unified
+ 101              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 102 0000 72B6     		cpsid i
+ 103              	@ 0 "" 2
+ 104              		.thumb
+ 105              		.syntax unified
+ 106              	.L20:
+ 107 0002 FEE7     		b	.L20
+ 109              		.section	.text.SystemClock_Config,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	SystemClock_Config
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	SystemClock_Config:
+ 117              		@ args = 0, pretend = 0, frame = 224
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119 0000 10B5     		push	{r4, lr}
+ 120 0002 B8B0     		sub	sp, sp, #224
+ 121 0004 2BAC     		add	r4, sp, #172
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 3
 
 
- 120 0072 3692     		str	r2, [sp, #216]
- 121 0074 3793     		str	r3, [sp, #220]
- 122 0076 2046     		mov	r0, r4
- 123 0078 FFF7FEFF 		bl	HAL_RCC_OscConfig
- 124 007c 38BB     		cbnz	r0, .L15
- 125 007e FFF7FEFF 		bl	HAL_PWREx_EnableOverDrive
- 126 0082 30BB     		cbnz	r0, .L16
- 127 0084 0F23     		movs	r3, #15
- 128 0086 2693     		str	r3, [sp, #152]
- 129 0088 0223     		movs	r3, #2
- 130 008a 2793     		str	r3, [sp, #156]
- 131 008c 0023     		movs	r3, #0
- 132 008e 2893     		str	r3, [sp, #160]
- 133 0090 4FF4A053 		mov	r3, #5120
- 134 0094 2993     		str	r3, [sp, #164]
- 135 0096 4FF48053 		mov	r3, #4096
- 136 009a 2A93     		str	r3, [sp, #168]
- 137 009c 0721     		movs	r1, #7
- 138 009e 26A8     		add	r0, sp, #152
- 139 00a0 FFF7FEFF 		bl	HAL_RCC_ClockConfig
- 140 00a4 B8B9     		cbnz	r0, .L17
- 141 00a6 02AC     		add	r4, sp, #8
- 142 00a8 9022     		movs	r2, #144
- 143 00aa 0021     		movs	r1, #0
- 144 00ac 2046     		mov	r0, r4
- 145 00ae FFF7FEFF 		bl	memset
- 146 00b2 4FF40013 		mov	r3, #2097152
- 147 00b6 0293     		str	r3, [sp, #8]
- 148 00b8 2046     		mov	r0, r4
- 149 00ba FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
- 150 00be 60B9     		cbnz	r0, .L18
- 151 00c0 0022     		movs	r2, #0
- 152 00c2 1146     		mov	r1, r2
- 153 00c4 1046     		mov	r0, r2
- 154 00c6 FFF7FEFF 		bl	HAL_RCC_MCOConfig
- 155 00ca 38B0     		add	sp, sp, #224
- 156              		@ sp needed
- 157 00cc 10BD     		pop	{r4, pc}
- 158              	.L15:
- 159 00ce FFF7FEFF 		bl	Error_Handler
- 160              	.L16:
- 161 00d2 FFF7FEFF 		bl	Error_Handler
- 162              	.L17:
- 163 00d6 FFF7FEFF 		bl	Error_Handler
- 164              	.L18:
- 165 00da FFF7FEFF 		bl	Error_Handler
- 166              	.L20:
- 167 00de 00BF     		.align	2
- 168              	.L19:
- 169 00e0 00380240 		.word	1073887232
- 170 00e4 00700040 		.word	1073770496
- 172              		.section	.text.MX_UART5_Init,"ax",%progbits
- 173              		.align	1
- 174              		.global	MX_UART5_Init
- 175              		.syntax unified
- 176              		.thumb
- 177              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 4
+ 122 0006 3422     		movs	r2, #52
+ 123 0008 0021     		movs	r1, #0
+ 124 000a 2046     		mov	r0, r4
+ 125 000c FFF7FEFF 		bl	memset
+ 126 0010 0023     		movs	r3, #0
+ 127 0012 2693     		str	r3, [sp, #152]
+ 128 0014 2793     		str	r3, [sp, #156]
+ 129 0016 2893     		str	r3, [sp, #160]
+ 130 0018 2993     		str	r3, [sp, #164]
+ 131 001a 2A93     		str	r3, [sp, #168]
+ 132 001c FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
+ 133 0020 2F4B     		ldr	r3, .L31
+ 134 0022 1A6C     		ldr	r2, [r3, #64]
+ 135 0024 42F08052 		orr	r2, r2, #268435456
+ 136 0028 1A64     		str	r2, [r3, #64]
+ 137 002a 1B6C     		ldr	r3, [r3, #64]
+ 138 002c 03F08053 		and	r3, r3, #268435456
+ 139 0030 0093     		str	r3, [sp]
+ 140 0032 009B     		ldr	r3, [sp]
+ 141 0034 2B4B     		ldr	r3, .L31+4
+ 142 0036 1A68     		ldr	r2, [r3]
+ 143 0038 42F44042 		orr	r2, r2, #49152
+ 144 003c 1A60     		str	r2, [r3]
+ 145 003e 1B68     		ldr	r3, [r3]
+ 146 0040 03F44043 		and	r3, r3, #49152
+ 147 0044 0193     		str	r3, [sp, #4]
+ 148 0046 019B     		ldr	r3, [sp, #4]
+ 149 0048 0323     		movs	r3, #3
+ 150 004a 2B93     		str	r3, [sp, #172]
+ 151 004c 4FF48033 		mov	r3, #65536
+ 152 0050 2C93     		str	r3, [sp, #176]
+ 153 0052 0123     		movs	r3, #1
+ 154 0054 2E93     		str	r3, [sp, #184]
+ 155 0056 1023     		movs	r3, #16
+ 156 0058 2F93     		str	r3, [sp, #188]
+ 157 005a 0223     		movs	r3, #2
+ 158 005c 3193     		str	r3, [sp, #196]
+ 159 005e 4FF48002 		mov	r2, #4194304
+ 160 0062 3292     		str	r2, [sp, #200]
+ 161 0064 1922     		movs	r2, #25
+ 162 0066 3392     		str	r2, [sp, #204]
+ 163 0068 4FF4D872 		mov	r2, #432
+ 164 006c 3492     		str	r2, [sp, #208]
+ 165 006e 3593     		str	r3, [sp, #212]
+ 166 0070 0922     		movs	r2, #9
+ 167 0072 3692     		str	r2, [sp, #216]
+ 168 0074 3793     		str	r3, [sp, #220]
+ 169 0076 2046     		mov	r0, r4
+ 170 0078 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 171 007c 38BB     		cbnz	r0, .L27
+ 172 007e FFF7FEFF 		bl	HAL_PWREx_EnableOverDrive
+ 173 0082 30BB     		cbnz	r0, .L28
+ 174 0084 0F23     		movs	r3, #15
+ 175 0086 2693     		str	r3, [sp, #152]
+ 176 0088 0223     		movs	r3, #2
+ 177 008a 2793     		str	r3, [sp, #156]
+ 178 008c 0023     		movs	r3, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 4
 
 
- 179              	MX_UART5_Init:
- 180              		@ args = 0, pretend = 0, frame = 0
- 181              		@ frame_needed = 0, uses_anonymous_args = 0
- 182 0000 08B5     		push	{r3, lr}
- 183 0002 0B48     		ldr	r0, .L25
- 184 0004 0B4B     		ldr	r3, .L25+4
- 185 0006 0360     		str	r3, [r0]
- 186 0008 4FF4E133 		mov	r3, #115200
- 187 000c 4360     		str	r3, [r0, #4]
- 188 000e 0023     		movs	r3, #0
- 189 0010 8360     		str	r3, [r0, #8]
- 190 0012 C360     		str	r3, [r0, #12]
- 191 0014 0361     		str	r3, [r0, #16]
- 192 0016 0C22     		movs	r2, #12
- 193 0018 4261     		str	r2, [r0, #20]
- 194 001a 8361     		str	r3, [r0, #24]
- 195 001c C361     		str	r3, [r0, #28]
- 196 001e 0362     		str	r3, [r0, #32]
- 197 0020 4362     		str	r3, [r0, #36]
- 198 0022 FFF7FEFF 		bl	HAL_UART_Init
- 199 0026 00B9     		cbnz	r0, .L24
- 200 0028 08BD     		pop	{r3, pc}
- 201              	.L24:
- 202 002a FFF7FEFF 		bl	Error_Handler
- 203              	.L26:
- 204 002e 00BF     		.align	2
- 205              	.L25:
- 206 0030 00000000 		.word	huart5
- 207 0034 00500040 		.word	1073762304
- 209              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 210              		.align	2
- 211              	.LC0:
- 212 0000 44697370 		.ascii	"Disply STM32F769I-DISKO!\000"
- 212      6C792053 
- 212      544D3332 
- 212      46373639 
- 212      492D4449 
- 213 0019 000000   		.align	2
- 214              	.LC1:
- 215 001c 53544D33 		.ascii	"STM32F769I-DISCO DSI WORKS!\000"
- 215      32463736 
- 215      39492D44 
- 215      4953434F 
- 215      20445349 
- 216              		.section	.text.main,"ax",%progbits
- 217              		.align	1
- 218              		.global	main
- 219              		.syntax unified
- 220              		.thumb
- 221              		.thumb_func
- 223              	main:
- 224              		@ args = 0, pretend = 0, frame = 0
- 225              		@ frame_needed = 0, uses_anonymous_args = 0
- 226 0000 10B5     		push	{r4, lr}
- 227 0002 FFF7FEFF 		bl	HAL_Init
- 228 0006 FFF7FEFF 		bl	SystemClock_Config
- 229 000a FFF7FEFF 		bl	MX_GPIO_Init
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 5
+ 179 008e 2893     		str	r3, [sp, #160]
+ 180 0090 4FF4A053 		mov	r3, #5120
+ 181 0094 2993     		str	r3, [sp, #164]
+ 182 0096 4FF48053 		mov	r3, #4096
+ 183 009a 2A93     		str	r3, [sp, #168]
+ 184 009c 0721     		movs	r1, #7
+ 185 009e 26A8     		add	r0, sp, #152
+ 186 00a0 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 187 00a4 B8B9     		cbnz	r0, .L29
+ 188 00a6 02AC     		add	r4, sp, #8
+ 189 00a8 9022     		movs	r2, #144
+ 190 00aa 0021     		movs	r1, #0
+ 191 00ac 2046     		mov	r0, r4
+ 192 00ae FFF7FEFF 		bl	memset
+ 193 00b2 4FF40013 		mov	r3, #2097152
+ 194 00b6 0293     		str	r3, [sp, #8]
+ 195 00b8 2046     		mov	r0, r4
+ 196 00ba FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 197 00be 60B9     		cbnz	r0, .L30
+ 198 00c0 0022     		movs	r2, #0
+ 199 00c2 1146     		mov	r1, r2
+ 200 00c4 1046     		mov	r0, r2
+ 201 00c6 FFF7FEFF 		bl	HAL_RCC_MCOConfig
+ 202 00ca 38B0     		add	sp, sp, #224
+ 203              		@ sp needed
+ 204 00cc 10BD     		pop	{r4, pc}
+ 205              	.L27:
+ 206 00ce FFF7FEFF 		bl	Error_Handler
+ 207              	.L28:
+ 208 00d2 FFF7FEFF 		bl	Error_Handler
+ 209              	.L29:
+ 210 00d6 FFF7FEFF 		bl	Error_Handler
+ 211              	.L30:
+ 212 00da FFF7FEFF 		bl	Error_Handler
+ 213              	.L32:
+ 214 00de 00BF     		.align	2
+ 215              	.L31:
+ 216 00e0 00380240 		.word	1073887232
+ 217 00e4 00700040 		.word	1073770496
+ 219              		.section	.text.MX_UART5_Init,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	MX_UART5_Init
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 226              	MX_UART5_Init:
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 229 0000 08B5     		push	{r3, lr}
+ 230 0002 0B48     		ldr	r0, .L37
+ 231 0004 0B4B     		ldr	r3, .L37+4
+ 232 0006 0360     		str	r3, [r0]
+ 233 0008 4FF4E133 		mov	r3, #115200
+ 234 000c 4360     		str	r3, [r0, #4]
+ 235 000e 0023     		movs	r3, #0
+ 236 0010 8360     		str	r3, [r0, #8]
+ 237 0012 C360     		str	r3, [r0, #12]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 5
 
 
- 230 000e FFF7FEFF 		bl	MX_UART5_Init
- 231 0012 FFF7FEFF 		bl	MX_LTDC_Init
- 232 0016 FFF7FEFF 		bl	MX_DMA2D_Init
- 233 001a FFF7FEFF 		bl	MX_FMC_Init
- 234 001e FFF7FEFF 		bl	MX_DSIHOST_DSI_Init
- 235 0022 FFF7FEFF 		bl	MX_I2C1_Init
- 236 0026 FFF7FEFF 		bl	MX_CRC_Init
- 237 002a FFF7FEFF 		bl	BSP_LCD_Init
- 238 002e FFF7FEFF 		bl	BSP_LCD_GetXSize
- 239 0032 0446     		mov	r4, r0
- 240 0034 FFF7FEFF 		bl	BSP_LCD_GetYSize
- 241 0038 81B2     		uxth	r1, r0
- 242 003a A0B2     		uxth	r0, r4
- 243 003c FFF7FEFF 		bl	BSP_TS_Init
- 244              	.L28:
- 245 0040 0028     		cmp	r0, #0
- 246 0042 FDD1     		bne	.L28
- 247 0044 6420     		movs	r0, #100
- 248 0046 FFF7FEFF 		bl	BSP_LCD_SetBrightness
- 249 004a FFF7FEFF 		bl	BSP_LCD_Init
- 250 004e 4FF04041 		mov	r1, #-1073741824
- 251 0052 0020     		movs	r0, #0
- 252 0054 FFF7FEFF 		bl	BSP_LCD_LayerDefaultInit
- 253 0058 0020     		movs	r0, #0
- 254 005a FFF7FEFF 		bl	BSP_LCD_SelectLayer
- 255 005e 4FF0FF30 		mov	r0, #-1
- 256 0062 FFF7FEFF 		bl	BSP_LCD_Clear
- 257 0066 4FF0FF30 		mov	r0, #-1
- 258 006a FFF7FEFF 		bl	BSP_LCD_SetBackColor
- 259 006e 4FF07F40 		mov	r0, #-16777216
- 260 0072 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 261 0076 0123     		movs	r3, #1
- 262 0078 124A     		ldr	r2, .L31
- 263 007a 0A21     		movs	r1, #10
- 264 007c 0020     		movs	r0, #0
- 265 007e FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 266 0082 FFF7FEFF 		bl	BSP_SDRAM_Init
- 267 0086 FFF7FEFF 		bl	BSP_LCD_Init
- 268 008a 4FF04041 		mov	r1, #-1073741824
- 269 008e 0020     		movs	r0, #0
- 270 0090 FFF7FEFF 		bl	BSP_LCD_LayerDefaultInit
- 271 0094 0020     		movs	r0, #0
- 272 0096 FFF7FEFF 		bl	BSP_LCD_SelectLayer
- 273 009a 4FF0FF30 		mov	r0, #-1
- 274 009e FFF7FEFF 		bl	BSP_LCD_Clear
- 275 00a2 4FF07F40 		mov	r0, #-16777216
- 276 00a6 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 277 00aa 0123     		movs	r3, #1
- 278 00ac 064A     		ldr	r2, .L31+4
- 279 00ae F021     		movs	r1, #240
- 280 00b0 0020     		movs	r0, #0
- 281 00b2 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 282 00b6 FFF7FEFF 		bl	osKernelInitialize
- 283 00ba FFF7FEFF 		bl	MX_FREERTOS_Init
- 284 00be FFF7FEFF 		bl	osKernelStart
- 285              	.L29:
- 286 00c2 FEE7     		b	.L29
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 6
-
-
- 287              	.L32:
- 288              		.align	2
- 289              	.L31:
- 290 00c4 00000000 		.word	.LC0
- 291 00c8 1C000000 		.word	.LC1
+ 238 0014 0361     		str	r3, [r0, #16]
+ 239 0016 0C22     		movs	r2, #12
+ 240 0018 4261     		str	r2, [r0, #20]
+ 241 001a 8361     		str	r3, [r0, #24]
+ 242 001c C361     		str	r3, [r0, #28]
+ 243 001e 0362     		str	r3, [r0, #32]
+ 244 0020 4362     		str	r3, [r0, #36]
+ 245 0022 FFF7FEFF 		bl	HAL_UART_Init
+ 246 0026 00B9     		cbnz	r0, .L36
+ 247 0028 08BD     		pop	{r3, pc}
+ 248              	.L36:
+ 249 002a FFF7FEFF 		bl	Error_Handler
+ 250              	.L38:
+ 251 002e 00BF     		.align	2
+ 252              	.L37:
+ 253 0030 00000000 		.word	huart5
+ 254 0034 00500040 		.word	1073762304
+ 256              		.section	.text.main,"ax",%progbits
+ 257              		.align	1
+ 258              		.global	main
+ 259              		.syntax unified
+ 260              		.thumb
+ 261              		.thumb_func
+ 263              	main:
+ 264              		@ Volatile: function does not return.
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267 0000 08B5     		push	{r3, lr}
+ 268 0002 FFF7FEFF 		bl	HAL_Init
+ 269 0006 FFF7FEFF 		bl	SystemClock_Config
+ 270 000a FFF7FEFF 		bl	MX_GPIO_Init
+ 271 000e FFF7FEFF 		bl	MX_UART5_Init
+ 272 0012 FFF7FEFF 		bl	MX_LTDC_Init
+ 273 0016 FFF7FEFF 		bl	MX_DMA2D_Init
+ 274 001a FFF7FEFF 		bl	MX_FMC_Init
+ 275 001e FFF7FEFF 		bl	MX_DSIHOST_DSI_Init
+ 276 0022 FFF7FEFF 		bl	MX_I2C1_Init
+ 277 0026 FFF7FEFF 		bl	MX_CRC_Init
+ 278 002a 064B     		ldr	r3, .L42
+ 279 002c 1A68     		ldr	r2, [r3]
+ 280 002e 1368     		ldr	r3, [r2]
+ 281 0030 43F02003 		orr	r3, r3, #32
+ 282 0034 1360     		str	r3, [r2]
+ 283 0036 FFF7FEFF 		bl	osKernelInitialize
+ 284 003a FFF7FEFF 		bl	MX_FREERTOS_Init
+ 285 003e FFF7FEFF 		bl	osKernelStart
+ 286              	.L40:
+ 287 0042 FEE7     		b	.L40
+ 288              	.L43:
+ 289              		.align	2
+ 290              	.L42:
+ 291 0044 00000000 		.word	huart5
  293              		.global	huart5
  294              		.section	.bss.huart5,"aw",%nobits
  295              		.align	2
  298              	huart5:
  299 0000 00000000 		.space	112
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 6
+
+
  299      00000000 
  299      00000000 
  299      00000000 
  299      00000000 
- 300              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s 			page 7
+ 300              		.global	UartRxByte
+ 301              		.section	.bss.UartRxByte,"aw",%nobits
+ 304              	UartRxByte:
+ 305 0000 00       		.space	1
+ 306              		.global	UartRxTail
+ 307              		.section	.bss.UartRxTail,"aw",%nobits
+ 308              		.align	2
+ 311              	UartRxTail:
+ 312 0000 00000000 		.space	4
+ 313              		.global	UartRxHead
+ 314              		.section	.bss.UartRxHead,"aw",%nobits
+ 315              		.align	2
+ 318              	UartRxHead:
+ 319 0000 00000000 		.space	4
+ 320              		.global	UartRxBuffer
+ 321              		.section	.bss.UartRxBuffer,"aw",%nobits
+ 322              		.align	2
+ 325              	UartRxBuffer:
+ 326 0000 00000000 		.space	2048
+ 326      00000000 
+ 326      00000000 
+ 326      00000000 
+ 326      00000000 
+ 327              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:17     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:23     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:39     .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:42     .text.Error_Handler:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:48     .text.Error_Handler:00000000 Error_Handler
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:63     .text.SystemClock_Config:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:69     .text.SystemClock_Config:00000000 SystemClock_Config
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:169    .text.SystemClock_Config:000000e0 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:173    .text.MX_UART5_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:179    .text.MX_UART5_Init:00000000 MX_UART5_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:206    .text.MX_UART5_Init:00000030 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:298    .bss.huart5:00000000 huart5
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:210    .rodata.main.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:217    .text.main:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:223    .text.main:00000000 main
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:290    .text.main:000000c4 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8Tt4wT.s:295    .bss.huart5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:17     .text.UART_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:23     .text.UART_Read:00000000 UART_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:59     .text.UART_Read:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:311    .bss.UartRxTail:00000000 UartRxTail
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:318    .bss.UartRxHead:00000000 UartRxHead
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:325    .bss.UartRxBuffer:00000000 UartRxBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:64     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:70     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:86     .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:89     .text.Error_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:95     .text.Error_Handler:00000000 Error_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:110    .text.SystemClock_Config:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:116    .text.SystemClock_Config:00000000 SystemClock_Config
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:216    .text.SystemClock_Config:000000e0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:220    .text.MX_UART5_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:226    .text.MX_UART5_Init:00000000 MX_UART5_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:253    .text.MX_UART5_Init:00000030 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:298    .bss.huart5:00000000 huart5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:257    .text.main:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:263    .text.main:00000000 main
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:291    .text.main:00000044 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:295    .bss.huart5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:304    .bss.UartRxByte:00000000 UartRxByte
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:305    .bss.UartRxByte:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:308    .bss.UartRxTail:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:315    .bss.UartRxHead:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc5hreeM.s:322    .bss.UartRxBuffer:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
@@ -357,18 +380,6 @@ MX_FMC_Init
 MX_DSIHOST_DSI_Init
 MX_I2C1_Init
 MX_CRC_Init
-BSP_LCD_Init
-BSP_LCD_GetXSize
-BSP_LCD_GetYSize
-BSP_TS_Init
-BSP_LCD_SetBrightness
-BSP_LCD_LayerDefaultInit
-BSP_LCD_SelectLayer
-BSP_LCD_Clear
-BSP_LCD_SetBackColor
-BSP_LCD_SetTextColor
-BSP_LCD_DisplayStringAt
-BSP_SDRAM_Init
 osKernelInitialize
 MX_FREERTOS_Init
 osKernelStart

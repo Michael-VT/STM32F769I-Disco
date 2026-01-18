@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
+#include "main.h"
 
 /* USER CODE BEGIN INCLUDE */
 
@@ -111,6 +112,7 @@ uint8_t UserTxBufferHS[APP_TX_DATA_SIZE];
  */
 
 extern USBD_HandleTypeDef hUsbDeviceHS;
+extern UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
 
@@ -220,12 +222,33 @@ static int8_t CDC_Control_HS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
   /* 6      | bDataBits  |   1   | Number Data bits (5, 6, 7, 8 or 16). */
   /*******************************************************************************/
   case CDC_SET_LINE_CODING:
+    if (length == 7) {
+      USBD_CDC_LineCodingTypeDef *lineCoding =
+          (USBD_CDC_LineCodingTypeDef *)pbuf;
+      huart5.Init.BaudRate = lineCoding->bitrate;
+      huart5.Init.WordLength =
+          (lineCoding->format == 7) ? UART_WORDLENGTH_7B : UART_WORDLENGTH_8B;
+      huart5.Init.StopBits =
+          (lineCoding->format == 2) ? UART_STOPBITS_2 : UART_STOPBITS_1;
+      huart5.Init.Parity =
+          (lineCoding->paritytype == 0)
+              ? UART_PARITY_NONE
+              : ((lineCoding->paritytype == 1) ? UART_PARITY_ODD
+                                               : UART_PARITY_EVEN);
 
+      if (HAL_UART_Init(&huart5) != HAL_OK) {
+        Error_Handler();
+      }
+    }
     break;
 
-  case CDC_GET_LINE_CODING:
-
-    break;
+  case CDC_GET_LINE_CODING: {
+    USBD_CDC_LineCodingTypeDef *lineCoding = (USBD_CDC_LineCodingTypeDef *)pbuf;
+    lineCoding->bitrate = huart5.Init.BaudRate;
+    lineCoding->format = 0;     // Stop bits: 1
+    lineCoding->paritytype = 0; // Parity: None
+    lineCoding->datatype = 8;   // Data bits: 8
+  } break;
 
   case CDC_SET_CONTROL_LINE_STATE:
 
@@ -261,6 +284,12 @@ static int8_t CDC_Control_HS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
  */
 static int8_t CDC_Receive_HS(uint8_t *Buf, uint32_t *Len) {
   /* USER CODE BEGIN 11 */
+  // Forward received data to UART5
+  HAL_UART_Transmit(&huart5, Buf, *Len, 100);
+
+  // Original RingBuffer code (optional to keep or remove, removing for bridge
+  // efficiency)
+  /*
   for (uint32_t i = 0; i < *Len; i++) {
     uint32_t next = (UserRxRingHead + 1) % sizeof(UserRxRingBuffer);
     if (next != UserRxRingTail) {
@@ -268,6 +297,7 @@ static int8_t CDC_Receive_HS(uint8_t *Buf, uint32_t *Len) {
       UserRxRingHead = next;
     }
   }
+  */
 
   USBD_CDC_SetRxBuffer(&hUsbDeviceHS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceHS);

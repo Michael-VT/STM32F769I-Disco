@@ -3,8 +3,8 @@
 #define __ESP8266_H
 
 #ifdef __cplusplus
- extern "C" {
-#endif 
+extern "C" {
+#endif
 
 #include "main.h"
 
@@ -17,8 +17,9 @@ typedef enum {
 
 /* Function Prototypes */
 void ESP8266_Init(void);
-ESP8266_StatusTypeDef ESP8266_SendCommand(const char* cmd);
-ESP8266_StatusTypeDef ESP8266_Receive(char* buffer, uint16_t size);
+ESP8266_StatusTypeDef ESP8266_SendCommand(const char *cmd);
+ESP8266_StatusTypeDef ESP8266_Receive(char *buffer, uint16_t size);
+ESP8266_StatusTypeDef ESP8266_WaitFor(const char *pattern, uint32_t timeout);
 
 #ifdef __cplusplus
 }

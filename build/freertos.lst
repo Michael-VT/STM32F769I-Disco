@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,206 +19,425 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 1
   16              		.section	.rodata.StartDefaultTask.str1.4,"aMS",%progbits,1
   17              		.align	2
   18              	.LC0:
-  19 0000 0D0A3D3D 		.ascii	"\015\012=== STM32F769i Bridge Started ===\015\012Ty"
-  19      3D205354 
-  19      4D333246 
-  19      37363969 
-  19      20427269 
-  20 0027 70652041 		.ascii	"pe AT commands...\015\012\000"
-  20      5420636F 
-  20      6D6D616E 
-  20      64732E2E 
-  20      2E0D0A00 
-  21              		.section	.text.StartDefaultTask,"ax",%progbits
-  22              		.align	1
-  23              		.global	StartDefaultTask
-  24              		.syntax unified
-  25              		.thumb
-  26              		.thumb_func
-  28              	StartDefaultTask:
-  29              		@ args = 0, pretend = 0, frame = 72
-  30              		@ frame_needed = 0, uses_anonymous_args = 0
-  31 0000 00B5     		push	{lr}
-  32 0002 93B0     		sub	sp, sp, #76
-  33 0004 FFF7FEFF 		bl	MX_USB_DEVICE_Init
-  34 0008 3A21     		movs	r1, #58
-  35 000a 1848     		ldr	r0, .L8
-  36 000c FFF7FEFF 		bl	CDC_Transmit_HS
-  37 0010 19E0     		b	.L5
-  38              	.L2:
-  39 0012 0023     		movs	r3, #0
-  40 0014 0122     		movs	r2, #1
-  41 0016 0DF10701 		add	r1, sp, #7
-  42 001a 1548     		ldr	r0, .L8+4
-  43 001c FFF7FEFF 		bl	HAL_UART_Receive
-  44 0020 F0B1     		cbz	r0, .L7
-  45              	.L3:
-  46 0022 144A     		ldr	r2, .L8+8
-  47 0024 1368     		ldr	r3, [r2]
-  48 0026 0133     		adds	r3, r3, #1
-  49 0028 1360     		str	r3, [r2]
-  50 002a B3F57A7F 		cmp	r3, #1000
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 2
+  19 0000 436F6E6E 		.ascii	"Connecting to WiFi...\015\012\000"
+  19      65637469 
+  19      6E672074 
+  19      6F205769 
+  19      46692E2E 
+  20              		.align	2
+  21              	.LC1:
+  22 0018 41542B43 		.ascii	"AT+CWMODE=1\000"
+  22      574D4F44 
+  22      453D3100 
+  23              		.align	2
+  24              	.LC2:
+  25 0024 41542B43 		.ascii	"AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"\000"
+  25      574A4150 
+  25      3D224D45 
+  25      4F2D4544 
+  25      43384544 
+  26 0047 00       		.align	2
+  27              	.LC3:
+  28 0048 53746172 		.ascii	"Starting Weather Loop...\015\012\000"
+  28      74696E67 
+  28      20576561 
+  28      74686572 
+  28      204C6F6F 
+  29 0063 00       		.align	2
+  30              	.LC4:
+  31 0064 41542B43 		.ascii	"AT+CIPSTART=\"TCP\",\"wttr.in\",80\000"
+  31      49505354 
+  31      4152543D 
+  31      22544350 
+  31      222C2277 
+  32 0083 00       		.align	2
+  33              	.LC5:
+  34 0084 4F4B00   		.ascii	"OK\000"
+  35 0087 00       		.align	2
+  36              	.LC6:
+  37 0088 54435020 		.ascii	"TCP Connection Failed\015\012\000"
+  37      436F6E6E 
+  37      65637469 
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 2
 
 
-  51 002e 07D3     		bcc	.L4
-  52 0030 4FF40051 		mov	r1, #8192
-  53 0034 1048     		ldr	r0, .L8+12
-  54 0036 FFF7FEFF 		bl	HAL_GPIO_TogglePin
-  55 003a 0E4B     		ldr	r3, .L8+8
-  56 003c 0022     		movs	r2, #0
-  57 003e 1A60     		str	r2, [r3]
-  58              	.L4:
-  59 0040 0120     		movs	r0, #1
-  60 0042 FFF7FEFF 		bl	osDelay
-  61              	.L5:
-  62 0046 4021     		movs	r1, #64
-  63 0048 02A8     		add	r0, sp, #8
-  64 004a FFF7FEFF 		bl	VCP_Read
-  65 004e 0028     		cmp	r0, #0
-  66 0050 DFD0     		beq	.L2
-  67 0052 6423     		movs	r3, #100
-  68 0054 82B2     		uxth	r2, r0
-  69 0056 02A9     		add	r1, sp, #8
-  70 0058 0548     		ldr	r0, .L8+4
-  71 005a FFF7FEFF 		bl	HAL_UART_Transmit
-  72 005e D8E7     		b	.L2
-  73              	.L7:
-  74 0060 0121     		movs	r1, #1
-  75 0062 0DF10700 		add	r0, sp, #7
-  76 0066 FFF7FEFF 		bl	CDC_Transmit_HS
-  77 006a DAE7     		b	.L3
-  78              	.L9:
-  79              		.align	2
-  80              	.L8:
-  81 006c 00000000 		.word	.LC0
-  82 0070 00000000 		.word	huart5
-  83 0074 00000000 		.word	ticks.0
-  84 0078 00240240 		.word	1073882112
-  86              		.section	.text.vApplicationIdleHook,"ax",%progbits
-  87              		.align	1
-  88              		.global	vApplicationIdleHook
-  89              		.syntax unified
-  90              		.thumb
-  91              		.thumb_func
-  93              	vApplicationIdleHook:
-  94              		@ args = 0, pretend = 0, frame = 0
-  95              		@ frame_needed = 0, uses_anonymous_args = 0
-  96              		@ link register save eliminated.
-  97 0000 7047     		bx	lr
-  99              		.section	.text.vApplicationStackOverflowHook,"ax",%progbits
- 100              		.align	1
- 101              		.global	vApplicationStackOverflowHook
- 102              		.syntax unified
- 103              		.thumb
- 104              		.thumb_func
- 106              	vApplicationStackOverflowHook:
- 107              		@ args = 0, pretend = 0, frame = 0
- 108              		@ frame_needed = 0, uses_anonymous_args = 0
- 109              		@ link register save eliminated.
- 110 0000 7047     		bx	lr
- 112              		.section	.text.vApplicationMallocFailedHook,"ax",%progbits
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 3
+  37      6F6E2046 
+  37      61696C65 
+  38              		.align	2
+  39              	.LC7:
+  40 00a0 41542B43 		.ascii	"AT+CIPSEND=%lu\000"
+  40      49505345 
+  40      4E443D25 
+  40      6C7500
+  41 00af 00       		.align	2
+  42              	.LC8:
+  43 00b0 3E00     		.ascii	">\000"
+  44 00b2 0000     		.align	2
+  45              	.LC9:
+  46 00b4 47455420 		.ascii	"GET /Peniche?format=%C+%t+%w+%h+%m+%o HTTP/1.1\015\012"
+  46      2F50656E 
+  46      69636865 
+  46      3F666F72 
+  46      6D61743D 
+  47 00e4 00       		.ascii	"\000"
+  48 00e5 000000   		.align	2
+  49              	.LC10:
+  50 00e8 486F7374 		.ascii	"Host: wttr.in\015\012\000"
+  50      3A207774 
+  50      74722E69 
+  50      6E0D0A00 
+  51              		.align	2
+  52              	.LC11:
+  53 00f8 55736572 		.ascii	"User-Agent: curl/7.68.0\015\012\000"
+  53      2D416765 
+  53      6E743A20 
+  53      6375726C 
+  53      2F372E36 
+  54 0112 0000     		.align	2
+  55              	.LC12:
+  56 0114 436F6E6E 		.ascii	"Connection: close\015\012\015\012\000"
+  56      65637469 
+  56      6F6E3A20 
+  56      636C6F73 
+  56      650D0A0D 
+  57 012a 0000     		.align	2
+  58              	.LC13:
+  59 012c 0D0A00   		.ascii	"\015\012\000"
+  60 012f 00       		.align	2
+  61              	.LC14:
+  62 0130 43495053 		.ascii	"CIPSEND Failed\015\012\000"
+  62      454E4420 
+  62      4661696C 
+  62      65640D0A 
+  62      00
+  63              		.section	.text.StartDefaultTask,"ax",%progbits
+  64              		.align	1
+  65              		.global	StartDefaultTask
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  70              	StartDefaultTask:
+  71              		@ args = 0, pretend = 0, frame = 224
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 3
 
 
- 113              		.align	1
- 114              		.global	vApplicationMallocFailedHook
- 115              		.syntax unified
- 116              		.thumb
- 117              		.thumb_func
- 119              	vApplicationMallocFailedHook:
- 120              		@ args = 0, pretend = 0, frame = 0
- 121              		@ frame_needed = 0, uses_anonymous_args = 0
- 122              		@ link register save eliminated.
- 123 0000 7047     		bx	lr
- 125              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
- 126              		.align	1
- 127              		.global	MX_FREERTOS_Init
- 128              		.syntax unified
- 129              		.thumb
- 130              		.thumb_func
- 132              	MX_FREERTOS_Init:
- 133              		@ args = 0, pretend = 0, frame = 0
- 134              		@ frame_needed = 0, uses_anonymous_args = 0
- 135 0000 08B5     		push	{r3, lr}
- 136 0002 044A     		ldr	r2, .L15
- 137 0004 0021     		movs	r1, #0
- 138 0006 0448     		ldr	r0, .L15+4
- 139 0008 FFF7FEFF 		bl	osThreadNew
- 140 000c 034B     		ldr	r3, .L15+8
- 141 000e 1860     		str	r0, [r3]
- 142 0010 08BD     		pop	{r3, pc}
- 143              	.L16:
- 144 0012 00BF     		.align	2
- 145              	.L15:
- 146 0014 00000000 		.word	defaultTask_attributes
- 147 0018 00000000 		.word	StartDefaultTask
- 148 001c 00000000 		.word	defaultTaskHandle
- 150              		.section	.bss.ticks.0,"aw",%nobits
- 151              		.align	2
- 154              	ticks.0:
- 155 0000 00000000 		.space	4
- 156              		.global	defaultTask_attributes
- 157              		.section	.rodata.str1.4,"aMS",%progbits,1
- 158              		.align	2
- 159              	.LC1:
- 160 0000 64656661 		.ascii	"defaultTask\000"
- 160      756C7454 
- 160      61736B00 
- 161              		.section	.rodata.defaultTask_attributes,"a"
- 162              		.align	2
- 165              	defaultTask_attributes:
- 166 0000 00000000 		.word	.LC1
- 167 0004 00000000 		.space	16
- 167      00000000 
- 167      00000000 
- 167      00000000 
- 168 0014 00400000 		.word	16384
- 169 0018 18000000 		.word	24
- 170 001c 00000000 		.space	8
- 170      00000000 
- 171              		.global	defaultTaskHandle
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 4
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 70B5     		push	{r4, r5, r6, lr}
+  74 0002 B8B0     		sub	sp, sp, #224
+  75 0004 FFF7FEFF 		bl	MX_USB_DEVICE_Init
+  76 0008 FFF7FEFF 		bl	ESP8266_Init
+  77 000c 4FF4FA60 		mov	r0, #2000
+  78 0010 FFF7FEFF 		bl	osDelay
+  79 0014 0024     		movs	r4, #0
+  80 0016 08E0     		b	.L2
+  81              	.L3:
+  82 0018 4FF40051 		mov	r1, #8192
+  83 001c 6148     		ldr	r0, .L18
+  84 001e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  85 0022 6420     		movs	r0, #100
+  86 0024 FFF7FEFF 		bl	osDelay
+  87 0028 0134     		adds	r4, r4, #1
+  88              	.L2:
+  89 002a 092C     		cmp	r4, #9
+  90 002c F4DD     		ble	.L3
+  91 002e 0122     		movs	r2, #1
+  92 0030 4FF40051 		mov	r1, #8192
+  93 0034 5B48     		ldr	r0, .L18
+  94 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  95 003a 18AE     		add	r6, sp, #96
+  96 003c 3446     		mov	r4, r6
+  97 003e 5A4D     		ldr	r5, .L18+4
+  98 0040 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+  99 0042 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 100 0044 95E80300 		ldm	r5, {r0, r1}
+ 101 0048 84E80300 		stm	r4, {r0, r1}
+ 102 004c 3046     		mov	r0, r6
+ 103 004e FFF7FEFF 		bl	strlen
+ 104 0052 81B2     		uxth	r1, r0
+ 105 0054 3046     		mov	r0, r6
+ 106 0056 FFF7FEFF 		bl	CDC_Transmit_HS
+ 107 005a 5448     		ldr	r0, .L18+8
+ 108 005c FFF7FEFF 		bl	ESP8266_SendCommand
+ 109 0060 4FF4FA70 		mov	r0, #500
+ 110 0064 FFF7FEFF 		bl	osDelay
+ 111 0068 5148     		ldr	r0, .L18+12
+ 112 006a FFF7FEFF 		bl	ESP8266_SendCommand
+ 113 006e 4FF4FA50 		mov	r0, #8000
+ 114 0072 FFF7FEFF 		bl	osDelay
+ 115 0076 3446     		mov	r4, r6
+ 116 0078 4E4D     		ldr	r5, .L18+16
+ 117 007a 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 118 007c 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 119 007e 95E80700 		ldm	r5, {r0, r1, r2}
+ 120 0082 03C4     		stmia	r4!, {r0, r1}
+ 121 0084 24F8022B 		strh	r2, [r4], #2	@ movhi
+ 122 0088 120C     		lsrs	r2, r2, #16
+ 123 008a 2270     		strb	r2, [r4]
+ 124 008c 3046     		mov	r0, r6
+ 125 008e FFF7FEFF 		bl	strlen
+ 126 0092 81B2     		uxth	r1, r0
+ 127 0094 3046     		mov	r0, r6
+ 128 0096 FFF7FEFF 		bl	CDC_Transmit_HS
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 4
 
 
- 172              		.section	.bss.defaultTaskHandle,"aw",%nobits
- 173              		.align	2
- 176              	defaultTaskHandle:
- 177 0000 00000000 		.space	4
- 178              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s 			page 5
+ 129 009a 63E0     		b	.L4
+ 130              	.L5:
+ 131 009c 6D22     		movs	r2, #109
+ 132 009e 4649     		ldr	r1, .L18+20
+ 133 00a0 6846     		mov	r0, sp
+ 134 00a2 FFF7FEFF 		bl	sprintf
+ 135 00a6 6846     		mov	r0, sp
+ 136 00a8 FFF7FEFF 		bl	ESP8266_SendCommand
+ 137 00ac 4FF4FA61 		mov	r1, #2000
+ 138 00b0 4248     		ldr	r0, .L18+24
+ 139 00b2 FFF7FEFF 		bl	ESP8266_WaitFor
+ 140 00b6 78B1     		cbz	r0, .L16
+ 141 00b8 18AE     		add	r6, sp, #96
+ 142 00ba 3446     		mov	r4, r6
+ 143 00bc 404D     		ldr	r5, .L18+28
+ 144 00be 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 145 00c0 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 146 00c2 2B68     		ldr	r3, [r5]
+ 147 00c4 2370     		strb	r3, [r4]
+ 148 00c6 3046     		mov	r0, r6
+ 149 00c8 FFF7FEFF 		bl	strlen
+ 150 00cc 81B2     		uxth	r1, r0
+ 151 00ce 3046     		mov	r0, r6
+ 152 00d0 FFF7FEFF 		bl	CDC_Transmit_HS
+ 153              	.L12:
+ 154 00d4 0024     		movs	r4, #0
+ 155 00d6 43E0     		b	.L13
+ 156              	.L16:
+ 157 00d8 3A4C     		ldr	r4, .L18+32
+ 158 00da 6423     		movs	r3, #100
+ 159 00dc 3022     		movs	r2, #48
+ 160 00de 3A49     		ldr	r1, .L18+36
+ 161 00e0 2046     		mov	r0, r4
+ 162 00e2 FFF7FEFF 		bl	HAL_UART_Transmit
+ 163 00e6 6423     		movs	r3, #100
+ 164 00e8 0F22     		movs	r2, #15
+ 165 00ea 3849     		ldr	r1, .L18+40
+ 166 00ec 2046     		mov	r0, r4
+ 167 00ee FFF7FEFF 		bl	HAL_UART_Transmit
+ 168 00f2 6423     		movs	r3, #100
+ 169 00f4 1922     		movs	r2, #25
+ 170 00f6 3649     		ldr	r1, .L18+44
+ 171 00f8 2046     		mov	r0, r4
+ 172 00fa FFF7FEFF 		bl	HAL_UART_Transmit
+ 173 00fe 6423     		movs	r3, #100
+ 174 0100 1522     		movs	r2, #21
+ 175 0102 3449     		ldr	r1, .L18+48
+ 176 0104 2046     		mov	r0, r4
+ 177 0106 FFF7FEFF 		bl	HAL_UART_Transmit
+ 178 010a FFF7FEFF 		bl	HAL_GetTick
+ 179 010e 0446     		mov	r4, r0
+ 180 0110 02E0     		b	.L8
+ 181              	.L9:
+ 182 0112 0A20     		movs	r0, #10
+ 183 0114 FFF7FEFF 		bl	osDelay
+ 184              	.L8:
+ 185 0118 FFF7FEFF 		bl	HAL_GetTick
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 5
+
+
+ 186 011c 031B     		subs	r3, r0, r4
+ 187 011e 42F20F72 		movw	r2, #9999
+ 188 0122 9342     		cmp	r3, r2
+ 189 0124 0DD8     		bhi	.L17
+ 190 0126 4021     		movs	r1, #64
+ 191 0128 08A8     		add	r0, sp, #32
+ 192 012a FFF7FEFF 		bl	UART_Read
+ 193 012e 0028     		cmp	r0, #0
+ 194 0130 EFD0     		beq	.L9
+ 195 0132 81B2     		uxth	r1, r0
+ 196 0134 08A8     		add	r0, sp, #32
+ 197 0136 FFF7FEFF 		bl	CDC_Transmit_HS
+ 198 013a FFF7FEFF 		bl	HAL_GetTick
+ 199 013e 0446     		mov	r4, r0
+ 200 0140 EAE7     		b	.L8
+ 201              	.L17:
+ 202 0142 0221     		movs	r1, #2
+ 203 0144 2448     		ldr	r0, .L18+52
+ 204 0146 FFF7FEFF 		bl	CDC_Transmit_HS
+ 205 014a C3E7     		b	.L12
+ 206              	.L14:
+ 207 014c 4FF40051 		mov	r1, #8192
+ 208 0150 1448     		ldr	r0, .L18
+ 209 0152 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 210 0156 4FF47A70 		mov	r0, #1000
+ 211 015a FFF7FEFF 		bl	osDelay
+ 212 015e 0134     		adds	r4, r4, #1
+ 213              	.L13:
+ 214 0160 092C     		cmp	r4, #9
+ 215 0162 F3DD     		ble	.L14
+ 216              	.L4:
+ 217 0164 1D48     		ldr	r0, .L18+56
+ 218 0166 FFF7FEFF 		bl	ESP8266_SendCommand
+ 219 016a 41F28831 		movw	r1, #5000
+ 220 016e 1C48     		ldr	r0, .L18+60
+ 221 0170 FFF7FEFF 		bl	ESP8266_WaitFor
+ 222 0174 0028     		cmp	r0, #0
+ 223 0176 91D0     		beq	.L5
+ 224 0178 18AD     		add	r5, sp, #96
+ 225 017a AC46     		mov	ip, r5
+ 226 017c 194C     		ldr	r4, .L18+64
+ 227 017e 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 228 0180 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 229 0184 94E80300 		ldm	r4, {r0, r1}
+ 230 0188 8CE80300 		stm	ip, {r0, r1}
+ 231 018c 2846     		mov	r0, r5
+ 232 018e FFF7FEFF 		bl	strlen
+ 233 0192 81B2     		uxth	r1, r0
+ 234 0194 2846     		mov	r0, r5
+ 235 0196 FFF7FEFF 		bl	CDC_Transmit_HS
+ 236 019a 41F28830 		movw	r0, #5000
+ 237 019e FFF7FEFF 		bl	osDelay
+ 238 01a2 DFE7     		b	.L4
+ 239              	.L19:
+ 240              		.align	2
+ 241              	.L18:
+ 242 01a4 00240240 		.word	1073882112
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 6
+
+
+ 243 01a8 00000000 		.word	.LC0
+ 244 01ac 18000000 		.word	.LC1
+ 245 01b0 24000000 		.word	.LC2
+ 246 01b4 48000000 		.word	.LC3
+ 247 01b8 A0000000 		.word	.LC7
+ 248 01bc B0000000 		.word	.LC8
+ 249 01c0 30010000 		.word	.LC14
+ 250 01c4 00000000 		.word	huart5
+ 251 01c8 B4000000 		.word	.LC9
+ 252 01cc E8000000 		.word	.LC10
+ 253 01d0 F8000000 		.word	.LC11
+ 254 01d4 14010000 		.word	.LC12
+ 255 01d8 2C010000 		.word	.LC13
+ 256 01dc 64000000 		.word	.LC4
+ 257 01e0 84000000 		.word	.LC5
+ 258 01e4 88000000 		.word	.LC6
+ 260              		.section	.text.vApplicationIdleHook,"ax",%progbits
+ 261              		.align	1
+ 262              		.global	vApplicationIdleHook
+ 263              		.syntax unified
+ 264              		.thumb
+ 265              		.thumb_func
+ 267              	vApplicationIdleHook:
+ 268              		@ args = 0, pretend = 0, frame = 0
+ 269              		@ frame_needed = 0, uses_anonymous_args = 0
+ 270              		@ link register save eliminated.
+ 271 0000 7047     		bx	lr
+ 273              		.section	.text.vApplicationStackOverflowHook,"ax",%progbits
+ 274              		.align	1
+ 275              		.global	vApplicationStackOverflowHook
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 280              	vApplicationStackOverflowHook:
+ 281              		@ args = 0, pretend = 0, frame = 0
+ 282              		@ frame_needed = 0, uses_anonymous_args = 0
+ 283              		@ link register save eliminated.
+ 284 0000 7047     		bx	lr
+ 286              		.section	.text.vApplicationMallocFailedHook,"ax",%progbits
+ 287              		.align	1
+ 288              		.global	vApplicationMallocFailedHook
+ 289              		.syntax unified
+ 290              		.thumb
+ 291              		.thumb_func
+ 293              	vApplicationMallocFailedHook:
+ 294              		@ args = 0, pretend = 0, frame = 0
+ 295              		@ frame_needed = 0, uses_anonymous_args = 0
+ 296              		@ link register save eliminated.
+ 297 0000 7047     		bx	lr
+ 299              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+ 300              		.align	1
+ 301              		.global	MX_FREERTOS_Init
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	MX_FREERTOS_Init:
+ 307              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 7
+
+
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309 0000 08B5     		push	{r3, lr}
+ 310 0002 044A     		ldr	r2, .L25
+ 311 0004 0021     		movs	r1, #0
+ 312 0006 0448     		ldr	r0, .L25+4
+ 313 0008 FFF7FEFF 		bl	osThreadNew
+ 314 000c 034B     		ldr	r3, .L25+8
+ 315 000e 1860     		str	r0, [r3]
+ 316 0010 08BD     		pop	{r3, pc}
+ 317              	.L26:
+ 318 0012 00BF     		.align	2
+ 319              	.L25:
+ 320 0014 00000000 		.word	defaultTask_attributes
+ 321 0018 00000000 		.word	StartDefaultTask
+ 322 001c 00000000 		.word	defaultTaskHandle
+ 324              		.global	defaultTask_attributes
+ 325              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 326              		.align	2
+ 327              	.LC15:
+ 328 0000 64656661 		.ascii	"defaultTask\000"
+ 328      756C7454 
+ 328      61736B00 
+ 329              		.section	.rodata.defaultTask_attributes,"a"
+ 330              		.align	2
+ 333              	defaultTask_attributes:
+ 334 0000 00000000 		.word	.LC15
+ 335 0004 00000000 		.space	16
+ 335      00000000 
+ 335      00000000 
+ 335      00000000 
+ 336 0014 00400000 		.word	16384
+ 337 0018 18000000 		.word	24
+ 338 001c 00000000 		.space	8
+ 338      00000000 
+ 339              		.global	defaultTaskHandle
+ 340              		.section	.bss.defaultTaskHandle,"aw",%nobits
+ 341              		.align	2
+ 344              	defaultTaskHandle:
+ 345 0000 00000000 		.space	4
+ 346              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:17     .rodata.StartDefaultTask.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:22     .text.StartDefaultTask:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:28     .text.StartDefaultTask:00000000 StartDefaultTask
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:81     .text.StartDefaultTask:0000006c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:154    .bss.ticks.0:00000000 ticks.0
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:87     .text.vApplicationIdleHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:93     .text.vApplicationIdleHook:00000000 vApplicationIdleHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:100    .text.vApplicationStackOverflowHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:106    .text.vApplicationStackOverflowHook:00000000 vApplicationStackOverflowHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:113    .text.vApplicationMallocFailedHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:119    .text.vApplicationMallocFailedHook:00000000 vApplicationMallocFailedHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:126    .text.MX_FREERTOS_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:132    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:146    .text.MX_FREERTOS_Init:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:165    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:176    .bss.defaultTaskHandle:00000000 defaultTaskHandle
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:151    .bss.ticks.0:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:158    .rodata.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:162    .rodata.defaultTask_attributes:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccKogI30.s:173    .bss.defaultTaskHandle:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:17     .rodata.StartDefaultTask.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:64     .text.StartDefaultTask:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:70     .text.StartDefaultTask:00000000 StartDefaultTask
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:242    .text.StartDefaultTask:000001a4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:261    .text.vApplicationIdleHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:267    .text.vApplicationIdleHook:00000000 vApplicationIdleHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:274    .text.vApplicationStackOverflowHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:280    .text.vApplicationStackOverflowHook:00000000 vApplicationStackOverflowHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:287    .text.vApplicationMallocFailedHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:293    .text.vApplicationMallocFailedHook:00000000 vApplicationMallocFailedHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:300    .text.MX_FREERTOS_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:306    .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:320    .text.MX_FREERTOS_Init:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:333    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:344    .bss.defaultTaskHandle:00000000 defaultTaskHandle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:326    .rodata.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:330    .rodata.defaultTask_attributes:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQYIHEc.s:341    .bss.defaultTaskHandle:00000000 $d
 
 UNDEFINED SYMBOLS
 MX_USB_DEVICE_Init
-CDC_Transmit_HS
-HAL_UART_Receive
-HAL_GPIO_TogglePin
+ESP8266_Init
 osDelay
-VCP_Read
+HAL_GPIO_TogglePin
+HAL_GPIO_WritePin
+strlen
+CDC_Transmit_HS
+ESP8266_SendCommand
+sprintf
+ESP8266_WaitFor
 HAL_UART_Transmit
+HAL_GetTick
+UART_Read
 huart5
 osThreadNew

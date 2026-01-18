@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -16,70 +16,180 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 1
   13              		.eabi_attribute 18, 4
   14              		.file	"esp8266.c"
   15              		.text
-  16              		.section	.text.ESP8266_Init,"ax",%progbits
-  17              		.align	1
-  18              		.global	ESP8266_Init
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  23              	ESP8266_Init:
-  24              		@ args = 0, pretend = 0, frame = 0
-  25              		@ frame_needed = 0, uses_anonymous_args = 0
-  26              		@ link register save eliminated.
-  27 0000 7047     		bx	lr
-  29              		.section	.text.ESP8266_SendCommand,"ax",%progbits
-  30              		.align	1
-  31              		.global	ESP8266_SendCommand
-  32              		.syntax unified
-  33              		.thumb
-  34              		.thumb_func
-  36              	ESP8266_SendCommand:
-  37              		@ args = 0, pretend = 0, frame = 0
-  38              		@ frame_needed = 0, uses_anonymous_args = 0
-  39 0000 10B5     		push	{r4, lr}
-  40 0002 0446     		mov	r4, r0
-  41 0004 FFF7FEFF 		bl	strlen
-  42 0008 6423     		movs	r3, #100
-  43 000a 82B2     		uxth	r2, r0
-  44 000c 2146     		mov	r1, r4
-  45 000e 0248     		ldr	r0, .L4
-  46 0010 FFF7FEFF 		bl	HAL_UART_Transmit
-  47 0014 0020     		movs	r0, #0
-  48 0016 10BD     		pop	{r4, pc}
-  49              	.L5:
-  50              		.align	2
-  51              	.L4:
-  52 0018 00000000 		.word	huart5
-  54              		.section	.text.ESP8266_Receive,"ax",%progbits
-  55              		.align	1
-  56              		.global	ESP8266_Receive
-  57              		.syntax unified
-  58              		.thumb
-  59              		.thumb_func
-  61              	ESP8266_Receive:
-  62              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 2
+  16              		.section	.rodata.ESP8266_SendCommand.str1.4,"aMS",%progbits,1
+  17              		.align	2
+  18              	.LC0:
+  19 0000 25730D0A 		.ascii	"%s\015\012\000"
+  19      00
+  20              		.section	.text.ESP8266_SendCommand,"ax",%progbits
+  21              		.align	1
+  22              		.global	ESP8266_SendCommand
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	ESP8266_SendCommand:
+  28              		@ args = 0, pretend = 0, frame = 256
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 10B5     		push	{r4, lr}
+  31 0002 C0B0     		sub	sp, sp, #256
+  32 0004 0346     		mov	r3, r0
+  33 0006 094A     		ldr	r2, .L3
+  34 0008 4FF48071 		mov	r1, #256
+  35 000c 6846     		mov	r0, sp
+  36 000e FFF7FEFF 		bl	snprintf
+  37 0012 6846     		mov	r0, sp
+  38 0014 FFF7FEFF 		bl	strlen
+  39 0018 6423     		movs	r3, #100
+  40 001a 82B2     		uxth	r2, r0
+  41 001c 6946     		mov	r1, sp
+  42 001e 0448     		ldr	r0, .L3+4
+  43 0020 FFF7FEFF 		bl	HAL_UART_Transmit
+  44 0024 0020     		movs	r0, #0
+  45 0026 40B0     		add	sp, sp, #256
+  46              		@ sp needed
+  47 0028 10BD     		pop	{r4, pc}
+  48              	.L4:
+  49 002a 00BF     		.align	2
+  50              	.L3:
+  51 002c 00000000 		.word	.LC0
+  52 0030 00000000 		.word	huart5
+  54              		.section	.rodata.ESP8266_Init.str1.4,"aMS",%progbits,1
+  55              		.align	2
+  56              	.LC1:
+  57 0000 415400   		.ascii	"AT\000"
+  58 0003 00       		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s 			page 2
 
 
-  63              		@ frame_needed = 0, uses_anonymous_args = 0
-  64              		@ link register save eliminated.
-  65 0000 0020     		movs	r0, #0
-  66 0002 7047     		bx	lr
-  68              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s 			page 3
+  59              	.LC2:
+  60 0004 41544530 		.ascii	"ATE0\000"
+  60      00
+  61              		.section	.text.ESP8266_Init,"ax",%progbits
+  62              		.align	1
+  63              		.global	ESP8266_Init
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  68              	ESP8266_Init:
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71 0000 08B5     		push	{r3, lr}
+  72 0002 0648     		ldr	r0, .L7
+  73 0004 FFF7FEFF 		bl	ESP8266_SendCommand
+  74 0008 6420     		movs	r0, #100
+  75 000a FFF7FEFF 		bl	HAL_Delay
+  76 000e 0448     		ldr	r0, .L7+4
+  77 0010 FFF7FEFF 		bl	ESP8266_SendCommand
+  78 0014 6420     		movs	r0, #100
+  79 0016 FFF7FEFF 		bl	HAL_Delay
+  80 001a 08BD     		pop	{r3, pc}
+  81              	.L8:
+  82              		.align	2
+  83              	.L7:
+  84 001c 00000000 		.word	.LC1
+  85 0020 04000000 		.word	.LC2
+  87              		.section	.text.ESP8266_Receive,"ax",%progbits
+  88              		.align	1
+  89              		.global	ESP8266_Receive
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	ESP8266_Receive:
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97 0000 08B5     		push	{r3, lr}
+  98 0002 FFF7FEFF 		bl	UART_Read
+  99 0006 08B9     		cbnz	r0, .L11
+ 100 0008 0220     		movs	r0, #2
+ 101              	.L10:
+ 102 000a 08BD     		pop	{r3, pc}
+ 103              	.L11:
+ 104 000c 0020     		movs	r0, #0
+ 105 000e FCE7     		b	.L10
+ 107              		.section	.text.ESP8266_WaitFor,"ax",%progbits
+ 108              		.align	1
+ 109              		.global	ESP8266_WaitFor
+ 110              		.syntax unified
+ 111              		.thumb
+ 112              		.thumb_func
+ 114              	ESP8266_WaitFor:
+ 115              		@ args = 0, pretend = 0, frame = 8
+ 116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 118 0004 82B0     		sub	sp, sp, #8
+ 119 0006 0546     		mov	r5, r0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s 			page 3
+
+
+ 120 0008 0F46     		mov	r7, r1
+ 121 000a FFF7FEFF 		bl	HAL_GetTick
+ 122 000e 0646     		mov	r6, r0
+ 123 0010 2846     		mov	r0, r5
+ 124 0012 FFF7FEFF 		bl	strlen
+ 125 0016 8046     		mov	r8, r0
+ 126 0018 0024     		movs	r4, #0
+ 127 001a 09E0     		b	.L14
+ 128              	.L24:
+ 129 001c 0134     		adds	r4, r4, #1
+ 130 001e A045     		cmp	r8, r4
+ 131 0020 06D1     		bne	.L14
+ 132 0022 0020     		movs	r0, #0
+ 133 0024 1BE0     		b	.L17
+ 134              	.L25:
+ 135 0026 0124     		movs	r4, #1
+ 136 0028 02E0     		b	.L14
+ 137              	.L15:
+ 138 002a 0120     		movs	r0, #1
+ 139 002c FFF7FEFF 		bl	HAL_Delay
+ 140              	.L14:
+ 141 0030 FFF7FEFF 		bl	HAL_GetTick
+ 142 0034 801B     		subs	r0, r0, r6
+ 143 0036 B842     		cmp	r0, r7
+ 144 0038 10D2     		bcs	.L23
+ 145 003a 0121     		movs	r1, #1
+ 146 003c 0DF10700 		add	r0, sp, #7
+ 147 0040 FFF7FEFF 		bl	UART_Read
+ 148 0044 0028     		cmp	r0, #0
+ 149 0046 F0D0     		beq	.L15
+ 150 0048 2A5D     		ldrb	r2, [r5, r4]	@ zero_extendqisi2
+ 151 004a 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 152 004e 9A42     		cmp	r2, r3
+ 153 0050 E4D0     		beq	.L24
+ 154 0052 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
+ 155 0054 9342     		cmp	r3, r2
+ 156 0056 E6D0     		beq	.L25
+ 157 0058 0024     		movs	r4, #0
+ 158 005a E9E7     		b	.L14
+ 159              	.L23:
+ 160 005c 0220     		movs	r0, #2
+ 161              	.L17:
+ 162 005e 02B0     		add	sp, sp, #8
+ 163              		@ sp needed
+ 164 0060 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 166              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 esp8266.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:17     .text.ESP8266_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:23     .text.ESP8266_Init:00000000 ESP8266_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:30     .text.ESP8266_SendCommand:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:36     .text.ESP8266_SendCommand:00000000 ESP8266_SendCommand
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:52     .text.ESP8266_SendCommand:00000018 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:55     .text.ESP8266_Receive:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTvgPdl.s:61     .text.ESP8266_Receive:00000000 ESP8266_Receive
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:17     .rodata.ESP8266_SendCommand.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:21     .text.ESP8266_SendCommand:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:27     .text.ESP8266_SendCommand:00000000 ESP8266_SendCommand
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:51     .text.ESP8266_SendCommand:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:55     .rodata.ESP8266_Init.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:62     .text.ESP8266_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:68     .text.ESP8266_Init:00000000 ESP8266_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:84     .text.ESP8266_Init:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:88     .text.ESP8266_Receive:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:94     .text.ESP8266_Receive:00000000 ESP8266_Receive
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:108    .text.ESP8266_WaitFor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccBVkRep.s:114    .text.ESP8266_WaitFor:00000000 ESP8266_WaitFor
 
 UNDEFINED SYMBOLS
+snprintf
 strlen
 HAL_UART_Transmit
 huart5
+HAL_Delay
+UART_Read
+HAL_GetTick

@@ -23,11 +23,13 @@
 #include "main.h"
 #include "task.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "esp8266.h"
 #include "usbd_cdc_if.h"
+#include <stdio.h>
+#include <string.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,7 +50,9 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
 extern UART_HandleTypeDef huart5;
+extern uint32_t UART_Read(uint8_t *pBuf, uint32_t Len);
 /* USER CODE END Variables */
+
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
@@ -160,34 +164,89 @@ void StartDefaultTask(void *argument) {
   /* init code for USB_DEVICE */
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
-  uint8_t usb_buf[64];
-  uint8_t uart_rx_byte;
-  char *boot_msg =
-      "\r\n=== STM32F769i Bridge Started ===\r\nType AT commands...\r\n";
-  CDC_Transmit_HS((uint8_t *)boot_msg, strlen(boot_msg));
+  ESP8266_Init();
+
+  // Initial delay for USB enumeration
+  osDelay(2000);
+
+  // Rapid Blink to indicate alive
+  for (int i = 0; i < 10; i++) {
+    HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_13);
+    osDelay(100);
+  }
+  HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_SET); // LED ON
+
+  char msg[128];
+
+  // Connect WiFi
+  sprintf(msg, "Connecting to WiFi...\r\n");
+  CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
+
+  ESP8266_SendCommand("AT+CWMODE=1");
+  osDelay(500);
+  ESP8266_SendCommand("AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"");
+  osDelay(8000); // Give it time to connect
+
+  sprintf(msg, "Starting Weather Loop...\r\n");
+  CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
 
   /* Infinite loop */
   for (;;) {
-    // 1. USB -> UART
-    uint32_t count = VCP_Read(usb_buf, sizeof(usb_buf));
-    if (count > 0) {
-      HAL_UART_Transmit(&huart5, usb_buf, count, 100);
+    // 1. TCP Connect
+    ESP8266_SendCommand("AT+CIPSTART=\"TCP\",\"wttr.in\",80");
+    if (ESP8266_WaitFor("OK", 5000) != ESP8266_OK) {
+      sprintf(msg, "TCP Connection Failed\r\n");
+      CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
+      osDelay(5000);
+      continue;
     }
 
-    // 2. UART -> USB
-    // Check one byte with minimal timeout
-    if (HAL_UART_Receive(&huart5, &uart_rx_byte, 1, 0) == HAL_OK) {
-      CDC_Transmit_HS(&uart_rx_byte, 1);
+    // 2. Prepare HTTP Request
+    const char *req_line = "GET /Peniche?format=%C+%t+%w+%h+%m+%o HTTP/1.1\r\n";
+    const char *host_line = "Host: wttr.in\r\n";
+    const char *ua_line = "User-Agent: curl/7.68.0\r\n";
+    const char *conn_line = "Connection: close\r\n\r\n";
+
+    // 3. Send CIPSEND
+    // Calculate exact length
+    uint32_t total_len = strlen(req_line) + strlen(host_line) +
+                         strlen(ua_line) + strlen(conn_line);
+    char sendCmd[32];
+    sprintf(sendCmd, "AT+CIPSEND=%lu", total_len);
+    ESP8266_SendCommand(sendCmd);
+
+    if (ESP8266_WaitFor(">", 2000) == ESP8266_OK) {
+      // 4. Send Data
+      HAL_UART_Transmit(&huart5, (uint8_t *)req_line, strlen(req_line), 100);
+      HAL_UART_Transmit(&huart5, (uint8_t *)host_line, strlen(host_line), 100);
+      HAL_UART_Transmit(&huart5, (uint8_t *)ua_line, strlen(ua_line), 100);
+      HAL_UART_Transmit(&huart5, (uint8_t *)conn_line, strlen(conn_line), 100);
+
+      // 5. Read Response
+      // We read continuously and forward to USB until timeout (waiting for
+      // body)
+      uint32_t start = HAL_GetTick();
+      while (HAL_GetTick() - start < 10000) {
+        uint8_t rBuf[64];
+        uint32_t n = UART_Read(rBuf, sizeof(rBuf));
+        if (n > 0) {
+          CDC_Transmit_HS(rBuf, n);
+          start = HAL_GetTick(); // extend timeout on data
+        } else {
+          osDelay(10);
+        }
+      }
+      CDC_Transmit_HS((uint8_t *)"\r\n", 2);
+    } else {
+      sprintf(msg, "CIPSEND Failed\r\n");
+      CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
     }
 
-    // Heartbeat LED (every ~1000 loops approx, assuming 1ms wait)
-    static uint32_t ticks = 0;
-    if (++ticks >= 1000) {
+    // Blink while waiting (10 seconds)
+    for (int i = 0; i < 10; i++) {
       HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_13);
-      ticks = 0;
+      osDelay(1000);
     }
-
-    osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
 }

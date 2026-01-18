@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
   56 0038 4FF0FF30 		mov	r0, #-1
   57 003c 7047     		bx	lr
   59              		.section	.text.DP83848_Init,"ax",%progbits
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 2
 
 
   60              		.align	1
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  115 0052 3046     		mov	r0, r6
  116 0054 02B0     		add	sp, sp, #8
  117              		@ sp needed
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 3
 
 
  118 0056 70BD     		pop	{r4, r5, r6, pc}
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  176 0018 22F40062 		bic	r2, r2, #2048
  177 001c 0192     		str	r2, [sp, #4]
  178 001e 2369     		ldr	r3, [r4, #16]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 4
 
 
  179 0020 0021     		movs	r1, #0
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  235 0036 6FF00300 		mvn	r0, #3
  236 003a F7E7     		b	.L32
  238              		.section	.text.DP83848_StartAutoNego,"ax",%progbits
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 5
 
 
  239              		.align	1
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  296 000c 01AA     		add	r2, sp, #4
  297 000e 0121     		movs	r1, #1
  298 0010 0068     		ldr	r0, [r0]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 6
 
 
  299 0012 9847     		blx	r3
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  353              	.L45:
  354 008a 6FF00400 		mvn	r0, #4
  355 008e 03E0     		b	.L42
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 7
 
 
  356              	.L46:
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  412 0018 019B     		ldr	r3, [sp, #4]
  413 001a 23F44453 		bic	r3, r3, #12544
  414 001e 0193     		str	r3, [sp, #4]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 8
 
 
  415 0020 022D     		cmp	r5, #2
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  471 000e 0068     		ldr	r0, [r0]
  472 0010 9847     		blx	r3
  473 0012 0028     		cmp	r0, #0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 9
 
 
  474 0014 0CDB     		blt	.L72
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  530 002e 10BD     		pop	{r4, pc}
  531              	.L77:
  532 0030 6FF00400 		mvn	r0, #4
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 10
 
 
  533 0034 FAE7     		b	.L75
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  591              		@ frame_needed = 0, uses_anonymous_args = 0
  592 0000 30B5     		push	{r4, r5, lr}
  593 0002 83B0     		sub	sp, sp, #12
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 11
 
 
  594 0004 0446     		mov	r4, r0
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  650              		@ sp needed
  651 001a 5DF804FB 		ldr	pc, [sp], #4
  652              	.L92:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 12
 
 
  653 001e 6FF00400 		mvn	r0, #4
@@ -697,38 +697,38 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 1
  688 0028 6FF00400 		mvn	r0, #4
  689 002c FAE7     		b	.L94
  691              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s 			page 13
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 dp83848.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:17     .text.DP83848_RegisterBusIO:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:23     .text.DP83848_RegisterBusIO:00000000 DP83848_RegisterBusIO
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:60     .text.DP83848_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:66     .text.DP83848_Init:00000000 DP83848_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:124    .text.DP83848_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:130    .text.DP83848_DeInit:00000000 DP83848_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:155    .text.DP83848_DisablePowerDownMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:161    .text.DP83848_DisablePowerDownMode:00000000 DP83848_DisablePowerDownMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:197    .text.DP83848_EnablePowerDownMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:203    .text.DP83848_EnablePowerDownMode:00000000 DP83848_EnablePowerDownMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:239    .text.DP83848_StartAutoNego:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:245    .text.DP83848_StartAutoNego:00000000 DP83848_StartAutoNego
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:281    .text.DP83848_GetLinkState:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:287    .text.DP83848_GetLinkState:00000000 DP83848_GetLinkState
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:391    .text.DP83848_SetLinkState:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:397    .text.DP83848_SetLinkState:00000000 DP83848_SetLinkState
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:455    .text.DP83848_EnableLoopbackMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:461    .text.DP83848_EnableLoopbackMode:00000000 DP83848_EnableLoopbackMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:497    .text.DP83848_DisableLoopbackMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:503    .text.DP83848_DisableLoopbackMode:00000000 DP83848_DisableLoopbackMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:539    .text.DP83848_EnableIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:545    .text.DP83848_EnableIT:00000000 DP83848_EnableIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:583    .text.DP83848_DisableIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:589    .text.DP83848_DisableIT:00000000 DP83848_DisableIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:627    .text.DP83848_ClearIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:633    .text.DP83848_ClearIT:00000000 DP83848_ClearIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:657    .text.DP83848_GetITStatus:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccGSjO7J.s:663    .text.DP83848_GetITStatus:00000000 DP83848_GetITStatus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:17     .text.DP83848_RegisterBusIO:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:23     .text.DP83848_RegisterBusIO:00000000 DP83848_RegisterBusIO
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:60     .text.DP83848_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:66     .text.DP83848_Init:00000000 DP83848_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:124    .text.DP83848_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:130    .text.DP83848_DeInit:00000000 DP83848_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:155    .text.DP83848_DisablePowerDownMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:161    .text.DP83848_DisablePowerDownMode:00000000 DP83848_DisablePowerDownMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:197    .text.DP83848_EnablePowerDownMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:203    .text.DP83848_EnablePowerDownMode:00000000 DP83848_EnablePowerDownMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:239    .text.DP83848_StartAutoNego:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:245    .text.DP83848_StartAutoNego:00000000 DP83848_StartAutoNego
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:281    .text.DP83848_GetLinkState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:287    .text.DP83848_GetLinkState:00000000 DP83848_GetLinkState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:391    .text.DP83848_SetLinkState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:397    .text.DP83848_SetLinkState:00000000 DP83848_SetLinkState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:455    .text.DP83848_EnableLoopbackMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:461    .text.DP83848_EnableLoopbackMode:00000000 DP83848_EnableLoopbackMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:497    .text.DP83848_DisableLoopbackMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:503    .text.DP83848_DisableLoopbackMode:00000000 DP83848_DisableLoopbackMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:539    .text.DP83848_EnableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:545    .text.DP83848_EnableIT:00000000 DP83848_EnableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:583    .text.DP83848_DisableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:589    .text.DP83848_DisableIT:00000000 DP83848_DisableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:627    .text.DP83848_ClearIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:633    .text.DP83848_ClearIT:00000000 DP83848_ClearIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:657    .text.DP83848_GetITStatus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cceLxaAk.s:663    .text.DP83848_GetITStatus:00000000 DP83848_GetITStatus
 
 NO UNDEFINED SYMBOLS

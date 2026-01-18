@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
   59              		.syntax unified
   60              		.thumb
   61              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 2
 
 
   63              	USBD_HS_USR_BOSDescriptor:
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
  121              	Get_SerialNum:
  122              		@ args = 0, pretend = 0, frame = 0
  123              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 3
 
 
  124 0000 38B5     		push	{r3, r4, r5, lr}
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
  177              		.syntax unified
  178              		.thumb
  179              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 4
 
 
  181              	USBD_HS_ProductStrDescriptor:
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
  234              	.LC2:
  235 0000 43444320 		.ascii	"CDC Config\000"
  235      436F6E66 
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 5
 
 
  235      696700
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
  289              	.L47:
  290 0012 0249     		ldr	r1, .L50
  291 0014 0248     		ldr	r0, .L50+4
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 6
 
 
  292 0016 FFF7FEFF 		bl	USBD_GetString
@@ -358,62 +358,62 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 1
  346 000c 00000000 		.word	USBD_HS_ProductStrDescriptor
  347 0010 00000000 		.word	USBD_HS_SerialStrDescriptor
  348 0014 00000000 		.word	USBD_HS_ConfigStrDescriptor
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 7
 
 
  349 0018 00000000 		.word	USBD_HS_InterfaceStrDescriptor
  350 001c 00000000 		.word	USBD_HS_USR_BOSDescriptor
  351              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_desc.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:17     .text.USBD_HS_DeviceDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:23     .text.USBD_HS_DeviceDescriptor:00000000 USBD_HS_DeviceDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:34     .text.USBD_HS_DeviceDescriptor:00000008 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:334    .data.USBD_HS_DeviceDesc:00000000 USBD_HS_DeviceDesc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:37     .text.USBD_HS_LangIDStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:43     .text.USBD_HS_LangIDStrDescriptor:00000000 USBD_HS_LangIDStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:54     .text.USBD_HS_LangIDStrDescriptor:00000008 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:320    .data.USBD_LangIDDesc:00000000 USBD_LangIDDesc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:57     .text.USBD_HS_USR_BOSDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:63     .text.USBD_HS_USR_BOSDescriptor:00000000 USBD_HS_USR_BOSDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:74     .text.USBD_HS_USR_BOSDescriptor:00000008 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:327    .data.USBD_HS_BOSDesc:00000000 USBD_HS_BOSDesc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:77     .text.IntToUnicode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:82     .text.IntToUnicode:00000000 IntToUnicode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:116    .text.Get_SerialNum:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:121    .text.Get_SerialNum:00000000 Get_SerialNum
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:146    .text.Get_SerialNum:00000030 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:305    .data.USBD_StringSerial:00000000 USBD_StringSerial
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:150    .text.USBD_HS_SerialStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:156    .text.USBD_HS_SerialStrDescriptor:00000000 USBD_HS_SerialStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:168    .text.USBD_HS_SerialStrDescriptor:00000010 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:171    .rodata.USBD_HS_ProductStrDescriptor.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:175    .text.USBD_HS_ProductStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:181    .text.USBD_HS_ProductStrDescriptor:00000000 USBD_HS_ProductStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:201    .text.USBD_HS_ProductStrDescriptor:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:313    .bss.USBD_StrDesc:00000000 USBD_StrDesc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:205    .rodata.USBD_HS_ManufacturerStrDescriptor.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:209    .text.USBD_HS_ManufacturerStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:215    .text.USBD_HS_ManufacturerStrDescriptor:00000000 USBD_HS_ManufacturerStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:229    .text.USBD_HS_ManufacturerStrDescriptor:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:233    .rodata.USBD_HS_ConfigStrDescriptor.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:237    .text.USBD_HS_ConfigStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:243    .text.USBD_HS_ConfigStrDescriptor:00000000 USBD_HS_ConfigStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:263    .text.USBD_HS_ConfigStrDescriptor:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:267    .rodata.USBD_HS_InterfaceStrDescriptor.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:271    .text.USBD_HS_InterfaceStrDescriptor:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:277    .text.USBD_HS_InterfaceStrDescriptor:00000000 USBD_HS_InterfaceStrDescriptor
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:297    .text.USBD_HS_InterfaceStrDescriptor:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:302    .data.USBD_StringSerial:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:310    .bss.USBD_StrDesc:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:317    .data.USBD_LangIDDesc:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:324    .data.USBD_HS_BOSDesc:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:331    .data.USBD_HS_DeviceDesc:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:342    .data.HS_Desc:00000000 HS_Desc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQJtZ33.s:339    .data.HS_Desc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:17     .text.USBD_HS_DeviceDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:23     .text.USBD_HS_DeviceDescriptor:00000000 USBD_HS_DeviceDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:34     .text.USBD_HS_DeviceDescriptor:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:334    .data.USBD_HS_DeviceDesc:00000000 USBD_HS_DeviceDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:37     .text.USBD_HS_LangIDStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:43     .text.USBD_HS_LangIDStrDescriptor:00000000 USBD_HS_LangIDStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:54     .text.USBD_HS_LangIDStrDescriptor:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:320    .data.USBD_LangIDDesc:00000000 USBD_LangIDDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:57     .text.USBD_HS_USR_BOSDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:63     .text.USBD_HS_USR_BOSDescriptor:00000000 USBD_HS_USR_BOSDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:74     .text.USBD_HS_USR_BOSDescriptor:00000008 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:327    .data.USBD_HS_BOSDesc:00000000 USBD_HS_BOSDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:77     .text.IntToUnicode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:82     .text.IntToUnicode:00000000 IntToUnicode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:116    .text.Get_SerialNum:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:121    .text.Get_SerialNum:00000000 Get_SerialNum
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:146    .text.Get_SerialNum:00000030 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:305    .data.USBD_StringSerial:00000000 USBD_StringSerial
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:150    .text.USBD_HS_SerialStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:156    .text.USBD_HS_SerialStrDescriptor:00000000 USBD_HS_SerialStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:168    .text.USBD_HS_SerialStrDescriptor:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:171    .rodata.USBD_HS_ProductStrDescriptor.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:175    .text.USBD_HS_ProductStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:181    .text.USBD_HS_ProductStrDescriptor:00000000 USBD_HS_ProductStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:201    .text.USBD_HS_ProductStrDescriptor:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:313    .bss.USBD_StrDesc:00000000 USBD_StrDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:205    .rodata.USBD_HS_ManufacturerStrDescriptor.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:209    .text.USBD_HS_ManufacturerStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:215    .text.USBD_HS_ManufacturerStrDescriptor:00000000 USBD_HS_ManufacturerStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:229    .text.USBD_HS_ManufacturerStrDescriptor:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:233    .rodata.USBD_HS_ConfigStrDescriptor.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:237    .text.USBD_HS_ConfigStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:243    .text.USBD_HS_ConfigStrDescriptor:00000000 USBD_HS_ConfigStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:263    .text.USBD_HS_ConfigStrDescriptor:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:267    .rodata.USBD_HS_InterfaceStrDescriptor.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:271    .text.USBD_HS_InterfaceStrDescriptor:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:277    .text.USBD_HS_InterfaceStrDescriptor:00000000 USBD_HS_InterfaceStrDescriptor
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:297    .text.USBD_HS_InterfaceStrDescriptor:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:302    .data.USBD_StringSerial:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:310    .bss.USBD_StrDesc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:317    .data.USBD_LangIDDesc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:324    .data.USBD_HS_BOSDesc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:331    .data.USBD_HS_DeviceDesc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:342    .data.HS_Desc:00000000 HS_Desc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8VEUTy.s:339    .data.HS_Desc:00000000 $d
 
 UNDEFINED SYMBOLS
 USBD_GetString

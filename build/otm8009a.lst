@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
   60 0010 FFF7FEFF 		bl	DSI_IO_WriteCmd
   61 0014 D549     		ldr	r1, .L9+4
   62 0016 0320     		movs	r0, #3
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 2
 
 
   63 0018 FFF7FEFF 		bl	DSI_IO_WriteCmd
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  117 00aa 0020     		movs	r0, #0
  118 00ac FFF7FEFF 		bl	DSI_IO_WriteCmd
  119 00b0 BC4F     		ldr	r7, .L9+60
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 3
 
 
  120 00b2 3946     		mov	r1, r7
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  174 0142 A649     		ldr	r1, .L9+116
  175 0144 0020     		movs	r0, #0
  176 0146 FFF7FEFF 		bl	DSI_IO_WriteCmd
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 4
 
 
  177 014a A549     		ldr	r1, .L9+120
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  231 01de 0F20     		movs	r0, #15
  232 01e0 FFF7FEFF 		bl	DSI_IO_WriteCmd
  233 01e4 4946     		mov	r1, r9
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 5
 
 
  234 01e6 0020     		movs	r0, #0
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  288 0276 0020     		movs	r0, #0
  289 0278 FFF7FEFF 		bl	DSI_IO_WriteCmd
  290 027c 6D49     		ldr	r1, .L9+204
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 6
 
 
  291 027e 0F20     		movs	r0, #15
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  345 030e 00F0BF80 		beq	.L4
  346 0312 022B     		cmp	r3, #2
  347 0314 03D1     		bne	.L5
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 7
 
 
  348 0316 5249     		ldr	r1, .L9+248
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  402 03b0 00000000 		.word	ShortRegData18
  403 03b4 00000000 		.word	ShortRegData19
  404 03b8 00000000 		.word	lcdRegData5
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 8
 
 
  405 03bc 00000000 		.word	ShortRegData20
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  459 0490 0849     		ldr	r1, .L11
  460 0492 0020     		movs	r0, #0
  461 0494 FFF7FEFF 		bl	DSI_IO_WriteCmd
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 9
 
 
  462 0498 41E7     		b	.L5
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  525 0000 F506     		.ascii	"\365\006"
  526              		.global	ShortRegData48
  527              		.section	.rodata.ShortRegData48,"a"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 10
 
 
  528              		.align	2
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  604              		.section	.rodata.ShortRegData37,"a"
  605              		.align	2
  608              	ShortRegData37:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 11
 
 
  609 0000 3A55     		.ascii	":U"
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  685              	ShortRegData26:
  686 0000 C483     		.ascii	"\304\203"
  687              		.global	ShortRegData25
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 12
 
 
  688              		.section	.rodata.ShortRegData25,"a"
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  764              		.global	ShortRegData14
  765              		.section	.rodata.ShortRegData14,"a"
  766              		.align	2
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 13
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 13
 
 
  769              	ShortRegData14:
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  843              		.align	2
  846              	ShortRegData3:
  847 0000 C430     		.ascii	"\3040"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 14
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 14
 
 
  848              		.global	ShortRegData2
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  908              		.align	2
  911              	lcdRegData21:
  912 0000 25000000 		.ascii	"%\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 15
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 15
 
 
  912      00000000 
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  961              		.align	2
  964              	lcdRegData14:
  965 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\313"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 16
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 16
 
 
  965      00000000 
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  1016 0000 85010084 		.ascii	"\205\001\000\204\001\000\316"
  1016      0100CE
  1017              		.global	lcdRegData6
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 17
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 17
 
 
  1018              		.section	.rodata.lcdRegData6,"a"
@@ -999,187 +999,187 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 1
  1059              	lcdRegData1:
  1060 0000 800901FF 		.ascii	"\200\011\001\377"
  1061              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 18
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 otm8009a.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:17     .text.DSI_IO_WriteCmd:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:23     .text.DSI_IO_WriteCmd:00000000 DSI_IO_WriteCmd
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:30     .text.DSI_IO_ReadCmd:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:36     .text.DSI_IO_ReadCmd:00000000 DSI_IO_ReadCmd
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:44     .text.OTM8009A_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:50     .text.OTM8009A_Init:00000000 OTM8009A_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:384    .text.OTM8009A_Init:00000368 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:860    .rodata.ShortRegData1:00000000 ShortRegData1
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1059   .rodata.lcdRegData1:00000000 lcdRegData1
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:853    .rodata.ShortRegData2:00000000 ShortRegData2
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1052   .rodata.lcdRegData2:00000000 lcdRegData2
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:846    .rodata.ShortRegData3:00000000 ShortRegData3
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:839    .rodata.ShortRegData4:00000000 ShortRegData4
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:832    .rodata.ShortRegData5:00000000 ShortRegData5
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:825    .rodata.ShortRegData6:00000000 ShortRegData6
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:818    .rodata.ShortRegData7:00000000 ShortRegData7
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:811    .rodata.ShortRegData8:00000000 ShortRegData8
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:797    .rodata.ShortRegData10:00000000 ShortRegData10
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:790    .rodata.ShortRegData11:00000000 ShortRegData11
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:783    .rodata.ShortRegData12:00000000 ShortRegData12
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:776    .rodata.ShortRegData13:00000000 ShortRegData13
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:769    .rodata.ShortRegData14:00000000 ShortRegData14
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:762    .rodata.ShortRegData15:00000000 ShortRegData15
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:755    .rodata.ShortRegData16:00000000 ShortRegData16
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:748    .rodata.ShortRegData17:00000000 ShortRegData17
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:741    .rodata.ShortRegData18:00000000 ShortRegData18
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:734    .rodata.ShortRegData19:00000000 ShortRegData19
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1029   .rodata.lcdRegData5:00000000 lcdRegData5
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:727    .rodata.ShortRegData20:00000000 ShortRegData20
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:720    .rodata.ShortRegData21:00000000 ShortRegData21
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:713    .rodata.ShortRegData22:00000000 ShortRegData22
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:706    .rodata.ShortRegData23:00000000 ShortRegData23
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:699    .rodata.ShortRegData24:00000000 ShortRegData24
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:692    .rodata.ShortRegData25:00000000 ShortRegData25
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:685    .rodata.ShortRegData26:00000000 ShortRegData26
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:678    .rodata.ShortRegData27:00000000 ShortRegData27
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:671    .rodata.ShortRegData28:00000000 ShortRegData28
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1022   .rodata.lcdRegData6:00000000 lcdRegData6
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1015   .rodata.lcdRegData7:00000000 lcdRegData7
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1008   .rodata.lcdRegData8:00000000 lcdRegData8
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1001   .rodata.lcdRegData9:00000000 lcdRegData9
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:994    .rodata.lcdRegData10:00000000 lcdRegData10
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:643    .rodata.ShortRegData32:00000000 ShortRegData32
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:545    .rodata.ShortRegData46:00000000 ShortRegData46
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:987    .rodata.lcdRegData11:00000000 lcdRegData11
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:979    .rodata.lcdRegData12:00000000 lcdRegData12
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:971    .rodata.lcdRegData13:00000000 lcdRegData13
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:964    .rodata.lcdRegData14:00000000 lcdRegData14
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:956    .rodata.lcdRegData15:00000000 lcdRegData15
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:948    .rodata.lcdRegData16:00000000 lcdRegData16
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:629    .rodata.ShortRegData34:00000000 ShortRegData34
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:941    .rodata.lcdRegData17:00000000 lcdRegData17
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:622    .rodata.ShortRegData35:00000000 ShortRegData35
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:934    .rodata.lcdRegData18:00000000 lcdRegData18
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:927    .rodata.lcdRegData19:00000000 lcdRegData19
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 19
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:17     .text.DSI_IO_WriteCmd:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:23     .text.DSI_IO_WriteCmd:00000000 DSI_IO_WriteCmd
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:30     .text.DSI_IO_ReadCmd:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:36     .text.DSI_IO_ReadCmd:00000000 DSI_IO_ReadCmd
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:44     .text.OTM8009A_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:50     .text.OTM8009A_Init:00000000 OTM8009A_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:384    .text.OTM8009A_Init:00000368 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:860    .rodata.ShortRegData1:00000000 ShortRegData1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1059   .rodata.lcdRegData1:00000000 lcdRegData1
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:853    .rodata.ShortRegData2:00000000 ShortRegData2
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1052   .rodata.lcdRegData2:00000000 lcdRegData2
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:846    .rodata.ShortRegData3:00000000 ShortRegData3
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:839    .rodata.ShortRegData4:00000000 ShortRegData4
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:832    .rodata.ShortRegData5:00000000 ShortRegData5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:825    .rodata.ShortRegData6:00000000 ShortRegData6
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:818    .rodata.ShortRegData7:00000000 ShortRegData7
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:811    .rodata.ShortRegData8:00000000 ShortRegData8
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:797    .rodata.ShortRegData10:00000000 ShortRegData10
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:790    .rodata.ShortRegData11:00000000 ShortRegData11
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:783    .rodata.ShortRegData12:00000000 ShortRegData12
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:776    .rodata.ShortRegData13:00000000 ShortRegData13
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:769    .rodata.ShortRegData14:00000000 ShortRegData14
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:762    .rodata.ShortRegData15:00000000 ShortRegData15
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:755    .rodata.ShortRegData16:00000000 ShortRegData16
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:748    .rodata.ShortRegData17:00000000 ShortRegData17
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:741    .rodata.ShortRegData18:00000000 ShortRegData18
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:734    .rodata.ShortRegData19:00000000 ShortRegData19
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1029   .rodata.lcdRegData5:00000000 lcdRegData5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:727    .rodata.ShortRegData20:00000000 ShortRegData20
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:720    .rodata.ShortRegData21:00000000 ShortRegData21
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:713    .rodata.ShortRegData22:00000000 ShortRegData22
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:706    .rodata.ShortRegData23:00000000 ShortRegData23
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:699    .rodata.ShortRegData24:00000000 ShortRegData24
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:692    .rodata.ShortRegData25:00000000 ShortRegData25
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:685    .rodata.ShortRegData26:00000000 ShortRegData26
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:678    .rodata.ShortRegData27:00000000 ShortRegData27
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:671    .rodata.ShortRegData28:00000000 ShortRegData28
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1022   .rodata.lcdRegData6:00000000 lcdRegData6
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1015   .rodata.lcdRegData7:00000000 lcdRegData7
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1008   .rodata.lcdRegData8:00000000 lcdRegData8
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1001   .rodata.lcdRegData9:00000000 lcdRegData9
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:994    .rodata.lcdRegData10:00000000 lcdRegData10
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:643    .rodata.ShortRegData32:00000000 ShortRegData32
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:545    .rodata.ShortRegData46:00000000 ShortRegData46
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:987    .rodata.lcdRegData11:00000000 lcdRegData11
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:979    .rodata.lcdRegData12:00000000 lcdRegData12
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:971    .rodata.lcdRegData13:00000000 lcdRegData13
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:964    .rodata.lcdRegData14:00000000 lcdRegData14
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:956    .rodata.lcdRegData15:00000000 lcdRegData15
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:948    .rodata.lcdRegData16:00000000 lcdRegData16
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:629    .rodata.ShortRegData34:00000000 ShortRegData34
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:941    .rodata.lcdRegData17:00000000 lcdRegData17
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:622    .rodata.ShortRegData35:00000000 ShortRegData35
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:934    .rodata.lcdRegData18:00000000 lcdRegData18
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:927    .rodata.lcdRegData19:00000000 lcdRegData19
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 19
 
 
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:919    .rodata.lcdRegData20:00000000 lcdRegData20
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:911    .rodata.lcdRegData21:00000000 lcdRegData21
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:904    .rodata.lcdRegData22:00000000 lcdRegData22
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:896    .rodata.lcdRegData23:00000000 lcdRegData23
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:888    .rodata.lcdRegData24:00000000 lcdRegData24
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:538    .rodata.ShortRegData47:00000000 ShortRegData47
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:531    .rodata.ShortRegData48:00000000 ShortRegData48
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:524    .rodata.ShortRegData49:00000000 ShortRegData49
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:517    .rodata.ShortRegData50:00000000 ShortRegData50
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:510    .rodata.ShortRegData51:00000000 ShortRegData51
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:881    .rodata.lcdRegData25:00000000 lcdRegData25
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1044   .rodata.lcdRegData3:00000000 lcdRegData3
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1036   .rodata.lcdRegData4:00000000 lcdRegData4
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:615    .rodata.ShortRegData36:00000000 ShortRegData36
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:608    .rodata.ShortRegData37:00000000 ShortRegData37
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:587    .rodata.ShortRegData40:00000000 ShortRegData40
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:580    .rodata.ShortRegData41:00000000 ShortRegData41
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:573    .rodata.ShortRegData42:00000000 ShortRegData42
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:566    .rodata.ShortRegData43:00000000 ShortRegData43
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:559    .rodata.ShortRegData44:00000000 ShortRegData44
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:552    .rodata.ShortRegData45:00000000 ShortRegData45
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:804    .rodata.ShortRegData9:00000000 ShortRegData9
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:664    .rodata.ShortRegData29:00000000 ShortRegData29
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:657    .rodata.ShortRegData30:00000000 ShortRegData30
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:650    .rodata.ShortRegData31:00000000 ShortRegData31
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:636    .rodata.ShortRegData33:00000000 ShortRegData33
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:459    .text.OTM8009A_Init:00000490 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:477    .text.OTM8009A_Init:000004b4 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:601    .rodata.ShortRegData38:00000000 ShortRegData38
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:594    .rodata.ShortRegData39:00000000 ShortRegData39
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:874    .rodata.lcdRegData27:00000000 lcdRegData27
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:867    .rodata.lcdRegData28:00000000 lcdRegData28
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:483    .text.OTM8009A_ReadID:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:489    .text.OTM8009A_ReadID:00000000 OTM8009A_ReadID
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:507    .rodata.ShortRegData51:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:514    .rodata.ShortRegData50:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:521    .rodata.ShortRegData49:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:528    .rodata.ShortRegData48:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:535    .rodata.ShortRegData47:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:542    .rodata.ShortRegData46:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:549    .rodata.ShortRegData45:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:556    .rodata.ShortRegData44:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:563    .rodata.ShortRegData43:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:570    .rodata.ShortRegData42:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:577    .rodata.ShortRegData41:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:584    .rodata.ShortRegData40:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:591    .rodata.ShortRegData39:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:598    .rodata.ShortRegData38:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:605    .rodata.ShortRegData37:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:612    .rodata.ShortRegData36:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:619    .rodata.ShortRegData35:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:626    .rodata.ShortRegData34:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:633    .rodata.ShortRegData33:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:640    .rodata.ShortRegData32:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:647    .rodata.ShortRegData31:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:654    .rodata.ShortRegData30:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:661    .rodata.ShortRegData29:00000000 $d
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 20
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:919    .rodata.lcdRegData20:00000000 lcdRegData20
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:911    .rodata.lcdRegData21:00000000 lcdRegData21
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:904    .rodata.lcdRegData22:00000000 lcdRegData22
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:896    .rodata.lcdRegData23:00000000 lcdRegData23
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:888    .rodata.lcdRegData24:00000000 lcdRegData24
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:538    .rodata.ShortRegData47:00000000 ShortRegData47
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:531    .rodata.ShortRegData48:00000000 ShortRegData48
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:524    .rodata.ShortRegData49:00000000 ShortRegData49
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:517    .rodata.ShortRegData50:00000000 ShortRegData50
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:510    .rodata.ShortRegData51:00000000 ShortRegData51
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:881    .rodata.lcdRegData25:00000000 lcdRegData25
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1044   .rodata.lcdRegData3:00000000 lcdRegData3
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1036   .rodata.lcdRegData4:00000000 lcdRegData4
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:615    .rodata.ShortRegData36:00000000 ShortRegData36
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:608    .rodata.ShortRegData37:00000000 ShortRegData37
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:587    .rodata.ShortRegData40:00000000 ShortRegData40
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:580    .rodata.ShortRegData41:00000000 ShortRegData41
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:573    .rodata.ShortRegData42:00000000 ShortRegData42
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:566    .rodata.ShortRegData43:00000000 ShortRegData43
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:559    .rodata.ShortRegData44:00000000 ShortRegData44
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:552    .rodata.ShortRegData45:00000000 ShortRegData45
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:804    .rodata.ShortRegData9:00000000 ShortRegData9
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:664    .rodata.ShortRegData29:00000000 ShortRegData29
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:657    .rodata.ShortRegData30:00000000 ShortRegData30
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:650    .rodata.ShortRegData31:00000000 ShortRegData31
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:636    .rodata.ShortRegData33:00000000 ShortRegData33
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:459    .text.OTM8009A_Init:00000490 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:477    .text.OTM8009A_Init:000004b4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:601    .rodata.ShortRegData38:00000000 ShortRegData38
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:594    .rodata.ShortRegData39:00000000 ShortRegData39
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:874    .rodata.lcdRegData27:00000000 lcdRegData27
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:867    .rodata.lcdRegData28:00000000 lcdRegData28
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:483    .text.OTM8009A_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:489    .text.OTM8009A_ReadID:00000000 OTM8009A_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:507    .rodata.ShortRegData51:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:514    .rodata.ShortRegData50:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:521    .rodata.ShortRegData49:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:528    .rodata.ShortRegData48:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:535    .rodata.ShortRegData47:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:542    .rodata.ShortRegData46:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:549    .rodata.ShortRegData45:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:556    .rodata.ShortRegData44:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:563    .rodata.ShortRegData43:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:570    .rodata.ShortRegData42:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:577    .rodata.ShortRegData41:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:584    .rodata.ShortRegData40:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:591    .rodata.ShortRegData39:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:598    .rodata.ShortRegData38:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:605    .rodata.ShortRegData37:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:612    .rodata.ShortRegData36:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:619    .rodata.ShortRegData35:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:626    .rodata.ShortRegData34:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:633    .rodata.ShortRegData33:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:640    .rodata.ShortRegData32:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:647    .rodata.ShortRegData31:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:654    .rodata.ShortRegData30:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:661    .rodata.ShortRegData29:00000000 $d
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 20
 
 
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:668    .rodata.ShortRegData28:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:675    .rodata.ShortRegData27:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:682    .rodata.ShortRegData26:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:689    .rodata.ShortRegData25:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:696    .rodata.ShortRegData24:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:703    .rodata.ShortRegData23:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:710    .rodata.ShortRegData22:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:717    .rodata.ShortRegData21:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:724    .rodata.ShortRegData20:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:731    .rodata.ShortRegData19:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:738    .rodata.ShortRegData18:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:745    .rodata.ShortRegData17:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:752    .rodata.ShortRegData16:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:759    .rodata.ShortRegData15:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:766    .rodata.ShortRegData14:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:773    .rodata.ShortRegData13:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:780    .rodata.ShortRegData12:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:787    .rodata.ShortRegData11:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:794    .rodata.ShortRegData10:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:801    .rodata.ShortRegData9:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:808    .rodata.ShortRegData8:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:815    .rodata.ShortRegData7:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:822    .rodata.ShortRegData6:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:829    .rodata.ShortRegData5:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:836    .rodata.ShortRegData4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:843    .rodata.ShortRegData3:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:850    .rodata.ShortRegData2:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:857    .rodata.ShortRegData1:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:864    .rodata.lcdRegData28:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:871    .rodata.lcdRegData27:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:878    .rodata.lcdRegData25:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:885    .rodata.lcdRegData24:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:893    .rodata.lcdRegData23:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:901    .rodata.lcdRegData22:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:908    .rodata.lcdRegData21:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:916    .rodata.lcdRegData20:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:924    .rodata.lcdRegData19:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:931    .rodata.lcdRegData18:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:938    .rodata.lcdRegData17:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:945    .rodata.lcdRegData16:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:953    .rodata.lcdRegData15:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:961    .rodata.lcdRegData14:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:968    .rodata.lcdRegData13:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:976    .rodata.lcdRegData12:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:984    .rodata.lcdRegData11:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:991    .rodata.lcdRegData10:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:998    .rodata.lcdRegData9:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1005   .rodata.lcdRegData8:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1012   .rodata.lcdRegData7:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1019   .rodata.lcdRegData6:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1026   .rodata.lcdRegData5:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1033   .rodata.lcdRegData4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1041   .rodata.lcdRegData3:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1049   .rodata.lcdRegData2:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s:1056   .rodata.lcdRegData1:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:668    .rodata.ShortRegData28:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:675    .rodata.ShortRegData27:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:682    .rodata.ShortRegData26:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:689    .rodata.ShortRegData25:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:696    .rodata.ShortRegData24:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:703    .rodata.ShortRegData23:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:710    .rodata.ShortRegData22:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:717    .rodata.ShortRegData21:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:724    .rodata.ShortRegData20:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:731    .rodata.ShortRegData19:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:738    .rodata.ShortRegData18:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:745    .rodata.ShortRegData17:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:752    .rodata.ShortRegData16:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:759    .rodata.ShortRegData15:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:766    .rodata.ShortRegData14:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:773    .rodata.ShortRegData13:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:780    .rodata.ShortRegData12:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:787    .rodata.ShortRegData11:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:794    .rodata.ShortRegData10:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:801    .rodata.ShortRegData9:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:808    .rodata.ShortRegData8:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:815    .rodata.ShortRegData7:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:822    .rodata.ShortRegData6:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:829    .rodata.ShortRegData5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:836    .rodata.ShortRegData4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:843    .rodata.ShortRegData3:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:850    .rodata.ShortRegData2:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:857    .rodata.ShortRegData1:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:864    .rodata.lcdRegData28:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:871    .rodata.lcdRegData27:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:878    .rodata.lcdRegData25:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:885    .rodata.lcdRegData24:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:893    .rodata.lcdRegData23:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:901    .rodata.lcdRegData22:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:908    .rodata.lcdRegData21:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:916    .rodata.lcdRegData20:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:924    .rodata.lcdRegData19:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:931    .rodata.lcdRegData18:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:938    .rodata.lcdRegData17:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:945    .rodata.lcdRegData16:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:953    .rodata.lcdRegData15:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:961    .rodata.lcdRegData14:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:968    .rodata.lcdRegData13:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:976    .rodata.lcdRegData12:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:984    .rodata.lcdRegData11:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:991    .rodata.lcdRegData10:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:998    .rodata.lcdRegData9:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1005   .rodata.lcdRegData8:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1012   .rodata.lcdRegData7:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1019   .rodata.lcdRegData6:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1026   .rodata.lcdRegData5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1033   .rodata.lcdRegData4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1041   .rodata.lcdRegData3:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1049   .rodata.lcdRegData2:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s:1056   .rodata.lcdRegData1:00000000 $d
 
 UNDEFINED SYMBOLS
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNAFNQC.s 			page 21
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8uaI8Z.s 			page 21
 
 
 OTM8009A_IO_Delay

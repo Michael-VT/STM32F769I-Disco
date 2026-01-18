@@ -19,9 +19,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_lcd.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_ts.h"
+//#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_lcd.h"
+//#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.h"
+//#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_ts.h"
 #include "app_touchgfx.h"
 #include "cmsis_os.h"
 #include "crc.h"
@@ -54,6 +54,11 @@
 /* USER CODE END PM */
 
 /* USER CODE BEGIN PV */
+#define UART_RX_BUFFER_SIZE 2048
+volatile uint8_t UartRxBuffer[UART_RX_BUFFER_SIZE];
+volatile uint32_t UartRxHead = 0;
+volatile uint32_t UartRxTail = 0;
+uint8_t UartRxByte;
 UART_HandleTypeDef huart5;
 /* USER CODE END PV */
 
@@ -119,37 +124,40 @@ int main(void) {
   /* Call PreOsInit function */
   /* MX_TouchGFX_PreOSInit(); */
   /* USER CODE BEGIN 2 */
-  uint32_t ts_status = TS_OK;
-  uint8_t lcd_status = LCD_OK;
-  BSP_LCD_Init();
-  ts_status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
-  while (ts_status != LCD_OK)
-    ;
-  while (lcd_status != LCD_OK)
-    ;
+  // uint32_t ts_status = TS_OK;
+  // uint8_t lcd_status = LCD_OK;
+  // BSP_LCD_Init();
+  // ts_status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
+  // while (ts_status != LCD_OK)
+  //   ;
+  // while (lcd_status != LCD_OK)
+  //   ;
 
-  BSP_LCD_SetBrightness(100);
-  BSP_LCD_Init();
-  BSP_LCD_LayerDefaultInit(0, 0xC0000000);
-  BSP_LCD_SelectLayer(0);
-  BSP_LCD_Clear(0xFFFFFFFF);
-  BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
-  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-  BSP_LCD_DisplayStringAt(0, 10, (uint8_t *)"Disply STM32F769I-DISKO!",
-                          CENTER_MODE);
+  // BSP_LCD_SetBrightness(100);
+  // BSP_LCD_Init();
+  // BSP_LCD_LayerDefaultInit(0, 0xC0000000);
+  // BSP_LCD_SelectLayer(0);
+  // BSP_LCD_Clear(0xFFFFFFFF);
+  // BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+  // BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  // BSP_LCD_DisplayStringAt(0, 10, (uint8_t *)"Disply STM32F769I-DISKO!",
+  //                         CENTER_MODE);
 
-  BSP_SDRAM_Init();
-  BSP_LCD_Init();
-  BSP_LCD_LayerDefaultInit(0, SDRAM_DEVICE_ADDR);
-  BSP_LCD_SelectLayer(0);
+  // BSP_SDRAM_Init();
+  // BSP_LCD_Init();
+  // BSP_LCD_LayerDefaultInit(0, SDRAM_DEVICE_ADDR);
+  // BSP_LCD_SelectLayer(0);
 
   // NOTE: htim1 usage was weird in original code, commented out to avoid crash
   // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
 
-  BSP_LCD_Clear(LCD_COLOR_WHITE);
-  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-  BSP_LCD_DisplayStringAt(0, 240, (uint8_t *)"STM32F769I-DISCO DSI WORKS!",
-                          CENTER_MODE);
+  // Start UART Reception by enabling RXNE interrupt
+  __HAL_UART_ENABLE_IT(&huart5, UART_IT_RXNE);
+
+  // BSP_LCD_Clear(LCD_COLOR_WHITE);
+  // BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  // BSP_LCD_DisplayStringAt(0, 240, (uint8_t *)"STM32F769I-DISCO DSI WORKS!",
+  //                         CENTER_MODE);
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -257,6 +265,19 @@ void MX_UART5_Init(void) {
   }
 }
 /* USER CODE END 4 */
+
+/* USER CODE BEGIN 5 */
+// HAL_UART_RxCpltCallback removed as we use UART5_IRQHandler in stm32f7xx_it.c
+
+uint32_t UART_Read(uint8_t *pBuf, uint32_t Len) {
+  uint32_t count = 0;
+  while (count < Len && UartRxTail != UartRxHead) {
+    pBuf[count++] = UartRxBuffer[UartRxTail];
+    UartRxTail = (UartRxTail + 1) % UART_RX_BUFFER_SIZE;
+  }
+  return count;
+}
+/* USER CODE END 5 */
 
 /**
  * @brief  Period elapsed callback in non blocking mode

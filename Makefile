@@ -46,7 +46,7 @@ INCLUDES = \
 -ITouchGFX/gui/include
 
 # Sources
-C_SOURCES = $(shell find $(SOURCES_DIR) -name '*.c' ! -name '*template.c' ! -name '*audio.c' ! -name '*sd.c' ! -name '*qspi.c' ! -path '*Adafruit*' ! -path '*Drivers/CMSIS*' ! -path '*Utilities/Fonts*')
+C_SOURCES = $(shell find $(SOURCES_DIR) -name '*.c' ! -name '*template.c' ! -name '*audio.c' ! -name '*sd.c' ! -name '*qspi.c' ! -name '*_lcd.c' ! -name '*_ts.c' ! -path '*Adafruit*' ! -path '*Drivers/CMSIS*' ! -path '*Utilities/Fonts*')
 ASM_SOURCES = Core/Startup/startup_stm32f769nihx.s
 
 ################################################################################
