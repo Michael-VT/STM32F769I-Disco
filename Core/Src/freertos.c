@@ -176,27 +176,18 @@ void StartDefaultTask(void *argument) {
   }
   HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_SET); // LED ON
 
-  char msg[128];
-
-  // Connect WiFi
-  sprintf(msg, "Connecting to WiFi...\r\n");
-  CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
-
+  // Connect WiFi (Silent)
   ESP8266_SendCommand("AT+CWMODE=1");
   osDelay(500);
+  // Using credentials provided by user
   ESP8266_SendCommand("AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"");
   osDelay(8000); // Give it time to connect
-
-  sprintf(msg, "Starting Weather Loop...\r\n");
-  CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
 
   /* Infinite loop */
   for (;;) {
     // 1. TCP Connect
     ESP8266_SendCommand("AT+CIPSTART=\"TCP\",\"wttr.in\",80");
     if (ESP8266_WaitFor("OK", 5000) != ESP8266_OK) {
-      sprintf(msg, "TCP Connection Failed\r\n");
-      CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
       osDelay(5000);
       continue;
     }
@@ -208,7 +199,6 @@ void StartDefaultTask(void *argument) {
     const char *conn_line = "Connection: close\r\n\r\n";
 
     // 3. Send CIPSEND
-    // Calculate exact length
     uint32_t total_len = strlen(req_line) + strlen(host_line) +
                          strlen(ua_line) + strlen(conn_line);
     char sendCmd[32];
@@ -222,24 +212,54 @@ void StartDefaultTask(void *argument) {
       HAL_UART_Transmit(&huart5, (uint8_t *)ua_line, strlen(ua_line), 100);
       HAL_UART_Transmit(&huart5, (uint8_t *)conn_line, strlen(conn_line), 100);
 
-      // 5. Read Response
-      // We read continuously and forward to USB until timeout (waiting for
-      // body)
+      // 5. Read Response into Buffer
+      static char rx_buf[2048];
+      uint32_t rx_idx = 0;
       uint32_t start = HAL_GetTick();
-      while (HAL_GetTick() - start < 10000) {
-        uint8_t rBuf[64];
-        uint32_t n = UART_Read(rBuf, sizeof(rBuf));
-        if (n > 0) {
-          CDC_Transmit_HS(rBuf, n);
-          start = HAL_GetTick(); // extend timeout on data
+
+      // Read until timeout or buffer full
+      while (HAL_GetTick() - start < 5000 && rx_idx < sizeof(rx_buf) - 1) {
+        uint8_t ch;
+        if (UART_Read(&ch, 1) > 0) {
+          rx_buf[rx_idx++] = ch;
+          start = HAL_GetTick(); // Extend timeout on data
         } else {
-          osDelay(10);
+          osDelay(1);
         }
       }
-      CDC_Transmit_HS((uint8_t *)"\r\n", 2);
-    } else {
-      sprintf(msg, "CIPSEND Failed\r\n");
-      CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
+      rx_buf[rx_idx] = 0; // Null terminate
+
+      // 6. Parse and Print Body
+      // Look for HTTP signature first to avoid matching "SEND
+      // OK\r\n\r\n+IPD..."
+      char *http_start = strstr(rx_buf, "HTTP/");
+      if (http_start) {
+        char *body = strstr(http_start, "\r\n\r\n");
+        if (body) {
+          body += 4; // Skip CRLFCRLF
+
+          // Cleanup "CLOSED"
+          char *closed = strstr(body, "CLOSED");
+          if (closed)
+            *closed = 0;
+
+          // Truncate at first newline to ensure we only print the weather line
+          // and ignore any trailing garbage like "SEND OK" or echoes
+          char *eol = strpbrk(body, "\r\n");
+          if (eol)
+            *eol = 0;
+
+          // Cleanup trailing whitespace (if any left)
+          size_t len = strlen(body);
+          while (len > 0 && (body[len - 1] <= ' '))
+            body[--len] = 0;
+
+          if (strlen(body) > 0) {
+            CDC_Transmit_HS((uint8_t *)body, strlen(body));
+            CDC_Transmit_HS((uint8_t *)"\r\n", 2);
+          }
+        }
+      }
     }
 
     // Blink while waiting (10 seconds)

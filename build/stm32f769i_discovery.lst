@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
   56 0048 3046     		mov	r0, r6
   57 004a FFF7FEFF 		bl	HAL_GPIO_Init
   58 004e 236C     		ldr	r3, [r4, #64]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 2
 
 
   59 0050 43F40013 		orr	r3, r3, #2097152
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  113 00d0 05AE     		add	r6, sp, #20
  114 00d2 3146     		mov	r1, r6
  115 00d4 1948     		ldr	r0, .L6+12
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 3
 
 
  116 00d6 FFF7FEFF 		bl	HAL_GPIO_Init
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  172 000c 9C42     		cmp	r4, r3
  173 000e 12D0     		beq	.L13
  174 0010 0B4B     		ldr	r3, .L14+4
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 4
 
 
  175 0012 2360     		str	r3, [r4]
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  233 0006 0D46     		mov	r5, r1
  234 0008 4FF47A76 		mov	r6, #1000
  235 000c 0296     		str	r6, [sp, #8]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 5
 
 
  236 000e BDF82460 		ldrh	r6, [sp, #36]
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  294              		@ args = 0, pretend = 0, frame = 0
  295              		@ frame_needed = 0, uses_anonymous_args = 0
  296 0000 08B5     		push	{r3, lr}
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 6
 
 
  297 0002 4FF47A73 		mov	r3, #1000
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  355              		.align	2
  356              	.L33:
  357 003c 00380240 		.word	1073887232
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 7
 
 
  358 0040 00000000 		.word	GPIO_PIN
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  416 001c 00000000 		.word	GPIO_PORT
  418              		.section	.text.BSP_LED_Off,"ax",%progbits
  419              		.align	1
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 8
 
 
  420              		.global	BSP_LED_Off
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  479 0008 1A6B     		ldr	r2, [r3, #48]
  480 000a 42F00102 		orr	r2, r2, #1
  481 000e 1A63     		str	r2, [r3, #48]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 9
 
 
  482 0010 1B6B     		ldr	r3, [r3, #48]
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  537              		.syntax unified
  538              		.thumb
  539              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 10
 
 
  541              	BSP_PB_DeInit:
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  599 000a 00BF     		.align	2
  600              	.L69:
  601 000c 00000000 		.word	hI2cAudioHandler
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 11
 
 
  603              		.section	.text.AUDIO_IO_DeInit,"ax",%progbits
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  662 0004 0A46     		mov	r2, r1
  663 0006 0023     		movs	r3, #0
  664 0008 ADF80E30 		strh	r3, [sp, #14]	@ movhi
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 12
 
 
  665 000c 0223     		movs	r3, #2
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  725              	EEPROM_IO_WriteData:
  726              		@ args = 0, pretend = 0, frame = 0
  727              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 13
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 13
 
 
  728 0000 00B5     		push	{lr}
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  786 0004 0146     		mov	r1, r0
  787 0006 0248     		ldr	r0, .L96
  788 0008 FFF7FEFF 		bl	I2Cx_IsDeviceReady
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 14
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 14
 
 
  789 000c 08BD     		pop	{r3, pc}
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  848              		.thumb_func
  850              	TS_IO_Read:
  851              		@ args = 0, pretend = 0, frame = 8
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 15
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 15
 
 
  852              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  910              		@ frame_needed = 0, uses_anonymous_args = 0
  911 0000 00B5     		push	{lr}
  912 0002 83B0     		sub	sp, sp, #12
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 16
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 16
 
 
  913 0004 0193     		str	r3, [sp, #4]
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  974              		.thumb
  975              		.thumb_func
  977              	HDMI_IO_Init:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 17
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 17
 
 
  978              		@ args = 0, pretend = 0, frame = 0
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  1036 0014 0091     		str	r1, [sp]
  1037 0016 0146     		mov	r1, r0
  1038 0018 0348     		ldr	r0, .L134
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 18
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 18
 
 
  1039 001a FFF7FEFF 		bl	I2Cx_ReadMultiple
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  1098              		.align	2
  1101              	GPIO_PORT:
  1102 0000 00240240 		.word	1073882112
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 19
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 19
 
 
  1103 0004 00240240 		.word	1073882112
@@ -1089,127 +1089,127 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 1
  1110 0000 00200000 		.word	8192
  1111 0004 20000000 		.word	32
  1112              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 20
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f769i_discovery.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:17     .text.I2Cx_MspInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:22     .text.I2Cx_MspInit:00000000 I2Cx_MspInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:153    .text.I2Cx_MspInit:00000130 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1073   .bss.hI2cAudioHandler:00000000 hI2cAudioHandler
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:159    .text.I2Cx_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:164    .text.I2Cx_Init:00000000 I2Cx_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:200    .text.I2Cx_Init:0000003c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:206    .text.I2Cx_Error:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:211    .text.I2Cx_Error:00000000 I2Cx_Error
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:222    .text.I2Cx_WriteMultiple:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:227    .text.I2Cx_WriteMultiple:00000000 I2Cx_WriteMultiple
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:255    .text.I2Cx_ReadMultiple:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:260    .text.I2Cx_ReadMultiple:00000000 I2Cx_ReadMultiple
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:288    .text.I2Cx_IsDeviceReady:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:293    .text.I2Cx_IsDeviceReady:00000000 I2Cx_IsDeviceReady
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:302    .text.BSP_GetVersion:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:308    .text.BSP_GetVersion:00000000 BSP_GetVersion
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:317    .text.BSP_GetVersion:00000004 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:320    .text.BSP_LED_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:326    .text.BSP_LED_Init:00000000 BSP_LED_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:357    .text.BSP_LED_Init:0000003c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1109   .data.GPIO_PIN:00000000 GPIO_PIN
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1101   .data.GPIO_PORT:00000000 GPIO_PORT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:362    .text.BSP_LED_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:368    .text.BSP_LED_DeInit:00000000 BSP_LED_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:391    .text.BSP_LED_DeInit:0000002c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:395    .text.BSP_LED_On:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:401    .text.BSP_LED_On:00000000 BSP_LED_On
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:415    .text.BSP_LED_On:00000018 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:419    .text.BSP_LED_Off:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:425    .text.BSP_LED_Off:00000000 BSP_LED_Off
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:439    .text.BSP_LED_Off:00000018 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:443    .text.BSP_LED_Toggle:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:449    .text.BSP_LED_Toggle:00000000 BSP_LED_Toggle
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:462    .text.BSP_LED_Toggle:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:466    .text.BSP_PB_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:472    .text.BSP_PB_Init:00000000 BSP_PB_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:531    .text.BSP_PB_Init:00000074 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1094   .data.BUTTON_PORT:00000000 BUTTON_PORT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:535    .text.BSP_PB_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:541    .text.BSP_PB_DeInit:00000000 BSP_PB_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:561    .text.BSP_PB_DeInit:00000020 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:564    .text.BSP_PB_GetState:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:570    .text.BSP_PB_GetState:00000000 BSP_PB_GetState
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:582    .text.BSP_PB_GetState:00000010 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:585    .text.AUDIO_IO_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:591    .text.AUDIO_IO_Init:00000000 AUDIO_IO_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:601    .text.AUDIO_IO_Init:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:604    .text.AUDIO_IO_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:610    .text.AUDIO_IO_DeInit:00000000 AUDIO_IO_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:617    .text.AUDIO_IO_Write:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:623    .text.AUDIO_IO_Write:00000000 AUDIO_IO_Write
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:648    .text.AUDIO_IO_Write:00000034 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:651    .text.AUDIO_IO_Read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:657    .text.AUDIO_IO_Read:00000000 AUDIO_IO_Read
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 21
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:17     .text.I2Cx_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:22     .text.I2Cx_MspInit:00000000 I2Cx_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:153    .text.I2Cx_MspInit:00000130 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1073   .bss.hI2cAudioHandler:00000000 hI2cAudioHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:159    .text.I2Cx_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:164    .text.I2Cx_Init:00000000 I2Cx_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:200    .text.I2Cx_Init:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:206    .text.I2Cx_Error:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:211    .text.I2Cx_Error:00000000 I2Cx_Error
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:222    .text.I2Cx_WriteMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:227    .text.I2Cx_WriteMultiple:00000000 I2Cx_WriteMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:255    .text.I2Cx_ReadMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:260    .text.I2Cx_ReadMultiple:00000000 I2Cx_ReadMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:288    .text.I2Cx_IsDeviceReady:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:293    .text.I2Cx_IsDeviceReady:00000000 I2Cx_IsDeviceReady
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:302    .text.BSP_GetVersion:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:308    .text.BSP_GetVersion:00000000 BSP_GetVersion
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:317    .text.BSP_GetVersion:00000004 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:320    .text.BSP_LED_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:326    .text.BSP_LED_Init:00000000 BSP_LED_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:357    .text.BSP_LED_Init:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1109   .data.GPIO_PIN:00000000 GPIO_PIN
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1101   .data.GPIO_PORT:00000000 GPIO_PORT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:362    .text.BSP_LED_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:368    .text.BSP_LED_DeInit:00000000 BSP_LED_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:391    .text.BSP_LED_DeInit:0000002c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:395    .text.BSP_LED_On:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:401    .text.BSP_LED_On:00000000 BSP_LED_On
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:415    .text.BSP_LED_On:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:419    .text.BSP_LED_Off:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:425    .text.BSP_LED_Off:00000000 BSP_LED_Off
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:439    .text.BSP_LED_Off:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:443    .text.BSP_LED_Toggle:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:449    .text.BSP_LED_Toggle:00000000 BSP_LED_Toggle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:462    .text.BSP_LED_Toggle:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:466    .text.BSP_PB_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:472    .text.BSP_PB_Init:00000000 BSP_PB_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:531    .text.BSP_PB_Init:00000074 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1094   .data.BUTTON_PORT:00000000 BUTTON_PORT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:535    .text.BSP_PB_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:541    .text.BSP_PB_DeInit:00000000 BSP_PB_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:561    .text.BSP_PB_DeInit:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:564    .text.BSP_PB_GetState:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:570    .text.BSP_PB_GetState:00000000 BSP_PB_GetState
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:582    .text.BSP_PB_GetState:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:585    .text.AUDIO_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:591    .text.AUDIO_IO_Init:00000000 AUDIO_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:601    .text.AUDIO_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:604    .text.AUDIO_IO_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:610    .text.AUDIO_IO_DeInit:00000000 AUDIO_IO_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:617    .text.AUDIO_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:623    .text.AUDIO_IO_Write:00000000 AUDIO_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:648    .text.AUDIO_IO_Write:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:651    .text.AUDIO_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:657    .text.AUDIO_IO_Read:00000000 AUDIO_IO_Read
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 21
 
 
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:683    .text.AUDIO_IO_Read:00000034 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:686    .text.AUDIO_IO_Delay:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:692    .text.AUDIO_IO_Delay:00000000 AUDIO_IO_Delay
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:700    .text.EEPROM_IO_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:706    .text.EEPROM_IO_Init:00000000 EEPROM_IO_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:716    .text.EEPROM_IO_Init:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1067   .bss.hI2cExtHandler:00000000 hI2cExtHandler
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:719    .text.EEPROM_IO_WriteData:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:725    .text.EEPROM_IO_WriteData:00000000 EEPROM_IO_WriteData
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:744    .text.EEPROM_IO_WriteData:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:747    .text.EEPROM_IO_ReadData:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:753    .text.EEPROM_IO_ReadData:00000000 EEPROM_IO_ReadData
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:772    .text.EEPROM_IO_ReadData:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:775    .text.EEPROM_IO_IsDeviceReady:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:781    .text.EEPROM_IO_IsDeviceReady:00000000 EEPROM_IO_IsDeviceReady
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:793    .text.EEPROM_IO_IsDeviceReady:00000010 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:796    .text.TS_IO_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:802    .text.TS_IO_Init:00000000 TS_IO_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:812    .text.TS_IO_Init:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:815    .text.TS_IO_Write:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:821    .text.TS_IO_Write:00000000 TS_IO_Write
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:841    .text.TS_IO_Write:00000024 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:844    .text.TS_IO_Read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:850    .text.TS_IO_Read:00000000 TS_IO_Read
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:872    .text.TS_IO_Read:00000028 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:875    .text.TS_IO_ReadMultiple:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:881    .text.TS_IO_ReadMultiple:00000000 TS_IO_ReadMultiple
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:899    .text.TS_IO_ReadMultiple:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:902    .text.TS_IO_WriteMultiple:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:908    .text.TS_IO_WriteMultiple:00000000 TS_IO_WriteMultiple
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:926    .text.TS_IO_WriteMultiple:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:929    .text.TS_IO_Delay:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:935    .text.TS_IO_Delay:00000000 TS_IO_Delay
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:943    .text.OTM8009A_IO_Delay:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:949    .text.OTM8009A_IO_Delay:00000000 OTM8009A_IO_Delay
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:957    .text.NT35510_IO_Delay:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:963    .text.NT35510_IO_Delay:00000000 NT35510_IO_Delay
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:971    .text.HDMI_IO_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:977    .text.HDMI_IO_Init:00000000 HDMI_IO_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:987    .text.HDMI_IO_Init:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:990    .text.HDMI_IO_Write:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:996    .text.HDMI_IO_Write:00000000 HDMI_IO_Write
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1016   .text.HDMI_IO_Write:00000024 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1019   .text.HDMI_IO_Read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1025   .text.HDMI_IO_Read:00000000 HDMI_IO_Read
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1047   .text.HDMI_IO_Read:00000028 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1050   .text.HDMI_IO_Delay:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1056   .text.HDMI_IO_Delay:00000000 HDMI_IO_Delay
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1064   .bss.hI2cExtHandler:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1070   .bss.hI2cAudioHandler:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1080   .rodata.BUTTON_IRQn:00000000 BUTTON_IRQn
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1077   .rodata.BUTTON_IRQn:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1087   .rodata.BUTTON_PIN:00000000 BUTTON_PIN
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1084   .rodata.BUTTON_PIN:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1091   .data.BUTTON_PORT:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1098   .data.GPIO_PORT:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s:1106   .data.GPIO_PIN:00000000 $d
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccc80Roh.s 			page 22
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:683    .text.AUDIO_IO_Read:00000034 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:686    .text.AUDIO_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:692    .text.AUDIO_IO_Delay:00000000 AUDIO_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:700    .text.EEPROM_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:706    .text.EEPROM_IO_Init:00000000 EEPROM_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:716    .text.EEPROM_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1067   .bss.hI2cExtHandler:00000000 hI2cExtHandler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:719    .text.EEPROM_IO_WriteData:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:725    .text.EEPROM_IO_WriteData:00000000 EEPROM_IO_WriteData
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:744    .text.EEPROM_IO_WriteData:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:747    .text.EEPROM_IO_ReadData:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:753    .text.EEPROM_IO_ReadData:00000000 EEPROM_IO_ReadData
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:772    .text.EEPROM_IO_ReadData:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:775    .text.EEPROM_IO_IsDeviceReady:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:781    .text.EEPROM_IO_IsDeviceReady:00000000 EEPROM_IO_IsDeviceReady
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:793    .text.EEPROM_IO_IsDeviceReady:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:796    .text.TS_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:802    .text.TS_IO_Init:00000000 TS_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:812    .text.TS_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:815    .text.TS_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:821    .text.TS_IO_Write:00000000 TS_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:841    .text.TS_IO_Write:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:844    .text.TS_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:850    .text.TS_IO_Read:00000000 TS_IO_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:872    .text.TS_IO_Read:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:875    .text.TS_IO_ReadMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:881    .text.TS_IO_ReadMultiple:00000000 TS_IO_ReadMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:899    .text.TS_IO_ReadMultiple:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:902    .text.TS_IO_WriteMultiple:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:908    .text.TS_IO_WriteMultiple:00000000 TS_IO_WriteMultiple
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:926    .text.TS_IO_WriteMultiple:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:929    .text.TS_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:935    .text.TS_IO_Delay:00000000 TS_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:943    .text.OTM8009A_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:949    .text.OTM8009A_IO_Delay:00000000 OTM8009A_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:957    .text.NT35510_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:963    .text.NT35510_IO_Delay:00000000 NT35510_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:971    .text.HDMI_IO_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:977    .text.HDMI_IO_Init:00000000 HDMI_IO_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:987    .text.HDMI_IO_Init:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:990    .text.HDMI_IO_Write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:996    .text.HDMI_IO_Write:00000000 HDMI_IO_Write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1016   .text.HDMI_IO_Write:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1019   .text.HDMI_IO_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1025   .text.HDMI_IO_Read:00000000 HDMI_IO_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1047   .text.HDMI_IO_Read:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1050   .text.HDMI_IO_Delay:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1056   .text.HDMI_IO_Delay:00000000 HDMI_IO_Delay
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1064   .bss.hI2cExtHandler:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1070   .bss.hI2cAudioHandler:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1080   .rodata.BUTTON_IRQn:00000000 BUTTON_IRQn
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1077   .rodata.BUTTON_IRQn:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1087   .rodata.BUTTON_PIN:00000000 BUTTON_PIN
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1084   .rodata.BUTTON_PIN:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1091   .data.BUTTON_PORT:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1098   .data.GPIO_PORT:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s:1106   .data.GPIO_PIN:00000000 $d
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccuvvNtK.s 			page 22
 
 
 

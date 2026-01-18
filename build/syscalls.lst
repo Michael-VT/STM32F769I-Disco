@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
   61              		.align	1
   62              		.global	_exit
   63              		.syntax unified
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 2
 
 
   64              		.thumb
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
  123              	.L13:
  124 0014 B542     		cmp	r5, r6
  125 0016 F8DB     		blt	.L14
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 3
 
 
  126 0018 3046     		mov	r0, r6
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
  189              		.global	_open
  190              		.syntax unified
  191              		.thumb
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 4
 
 
  192              		.thumb_func
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
  254              		.syntax unified
  255              		.thumb
  256              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 5
 
 
  258              	_stat:
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
  319              		.section	.data.environ,"aw"
  320              		.align	2
  323              	environ:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 6
 
 
  324 0000 00000000 		.word	__env
@@ -310,51 +310,51 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 1
  332              		.weak	__io_putchar
  333              		.weak	__io_getchar
  334              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 syscalls.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:17     .text.initialise_monitor_handles:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:23     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:30     .text._getpid:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:36     .text._getpid:00000000 _getpid
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:44     .text._kill:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:50     .text._kill:00000000 _kill
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:61     .text._exit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:67     .text._exit:00000000 _exit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:78     .text._read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:84     .text._read:00000000 _read
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:105    .text._write:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:111    .text._write:00000000 _write
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:130    .text._close:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:136    .text._close:00000000 _close
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:144    .text._fstat:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:150    .text._fstat:00000000 _fstat
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:160    .text._isatty:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:166    .text._isatty:00000000 _isatty
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:174    .text._lseek:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:180    .text._lseek:00000000 _lseek
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:188    .text._open:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:194    .text._open:00000000 _open
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:204    .text._wait:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:210    .text._wait:00000000 _wait
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:221    .text._unlink:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:227    .text._unlink:00000000 _unlink
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:238    .text._times:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:244    .text._times:00000000 _times
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:252    .text._stat:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:258    .text._stat:00000000 _stat
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:268    .text._link:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:274    .text._link:00000000 _link
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:285    .text._fork:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:291    .text._fork:00000000 _fork
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:302    .text._execve:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:308    .text._execve:00000000 _execve
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:323    .data.environ:00000000 environ
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:320    .data.environ:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:330    .bss.__env:00000000 __env
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc8SS263.s:327    .bss.__env:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:17     .text.initialise_monitor_handles:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:23     .text.initialise_monitor_handles:00000000 initialise_monitor_handles
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:30     .text._getpid:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:36     .text._getpid:00000000 _getpid
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:44     .text._kill:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:50     .text._kill:00000000 _kill
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:61     .text._exit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:67     .text._exit:00000000 _exit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:78     .text._read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:84     .text._read:00000000 _read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:105    .text._write:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:111    .text._write:00000000 _write
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:130    .text._close:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:136    .text._close:00000000 _close
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:144    .text._fstat:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:150    .text._fstat:00000000 _fstat
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:160    .text._isatty:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:166    .text._isatty:00000000 _isatty
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:174    .text._lseek:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:180    .text._lseek:00000000 _lseek
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:188    .text._open:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:194    .text._open:00000000 _open
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:204    .text._wait:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:210    .text._wait:00000000 _wait
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:221    .text._unlink:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:227    .text._unlink:00000000 _unlink
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:238    .text._times:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:244    .text._times:00000000 _times
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:252    .text._stat:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:258    .text._stat:00000000 _stat
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:268    .text._link:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:274    .text._link:00000000 _link
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:285    .text._fork:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:291    .text._fork:00000000 _fork
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:302    .text._execve:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:308    .text._execve:00000000 _execve
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:323    .data.environ:00000000 environ
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:320    .data.environ:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:330    .bss.__env:00000000 __env
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0E6LEd.s:327    .bss.__env:00000000 $d
 
 UNDEFINED SYMBOLS
 __errno

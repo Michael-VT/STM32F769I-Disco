@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
   58 0004 FFF7FEFF 		bl	USBD_LL_Stop
   59 0008 0123     		movs	r3, #1
   60 000a 84F89C32 		strb	r3, [r4, #668]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 2
 
 
   61 000e D4F8B832 		ldr	r3, [r4, #696]
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  118              		.syntax unified
  119              		.thumb
  120              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 3
 
 
  122              	USBD_Start:
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  182 000c 08BD     		pop	{r3, pc}
  183              	.L25:
  184 000e 0020     		movs	r0, #0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 4
 
 
  185 0010 FCE7     		b	.L24
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  243 0040 F9E7     		b	.L36
  244              	.L34:
  245 0042 2946     		mov	r1, r5
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 5
 
 
  246 0044 2046     		mov	r0, r4
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  302 005a 0027     		movs	r7, #0
  303 005c E6E7     		b	.L39
  304              	.L41:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 6
 
 
  305 005e 0027     		movs	r7, #0
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  365 000a 7047     		bx	lr
  366              	.L50:
  367 000c 90F89D32 		ldrb	r3, [r0, #669]	@ zero_extendqisi2
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 7
 
 
  368 0010 DBB2     		uxtb	r3, r3
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  426              	.L57:
  427 0024 0320     		movs	r0, #3
  428 0026 F7E7     		b	.L56
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 8
 
 
  429              	.L59:
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  489              		@ args = 0, pretend = 0, frame = 0
  490              		@ frame_needed = 0, uses_anonymous_args = 0
  491 0000 08B5     		push	{r3, lr}
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 9
 
 
  492 0002 0123     		movs	r3, #1
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  552 000a D0F89432 		ldr	r3, [r0, #660]
  553 000e 032B     		cmp	r3, #3
  554 0010 01D0     		beq	.L90
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 10
 
 
  555 0012 0846     		mov	r0, r1
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  609 008e 2046     		mov	r0, r4
  610 0090 9847     		blx	r3
  611 0092 E8E7     		b	.L86
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 11
 
 
  612              	.L79:
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  668 002e 94F89C32 		ldrb	r3, [r4, #668]	@ zero_extendqisi2
  669 0032 032B     		cmp	r3, #3
  670 0034 29D0     		beq	.L105
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 12
 
 
  671              	.L98:
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  725 00b2 B5D1     		bne	.L99
  726 00b4 00F1AE03 		add	r3, r0, #174
  727 00b8 54F82330 		ldr	r3, [r4, r3, lsl #2]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 13
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 13
 
 
  728 00bc 5A69     		ldr	r2, [r3, #20]
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  786 0026 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
  787 0028 052B     		cmp	r3, #5
  788 002a F3D1     		bne	.L109
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 14
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 14
 
 
  789 002c 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
@@ -795,59 +795,59 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 1
  800 003a 0020     		movs	r0, #0
  801 003c 7047     		bx	lr
  803              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 15
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_core.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:17     .text.USBD_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:23     .text.USBD_Init:00000000 USBD_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:47     .text.USBD_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:53     .text.USBD_DeInit:00000000 USBD_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:77     .text.USBD_RegisterClass:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:83     .text.USBD_RegisterClass:00000000 USBD_RegisterClass
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:116    .text.USBD_Start:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:122    .text.USBD_Start:00000000 USBD_Start
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:130    .text.USBD_Stop:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:136    .text.USBD_Stop:00000000 USBD_Stop
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:153    .text.USBD_RunTestMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:159    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:167    .text.USBD_SetClassConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:173    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:188    .text.USBD_ClrClassConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:194    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:209    .text.USBD_LL_SetupStage:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:215    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:256    .text.USBD_LL_Reset:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:262    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:312    .text.USBD_LL_SetSpeed:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:318    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:327    .text.USBD_LL_Suspend:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:333    .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:350    .text.USBD_LL_Resume:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:356    .text.USBD_LL_Resume:00000000 USBD_LL_Resume
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:373    .text.USBD_LL_SOF:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:379    .text.USBD_LL_SOF:00000000 USBD_LL_SOF
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:400    .text.USBD_LL_IsoINIncomplete:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:406    .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:434    .text.USBD_LL_IsoOUTIncomplete:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:440    .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:468    .text.USBD_LL_DevConnected:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:474    .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:482    .text.USBD_LL_DevDisconnected:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:488    .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:510    .text.USBD_CoreFindIF:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:516    .text.USBD_CoreFindIF:00000000 USBD_CoreFindIF
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:524    .text.USBD_CoreFindEP:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:530    .text.USBD_CoreFindEP:00000000 USBD_CoreFindEP
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:538    .text.USBD_LL_DataOutStage:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:544    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:635    .text.USBD_LL_DataInStage:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:641    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:742    .text.USBD_GetNextDesc:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:748    .text.USBD_GetNextDesc:00000000 USBD_GetNextDesc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:761    .text.USBD_GetEpDesc:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s:767    .text.USBD_GetEpDesc:00000000 USBD_GetEpDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:17     .text.USBD_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:23     .text.USBD_Init:00000000 USBD_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:47     .text.USBD_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:53     .text.USBD_DeInit:00000000 USBD_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:77     .text.USBD_RegisterClass:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:83     .text.USBD_RegisterClass:00000000 USBD_RegisterClass
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:116    .text.USBD_Start:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:122    .text.USBD_Start:00000000 USBD_Start
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:130    .text.USBD_Stop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:136    .text.USBD_Stop:00000000 USBD_Stop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:153    .text.USBD_RunTestMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:159    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:167    .text.USBD_SetClassConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:173    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:188    .text.USBD_ClrClassConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:194    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:209    .text.USBD_LL_SetupStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:215    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:256    .text.USBD_LL_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:262    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:312    .text.USBD_LL_SetSpeed:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:318    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:327    .text.USBD_LL_Suspend:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:333    .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:350    .text.USBD_LL_Resume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:356    .text.USBD_LL_Resume:00000000 USBD_LL_Resume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:373    .text.USBD_LL_SOF:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:379    .text.USBD_LL_SOF:00000000 USBD_LL_SOF
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:400    .text.USBD_LL_IsoINIncomplete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:406    .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:434    .text.USBD_LL_IsoOUTIncomplete:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:440    .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:468    .text.USBD_LL_DevConnected:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:474    .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:482    .text.USBD_LL_DevDisconnected:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:488    .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:510    .text.USBD_CoreFindIF:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:516    .text.USBD_CoreFindIF:00000000 USBD_CoreFindIF
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:524    .text.USBD_CoreFindEP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:530    .text.USBD_CoreFindEP:00000000 USBD_CoreFindEP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:538    .text.USBD_LL_DataOutStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:544    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:635    .text.USBD_LL_DataInStage:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:641    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:742    .text.USBD_GetNextDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:748    .text.USBD_GetNextDesc:00000000 USBD_GetNextDesc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:761    .text.USBD_GetEpDesc:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s:767    .text.USBD_GetEpDesc:00000000 USBD_GetEpDesc
 
 UNDEFINED SYMBOLS
 USBD_LL_Init
@@ -855,7 +855,7 @@ USBD_LL_Stop
 USBD_LL_DeInit
 USBD_LL_Start
 USBD_ParseSetupRequest
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccHbYWlX.s 			page 16
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cccTWwM1.s 			page 16
 
 
 USBD_StdDevReq
