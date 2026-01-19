@@ -227,26 +227,30 @@ extern void MX_I2C1_Init(void);
 
 /* Definition for DefaultTask */
 void StartDefaultTask(void *argument) {
-  MX_GPIO_Init();
-  MX_UART5_Init();
-  // MX_LTDC_Init();   // Handled by BSP_LCD_Init
-  MX_DMA2D_Init();
-  MX_CRC_Init();
-  MX_I2C1_Init();
+  // MX_GPIO_Init(); // These are typically called once in main() before RTOS
+  // starts MX_UART5_Init(); MX_LTDC_Init();   // Handled by BSP_LCD_Init
+  // MX_DMA2D_Init();
+  // MX_CRC_Init();
+  // MX_I2C1_Init();
 
-  MX_USB_DEVICE_Init();
+  MX_USB_DEVICE_Init(); // MX_USB_DEVICE_Init() is usually called here but it's
+                        // already in main() or properly handled.
+  // Actually, let's keep it here if it's the standard CubeIDE place, but avoid
+  // re-initing MX_USB_DEVICE_Init();
+  extern void MX_DMA2D_Init(void);
+  extern void MX_CRC_Init(void);
+
   osDelay(3000); // Wait for enumeration
 
-  Safe_Transmit("=== FW v1.15 2026-01-19 22:58 ===\r\n");
-
+  Safe_Transmit("=== FW v1.19 2026-01-20 00:00 ===\r\n");
   Safe_Transmit("[1] USB Ready\r\n");
 
-  // 1. SDRAM Pattern Test
+  // 1. SDRAM Pattern Test (Verify health)
   Safe_Transmit("[2] SDRAM Test (1MB)...\r\n");
   BSP_SDRAM_Init();
   uint32_t *sdram_ptr = (uint32_t *)0xC0000000;
   uint8_t sdram_ok = 1;
-  for (uint32_t i = 0; i < 0x40000; i++) { // 1MB
+  for (uint32_t i = 0; i < 0x40000; i++) {
     sdram_ptr[i] = i ^ 0xAAAA5555;
   }
   for (uint32_t i = 0; i < 0x40000; i++) {
@@ -293,37 +297,56 @@ void StartDefaultTask(void *argument) {
     Safe_Transmit("  AT FAIL\r\n");
   }
 
-  Safe_Transmit("[13] Deep Clear (4MB)...\r\n");
-  uint32_t *fb = (uint32_t *)0xC0000000;
-  for (uint32_t i = 0; i < 1000000; i++) { // ~4MB area
-    fb[i] = 0xFF000000;                    // Black
-  }
-  Safe_Transmit("  Deep Clear Done\r\n");
+  // 4. Hardware Stabilizers
+  Safe_Transmit("[13] Hardware Polish...\r\n");
+  MX_CRC_Init();   // Some BSPs need CRC for ID validation
+  MX_DMA2D_Init(); // Enable hardware accelerator
+  Safe_Transmit("  DMA2D/CRC OK\r\n");
 
-  Safe_Transmit("[14] LCD Warm-up...\r\n");
+  Safe_Transmit("[14] Screen Clear (DMA2D)...\r\n");
+  // Precise single frame clear (800x480x4 bytes)
+  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  BSP_LCD_FillRect(0, 0, 800, 480);
+  Safe_Transmit("  Clear Done\r\n");
+
+  Safe_Transmit("[15] LCD Warm-up...\r\n");
   BSP_LCD_SetTextColor(LCD_COLOR_YELLOW);
-  BSP_LCD_DisplayStringAt(0, 50, (uint8_t *)"WEATHER STATION v1.15",
+  BSP_LCD_SetFont(&Font24);
+  BSP_LCD_DisplayStringAt(0, 50, (uint8_t *)"WEATHER STATION v1.19",
                           CENTER_MODE);
   BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
   BSP_LCD_DisplayStringAt(0, 100, (uint8_t *)"STM32F769I-DISCO READY",
                           CENTER_MODE);
   Safe_Transmit("  UI Ready\r\n");
 
-  Safe_Transmit("[15] WiFi Connect...\r\n");
+  Safe_Transmit("[16] WiFi Connect...\r\n");
   ESP8266_SendCommand("AT+CWMODE=1");
   osDelay(500);
   ESP8266_SendCommand("AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"");
-  Safe_Transmit("  Connect Sent\r\n");
 
-  Safe_Transmit("[16] Entering Loop\r\n");
+  // Wait for IP (Robust sync)
+  Safe_Transmit("  Waiting for IP...\r\n");
+  if (ESP8266_WaitFor("WIFI GOT IP", 15000) == ESP8266_OK) {
+    Safe_Transmit("  WiFi Connected OK\r\n");
+  } else {
+    Safe_Transmit("  WiFi Timeout (Check credentials)\r\n");
+  }
+
+  Safe_Transmit("[16] Starting App Loop\r\n");
 
   /* Infinite loop */
   for (;;) {
-    Safe_Transmit("--- Refreshing Weather ---\r\n");
+    Safe_Transmit("--- Updating Weather ---\r\n");
+
+    // UI Update: Show "FETCHING..."
+    BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+    BSP_LCD_FillRect(0, 200, 800, 100);
+    BSP_LCD_SetTextColor(LCD_COLOR_LIGHTGRAY);
+    BSP_LCD_DisplayStringAt(0, 250, (uint8_t *)"FETCHING DATA...", CENTER_MODE);
 
     ESP8266_SendCommand("AT+CIPSTART=\"TCP\",\"wttr.in\",80");
     if (ESP8266_WaitFor("OK", 5000) != ESP8266_OK) {
-      Safe_Transmit("  TCP Fail\r\n");
+      Safe_Transmit("  TCP Connect Failed\r\n");
       osDelay(5000);
       continue;
     }
@@ -368,14 +391,80 @@ void StartDefaultTask(void *argument) {
         Safe_Transmit(body);
         Safe_Transmit("\r\n");
 
-        // UI Update
+        // Parse: Condition;Temp;Wind;Humidity;...
+        char condition[64] = "Unknown";
+        char temp[32] = "N/A";
+        char wind[32] = "N/A";
+        char hum[32] = "N/A";
+
+        char *ptr = body;
+        char *next;
+
+        // 1. Condition
+        if ((next = strchr(ptr, ';')) != NULL) {
+          int len = next - ptr;
+          if (len > 63)
+            len = 63;
+          strncpy(condition, ptr, len);
+          condition[len] = 0;
+          ptr = next + 1;
+
+          // 2. Temp
+          if ((next = strchr(ptr, ';')) != NULL) {
+            len = next - ptr;
+            if (len > 31)
+              len = 31;
+            strncpy(temp, ptr, len);
+            temp[len] = 0;
+            ptr = next + 1;
+
+            // 3. Wind
+            if ((next = strchr(ptr, ';')) != NULL) {
+              len = next - ptr;
+              if (len > 31)
+                len = 31;
+              strncpy(wind, ptr, len);
+              wind[len] = 0;
+              ptr = next + 1;
+
+              // 4. Humidity
+              if ((next = strchr(ptr, ';')) != NULL) {
+                len = next - ptr;
+                if (len > 31)
+                  len = 31;
+                strncpy(hum, ptr, len);
+                hum[len] = 0;
+              }
+            }
+          }
+        }
+
+        // --- PRE-CLEAR ---
         BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-        BSP_LCD_FillRect(0, 200, 800, 100); // Clear area
+        BSP_LCD_FillRect(0, 100, 800, 380);
+
+        // --- CITY (Font48) ---
+        BSP_LCD_SetFont(&Font48);
         BSP_LCD_SetTextColor(LCD_COLOR_CYAN);
-        BSP_LCD_DisplayStringAt(0, 230,
-                                (uint8_t *)"CURRENT WEATHER:", CENTER_MODE);
+        BSP_LCD_DisplayStringAt(0, 120, (uint8_t *)"PENICHE", CENTER_MODE);
+
+        // --- CONDITION (Font48) ---
         BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
-        BSP_LCD_DisplayStringAt(0, 270, (uint8_t *)body, CENTER_MODE);
+        BSP_LCD_DisplayStringAt(0, 180, (uint8_t *)condition, CENTER_MODE);
+
+        // --- TEMPERATURE (Font96 / Giga) ---
+        BSP_LCD_SetFont(&Font96);
+        BSP_LCD_SetTextColor(LCD_COLOR_YELLOW);
+        char tempStr[64];
+        sprintf(tempStr, "%s", temp); // Just the number + C
+        BSP_LCD_DisplayStringAt(0, 260, (uint8_t *)tempStr, CENTER_MODE);
+
+        // --- DETAILS (Font24) ---
+        BSP_LCD_SetFont(&Font24);
+        BSP_LCD_SetTextColor(LCD_COLOR_LIGHTGRAY);
+        char details[128];
+        sprintf(details, "WIN: %s | HUM: %s", wind, hum);
+        BSP_LCD_DisplayStringAt(0, 380, (uint8_t *)details, CENTER_MODE);
       }
     }
 

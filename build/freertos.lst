@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
   61              		.section	.text.vApplicationMallocFailedHook,"ax",%progbits
   62              		.align	1
   63              		.global	vApplicationMallocFailedHook
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 2
 
 
   64              		.syntax unified
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  114      0A00
  115 002a 0000     		.align	2
  116              	.LC2:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 3
 
 
  117 002c 2E00     		.ascii	".\000"
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  171 005e 0848     		ldr	r0, .L17+24
  172 0060 FFF7FEFF 		bl	CDC_Transmit_HS
  173 0064 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 4
 
 
  174              	.L18:
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  232 0010 6420     		movs	r0, #100
  233 0012 FFF7FEFF 		bl	osDelay
  234 0016 10BD     		pop	{r4, pc}
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 5
 
 
  236              		.section	.rodata.StartDefaultTask.str1.4,"aMS",%progbits,1
@@ -256,9 +256,9 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  242      210D0A00 
  243              		.align	2
  244              	.LC6:
- 245 0020 3D3D3D20 		.ascii	"=== FW v1.15 2026-01-19 22:58 ===\015\012\000"
+ 245 0020 3D3D3D20 		.ascii	"=== FW v1.19 2026-01-20 00:00 ===\015\012\000"
  245      46572076 
- 245      312E3135 
+ 245      312E3139 
  245      20323032 
  245      362D3031 
  246              		.align	2
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  263 00a4 5B355D20 		.ascii	"[5] Display On...\015\012\000"
  263      44697370 
  263      6C617920 
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 6
 
 
  263      4F6E2E2E 
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  290 0154 20204154 		.ascii	"  AT OK\015\012\000"
  290      204F4B0D 
  290      0A00
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 7
 
 
  291 015e 0000     		.align	2
@@ -368,632 +368,866 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 1
  293      4C0D0A00 
  294              		.align	2
  295              	.LC23:
- 296 016c 5B31335D 		.ascii	"[13] Deep Clear (4MB)...\015\012\000"
- 296      20446565 
- 296      7020436C 
- 296      65617220 
- 296      28344D42 
- 297 0187 00       		.align	2
+ 296 016c 5B31335D 		.ascii	"[13] Hardware Polish...\015\012\000"
+ 296      20486172 
+ 296      64776172 
+ 296      6520506F 
+ 296      6C697368 
+ 297 0186 0000     		.align	2
  298              	.LC24:
- 299 0188 20204465 		.ascii	"  Deep Clear Done\015\012\000"
- 299      65702043 
- 299      6C656172 
- 299      20446F6E 
- 299      650D0A00 
- 300              		.align	2
+ 299 0188 2020444D 		.ascii	"  DMA2D/CRC OK\015\012\000"
+ 299      4132442F 
+ 299      43524320 
+ 299      4F4B0D0A 
+ 299      00
+ 300 0199 000000   		.align	2
  301              	.LC25:
- 302 019c 5B31345D 		.ascii	"[14] LCD Warm-up...\015\012\000"
- 302      204C4344 
- 302      20576172 
- 302      6D2D7570 
- 302      2E2E2E0D 
- 303 01b2 0000     		.align	2
+ 302 019c 5B31345D 		.ascii	"[14] Screen Clear (DMA2D)...\015\012\000"
+ 302      20536372 
+ 302      65656E20 
+ 302      436C6561 
+ 302      72202844 
+ 303 01bb 00       		.align	2
  304              	.LC26:
- 305 01b4 57454154 		.ascii	"WEATHER STATION v1.15\000"
- 305      48455220 
- 305      53544154 
- 305      494F4E20 
- 305      76312E31 
- 306 01ca 0000     		.align	2
+ 305 01bc 2020436C 		.ascii	"  Clear Done\015\012\000"
+ 305      65617220 
+ 305      446F6E65 
+ 305      0D0A00
+ 306 01cb 00       		.align	2
  307              	.LC27:
- 308 01cc 53544D33 		.ascii	"STM32F769I-DISCO READY\000"
- 308      32463736 
- 308      39492D44 
- 308      4953434F 
- 308      20524541 
- 309 01e3 00       		.align	2
+ 308 01cc 5B31355D 		.ascii	"[15] LCD Warm-up...\015\012\000"
+ 308      204C4344 
+ 308      20576172 
+ 308      6D2D7570 
+ 308      2E2E2E0D 
+ 309 01e2 0000     		.align	2
  310              	.LC28:
- 311 01e4 20205549 		.ascii	"  UI Ready\015\012\000"
- 311      20526561 
- 311      64790D0A 
- 311      00
- 312 01f1 000000   		.align	2
+ 311 01e4 57454154 		.ascii	"WEATHER STATION v1.19\000"
+ 311      48455220 
+ 311      53544154 
+ 311      494F4E20 
+ 311      76312E31 
+ 312 01fa 0000     		.align	2
  313              	.LC29:
- 314 01f4 5B31355D 		.ascii	"[15] WiFi Connect...\015\012\000"
- 314      20576946 
- 314      6920436F 
- 314      6E6E6563 
- 314      742E2E2E 
- 315 020b 00       		.align	2
+ 314 01fc 53544D33 		.ascii	"STM32F769I-DISCO READY\000"
+ 314      32463736 
+ 314      39492D44 
+ 314      4953434F 
+ 314      20524541 
+ 315 0213 00       		.align	2
  316              	.LC30:
- 317 020c 41542B43 		.ascii	"AT+CWMODE=1\000"
- 317      574D4F44 
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 8
+ 317 0214 20205549 		.ascii	"  UI Ready\015\012\000"
+ 317      20526561 
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 8
 
 
- 317      453D3100 
- 318              		.align	2
+ 317      64790D0A 
+ 317      00
+ 318 0221 000000   		.align	2
  319              	.LC31:
- 320 0218 41542B43 		.ascii	"AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"\000"
- 320      574A4150 
- 320      3D224D45 
- 320      4F2D4544 
- 320      43384544 
+ 320 0224 5B31365D 		.ascii	"[16] WiFi Connect...\015\012\000"
+ 320      20576946 
+ 320      6920436F 
+ 320      6E6E6563 
+ 320      742E2E2E 
  321 023b 00       		.align	2
  322              	.LC32:
- 323 023c 2020436F 		.ascii	"  Connect Sent\015\012\000"
- 323      6E6E6563 
- 323      74205365 
- 323      6E740D0A 
- 323      00
- 324 024d 000000   		.align	2
+ 323 023c 41542B43 		.ascii	"AT+CWMODE=1\000"
+ 323      574D4F44 
+ 323      453D3100 
+ 324              		.align	2
  325              	.LC33:
- 326 0250 5B31365D 		.ascii	"[16] Entering Loop\015\012\000"
- 326      20456E74 
- 326      6572696E 
- 326      67204C6F 
- 326      6F700D0A 
- 327 0265 000000   		.align	2
+ 326 0248 41542B43 		.ascii	"AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"\000"
+ 326      574A4150 
+ 326      3D224D45 
+ 326      4F2D4544 
+ 326      43384544 
+ 327 026b 00       		.align	2
  328              	.LC34:
- 329 0268 2D2D2D20 		.ascii	"--- Refreshing Weather ---\015\012\000"
- 329      52656672 
- 329      65736869 
- 329      6E672057 
- 329      65617468 
- 330 0285 000000   		.align	2
+ 329 026c 20205761 		.ascii	"  Waiting for IP...\015\012\000"
+ 329      6974696E 
+ 329      6720666F 
+ 329      72204950 
+ 329      2E2E2E0D 
+ 330 0282 0000     		.align	2
  331              	.LC35:
- 332 0288 41542B43 		.ascii	"AT+CIPSTART=\"TCP\",\"wttr.in\",80\000"
- 332      49505354 
- 332      4152543D 
- 332      22544350 
- 332      222C2277 
- 333 02a7 00       		.align	2
+ 332 0284 57494649 		.ascii	"WIFI GOT IP\000"
+ 332      20474F54 
+ 332      20495000 
+ 333              		.align	2
  334              	.LC36:
- 335 02a8 4F4B00   		.ascii	"OK\000"
- 336 02ab 00       		.align	2
+ 335 0290 20205769 		.ascii	"  WiFi Connected OK\015\012\000"
+ 335      46692043 
+ 335      6F6E6E65 
+ 335      63746564 
+ 335      204F4B0D 
+ 336 02a6 0000     		.align	2
  337              	.LC37:
- 338 02ac 20205443 		.ascii	"  TCP Fail\015\012\000"
- 338      50204661 
- 338      696C0D0A 
- 338      00
- 339 02b9 000000   		.align	2
+ 338 02a8 20205769 		.ascii	"  WiFi Timeout (Check credentials)\015\012\000"
+ 338      46692054 
+ 338      696D656F 
+ 338      75742028 
+ 338      43686563 
+ 339 02cd 000000   		.align	2
  340              	.LC38:
- 341 02bc 41542B43 		.ascii	"AT+CIPSEND=%lu\000"
- 341      49505345 
- 341      4E443D25 
- 341      6C7500
- 342 02cb 00       		.align	2
+ 341 02d0 5B31365D 		.ascii	"[16] Starting App Loop\015\012\000"
+ 341      20537461 
+ 341      7274696E 
+ 341      67204170 
+ 341      70204C6F 
+ 342 02e9 000000   		.align	2
  343              	.LC39:
- 344 02cc 3E00     		.ascii	">\000"
- 345 02ce 0000     		.align	2
+ 344 02ec 2D2D2D20 		.ascii	"--- Updating Weather ---\015\012\000"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 9
+
+
+ 344      55706461 
+ 344      74696E67 
+ 344      20576561 
+ 344      74686572 
+ 345 0307 00       		.align	2
  346              	.LC40:
- 347 02d0 47455420 		.ascii	"GET /Peniche?format=%C;%t;%w;%h;%m;%o HTTP/1.1\015\012"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 9
-
-
- 347      2F50656E 
- 347      69636865 
- 347      3F666F72 
- 347      6D61743D 
- 348 0300 00       		.ascii	"\000"
- 349 0301 000000   		.align	2
- 350              	.LC41:
- 351 0304 486F7374 		.ascii	"Host: wttr.in\015\012\000"
- 351      3A207774 
- 351      74722E69 
- 351      6E0D0A00 
- 352              		.align	2
- 353              	.LC42:
- 354 0314 55736572 		.ascii	"User-Agent: curl/7.68.0\015\012\000"
- 354      2D416765 
- 354      6E743A20 
- 354      6375726C 
- 354      2F372E36 
- 355 032e 0000     		.align	2
- 356              	.LC43:
- 357 0330 436F6E6E 		.ascii	"Connection: close\015\012\015\012\000"
- 357      65637469 
- 357      6F6E3A20 
- 357      636C6F73 
- 357      650D0A0D 
- 358 0346 0000     		.align	2
- 359              	.LC44:
- 360 0348 0D0A0D0A 		.ascii	"\015\012\015\012\000"
- 360      00
- 361 034d 000000   		.align	2
- 362              	.LC45:
- 363 0350 57454154 		.ascii	"WEATHER: \000"
- 363      4845523A 
- 363      2000
- 364 035a 0000     		.align	2
- 365              	.LC46:
- 366 035c 0D0A00   		.ascii	"\015\012\000"
- 367 035f 00       		.align	2
+ 347 0308 46455443 		.ascii	"FETCHING DATA...\000"
+ 347      48494E47 
+ 347      20444154 
+ 347      412E2E2E 
+ 347      00
+ 348 0319 000000   		.align	2
+ 349              	.LC41:
+ 350 031c 41542B43 		.ascii	"AT+CIPSTART=\"TCP\",\"wttr.in\",80\000"
+ 350      49505354 
+ 350      4152543D 
+ 350      22544350 
+ 350      222C2277 
+ 351 033b 00       		.align	2
+ 352              	.LC42:
+ 353 033c 4F4B00   		.ascii	"OK\000"
+ 354 033f 00       		.align	2
+ 355              	.LC43:
+ 356 0340 20205443 		.ascii	"  TCP Connect Failed\015\012\000"
+ 356      5020436F 
+ 356      6E6E6563 
+ 356      74204661 
+ 356      696C6564 
+ 357 0357 00       		.align	2
+ 358              	.LC44:
+ 359 0358 41542B43 		.ascii	"AT+CIPSEND=%lu\000"
+ 359      49505345 
+ 359      4E443D25 
+ 359      6C7500
+ 360 0367 00       		.align	2
+ 361              	.LC45:
+ 362 0368 3E00     		.ascii	">\000"
+ 363 036a 0000     		.align	2
+ 364              	.LC46:
+ 365 036c 47455420 		.ascii	"GET /Peniche?format=%C;%t;%w;%h;%m;%o HTTP/1.1\015\012"
+ 365      2F50656E 
+ 365      69636865 
+ 365      3F666F72 
+ 365      6D61743D 
+ 366 039c 00       		.ascii	"\000"
+ 367 039d 000000   		.align	2
  368              	.LC47:
- 369 0360 43555252 		.ascii	"CURRENT WEATHER:\000"
- 369      454E5420 
- 369      57454154 
- 369      4845523A 
- 369      00
- 370              		.section	.text.StartDefaultTask,"ax",%progbits
- 371              		.align	1
- 372              		.global	StartDefaultTask
- 373              		.syntax unified
- 374              		.thumb
- 375              		.thumb_func
- 377              	StartDefaultTask:
- 378              		@ args = 0, pretend = 0, frame = 40
- 379              		@ frame_needed = 0, uses_anonymous_args = 0
- 380 0000 70B5     		push	{r4, r5, r6, lr}
- 381 0002 8AB0     		sub	sp, sp, #40
- 382 0004 FFF7FEFF 		bl	MX_GPIO_Init
- 383 0008 FFF7FEFF 		bl	MX_UART5_Init
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 10
+ 369 03a0 486F7374 		.ascii	"Host: wttr.in\015\012\000"
+ 369      3A207774 
+ 369      74722E69 
+ 369      6E0D0A00 
+ 370              		.align	2
+ 371              	.LC48:
+ 372 03b0 55736572 		.ascii	"User-Agent: curl/7.68.0\015\012\000"
+ 372      2D416765 
+ 372      6E743A20 
+ 372      6375726C 
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 10
 
 
- 384 000c FFF7FEFF 		bl	MX_DMA2D_Init
- 385 0010 FFF7FEFF 		bl	MX_CRC_Init
- 386 0014 FFF7FEFF 		bl	MX_I2C1_Init
- 387 0018 FFF7FEFF 		bl	MX_USB_DEVICE_Init
- 388 001c 40F6B830 		movw	r0, #3000
- 389 0020 FFF7FEFF 		bl	osDelay
- 390 0024 AD48     		ldr	r0, .L54
- 391 0026 FFF7FEFF 		bl	Safe_Transmit
- 392 002a AD48     		ldr	r0, .L54+4
- 393 002c FFF7FEFF 		bl	Safe_Transmit
- 394 0030 AC48     		ldr	r0, .L54+8
- 395 0032 FFF7FEFF 		bl	Safe_Transmit
- 396 0036 FFF7FEFF 		bl	BSP_SDRAM_Init
- 397 003a 0023     		movs	r3, #0
- 398 003c 06E0     		b	.L27
- 399              	.L28:
- 400 003e 9A00     		lsls	r2, r3, #2
- 401 0040 02F14042 		add	r2, r2, #-1073741824
- 402 0044 A849     		ldr	r1, .L54+12
- 403 0046 5940     		eors	r1, r1, r3
- 404 0048 1160     		str	r1, [r2]
- 405 004a 0133     		adds	r3, r3, #1
- 406              	.L27:
- 407 004c B3F5802F 		cmp	r3, #262144
- 408 0050 F5D3     		bcc	.L28
- 409 0052 0023     		movs	r3, #0
- 410              	.L29:
- 411 0054 B3F5802F 		cmp	r3, #262144
- 412 0058 09D2     		bcs	.L51
- 413 005a 9A00     		lsls	r2, r3, #2
- 414 005c 02F14042 		add	r2, r2, #-1073741824
- 415 0060 1168     		ldr	r1, [r2]
- 416 0062 A14A     		ldr	r2, .L54+12
- 417 0064 5A40     		eors	r2, r2, r3
- 418 0066 9142     		cmp	r1, r2
- 419 0068 03D1     		bne	.L48
- 420 006a 0133     		adds	r3, r3, #1
- 421 006c F2E7     		b	.L29
- 422              	.L51:
- 423 006e 0123     		movs	r3, #1
- 424 0070 00E0     		b	.L30
- 425              	.L48:
- 426 0072 0023     		movs	r3, #0
- 427              	.L30:
- 428 0074 83B1     		cbz	r3, .L49
- 429 0076 9D48     		ldr	r0, .L54+16
- 430              	.L32:
- 431 0078 FFF7FEFF 		bl	Safe_Transmit
- 432 007c 9C48     		ldr	r0, .L54+20
- 433 007e FFF7FEFF 		bl	Safe_Transmit
- 434 0082 FFF7FEFF 		bl	BSP_LCD_Init
- 435 0086 48B1     		cbz	r0, .L33
- 436 0088 9A48     		ldr	r0, .L54+24
- 437 008a FFF7FEFF 		bl	Safe_Transmit
- 438              	.L34:
- 439 008e 4FF47A70 		mov	r0, #1000
- 440 0092 FFF7FEFF 		bl	osDelay
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 11
+ 372      2F372E36 
+ 373 03ca 0000     		.align	2
+ 374              	.LC49:
+ 375 03cc 436F6E6E 		.ascii	"Connection: close\015\012\015\012\000"
+ 375      65637469 
+ 375      6F6E3A20 
+ 375      636C6F73 
+ 375      650D0A0D 
+ 376 03e2 0000     		.align	2
+ 377              	.LC50:
+ 378 03e4 0D0A0D0A 		.ascii	"\015\012\015\012\000"
+ 378      00
+ 379 03e9 000000   		.align	2
+ 380              	.LC51:
+ 381 03ec 57454154 		.ascii	"WEATHER: \000"
+ 381      4845523A 
+ 381      2000
+ 382 03f6 0000     		.align	2
+ 383              	.LC52:
+ 384 03f8 0D0A00   		.ascii	"\015\012\000"
+ 385 03fb 00       		.align	2
+ 386              	.LC54:
+ 387 03fc 50454E49 		.ascii	"PENICHE\000"
+ 387      43484500 
+ 388              		.align	2
+ 389              	.LC55:
+ 390 0404 57494E3A 		.ascii	"WIN: %s | HUM: %s\000"
+ 390      20257320 
+ 390      7C204855 
+ 390      4D3A2025 
+ 390      7300
+ 391 0416 0000     		.align	2
+ 392              	.LC53:
+ 393 0418 556E6B6E 		.ascii	"Unknown\000"
+ 393      6F776E00 
+ 394              		.section	.text.StartDefaultTask,"ax",%progbits
+ 395              		.align	1
+ 396              		.global	StartDefaultTask
+ 397              		.syntax unified
+ 398              		.thumb
+ 399              		.thumb_func
+ 401              	StartDefaultTask:
+ 402              		@ args = 0, pretend = 0, frame = 384
+ 403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 404 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 405 0002 E1B0     		sub	sp, sp, #388
+ 406 0004 FFF7FEFF 		bl	MX_USB_DEVICE_Init
+ 407 0008 40F6B830 		movw	r0, #3000
+ 408 000c FFF7FEFF 		bl	osDelay
+ 409 0010 A848     		ldr	r0, .L62
+ 410 0012 FFF7FEFF 		bl	Safe_Transmit
+ 411 0016 A848     		ldr	r0, .L62+4
+ 412 0018 FFF7FEFF 		bl	Safe_Transmit
+ 413 001c A748     		ldr	r0, .L62+8
+ 414 001e FFF7FEFF 		bl	Safe_Transmit
+ 415 0022 FFF7FEFF 		bl	BSP_SDRAM_Init
+ 416 0026 0023     		movs	r3, #0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 11
 
 
- 441 0096 FAE7     		b	.L34
- 442              	.L49:
- 443 0098 9748     		ldr	r0, .L54+28
- 444 009a EDE7     		b	.L32
- 445              	.L33:
- 446 009c 9748     		ldr	r0, .L54+32
- 447 009e FFF7FEFF 		bl	Safe_Transmit
- 448 00a2 9748     		ldr	r0, .L54+36
- 449 00a4 FFF7FEFF 		bl	Safe_Transmit
- 450 00a8 FFF7FEFF 		bl	BSP_LCD_DisplayOn
- 451 00ac 6420     		movs	r0, #100
- 452 00ae FFF7FEFF 		bl	osDelay
- 453 00b2 9448     		ldr	r0, .L54+40
- 454 00b4 FFF7FEFF 		bl	Safe_Transmit
- 455 00b8 4FF04041 		mov	r1, #-1073741824
- 456 00bc 0020     		movs	r0, #0
- 457 00be FFF7FEFF 		bl	BSP_LCD_LayerDefaultInit
- 458 00c2 0020     		movs	r0, #0
- 459 00c4 FFF7FEFF 		bl	BSP_LCD_SelectLayer
- 460 00c8 0121     		movs	r1, #1
- 461 00ca 0020     		movs	r0, #0
- 462 00cc FFF7FEFF 		bl	BSP_LCD_SetLayerVisible
- 463 00d0 8D48     		ldr	r0, .L54+44
- 464 00d2 FFF7FEFF 		bl	Safe_Transmit
- 465 00d6 8D48     		ldr	r0, .L54+48
- 466 00d8 FFF7FEFF 		bl	Safe_Transmit
- 467 00dc 8C48     		ldr	r0, .L54+52
- 468 00de FFF7FEFF 		bl	BSP_LCD_SetFont
- 469 00e2 8C48     		ldr	r0, .L54+56
- 470 00e4 FFF7FEFF 		bl	Safe_Transmit
- 471 00e8 8B48     		ldr	r0, .L54+60
- 472 00ea FFF7FEFF 		bl	Safe_Transmit
- 473 00ee 4FF0FF30 		mov	r0, #-1
- 474 00f2 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 475 00f6 4FF07F40 		mov	r0, #-16777216
- 476 00fa FFF7FEFF 		bl	BSP_LCD_SetBackColor
- 477 00fe 8748     		ldr	r0, .L54+64
- 478 0100 FFF7FEFF 		bl	Safe_Transmit
- 479 0104 8648     		ldr	r0, .L54+68
- 480 0106 FFF7FEFF 		bl	Safe_Transmit
- 481 010a FFF7FEFF 		bl	ESP8266_Init
- 482 010e 8548     		ldr	r0, .L54+72
- 483 0110 FFF7FEFF 		bl	ESP8266_SendCommand
- 484 0114 88B9     		cbnz	r0, .L35
- 485 0116 8448     		ldr	r0, .L54+76
- 486 0118 FFF7FEFF 		bl	Safe_Transmit
- 487              	.L36:
- 488 011c 8348     		ldr	r0, .L54+80
- 489 011e FFF7FEFF 		bl	Safe_Transmit
- 490 0122 0023     		movs	r3, #0
- 491              	.L37:
- 492 0124 824A     		ldr	r2, .L54+84
- 493 0126 9342     		cmp	r3, r2
- 494 0128 0BD8     		bhi	.L52
- 495 012a 9A00     		lsls	r2, r3, #2
- 496 012c 02F14042 		add	r2, r2, #-1073741824
- 497 0130 4FF07F41 		mov	r1, #-16777216
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 12
+ 417 0028 06E0     		b	.L27
+ 418              	.L28:
+ 419 002a 9A00     		lsls	r2, r3, #2
+ 420 002c 02F14042 		add	r2, r2, #-1073741824
+ 421 0030 A349     		ldr	r1, .L62+12
+ 422 0032 5940     		eors	r1, r1, r3
+ 423 0034 1160     		str	r1, [r2]
+ 424 0036 0133     		adds	r3, r3, #1
+ 425              	.L27:
+ 426 0038 B3F5802F 		cmp	r3, #262144
+ 427 003c F5D3     		bcc	.L28
+ 428 003e 0023     		movs	r3, #0
+ 429              	.L29:
+ 430 0040 B3F5802F 		cmp	r3, #262144
+ 431 0044 09D2     		bcs	.L60
+ 432 0046 9A00     		lsls	r2, r3, #2
+ 433 0048 02F14042 		add	r2, r2, #-1073741824
+ 434 004c 1168     		ldr	r1, [r2]
+ 435 004e 9C4A     		ldr	r2, .L62+12
+ 436 0050 5A40     		eors	r2, r2, r3
+ 437 0052 9142     		cmp	r1, r2
+ 438 0054 03D1     		bne	.L53
+ 439 0056 0133     		adds	r3, r3, #1
+ 440 0058 F2E7     		b	.L29
+ 441              	.L60:
+ 442 005a 0123     		movs	r3, #1
+ 443 005c 00E0     		b	.L30
+ 444              	.L53:
+ 445 005e 0023     		movs	r3, #0
+ 446              	.L30:
+ 447 0060 83B1     		cbz	r3, .L54
+ 448 0062 9848     		ldr	r0, .L62+16
+ 449              	.L32:
+ 450 0064 FFF7FEFF 		bl	Safe_Transmit
+ 451 0068 9748     		ldr	r0, .L62+20
+ 452 006a FFF7FEFF 		bl	Safe_Transmit
+ 453 006e FFF7FEFF 		bl	BSP_LCD_Init
+ 454 0072 48B1     		cbz	r0, .L33
+ 455 0074 9548     		ldr	r0, .L62+24
+ 456 0076 FFF7FEFF 		bl	Safe_Transmit
+ 457              	.L34:
+ 458 007a 4FF47A70 		mov	r0, #1000
+ 459 007e FFF7FEFF 		bl	osDelay
+ 460 0082 FAE7     		b	.L34
+ 461              	.L54:
+ 462 0084 9248     		ldr	r0, .L62+28
+ 463 0086 EDE7     		b	.L32
+ 464              	.L33:
+ 465 0088 9248     		ldr	r0, .L62+32
+ 466 008a FFF7FEFF 		bl	Safe_Transmit
+ 467 008e 9248     		ldr	r0, .L62+36
+ 468 0090 FFF7FEFF 		bl	Safe_Transmit
+ 469 0094 FFF7FEFF 		bl	BSP_LCD_DisplayOn
+ 470 0098 6420     		movs	r0, #100
+ 471 009a FFF7FEFF 		bl	osDelay
+ 472 009e 8F48     		ldr	r0, .L62+40
+ 473 00a0 FFF7FEFF 		bl	Safe_Transmit
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 12
 
 
- 498 0134 1160     		str	r1, [r2]
- 499 0136 0133     		adds	r3, r3, #1
- 500 0138 F4E7     		b	.L37
- 501              	.L35:
- 502 013a 7E48     		ldr	r0, .L54+88
- 503 013c FFF7FEFF 		bl	Safe_Transmit
- 504 0140 ECE7     		b	.L36
- 505              	.L52:
- 506 0142 7D48     		ldr	r0, .L54+92
- 507 0144 FFF7FEFF 		bl	Safe_Transmit
- 508 0148 7C48     		ldr	r0, .L54+96
- 509 014a FFF7FEFF 		bl	Safe_Transmit
- 510 014e 6FF0FF00 		mvn	r0, #255
- 511 0152 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 512 0156 0123     		movs	r3, #1
- 513 0158 794A     		ldr	r2, .L54+100
- 514 015a 3221     		movs	r1, #50
- 515 015c 0020     		movs	r0, #0
- 516 015e FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 517 0162 4FF0FF30 		mov	r0, #-1
- 518 0166 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 519 016a 0123     		movs	r3, #1
- 520 016c 754A     		ldr	r2, .L54+104
- 521 016e 6421     		movs	r1, #100
- 522 0170 0020     		movs	r0, #0
- 523 0172 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 524 0176 7448     		ldr	r0, .L54+108
- 525 0178 FFF7FEFF 		bl	Safe_Transmit
- 526 017c 7348     		ldr	r0, .L54+112
- 527 017e FFF7FEFF 		bl	Safe_Transmit
- 528 0182 7348     		ldr	r0, .L54+116
- 529 0184 FFF7FEFF 		bl	ESP8266_SendCommand
- 530 0188 4FF4FA70 		mov	r0, #500
- 531 018c FFF7FEFF 		bl	osDelay
- 532 0190 7048     		ldr	r0, .L54+120
- 533 0192 FFF7FEFF 		bl	ESP8266_SendCommand
- 534 0196 7048     		ldr	r0, .L54+124
- 535 0198 FFF7FEFF 		bl	Safe_Transmit
- 536 019c 6F48     		ldr	r0, .L54+128
- 537 019e FFF7FEFF 		bl	Safe_Transmit
- 538 01a2 12E0     		b	.L39
- 539              	.L40:
- 540 01a4 02AC     		add	r4, sp, #8
- 541 01a6 6D22     		movs	r2, #109
- 542 01a8 6D49     		ldr	r1, .L54+132
- 543 01aa 2046     		mov	r0, r4
- 544 01ac FFF7FEFF 		bl	sprintf
- 545 01b0 2046     		mov	r0, r4
- 546 01b2 FFF7FEFF 		bl	ESP8266_SendCommand
- 547 01b6 4FF4FA61 		mov	r1, #2000
- 548 01ba 6A48     		ldr	r0, .L54+136
- 549 01bc FFF7FEFF 		bl	ESP8266_WaitFor
- 550 01c0 C0B1     		cbz	r0, .L53
- 551              	.L42:
- 552 01c2 47F23050 		movw	r0, #30000
- 553 01c6 FFF7FEFF 		bl	osDelay
- 554              	.L39:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 13
+ 474 00a4 4FF04041 		mov	r1, #-1073741824
+ 475 00a8 0020     		movs	r0, #0
+ 476 00aa FFF7FEFF 		bl	BSP_LCD_LayerDefaultInit
+ 477 00ae 0020     		movs	r0, #0
+ 478 00b0 FFF7FEFF 		bl	BSP_LCD_SelectLayer
+ 479 00b4 0121     		movs	r1, #1
+ 480 00b6 0020     		movs	r0, #0
+ 481 00b8 FFF7FEFF 		bl	BSP_LCD_SetLayerVisible
+ 482 00bc 8848     		ldr	r0, .L62+44
+ 483 00be FFF7FEFF 		bl	Safe_Transmit
+ 484 00c2 8848     		ldr	r0, .L62+48
+ 485 00c4 FFF7FEFF 		bl	Safe_Transmit
+ 486 00c8 8748     		ldr	r0, .L62+52
+ 487 00ca FFF7FEFF 		bl	BSP_LCD_SetFont
+ 488 00ce 8748     		ldr	r0, .L62+56
+ 489 00d0 FFF7FEFF 		bl	Safe_Transmit
+ 490 00d4 8648     		ldr	r0, .L62+60
+ 491 00d6 FFF7FEFF 		bl	Safe_Transmit
+ 492 00da 4FF0FF30 		mov	r0, #-1
+ 493 00de FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 494 00e2 4FF07F40 		mov	r0, #-16777216
+ 495 00e6 FFF7FEFF 		bl	BSP_LCD_SetBackColor
+ 496 00ea 8248     		ldr	r0, .L62+64
+ 497 00ec FFF7FEFF 		bl	Safe_Transmit
+ 498 00f0 8148     		ldr	r0, .L62+68
+ 499 00f2 FFF7FEFF 		bl	Safe_Transmit
+ 500 00f6 FFF7FEFF 		bl	ESP8266_Init
+ 501 00fa 8048     		ldr	r0, .L62+72
+ 502 00fc FFF7FEFF 		bl	ESP8266_SendCommand
+ 503 0100 0028     		cmp	r0, #0
+ 504 0102 58D1     		bne	.L35
+ 505 0104 7E48     		ldr	r0, .L62+76
+ 506 0106 FFF7FEFF 		bl	Safe_Transmit
+ 507              	.L36:
+ 508 010a 7E48     		ldr	r0, .L62+80
+ 509 010c FFF7FEFF 		bl	Safe_Transmit
+ 510 0110 FFF7FEFF 		bl	MX_CRC_Init
+ 511 0114 FFF7FEFF 		bl	MX_DMA2D_Init
+ 512 0118 7B48     		ldr	r0, .L62+84
+ 513 011a FFF7FEFF 		bl	Safe_Transmit
+ 514 011e 7B48     		ldr	r0, .L62+88
+ 515 0120 FFF7FEFF 		bl	Safe_Transmit
+ 516 0124 4FF07F40 		mov	r0, #-16777216
+ 517 0128 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 518 012c 4FF4F073 		mov	r3, #480
+ 519 0130 4FF44872 		mov	r2, #800
+ 520 0134 0021     		movs	r1, #0
+ 521 0136 0846     		mov	r0, r1
+ 522 0138 FFF7FEFF 		bl	BSP_LCD_FillRect
+ 523 013c 7448     		ldr	r0, .L62+92
+ 524 013e FFF7FEFF 		bl	Safe_Transmit
+ 525 0142 7448     		ldr	r0, .L62+96
+ 526 0144 FFF7FEFF 		bl	Safe_Transmit
+ 527 0148 6FF0FF00 		mvn	r0, #255
+ 528 014c FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 529 0150 6548     		ldr	r0, .L62+52
+ 530 0152 FFF7FEFF 		bl	BSP_LCD_SetFont
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 13
 
 
- 555 01ca 6748     		ldr	r0, .L54+140
- 556 01cc FFF7FEFF 		bl	Safe_Transmit
- 557 01d0 6648     		ldr	r0, .L54+144
- 558 01d2 FFF7FEFF 		bl	ESP8266_SendCommand
- 559 01d6 41F28831 		movw	r1, #5000
- 560 01da 6548     		ldr	r0, .L54+148
- 561 01dc FFF7FEFF 		bl	ESP8266_WaitFor
- 562 01e0 0028     		cmp	r0, #0
- 563 01e2 DFD0     		beq	.L40
- 564 01e4 6348     		ldr	r0, .L54+152
- 565 01e6 FFF7FEFF 		bl	Safe_Transmit
- 566 01ea 41F28830 		movw	r0, #5000
- 567 01ee FFF7FEFF 		bl	osDelay
- 568 01f2 EAE7     		b	.L39
- 569              	.L53:
- 570 01f4 604C     		ldr	r4, .L54+156
- 571 01f6 6423     		movs	r3, #100
- 572 01f8 3022     		movs	r2, #48
- 573 01fa 6049     		ldr	r1, .L54+160
- 574 01fc 2046     		mov	r0, r4
- 575 01fe FFF7FEFF 		bl	HAL_UART_Transmit
- 576 0202 6423     		movs	r3, #100
- 577 0204 0F22     		movs	r2, #15
- 578 0206 5E49     		ldr	r1, .L54+164
- 579 0208 2046     		mov	r0, r4
- 580 020a FFF7FEFF 		bl	HAL_UART_Transmit
- 581 020e 6423     		movs	r3, #100
- 582 0210 1922     		movs	r2, #25
- 583 0212 5C49     		ldr	r1, .L54+168
- 584 0214 2046     		mov	r0, r4
- 585 0216 FFF7FEFF 		bl	HAL_UART_Transmit
- 586 021a 6423     		movs	r3, #100
- 587 021c 1522     		movs	r2, #21
- 588 021e 5A49     		ldr	r1, .L54+172
- 589 0220 2046     		mov	r0, r4
- 590 0222 FFF7FEFF 		bl	HAL_UART_Transmit
- 591 0226 FFF7FEFF 		bl	HAL_GetTick
- 592 022a 0446     		mov	r4, r0
- 593 022c 0025     		movs	r5, #0
- 594 022e 02E0     		b	.L43
- 595              	.L44:
- 596 0230 0120     		movs	r0, #1
- 597 0232 FFF7FEFF 		bl	osDelay
- 598              	.L43:
- 599 0236 FFF7FEFF 		bl	HAL_GetTick
- 600 023a 031B     		subs	r3, r0, r4
- 601 023c 41F28732 		movw	r2, #4999
- 602 0240 9342     		cmp	r3, r2
- 603 0242 14D8     		bhi	.L46
- 604 0244 40F2FE73 		movw	r3, #2046
- 605 0248 9D42     		cmp	r5, r3
- 606 024a 10D8     		bhi	.L46
- 607 024c 0121     		movs	r1, #1
- 608 024e 0DF10700 		add	r0, sp, #7
- 609 0252 FFF7FEFF 		bl	UART_Read
- 610 0256 0028     		cmp	r0, #0
- 611 0258 EAD0     		beq	.L44
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 14
+ 531 0156 0123     		movs	r3, #1
+ 532 0158 6F4A     		ldr	r2, .L62+100
+ 533 015a 3221     		movs	r1, #50
+ 534 015c 0020     		movs	r0, #0
+ 535 015e FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 536 0162 4FF0FF30 		mov	r0, #-1
+ 537 0166 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 538 016a 0123     		movs	r3, #1
+ 539 016c 6B4A     		ldr	r2, .L62+104
+ 540 016e 6421     		movs	r1, #100
+ 541 0170 0020     		movs	r0, #0
+ 542 0172 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 543 0176 6A48     		ldr	r0, .L62+108
+ 544 0178 FFF7FEFF 		bl	Safe_Transmit
+ 545 017c 6948     		ldr	r0, .L62+112
+ 546 017e FFF7FEFF 		bl	Safe_Transmit
+ 547 0182 6948     		ldr	r0, .L62+116
+ 548 0184 FFF7FEFF 		bl	ESP8266_SendCommand
+ 549 0188 4FF4FA70 		mov	r0, #500
+ 550 018c FFF7FEFF 		bl	osDelay
+ 551 0190 6648     		ldr	r0, .L62+120
+ 552 0192 FFF7FEFF 		bl	ESP8266_SendCommand
+ 553 0196 6648     		ldr	r0, .L62+124
+ 554 0198 FFF7FEFF 		bl	Safe_Transmit
+ 555 019c 43F69821 		movw	r1, #15000
+ 556 01a0 6448     		ldr	r0, .L62+128
+ 557 01a2 FFF7FEFF 		bl	ESP8266_WaitFor
+ 558 01a6 50B9     		cbnz	r0, .L37
+ 559 01a8 6348     		ldr	r0, .L62+132
+ 560 01aa FFF7FEFF 		bl	Safe_Transmit
+ 561              	.L38:
+ 562 01ae 6348     		ldr	r0, .L62+136
+ 563 01b0 FFF7FEFF 		bl	Safe_Transmit
+ 564 01b4 19E0     		b	.L39
+ 565              	.L35:
+ 566 01b6 6248     		ldr	r0, .L62+140
+ 567 01b8 FFF7FEFF 		bl	Safe_Transmit
+ 568 01bc A5E7     		b	.L36
+ 569              	.L37:
+ 570 01be 6148     		ldr	r0, .L62+144
+ 571 01c0 FFF7FEFF 		bl	Safe_Transmit
+ 572 01c4 F3E7     		b	.L38
+ 573              	.L40:
+ 574 01c6 6D22     		movs	r2, #109
+ 575 01c8 5F49     		ldr	r1, .L62+148
+ 576 01ca 6846     		mov	r0, sp
+ 577 01cc FFF7FEFF 		bl	sprintf
+ 578 01d0 6846     		mov	r0, sp
+ 579 01d2 FFF7FEFF 		bl	ESP8266_SendCommand
+ 580 01d6 4FF4FA61 		mov	r1, #2000
+ 581 01da 5C48     		ldr	r0, .L62+152
+ 582 01dc FFF7FEFF 		bl	ESP8266_WaitFor
+ 583 01e0 60B3     		cbz	r0, .L61
+ 584              	.L42:
+ 585 01e2 47F23050 		movw	r0, #30000
+ 586 01e6 FFF7FEFF 		bl	osDelay
+ 587              	.L39:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 14
 
 
- 612 025a 6E1C     		adds	r6, r5, #1
- 613 025c 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
- 614 0260 4A4B     		ldr	r3, .L54+176
- 615 0262 5A55     		strb	r2, [r3, r5]
- 616 0264 FFF7FEFF 		bl	HAL_GetTick
- 617 0268 0446     		mov	r4, r0
- 618 026a 3546     		mov	r5, r6
- 619 026c E3E7     		b	.L43
- 620              	.L46:
- 621 026e 4748     		ldr	r0, .L54+176
- 622 0270 0023     		movs	r3, #0
- 623 0272 4355     		strb	r3, [r0, r5]
- 624 0274 4649     		ldr	r1, .L54+180
- 625 0276 FFF7FEFF 		bl	strstr
- 626 027a 0446     		mov	r4, r0
- 627 027c 0028     		cmp	r0, #0
- 628 027e A0D0     		beq	.L42
- 629 0280 0434     		adds	r4, r4, #4
- 630 0282 2046     		mov	r0, r4
- 631 0284 FFF7FEFF 		bl	SanitizeASCII
- 632 0288 4248     		ldr	r0, .L54+184
- 633 028a FFF7FEFF 		bl	Safe_Transmit
- 634 028e 2046     		mov	r0, r4
- 635 0290 FFF7FEFF 		bl	Safe_Transmit
- 636 0294 4048     		ldr	r0, .L54+188
- 637 0296 FFF7FEFF 		bl	Safe_Transmit
- 638 029a 4FF07F40 		mov	r0, #-16777216
- 639 029e FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 640 02a2 6423     		movs	r3, #100
- 641 02a4 4FF44872 		mov	r2, #800
- 642 02a8 C821     		movs	r1, #200
- 643 02aa 0020     		movs	r0, #0
- 644 02ac FFF7FEFF 		bl	BSP_LCD_FillRect
- 645 02b0 6FF47F00 		mvn	r0, #16711680
- 646 02b4 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 647 02b8 0123     		movs	r3, #1
- 648 02ba 384A     		ldr	r2, .L54+192
- 649 02bc E621     		movs	r1, #230
- 650 02be 0020     		movs	r0, #0
- 651 02c0 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 652 02c4 4FF0FF30 		mov	r0, #-1
- 653 02c8 FFF7FEFF 		bl	BSP_LCD_SetTextColor
- 654 02cc 0123     		movs	r3, #1
- 655 02ce 2246     		mov	r2, r4
- 656 02d0 4FF48771 		mov	r1, #270
- 657 02d4 0020     		movs	r0, #0
- 658 02d6 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
- 659 02da 72E7     		b	.L42
- 660              	.L55:
- 661              		.align	2
- 662              	.L54:
- 663 02dc 20000000 		.word	.LC6
- 664 02e0 44000000 		.word	.LC7
- 665 02e4 54000000 		.word	.LC8
- 666 02e8 5555AAAA 		.word	-1431677611
- 667 02ec 00000000 		.word	.LC4
- 668 02f0 70000000 		.word	.LC9
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 15
+ 588 01ea 5948     		ldr	r0, .L62+156
+ 589 01ec FFF7FEFF 		bl	Safe_Transmit
+ 590 01f0 4FF07F40 		mov	r0, #-16777216
+ 591 01f4 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 592 01f8 6423     		movs	r3, #100
+ 593 01fa 4FF44872 		mov	r2, #800
+ 594 01fe C821     		movs	r1, #200
+ 595 0200 0020     		movs	r0, #0
+ 596 0202 FFF7FEFF 		bl	BSP_LCD_FillRect
+ 597 0206 5348     		ldr	r0, .L62+160
+ 598 0208 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 599 020c 0123     		movs	r3, #1
+ 600 020e 524A     		ldr	r2, .L62+164
+ 601 0210 FA21     		movs	r1, #250
+ 602 0212 0020     		movs	r0, #0
+ 603 0214 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 604 0218 5048     		ldr	r0, .L62+168
+ 605 021a FFF7FEFF 		bl	ESP8266_SendCommand
+ 606 021e 41F28831 		movw	r1, #5000
+ 607 0222 4F48     		ldr	r0, .L62+172
+ 608 0224 FFF7FEFF 		bl	ESP8266_WaitFor
+ 609 0228 0028     		cmp	r0, #0
+ 610 022a CCD0     		beq	.L40
+ 611 022c 4D48     		ldr	r0, .L62+176
+ 612 022e FFF7FEFF 		bl	Safe_Transmit
+ 613 0232 41F28830 		movw	r0, #5000
+ 614 0236 FFF7FEFF 		bl	osDelay
+ 615 023a D6E7     		b	.L39
+ 616              	.L61:
+ 617 023c 4A4C     		ldr	r4, .L62+180
+ 618 023e 6423     		movs	r3, #100
+ 619 0240 3022     		movs	r2, #48
+ 620 0242 4A49     		ldr	r1, .L62+184
+ 621 0244 2046     		mov	r0, r4
+ 622 0246 FFF7FEFF 		bl	HAL_UART_Transmit
+ 623 024a 6423     		movs	r3, #100
+ 624 024c 0F22     		movs	r2, #15
+ 625 024e 4849     		ldr	r1, .L62+188
+ 626 0250 2046     		mov	r0, r4
+ 627 0252 FFF7FEFF 		bl	HAL_UART_Transmit
+ 628 0256 6423     		movs	r3, #100
+ 629 0258 1922     		movs	r2, #25
+ 630 025a 4649     		ldr	r1, .L62+192
+ 631 025c 2046     		mov	r0, r4
+ 632 025e FFF7FEFF 		bl	HAL_UART_Transmit
+ 633 0262 6423     		movs	r3, #100
+ 634 0264 1522     		movs	r2, #21
+ 635 0266 4449     		ldr	r1, .L62+196
+ 636 0268 2046     		mov	r0, r4
+ 637 026a FFF7FEFF 		bl	HAL_UART_Transmit
+ 638 026e FFF7FEFF 		bl	HAL_GetTick
+ 639 0272 0446     		mov	r4, r0
+ 640 0274 0025     		movs	r5, #0
+ 641 0276 02E0     		b	.L43
+ 642              	.L44:
+ 643 0278 0120     		movs	r0, #1
+ 644 027a FFF7FEFF 		bl	osDelay
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 15
 
 
- 669 02f4 84000000 		.word	.LC10
- 670 02f8 10000000 		.word	.LC5
- 671 02fc 94000000 		.word	.LC11
- 672 0300 A4000000 		.word	.LC12
- 673 0304 B8000000 		.word	.LC13
- 674 0308 DC000000 		.word	.LC14
- 675 030c EC000000 		.word	.LC15
- 676 0310 00000000 		.word	Font24
- 677 0314 00010000 		.word	.LC16
- 678 0318 10010000 		.word	.LC17
- 679 031c 28010000 		.word	.LC18
- 680 0320 3C010000 		.word	.LC19
- 681 0324 50010000 		.word	.LC20
- 682 0328 54010000 		.word	.LC21
- 683 032c 6C010000 		.word	.LC23
- 684 0330 3F420F00 		.word	999999
- 685 0334 60010000 		.word	.LC22
- 686 0338 88010000 		.word	.LC24
- 687 033c 9C010000 		.word	.LC25
- 688 0340 B4010000 		.word	.LC26
- 689 0344 CC010000 		.word	.LC27
- 690 0348 E4010000 		.word	.LC28
- 691 034c F4010000 		.word	.LC29
- 692 0350 0C020000 		.word	.LC30
- 693 0354 18020000 		.word	.LC31
- 694 0358 3C020000 		.word	.LC32
- 695 035c 50020000 		.word	.LC33
- 696 0360 BC020000 		.word	.LC38
- 697 0364 CC020000 		.word	.LC39
- 698 0368 68020000 		.word	.LC34
- 699 036c 88020000 		.word	.LC35
- 700 0370 A8020000 		.word	.LC36
- 701 0374 AC020000 		.word	.LC37
- 702 0378 00000000 		.word	huart5
- 703 037c D0020000 		.word	.LC40
- 704 0380 04030000 		.word	.LC41
- 705 0384 14030000 		.word	.LC42
- 706 0388 30030000 		.word	.LC43
- 707 038c 00000000 		.word	rx_buf.0
- 708 0390 48030000 		.word	.LC44
- 709 0394 50030000 		.word	.LC45
- 710 0398 5C030000 		.word	.LC46
- 711 039c 60030000 		.word	.LC47
- 713              		.section	.bss.rx_buf.0,"aw",%nobits
- 714              		.align	2
- 717              	rx_buf.0:
- 718 0000 00000000 		.space	2048
- 718      00000000 
- 718      00000000 
- 718      00000000 
- 718      00000000 
- 719              		.global	touchTask_attributes
- 720              		.section	.rodata.str1.4,"aMS",%progbits,1
- 721              		.align	2
- 722              	.LC48:
- 723 0000 746F7563 		.ascii	"touchTask\000"
- 723      68546173 
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 16
+ 645              	.L43:
+ 646 027e FFF7FEFF 		bl	HAL_GetTick
+ 647 0282 031B     		subs	r3, r0, r4
+ 648 0284 41F28732 		movw	r2, #4999
+ 649 0288 9342     		cmp	r3, r2
+ 650 028a 79D8     		bhi	.L46
+ 651 028c 40F2FE73 		movw	r3, #2046
+ 652 0290 9D42     		cmp	r5, r3
+ 653 0292 75D8     		bhi	.L46
+ 654 0294 0121     		movs	r1, #1
+ 655 0296 40A8     		add	r0, sp, #256
+ 656 0298 FFF7FEFF 		bl	UART_Read
+ 657 029c 0028     		cmp	r0, #0
+ 658 029e EBD0     		beq	.L44
+ 659 02a0 6E1C     		adds	r6, r5, #1
+ 660 02a2 9DF80021 		ldrb	r2, [sp, #256]	@ zero_extendqisi2
+ 661 02a6 354B     		ldr	r3, .L62+200
+ 662 02a8 5A55     		strb	r2, [r3, r5]
+ 663 02aa FFF7FEFF 		bl	HAL_GetTick
+ 664 02ae 0446     		mov	r4, r0
+ 665 02b0 3546     		mov	r5, r6
+ 666 02b2 E4E7     		b	.L43
+ 667              	.L63:
+ 668              		.align	2
+ 669              	.L62:
+ 670 02b4 20000000 		.word	.LC6
+ 671 02b8 44000000 		.word	.LC7
+ 672 02bc 54000000 		.word	.LC8
+ 673 02c0 5555AAAA 		.word	-1431677611
+ 674 02c4 00000000 		.word	.LC4
+ 675 02c8 70000000 		.word	.LC9
+ 676 02cc 84000000 		.word	.LC10
+ 677 02d0 10000000 		.word	.LC5
+ 678 02d4 94000000 		.word	.LC11
+ 679 02d8 A4000000 		.word	.LC12
+ 680 02dc B8000000 		.word	.LC13
+ 681 02e0 DC000000 		.word	.LC14
+ 682 02e4 EC000000 		.word	.LC15
+ 683 02e8 00000000 		.word	Font24
+ 684 02ec 00010000 		.word	.LC16
+ 685 02f0 10010000 		.word	.LC17
+ 686 02f4 28010000 		.word	.LC18
+ 687 02f8 3C010000 		.word	.LC19
+ 688 02fc 50010000 		.word	.LC20
+ 689 0300 54010000 		.word	.LC21
+ 690 0304 6C010000 		.word	.LC23
+ 691 0308 88010000 		.word	.LC24
+ 692 030c 9C010000 		.word	.LC25
+ 693 0310 BC010000 		.word	.LC26
+ 694 0314 CC010000 		.word	.LC27
+ 695 0318 E4010000 		.word	.LC28
+ 696 031c FC010000 		.word	.LC29
+ 697 0320 14020000 		.word	.LC30
+ 698 0324 24020000 		.word	.LC31
+ 699 0328 3C020000 		.word	.LC32
+ 700 032c 48020000 		.word	.LC33
+ 701 0330 6C020000 		.word	.LC34
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 16
 
 
- 723      6B00
- 724              		.section	.rodata.touchTask_attributes,"a"
- 725              		.align	2
- 728              	touchTask_attributes:
- 729 0000 00000000 		.word	.LC48
- 730 0004 00000000 		.space	16
- 730      00000000 
- 730      00000000 
- 730      00000000 
- 731 0014 00100000 		.word	4096
- 732 0018 18000000 		.word	24
- 733 001c 00000000 		.space	8
- 733      00000000 
- 734              		.global	touchTaskHandle
- 735              		.section	.bss.touchTaskHandle,"aw",%nobits
- 736              		.align	2
- 739              	touchTaskHandle:
- 740 0000 00000000 		.space	4
- 741              		.global	defaultTask_attributes
- 742              		.section	.rodata.str1.4
- 743 000a 0000     		.align	2
- 744              	.LC49:
- 745 000c 64656661 		.ascii	"defaultTask\000"
- 745      756C7454 
- 745      61736B00 
- 746              		.section	.rodata.defaultTask_attributes,"a"
- 747              		.align	2
- 750              	defaultTask_attributes:
- 751 0000 0C000000 		.word	.LC49
- 752 0004 00000000 		.space	16
- 752      00000000 
- 752      00000000 
- 752      00000000 
- 753 0014 00400000 		.word	16384
- 754 0018 18000000 		.word	24
- 755 001c 00000000 		.space	8
- 755      00000000 
- 756              		.global	defaultTaskHandle
- 757              		.section	.bss.defaultTaskHandle,"aw",%nobits
- 758              		.align	2
- 761              	defaultTaskHandle:
- 762 0000 00000000 		.space	4
- 763              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 17
+ 702 0334 84020000 		.word	.LC35
+ 703 0338 90020000 		.word	.LC36
+ 704 033c D0020000 		.word	.LC38
+ 705 0340 60010000 		.word	.LC22
+ 706 0344 A8020000 		.word	.LC37
+ 707 0348 58030000 		.word	.LC44
+ 708 034c 68030000 		.word	.LC45
+ 709 0350 EC020000 		.word	.LC39
+ 710 0354 D3D3D3FF 		.word	-2894893
+ 711 0358 08030000 		.word	.LC40
+ 712 035c 1C030000 		.word	.LC41
+ 713 0360 3C030000 		.word	.LC42
+ 714 0364 40030000 		.word	.LC43
+ 715 0368 00000000 		.word	huart5
+ 716 036c 6C030000 		.word	.LC46
+ 717 0370 A0030000 		.word	.LC47
+ 718 0374 B0030000 		.word	.LC48
+ 719 0378 CC030000 		.word	.LC49
+ 720 037c 00000000 		.word	rx_buf.0
+ 721              	.L46:
+ 722 0380 6848     		ldr	r0, .L64
+ 723 0382 0023     		movs	r3, #0
+ 724 0384 4355     		strb	r3, [r0, r5]
+ 725 0386 6849     		ldr	r1, .L64+4
+ 726 0388 FFF7FEFF 		bl	strstr
+ 727 038c 0446     		mov	r4, r0
+ 728 038e 0028     		cmp	r0, #0
+ 729 0390 3FF427AF 		beq	.L42
+ 730 0394 0434     		adds	r4, r4, #4
+ 731 0396 2046     		mov	r0, r4
+ 732 0398 FFF7FEFF 		bl	SanitizeASCII
+ 733 039c 6348     		ldr	r0, .L64+8
+ 734 039e FFF7FEFF 		bl	Safe_Transmit
+ 735 03a2 2046     		mov	r0, r4
+ 736 03a4 FFF7FEFF 		bl	Safe_Transmit
+ 737 03a8 6148     		ldr	r0, .L64+12
+ 738 03aa FFF7FEFF 		bl	Safe_Transmit
+ 739 03ae 614A     		ldr	r2, .L64+16
+ 740 03b0 20AB     		add	r3, sp, #128
+ 741 03b2 1068     		ldr	r0, [r2]	@ unaligned
+ 742 03b4 5168     		ldr	r1, [r2, #4]	@ unaligned
+ 743 03b6 03C3     		stmia	r3!, {r0, r1}
+ 744 03b8 3822     		movs	r2, #56
+ 745 03ba 0021     		movs	r1, #0
+ 746 03bc 1846     		mov	r0, r3
+ 747 03be FFF7FEFF 		bl	memset
+ 748 03c2 5D49     		ldr	r1, .L64+20
+ 749 03c4 0891     		str	r1, [sp, #32]
+ 750 03c6 0023     		movs	r3, #0
+ 751 03c8 0993     		str	r3, [sp, #36]
+ 752 03ca 0A93     		str	r3, [sp, #40]
+ 753 03cc 0B93     		str	r3, [sp, #44]
+ 754 03ce 0C93     		str	r3, [sp, #48]
+ 755 03d0 0D93     		str	r3, [sp, #52]
+ 756 03d2 0E93     		str	r3, [sp, #56]
+ 757 03d4 0F93     		str	r3, [sp, #60]
+ 758 03d6 1091     		str	r1, [sp, #64]
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 17
+
+
+ 759 03d8 1193     		str	r3, [sp, #68]
+ 760 03da 1293     		str	r3, [sp, #72]
+ 761 03dc 1393     		str	r3, [sp, #76]
+ 762 03de 1493     		str	r3, [sp, #80]
+ 763 03e0 1593     		str	r3, [sp, #84]
+ 764 03e2 1693     		str	r3, [sp, #88]
+ 765 03e4 1793     		str	r3, [sp, #92]
+ 766 03e6 1891     		str	r1, [sp, #96]
+ 767 03e8 1993     		str	r3, [sp, #100]
+ 768 03ea 1A93     		str	r3, [sp, #104]
+ 769 03ec 1B93     		str	r3, [sp, #108]
+ 770 03ee 1C93     		str	r3, [sp, #112]
+ 771 03f0 1D93     		str	r3, [sp, #116]
+ 772 03f2 1E93     		str	r3, [sp, #120]
+ 773 03f4 1F93     		str	r3, [sp, #124]
+ 774 03f6 3B21     		movs	r1, #59
+ 775 03f8 2046     		mov	r0, r4
+ 776 03fa FFF7FEFF 		bl	strchr
+ 777 03fe 0546     		mov	r5, r0
+ 778 0400 0028     		cmp	r0, #0
+ 779 0402 43D0     		beq	.L48
+ 780 0404 061B     		subs	r6, r0, r4
+ 781 0406 3F2E     		cmp	r6, #63
+ 782 0408 00DD     		ble	.L49
+ 783 040a 3F26     		movs	r6, #63
+ 784              	.L49:
+ 785 040c 20AF     		add	r7, sp, #128
+ 786 040e 3246     		mov	r2, r6
+ 787 0410 2146     		mov	r1, r4
+ 788 0412 3846     		mov	r0, r7
+ 789 0414 FFF7FEFF 		bl	strncpy
+ 790 0418 0023     		movs	r3, #0
+ 791 041a BB55     		strb	r3, [r7, r6]
+ 792 041c 0135     		adds	r5, r5, #1
+ 793 041e 3B21     		movs	r1, #59
+ 794 0420 2846     		mov	r0, r5
+ 795 0422 FFF7FEFF 		bl	strchr
+ 796 0426 0446     		mov	r4, r0
+ 797 0428 80B3     		cbz	r0, .L48
+ 798 042a 461B     		subs	r6, r0, r5
+ 799 042c 1F2E     		cmp	r6, #31
+ 800 042e 00DD     		ble	.L50
+ 801 0430 1F26     		movs	r6, #31
+ 802              	.L50:
+ 803 0432 08AF     		add	r7, sp, #32
+ 804 0434 3246     		mov	r2, r6
+ 805 0436 2946     		mov	r1, r5
+ 806 0438 3846     		mov	r0, r7
+ 807 043a FFF7FEFF 		bl	strncpy
+ 808 043e 0023     		movs	r3, #0
+ 809 0440 BB55     		strb	r3, [r7, r6]
+ 810 0442 0134     		adds	r4, r4, #1
+ 811 0444 3B21     		movs	r1, #59
+ 812 0446 2046     		mov	r0, r4
+ 813 0448 FFF7FEFF 		bl	strchr
+ 814 044c 0546     		mov	r5, r0
+ 815 044e E8B1     		cbz	r0, .L48
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 18
+
+
+ 816 0450 061B     		subs	r6, r0, r4
+ 817 0452 1F2E     		cmp	r6, #31
+ 818 0454 00DD     		ble	.L51
+ 819 0456 1F26     		movs	r6, #31
+ 820              	.L51:
+ 821 0458 10AF     		add	r7, sp, #64
+ 822 045a 3246     		mov	r2, r6
+ 823 045c 2146     		mov	r1, r4
+ 824 045e 3846     		mov	r0, r7
+ 825 0460 FFF7FEFF 		bl	strncpy
+ 826 0464 0023     		movs	r3, #0
+ 827 0466 BB55     		strb	r3, [r7, r6]
+ 828 0468 0135     		adds	r5, r5, #1
+ 829 046a 3B21     		movs	r1, #59
+ 830 046c 2846     		mov	r0, r5
+ 831 046e FFF7FEFF 		bl	strchr
+ 832 0472 58B1     		cbz	r0, .L48
+ 833 0474 441B     		subs	r4, r0, r5
+ 834 0476 1F2C     		cmp	r4, #31
+ 835 0478 00DD     		ble	.L52
+ 836 047a 1F24     		movs	r4, #31
+ 837              	.L52:
+ 838 047c 18AE     		add	r6, sp, #96
+ 839 047e 2246     		mov	r2, r4
+ 840 0480 2946     		mov	r1, r5
+ 841 0482 3046     		mov	r0, r6
+ 842 0484 FFF7FEFF 		bl	strncpy
+ 843 0488 0023     		movs	r3, #0
+ 844 048a 3355     		strb	r3, [r6, r4]
+ 845              	.L48:
+ 846 048c 4FF07F40 		mov	r0, #-16777216
+ 847 0490 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 848 0494 4FF4BE73 		mov	r3, #380
+ 849 0498 4FF44872 		mov	r2, #800
+ 850 049c 6421     		movs	r1, #100
+ 851 049e 0020     		movs	r0, #0
+ 852 04a0 FFF7FEFF 		bl	BSP_LCD_FillRect
+ 853 04a4 2548     		ldr	r0, .L64+24
+ 854 04a6 FFF7FEFF 		bl	BSP_LCD_SetFont
+ 855 04aa 6FF47F00 		mvn	r0, #16711680
+ 856 04ae FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 857 04b2 0123     		movs	r3, #1
+ 858 04b4 224A     		ldr	r2, .L64+28
+ 859 04b6 7821     		movs	r1, #120
+ 860 04b8 0020     		movs	r0, #0
+ 861 04ba FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 862 04be 4FF0FF30 		mov	r0, #-1
+ 863 04c2 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 864 04c6 0123     		movs	r3, #1
+ 865 04c8 20AA     		add	r2, sp, #128
+ 866 04ca B421     		movs	r1, #180
+ 867 04cc 0020     		movs	r0, #0
+ 868 04ce FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 869 04d2 1C48     		ldr	r0, .L64+32
+ 870 04d4 FFF7FEFF 		bl	BSP_LCD_SetFont
+ 871 04d8 6FF0FF00 		mvn	r0, #255
+ 872 04dc FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 19
+
+
+ 873 04e0 30AC     		add	r4, sp, #192
+ 874 04e2 08A9     		add	r1, sp, #32
+ 875 04e4 2046     		mov	r0, r4
+ 876 04e6 FFF7FEFF 		bl	strcpy
+ 877 04ea 0123     		movs	r3, #1
+ 878 04ec 2246     		mov	r2, r4
+ 879 04ee 4FF48271 		mov	r1, #260
+ 880 04f2 0020     		movs	r0, #0
+ 881 04f4 FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 882 04f8 1348     		ldr	r0, .L64+36
+ 883 04fa FFF7FEFF 		bl	BSP_LCD_SetFont
+ 884 04fe 1348     		ldr	r0, .L64+40
+ 885 0500 FFF7FEFF 		bl	BSP_LCD_SetTextColor
+ 886 0504 40AC     		add	r4, sp, #256
+ 887 0506 18AB     		add	r3, sp, #96
+ 888 0508 10AA     		add	r2, sp, #64
+ 889 050a 1149     		ldr	r1, .L64+44
+ 890 050c 2046     		mov	r0, r4
+ 891 050e FFF7FEFF 		bl	sprintf
+ 892 0512 0123     		movs	r3, #1
+ 893 0514 2246     		mov	r2, r4
+ 894 0516 4FF4BE71 		mov	r1, #380
+ 895 051a 0020     		movs	r0, #0
+ 896 051c FFF7FEFF 		bl	BSP_LCD_DisplayStringAt
+ 897 0520 5FE6     		b	.L42
+ 898              	.L65:
+ 899 0522 00BF     		.align	2
+ 900              	.L64:
+ 901 0524 00000000 		.word	rx_buf.0
+ 902 0528 E4030000 		.word	.LC50
+ 903 052c EC030000 		.word	.LC51
+ 904 0530 F8030000 		.word	.LC52
+ 905 0534 18040000 		.word	.LC53
+ 906 0538 4E2F4100 		.word	4271950
+ 907 053c 00000000 		.word	Font48
+ 908 0540 FC030000 		.word	.LC54
+ 909 0544 00000000 		.word	Font96
+ 910 0548 00000000 		.word	Font24
+ 911 054c D3D3D3FF 		.word	-2894893
+ 912 0550 04040000 		.word	.LC55
+ 914              		.section	.bss.rx_buf.0,"aw",%nobits
+ 915              		.align	2
+ 918              	rx_buf.0:
+ 919 0000 00000000 		.space	2048
+ 919      00000000 
+ 919      00000000 
+ 919      00000000 
+ 919      00000000 
+ 920              		.global	touchTask_attributes
+ 921              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 922              		.align	2
+ 923              	.LC56:
+ 924 0000 746F7563 		.ascii	"touchTask\000"
+ 924      68546173 
+ 924      6B00
+ 925              		.section	.rodata.touchTask_attributes,"a"
+ 926              		.align	2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 20
+
+
+ 929              	touchTask_attributes:
+ 930 0000 00000000 		.word	.LC56
+ 931 0004 00000000 		.space	16
+ 931      00000000 
+ 931      00000000 
+ 931      00000000 
+ 932 0014 00100000 		.word	4096
+ 933 0018 18000000 		.word	24
+ 934 001c 00000000 		.space	8
+ 934      00000000 
+ 935              		.global	touchTaskHandle
+ 936              		.section	.bss.touchTaskHandle,"aw",%nobits
+ 937              		.align	2
+ 940              	touchTaskHandle:
+ 941 0000 00000000 		.space	4
+ 942              		.global	defaultTask_attributes
+ 943              		.section	.rodata.str1.4
+ 944 000a 0000     		.align	2
+ 945              	.LC57:
+ 946 000c 64656661 		.ascii	"defaultTask\000"
+ 946      756C7454 
+ 946      61736B00 
+ 947              		.section	.rodata.defaultTask_attributes,"a"
+ 948              		.align	2
+ 951              	defaultTask_attributes:
+ 952 0000 0C000000 		.word	.LC57
+ 953 0004 00000000 		.space	16
+ 953      00000000 
+ 953      00000000 
+ 953      00000000 
+ 954 0014 00400000 		.word	16384
+ 955 0018 18000000 		.word	24
+ 956 001c 00000000 		.space	8
+ 956      00000000 
+ 957              		.global	defaultTaskHandle
+ 958              		.section	.bss.defaultTaskHandle,"aw",%nobits
+ 959              		.align	2
+ 962              	defaultTaskHandle:
+ 963 0000 00000000 		.space	4
+ 964              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 freertos.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:17     .text.StartTouchTask:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:23     .text.StartTouchTask:00000000 StartTouchTask
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:36     .text.vApplicationIdleHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:42     .text.vApplicationIdleHook:00000000 vApplicationIdleHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:49     .text.vApplicationStackOverflowHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:55     .text.vApplicationStackOverflowHook:00000000 vApplicationStackOverflowHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:62     .text.vApplicationMallocFailedHook:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:68     .text.vApplicationMallocFailedHook:00000000 vApplicationMallocFailedHook
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:75     .text.MX_FREERTOS_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:81     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:101    .text.MX_FREERTOS_Init:00000020 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:750    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:377    .text.StartDefaultTask:00000000 StartDefaultTask
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:761    .bss.defaultTaskHandle:00000000 defaultTaskHandle
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:728    .rodata.touchTask_attributes:00000000 touchTask_attributes
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:739    .bss.touchTaskHandle:00000000 touchTaskHandle
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:109    .rodata.Manual_LCD_Clear.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:122    .text.Manual_LCD_Clear:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:128    .text.Manual_LCD_Clear:00000000 Manual_LCD_Clear
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:177    .text.Manual_LCD_Clear:00000068 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:186    .text.SanitizeASCII:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:192    .text.SanitizeASCII:00000000 SanitizeASCII
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:217    .text.Safe_Transmit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:223    .text.Safe_Transmit:00000000 Safe_Transmit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:237    .rodata.StartDefaultTask.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:371    .text.StartDefaultTask:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:663    .text.StartDefaultTask:000002dc $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:717    .bss.rx_buf.0:00000000 rx_buf.0
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:714    .bss.rx_buf.0:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:721    .rodata.str1.4:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:725    .rodata.touchTask_attributes:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:736    .bss.touchTaskHandle:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:747    .rodata.defaultTask_attributes:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s:758    .bss.defaultTaskHandle:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:17     .text.StartTouchTask:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:23     .text.StartTouchTask:00000000 StartTouchTask
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:36     .text.vApplicationIdleHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:42     .text.vApplicationIdleHook:00000000 vApplicationIdleHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:49     .text.vApplicationStackOverflowHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:55     .text.vApplicationStackOverflowHook:00000000 vApplicationStackOverflowHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:62     .text.vApplicationMallocFailedHook:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:68     .text.vApplicationMallocFailedHook:00000000 vApplicationMallocFailedHook
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:75     .text.MX_FREERTOS_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:81     .text.MX_FREERTOS_Init:00000000 MX_FREERTOS_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:101    .text.MX_FREERTOS_Init:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:951    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:401    .text.StartDefaultTask:00000000 StartDefaultTask
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:962    .bss.defaultTaskHandle:00000000 defaultTaskHandle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:929    .rodata.touchTask_attributes:00000000 touchTask_attributes
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:940    .bss.touchTaskHandle:00000000 touchTaskHandle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:109    .rodata.Manual_LCD_Clear.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:122    .text.Manual_LCD_Clear:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:128    .text.Manual_LCD_Clear:00000000 Manual_LCD_Clear
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:177    .text.Manual_LCD_Clear:00000068 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:186    .text.SanitizeASCII:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:192    .text.SanitizeASCII:00000000 SanitizeASCII
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:217    .text.Safe_Transmit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:223    .text.Safe_Transmit:00000000 Safe_Transmit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:237    .rodata.StartDefaultTask.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:395    .text.StartDefaultTask:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:670    .text.StartDefaultTask:000002b4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:918    .bss.rx_buf.0:00000000 rx_buf.0
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:722    .text.StartDefaultTask:00000380 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:901    .text.StartDefaultTask:00000524 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:915    .bss.rx_buf.0:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:922    .rodata.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:926    .rodata.touchTask_attributes:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:937    .bss.touchTaskHandle:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:948    .rodata.defaultTask_attributes:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s:959    .bss.defaultTaskHandle:00000000 $d
 
 UNDEFINED SYMBOLS
 osDelay
 osThreadNew
 CDC_Transmit_HS
 strlen
-MX_GPIO_Init
-MX_UART5_Init
-MX_DMA2D_Init
-MX_CRC_Init
-MX_I2C1_Init
 MX_USB_DEVICE_Init
 BSP_SDRAM_Init
 BSP_LCD_Init
@@ -1004,18 +1238,26 @@ BSP_LCD_SetLayerVisible
 BSP_LCD_SetFont
 BSP_LCD_SetTextColor
 BSP_LCD_SetBackColor
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cc0SuRcd.s 			page 18
-
-
 ESP8266_Init
 ESP8266_SendCommand
+MX_CRC_Init
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccw6wNtr.s 			page 22
+
+
+MX_DMA2D_Init
+BSP_LCD_FillRect
 BSP_LCD_DisplayStringAt
-sprintf
 ESP8266_WaitFor
+sprintf
 HAL_UART_Transmit
 HAL_GetTick
 UART_Read
-strstr
-BSP_LCD_FillRect
 Font24
 huart5
+strstr
+memset
+strchr
+strncpy
+strcpy
+Font48
+Font96
