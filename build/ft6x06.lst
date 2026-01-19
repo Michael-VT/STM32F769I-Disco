@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
   62              	ft6x06_GetInstance:
   63              		@ args = 0, pretend = 0, frame = 0
   64              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 2
 
 
   65              		@ link register save eliminated.
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
  122              		.thumb
  123              		.thumb_func
  125              	ft6x06_ReadID:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 3
 
 
  126              		@ args = 0, pretend = 0, frame = 0
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
  184              	ft6x06_TS_GetXY:
  185              		@ args = 0, pretend = 0, frame = 8
  186              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 4
 
 
  187 0000 30B5     		push	{r4, r5, lr}
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
  243              	ft6x06_TS_EnableIT:
  244              		@ args = 0, pretend = 0, frame = 0
  245              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 5
 
 
  246 0000 08B5     		push	{r3, lr}
@@ -298,46 +298,46 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 1
  311 0020 00000000 		.word	ft6x06_TS_ITStatus
  312 0024 00000000 		.word	ft6x06_TS_DisableIT
  313              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 6
 
 
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ft6x06.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:17     .text.ft6x06_Reset:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:23     .text.ft6x06_Reset:00000000 ft6x06_Reset
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:30     .text.ft6x06_TS_ITStatus:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:36     .text.ft6x06_TS_ITStatus:00000000 ft6x06_TS_ITStatus
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:44     .text.ft6x06_TS_ClearIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:50     .text.ft6x06_TS_ClearIT:00000000 ft6x06_TS_ClearIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:57     .text.ft6x06_GetInstance:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:62     .text.ft6x06_GetInstance:00000000 ft6x06_GetInstance
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:85     .text.ft6x06_GetInstance:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:295    .bss.ft6x06:00000000 ft6x06
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:88     .text.ft6x06_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:94     .text.ft6x06_Init:00000000 ft6x06_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:116    .text.ft6x06_Init:00000024 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:119    .text.ft6x06_ReadID:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:125    .text.ft6x06_ReadID:00000000 ft6x06_ReadID
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:137    .text.ft6x06_TS_DetectTouch:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:143    .text.ft6x06_TS_DetectTouch:00000000 ft6x06_TS_DetectTouch
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:175    .text.ft6x06_TS_DetectTouch:00000048 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:288    .bss.ft6x06_handle:00000000 ft6x06_handle
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:178    .text.ft6x06_TS_GetXY:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:184    .text.ft6x06_TS_GetXY:00000000 ft6x06_TS_GetXY
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:234    .text.ft6x06_TS_GetXY:00000060 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:237    .text.ft6x06_TS_EnableIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:243    .text.ft6x06_TS_EnableIT:00000000 ft6x06_TS_EnableIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:254    .text.ft6x06_TS_DisableIT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:260    .text.ft6x06_TS_DisableIT:00000000 ft6x06_TS_DisableIT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:271    .text.ft6x06_TS_Start:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:277    .text.ft6x06_TS_Start:00000000 ft6x06_TS_Start
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:285    .bss.ft6x06_handle:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:292    .bss.ft6x06:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:302    .data.ft6x06_ts_drv:00000000 ft6x06_ts_drv
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccRDflHZ.s:299    .data.ft6x06_ts_drv:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:17     .text.ft6x06_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:23     .text.ft6x06_Reset:00000000 ft6x06_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:30     .text.ft6x06_TS_ITStatus:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:36     .text.ft6x06_TS_ITStatus:00000000 ft6x06_TS_ITStatus
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:44     .text.ft6x06_TS_ClearIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:50     .text.ft6x06_TS_ClearIT:00000000 ft6x06_TS_ClearIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:57     .text.ft6x06_GetInstance:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:62     .text.ft6x06_GetInstance:00000000 ft6x06_GetInstance
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:85     .text.ft6x06_GetInstance:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:295    .bss.ft6x06:00000000 ft6x06
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:88     .text.ft6x06_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:94     .text.ft6x06_Init:00000000 ft6x06_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:116    .text.ft6x06_Init:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:119    .text.ft6x06_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:125    .text.ft6x06_ReadID:00000000 ft6x06_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:137    .text.ft6x06_TS_DetectTouch:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:143    .text.ft6x06_TS_DetectTouch:00000000 ft6x06_TS_DetectTouch
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:175    .text.ft6x06_TS_DetectTouch:00000048 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:288    .bss.ft6x06_handle:00000000 ft6x06_handle
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:178    .text.ft6x06_TS_GetXY:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:184    .text.ft6x06_TS_GetXY:00000000 ft6x06_TS_GetXY
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:234    .text.ft6x06_TS_GetXY:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:237    .text.ft6x06_TS_EnableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:243    .text.ft6x06_TS_EnableIT:00000000 ft6x06_TS_EnableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:254    .text.ft6x06_TS_DisableIT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:260    .text.ft6x06_TS_DisableIT:00000000 ft6x06_TS_DisableIT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:271    .text.ft6x06_TS_Start:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:277    .text.ft6x06_TS_Start:00000000 ft6x06_TS_Start
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:285    .bss.ft6x06_handle:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:292    .bss.ft6x06:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:302    .data.ft6x06_ts_drv:00000000 ft6x06_ts_drv
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccYaiGFw.s:299    .data.ft6x06_ts_drv:00000000 $d
 
 UNDEFINED SYMBOLS
 TS_IO_Init

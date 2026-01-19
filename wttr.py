@@ -8,8 +8,8 @@ from datetime import datetime
 PORT = "/dev/cu.usbserial-1410"
 BAUD = 115200
 
-SSID = "MEO-EDC"
-PASSWORD = "941B"
+SSID = "MEO-EDC8ED"
+PASSWORD = "2668EB941B"
 
 WTTR_HOST = "wttr.in"
 WTTR_PATH = "/Peniche?format=%C+%t+%w+%h+%m+%o"

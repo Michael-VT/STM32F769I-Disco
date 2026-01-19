@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "esp8266.h"
+#include "stm32f769i_discovery_lcd.h"
+#include "stm32f769i_discovery_sdram.h" // Added SDRAM Header
+#include "stm32f769i_discovery_ts.h"
 #include "usbd_cdc_if.h"
 #include <stdio.h>
 #include <string.h>
@@ -61,12 +64,22 @@ const osThreadAttr_t defaultTask_attributes = {
     .priority = (osPriority_t)osPriorityNormal,
 };
 
+/* Definitions for touchTask */
+osThreadId_t touchTaskHandle;
+const osThreadAttr_t touchTask_attributes = {
+    .name = "touchTask",
+    .stack_size = 1024 * 4,
+    .priority = (osPriority_t)osPriorityNormal,
+};
+
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+void StartLedTask(void *argument);
+void StartTouchTask(void *argument);
 
 extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -144,6 +157,9 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle =
       osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+  /* creation of touchTask */
+  touchTaskHandle = osThreadNew(StartTouchTask, NULL, &touchTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -153,122 +169,227 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_EVENTS */
 }
 
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
- * @brief  Function implementing the defaultTask thread.
- * @param  argument: Not used
- * @retval None
- */
 /* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument) {
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
-  /* USER CODE BEGIN StartDefaultTask */
-  ESP8266_Init();
+// CPU-based screen clearing (Bypasses DMA2D)
+void Manual_LCD_Clear(uint32_t color) {
+  uint32_t *fb = (uint32_t *)0xC0000000;
 
-  // Initial delay for USB enumeration
-  osDelay(2000);
+  CDC_Transmit_HS((uint8_t *)"  Accessing SDRAM...\r\n", 22);
+  osDelay(50);
 
-  // Rapid Blink to indicate alive
-  for (int i = 0; i < 10; i++) {
-    HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_13);
-    osDelay(100);
+  // Test write
+  fb[0] = color;
+  CDC_Transmit_HS((uint8_t *)"  Test Write OK\r\n", 17);
+  osDelay(50);
+
+  for (uint32_t i = 1; i < 800 * 480; i++) {
+    fb[i] = color;
+    if (i % 80000 == 0) {
+      CDC_Transmit_HS((uint8_t *)".", 1);
+      osDelay(1); // Yield to other tasks (LED)
+    }
   }
-  HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_SET); // LED ON
+  CDC_Transmit_HS((uint8_t *)" Done\r\n", 7);
+}
 
-  // Connect WiFi (Silent)
+// Helper to remove UTF-8 and non-printable chars
+void SanitizeASCII(char *str) {
+  char *src = str;
+  char *dst = str;
+  while (*src) {
+    if ((unsigned char)*src < 127 && (unsigned char)*src >= 32) {
+      *dst++ = *src;
+    } else if (*src == '\n' || *src == '\r') {
+      // skip
+    } else {
+      // Replace common UTF-8 lead bytes or effectively strip
+      // Simple approach: Skip all extended bytes
+      // For '°' (C2 B0), we skip.
+      // Ideally we could replace with ' ' but skipping is safer for now
+      // *dst++ = ' ';
+    }
+    src++;
+  }
+  *dst = 0;
+}
+
+void Safe_Transmit(char *msg) {
+  CDC_Transmit_HS((uint8_t *)msg, strlen(msg));
+  osDelay(100); // Give VCP time to send
+}
+
+/* Initialize all configured peripherals */
+extern void MX_GPIO_Init(void);
+extern void MX_UART5_Init(void);
+extern void MX_DMA2D_Init(void);
+extern void MX_CRC_Init(void);
+extern void MX_I2C1_Init(void);
+
+/* Definition for DefaultTask */
+void StartDefaultTask(void *argument) {
+  MX_GPIO_Init();
+  MX_UART5_Init();
+  // MX_LTDC_Init();   // Handled by BSP_LCD_Init
+  MX_DMA2D_Init();
+  MX_CRC_Init();
+  MX_I2C1_Init();
+
+  MX_USB_DEVICE_Init();
+  osDelay(3000); // Wait for enumeration
+
+  Safe_Transmit("=== FW v1.15 2026-01-19 22:58 ===\r\n");
+
+  Safe_Transmit("[1] USB Ready\r\n");
+
+  // 1. SDRAM Pattern Test
+  Safe_Transmit("[2] SDRAM Test (1MB)...\r\n");
+  BSP_SDRAM_Init();
+  uint32_t *sdram_ptr = (uint32_t *)0xC0000000;
+  uint8_t sdram_ok = 1;
+  for (uint32_t i = 0; i < 0x40000; i++) { // 1MB
+    sdram_ptr[i] = i ^ 0xAAAA5555;
+  }
+  for (uint32_t i = 0; i < 0x40000; i++) {
+    if (sdram_ptr[i] != (i ^ 0xAAAA5555)) {
+      sdram_ok = 0;
+      break;
+    }
+  }
+  Safe_Transmit(sdram_ok ? "  SDRAM PASS\r\n" : "  SDRAM FAIL!\r\n");
+
+  // 2. LCD Boot
+  Safe_Transmit("[3] LCD Init...\r\n");
+  if (BSP_LCD_Init() != LCD_OK) {
+    Safe_Transmit("  LCD FAIL\r\n");
+    for (;;)
+      osDelay(1000);
+  }
+  Safe_Transmit("[4] LCD OK\r\n");
+
+  Safe_Transmit("[5] Display On...\r\n");
+  BSP_LCD_DisplayOn();
+  osDelay(100);
+
+  Safe_Transmit("[6] Layer Init (0xC0000000)...\r\n");
+  BSP_LCD_LayerDefaultInit(0, 0xC0000000);
+  BSP_LCD_SelectLayer(0);
+  BSP_LCD_SetLayerVisible(0, ENABLE);
+  Safe_Transmit("[7] Layer OK\r\n");
+
+  Safe_Transmit("[8] Set Font...\r\n");
+  BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
+  Safe_Transmit("[9] Font OK\r\n");
+
+  Safe_Transmit("[10] Set Colors...\r\n");
+  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+  BSP_LCD_SetBackColor(LCD_COLOR_BLACK);
+  Safe_Transmit("[11] Colors OK\r\n");
+
+  Safe_Transmit("[12] ESP Test...\r\n");
+  ESP8266_Init();
+  if (ESP8266_SendCommand("AT") == ESP8266_OK) {
+    Safe_Transmit("  AT OK\r\n");
+  } else {
+    Safe_Transmit("  AT FAIL\r\n");
+  }
+
+  Safe_Transmit("[13] Deep Clear (4MB)...\r\n");
+  uint32_t *fb = (uint32_t *)0xC0000000;
+  for (uint32_t i = 0; i < 1000000; i++) { // ~4MB area
+    fb[i] = 0xFF000000;                    // Black
+  }
+  Safe_Transmit("  Deep Clear Done\r\n");
+
+  Safe_Transmit("[14] LCD Warm-up...\r\n");
+  BSP_LCD_SetTextColor(LCD_COLOR_YELLOW);
+  BSP_LCD_DisplayStringAt(0, 50, (uint8_t *)"WEATHER STATION v1.15",
+                          CENTER_MODE);
+  BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+  BSP_LCD_DisplayStringAt(0, 100, (uint8_t *)"STM32F769I-DISCO READY",
+                          CENTER_MODE);
+  Safe_Transmit("  UI Ready\r\n");
+
+  Safe_Transmit("[15] WiFi Connect...\r\n");
   ESP8266_SendCommand("AT+CWMODE=1");
   osDelay(500);
-  // Using credentials provided by user
   ESP8266_SendCommand("AT+CWJAP=\"MEO-EDC8ED\",\"2668EB941B\"");
-  osDelay(8000); // Give it time to connect
+  Safe_Transmit("  Connect Sent\r\n");
+
+  Safe_Transmit("[16] Entering Loop\r\n");
 
   /* Infinite loop */
   for (;;) {
-    // 1. TCP Connect
+    Safe_Transmit("--- Refreshing Weather ---\r\n");
+
     ESP8266_SendCommand("AT+CIPSTART=\"TCP\",\"wttr.in\",80");
     if (ESP8266_WaitFor("OK", 5000) != ESP8266_OK) {
+      Safe_Transmit("  TCP Fail\r\n");
       osDelay(5000);
       continue;
     }
 
-    // 2. Prepare HTTP Request
-    const char *req_line = "GET /Peniche?format=%C+%t+%w+%h+%m+%o HTTP/1.1\r\n";
+    const char *req_line = "GET /Peniche?format=%C;%t;%w;%h;%m;%o HTTP/1.1\r\n";
     const char *host_line = "Host: wttr.in\r\n";
     const char *ua_line = "User-Agent: curl/7.68.0\r\n";
     const char *conn_line = "Connection: close\r\n\r\n";
-
-    // 3. Send CIPSEND
     uint32_t total_len = strlen(req_line) + strlen(host_line) +
                          strlen(ua_line) + strlen(conn_line);
+
     char sendCmd[32];
     sprintf(sendCmd, "AT+CIPSEND=%lu", total_len);
     ESP8266_SendCommand(sendCmd);
 
     if (ESP8266_WaitFor(">", 2000) == ESP8266_OK) {
-      // 4. Send Data
       HAL_UART_Transmit(&huart5, (uint8_t *)req_line, strlen(req_line), 100);
       HAL_UART_Transmit(&huart5, (uint8_t *)host_line, strlen(host_line), 100);
       HAL_UART_Transmit(&huart5, (uint8_t *)ua_line, strlen(ua_line), 100);
       HAL_UART_Transmit(&huart5, (uint8_t *)conn_line, strlen(conn_line), 100);
 
-      // 5. Read Response into Buffer
       static char rx_buf[2048];
       uint32_t rx_idx = 0;
       uint32_t start = HAL_GetTick();
 
-      // Read until timeout or buffer full
       while (HAL_GetTick() - start < 5000 && rx_idx < sizeof(rx_buf) - 1) {
         uint8_t ch;
         if (UART_Read(&ch, 1) > 0) {
           rx_buf[rx_idx++] = ch;
-          start = HAL_GetTick(); // Extend timeout on data
+          start = HAL_GetTick();
         } else {
           osDelay(1);
         }
       }
-      rx_buf[rx_idx] = 0; // Null terminate
+      rx_buf[rx_idx] = 0;
 
-      // 6. Parse and Print Body
-      // Look for HTTP signature first to avoid matching "SEND
-      // OK\r\n\r\n+IPD..."
-      char *http_start = strstr(rx_buf, "HTTP/");
-      if (http_start) {
-        char *body = strstr(http_start, "\r\n\r\n");
-        if (body) {
-          body += 4; // Skip CRLFCRLF
+      char *body = strstr(rx_buf, "\r\n\r\n");
+      if (body) {
+        body += 4;
+        SanitizeASCII(body);
+        Safe_Transmit("WEATHER: ");
+        Safe_Transmit(body);
+        Safe_Transmit("\r\n");
 
-          // Cleanup "CLOSED"
-          char *closed = strstr(body, "CLOSED");
-          if (closed)
-            *closed = 0;
-
-          // Truncate at first newline to ensure we only print the weather line
-          // and ignore any trailing garbage like "SEND OK" or echoes
-          char *eol = strpbrk(body, "\r\n");
-          if (eol)
-            *eol = 0;
-
-          // Cleanup trailing whitespace (if any left)
-          size_t len = strlen(body);
-          while (len > 0 && (body[len - 1] <= ' '))
-            body[--len] = 0;
-
-          if (strlen(body) > 0) {
-            CDC_Transmit_HS((uint8_t *)body, strlen(body));
-            CDC_Transmit_HS((uint8_t *)"\r\n", 2);
-          }
-        }
+        // UI Update
+        BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+        BSP_LCD_FillRect(0, 200, 800, 100); // Clear area
+        BSP_LCD_SetTextColor(LCD_COLOR_CYAN);
+        BSP_LCD_DisplayStringAt(0, 230,
+                                (uint8_t *)"CURRENT WEATHER:", CENTER_MODE);
+        BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+        BSP_LCD_DisplayStringAt(0, 270, (uint8_t *)body, CENTER_MODE);
       }
     }
 
-    // Blink while waiting (10 seconds)
-    for (int i = 0; i < 10; i++) {
-      HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_13);
-      osDelay(1000);
-    }
+    osDelay(30000); // 30s refresh
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* Definition for TouchTask */
+void StartTouchTask(void *argument) {
+  osDelay(5000);
+  for (;;) {
+    osDelay(1000);
+  }
 }
 
 /* Private application code --------------------------------------------------*/

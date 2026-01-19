@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s 			page 1
   61              		.syntax unified
   62              		.thumb
   63              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s 			page 2
 
 
   65              	TouchGFX_Task:
@@ -68,19 +68,19 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s 			page 1
   69 0002 FFF7FEFF 		bl	touchgfx_taskEntry
   70 0006 08BD     		pop	{r3, pc}
   72              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 app_touchgfx.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:17     .text.MX_TouchGFX_PreOSInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:23     .text.MX_TouchGFX_PreOSInit:00000000 MX_TouchGFX_PreOSInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:30     .text.MX_TouchGFX_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:36     .text.MX_TouchGFX_Init:00000000 MX_TouchGFX_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:45     .text.MX_TouchGFX_Process:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:51     .text.MX_TouchGFX_Process:00000000 MX_TouchGFX_Process
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:59     .text.TouchGFX_Task:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccNvYMMS.s:65     .text.TouchGFX_Task:00000000 TouchGFX_Task
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:17     .text.MX_TouchGFX_PreOSInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:23     .text.MX_TouchGFX_PreOSInit:00000000 MX_TouchGFX_PreOSInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:30     .text.MX_TouchGFX_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:36     .text.MX_TouchGFX_Init:00000000 MX_TouchGFX_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:45     .text.MX_TouchGFX_Process:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:51     .text.MX_TouchGFX_Process:00000000 MX_TouchGFX_Process
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:59     .text.TouchGFX_Task:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccwgrnDc.s:65     .text.TouchGFX_Task:00000000 TouchGFX_Task
 
 UNDEFINED SYMBOLS
 touchgfx_components_init

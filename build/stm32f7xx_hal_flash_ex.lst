@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
   56 003a 0243     		orrs	r2, r2, r0
   57 003c 0A61     		str	r2, [r1, #16]
   58 003e EEE7     		b	.L3
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 2
 
 
   59              	.L6:
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  119              		@ args = 0, pretend = 0, frame = 0
  120              		@ frame_needed = 0, uses_anonymous_args = 0
  121              		@ link register save eliminated.
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 3
 
 
  122 0000 034A     		ldr	r2, .L16
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  181              		.section	.text.FLASH_OB_GetBootAddress,"ax",%progbits
  182              		.align	1
  183              		.syntax unified
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 4
 
 
  184              		.thumb
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  243 0004 4CF25030 		movw	r0, #50000
  244 0008 FFF7FEFF 		bl	FLASH_WaitForLastOperation
  245 000c 18B9     		cbnz	r0, .L38
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 5
 
 
  246 000e 024A     		ldr	r2, .L40
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  304 0028 099A     		ldr	r2, [sp, #36]
  305 002a 1343     		orrs	r3, r3, r2
  306 002c 089A     		ldr	r2, [sp, #32]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 6
 
 
  307 002e 1343     		orrs	r3, r3, r2
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  365              	HAL_FLASHEx_OBProgram:
  366              		@ args = 0, pretend = 0, frame = 0
  367              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 7
 
 
  368 0000 2F4B     		ldr	r3, .L80
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  422 0068 FFF7FEFF 		bl	FLASH_OB_RDP_LevelConfig
  423 006c E6E7     		b	.L63
  424              	.L76:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 8
 
 
  425 006e 6069     		ldr	r0, [r4, #20]
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  481 0018 6061     		str	r0, [r4, #20]
  482 001a FFF7FEFF 		bl	FLASH_OB_GetBOR
  483 001e 2061     		str	r0, [r4, #16]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 9
 
 
  484 0020 1020     		movs	r0, #16
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  540              	@ 0 "" 2
  541              		.thumb
  542              		.syntax unified
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 10
 
 
  543 0050 7047     		bx	lr
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  599 005a 6168     		ldr	r1, [r4, #4]
  600 005c 207C     		ldrb	r0, [r4, #16]	@ zero_extendqisi2
  601 005e FFF7FEFF 		bl	FLASH_MassErase
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 11
 
 
  602 0062 4CF25030 		movw	r0, #50000
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  658 0028 012B     		cmp	r3, #1
  659 002a 0DD0     		beq	.L113
  660 002c 0C4B     		ldr	r3, .L114
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 12
 
 
  661 002e 0122     		movs	r2, #1
@@ -692,61 +692,61 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 1
  689 0060 00000000 		.word	pFlash
  690 0064 003C0240 		.word	1073888256
  692              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s 			page 13
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f7xx_hal_flash_ex.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:17     .text.FLASH_MassErase:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:22     .text.FLASH_MassErase:00000000 FLASH_MassErase
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:68     .text.FLASH_MassErase:0000004c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:71     .text.FLASH_OB_GetWRP:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:76     .text.FLASH_OB_GetWRP:00000000 FLASH_OB_GetWRP
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:88     .text.FLASH_OB_GetWRP:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:92     .text.FLASH_OB_GetUser:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:97     .text.FLASH_OB_GetUser:00000000 FLASH_OB_GetUser
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:109    .text.FLASH_OB_GetUser:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:113    .text.FLASH_OB_BOR_LevelConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:118    .text.FLASH_OB_BOR_LevelConfig:00000000 FLASH_OB_BOR_LevelConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:132    .text.FLASH_OB_BOR_LevelConfig:00000010 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:135    .text.FLASH_OB_GetRDP:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:140    .text.FLASH_OB_GetRDP:00000000 FLASH_OB_GetRDP
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:160    .text.FLASH_OB_GetRDP:00000018 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:163    .text.FLASH_OB_GetBOR:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:168    .text.FLASH_OB_GetBOR:00000000 FLASH_OB_GetBOR
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:179    .text.FLASH_OB_GetBOR:0000000c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:182    .text.FLASH_OB_GetBootAddress:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:187    .text.FLASH_OB_GetBootAddress:00000000 FLASH_OB_GetBootAddress
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:205    .text.FLASH_OB_GetBootAddress:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:208    .text.FLASH_OB_EnableWRP:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:213    .text.FLASH_OB_EnableWRP:00000000 FLASH_OB_EnableWRP
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:230    .text.FLASH_OB_EnableWRP:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:233    .text.FLASH_OB_DisableWRP:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:238    .text.FLASH_OB_DisableWRP:00000000 FLASH_OB_DisableWRP
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:255    .text.FLASH_OB_DisableWRP:00000018 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:258    .text.FLASH_OB_RDP_LevelConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:263    .text.FLASH_OB_RDP_LevelConfig:00000000 FLASH_OB_RDP_LevelConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:278    .text.FLASH_OB_RDP_LevelConfig:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:281    .text.FLASH_OB_UserConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:286    .text.FLASH_OB_UserConfig:00000000 FLASH_OB_UserConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:319    .text.FLASH_OB_UserConfig:00000040 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:323    .text.FLASH_OB_BootAddressConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:328    .text.FLASH_OB_BootAddressConfig:00000000 FLASH_OB_BootAddressConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:356    .text.FLASH_OB_BootAddressConfig:00000030 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:359    .text.HAL_FLASHEx_OBProgram:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:365    .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:460    .text.HAL_FLASHEx_OBProgram:000000c0 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:463    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:469    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:493    .text.FLASH_Erase_Sector:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:499    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:547    .text.FLASH_Erase_Sector:00000054 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:550    .text.HAL_FLASHEx_Erase:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:556    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:626    .text.HAL_FLASHEx_Erase:0000008c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:631    .text.HAL_FLASHEx_Erase_IT:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:637    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccZ0BVrq.s:689    .text.HAL_FLASHEx_Erase_IT:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:17     .text.FLASH_MassErase:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:22     .text.FLASH_MassErase:00000000 FLASH_MassErase
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:68     .text.FLASH_MassErase:0000004c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:71     .text.FLASH_OB_GetWRP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:76     .text.FLASH_OB_GetWRP:00000000 FLASH_OB_GetWRP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:88     .text.FLASH_OB_GetWRP:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:92     .text.FLASH_OB_GetUser:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:97     .text.FLASH_OB_GetUser:00000000 FLASH_OB_GetUser
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:109    .text.FLASH_OB_GetUser:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:113    .text.FLASH_OB_BOR_LevelConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:118    .text.FLASH_OB_BOR_LevelConfig:00000000 FLASH_OB_BOR_LevelConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:132    .text.FLASH_OB_BOR_LevelConfig:00000010 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:135    .text.FLASH_OB_GetRDP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:140    .text.FLASH_OB_GetRDP:00000000 FLASH_OB_GetRDP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:160    .text.FLASH_OB_GetRDP:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:163    .text.FLASH_OB_GetBOR:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:168    .text.FLASH_OB_GetBOR:00000000 FLASH_OB_GetBOR
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:179    .text.FLASH_OB_GetBOR:0000000c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:182    .text.FLASH_OB_GetBootAddress:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:187    .text.FLASH_OB_GetBootAddress:00000000 FLASH_OB_GetBootAddress
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:205    .text.FLASH_OB_GetBootAddress:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:208    .text.FLASH_OB_EnableWRP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:213    .text.FLASH_OB_EnableWRP:00000000 FLASH_OB_EnableWRP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:230    .text.FLASH_OB_EnableWRP:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:233    .text.FLASH_OB_DisableWRP:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:238    .text.FLASH_OB_DisableWRP:00000000 FLASH_OB_DisableWRP
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:255    .text.FLASH_OB_DisableWRP:00000018 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:258    .text.FLASH_OB_RDP_LevelConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:263    .text.FLASH_OB_RDP_LevelConfig:00000000 FLASH_OB_RDP_LevelConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:278    .text.FLASH_OB_RDP_LevelConfig:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:281    .text.FLASH_OB_UserConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:286    .text.FLASH_OB_UserConfig:00000000 FLASH_OB_UserConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:319    .text.FLASH_OB_UserConfig:00000040 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:323    .text.FLASH_OB_BootAddressConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:328    .text.FLASH_OB_BootAddressConfig:00000000 FLASH_OB_BootAddressConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:356    .text.FLASH_OB_BootAddressConfig:00000030 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:359    .text.HAL_FLASHEx_OBProgram:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:365    .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:460    .text.HAL_FLASHEx_OBProgram:000000c0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:463    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:469    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:493    .text.FLASH_Erase_Sector:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:499    .text.FLASH_Erase_Sector:00000000 FLASH_Erase_Sector
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:547    .text.FLASH_Erase_Sector:00000054 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:550    .text.HAL_FLASHEx_Erase:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:556    .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:626    .text.HAL_FLASHEx_Erase:0000008c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:631    .text.HAL_FLASHEx_Erase_IT:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:637    .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccTaVpvy.s:689    .text.HAL_FLASHEx_Erase_IT:00000060 $d
 
 UNDEFINED SYMBOLS
 FLASH_WaitForLastOperation

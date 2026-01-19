@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
   61              		.syntax unified
   62              		.thumb
   63              		.thumb_func
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 2
 
 
   65              	adv7533_ReadID:
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  123 0000 08B5     		push	{r3, lr}
  124 0002 0121     		movs	r1, #1
  125 0004 FFF7FEFF 		bl	adv7533_SetMute
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 3
 
 
  126 0008 08BD     		pop	{r3, pc}
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  188 000a FFF7FEFF 		bl	HDMI_IO_Read
  189 000e 00F00F02 		and	r2, r0, #15
  190 0012 244B     		ldr	r3, .L30
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 4
 
 
  191 0014 9C42     		cmp	r4, r3
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  245 008e FFF7FEFF 		bl	HDMI_IO_Write
  246 0092 D3E7     		b	.L25
  247              	.L27:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 5
 
 
  248 0094 42F0E002 		orr	r2, r2, #224
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  304 0054 FFF7FEFF 		bl	HDMI_IO_Read
  305 0058 40F00402 		orr	r2, r0, #4
  306 005c D2B2     		uxtb	r2, r2
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 6
 
 
  307 005e 0C21     		movs	r1, #12
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  366              		.global	ADV7533_PowerOn
  367              		.syntax unified
  368              		.thumb
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 7
 
 
  369              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  428 0024 D2B2     		uxtb	r2, r2
  429 0026 D621     		movs	r1, #214
  430 0028 7A20     		movs	r0, #122
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 8
 
 
  431 002a FFF7FEFF 		bl	HDMI_IO_Write
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  485 00c2 FFF7FEFF 		bl	HDMI_IO_Write
  486 00c6 2421     		movs	r1, #36
  487 00c8 7820     		movs	r0, #120
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 9
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 9
 
 
  488 00ca FFF7FEFF 		bl	HDMI_IO_Read
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  542 0160 FFF7FEFF 		bl	HDMI_IO_Write
  543 0164 2721     		movs	r1, #39
  544 0166 7820     		movs	r0, #120
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 10
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 10
 
 
  545 0168 FFF7FEFF 		bl	HDMI_IO_Read
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  606 0008 00000000 		.word	adv7533_ReadID
  607 000c 00000000 		.word	adv7533_Play
  608 0010 00000000 		.word	adv7533_Pause
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 11
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 11
 
 
  609 0014 00000000 		.word	adv7533_Resume
@@ -609,50 +609,50 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 1
  614 0028 00000000 		.word	adv7533_SetOutputMode
  615 002c 00000000 		.word	adv7533_Reset
  616              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s 			page 12
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 adv7533.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:17     .text.adv7533_SetOutputMode:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:23     .text.adv7533_SetOutputMode:00000000 adv7533_SetOutputMode
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:31     .text.adv7533_SetVolume:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:37     .text.adv7533_SetVolume:00000000 adv7533_SetVolume
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:45     .text.adv7533_Reset:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:51     .text.adv7533_Reset:00000000 adv7533_Reset
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:59     .text.adv7533_ReadID:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:65     .text.adv7533_ReadID:00000000 adv7533_ReadID
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:81     .text.adv7533_SetMute:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:87     .text.adv7533_SetMute:00000000 adv7533_SetMute
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:114    .text.adv7533_Pause:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:120    .text.adv7533_Pause:00000000 adv7533_Pause
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:129    .text.adv7533_Resume:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:135    .text.adv7533_Resume:00000000 adv7533_Resume
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:144    .text.adv7533_Play:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:150    .text.adv7533_Play:00000000 adv7533_Play
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:159    .text.adv7533_Stop:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:165    .text.adv7533_Stop:00000000 adv7533_Stop
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:174    .text.adv7533_SetFrequency:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:180    .text.adv7533_SetFrequency:00000000 adv7533_SetFrequency
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:256    .text.adv7533_SetFrequency:000000a4 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:262    .text.adv7533_AudioInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:268    .text.adv7533_AudioInit:00000000 adv7533_AudioInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:332    .text.adv7533_DeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:338    .text.adv7533_DeInit:00000000 adv7533_DeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:346    .text.ADV7533_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:352    .text.ADV7533_Init:00000000 ADV7533_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:365    .text.ADV7533_PowerOn:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:371    .text.ADV7533_PowerOn:00000000 ADV7533_PowerOn
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:385    .text.ADV7533_PowerDown:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:391    .text.ADV7533_PowerDown:00000000 ADV7533_PowerDown
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:406    .text.ADV7533_Configure:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:412    .text.ADV7533_Configure:00000000 ADV7533_Configure
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:553    .text.ADV7533_PatternEnable:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:559    .text.ADV7533_PatternEnable:00000000 ADV7533_PatternEnable
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:582    .text.ADV7533_PatternDisable:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:588    .text.ADV7533_PatternDisable:00000000 ADV7533_PatternDisable
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:603    .data.adv7533_drv:00000000 adv7533_drv
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccT3zDtY.s:600    .data.adv7533_drv:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:17     .text.adv7533_SetOutputMode:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:23     .text.adv7533_SetOutputMode:00000000 adv7533_SetOutputMode
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:31     .text.adv7533_SetVolume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:37     .text.adv7533_SetVolume:00000000 adv7533_SetVolume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:45     .text.adv7533_Reset:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:51     .text.adv7533_Reset:00000000 adv7533_Reset
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:59     .text.adv7533_ReadID:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:65     .text.adv7533_ReadID:00000000 adv7533_ReadID
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:81     .text.adv7533_SetMute:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:87     .text.adv7533_SetMute:00000000 adv7533_SetMute
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:114    .text.adv7533_Pause:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:120    .text.adv7533_Pause:00000000 adv7533_Pause
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:129    .text.adv7533_Resume:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:135    .text.adv7533_Resume:00000000 adv7533_Resume
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:144    .text.adv7533_Play:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:150    .text.adv7533_Play:00000000 adv7533_Play
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:159    .text.adv7533_Stop:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:165    .text.adv7533_Stop:00000000 adv7533_Stop
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:174    .text.adv7533_SetFrequency:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:180    .text.adv7533_SetFrequency:00000000 adv7533_SetFrequency
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:256    .text.adv7533_SetFrequency:000000a4 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:262    .text.adv7533_AudioInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:268    .text.adv7533_AudioInit:00000000 adv7533_AudioInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:332    .text.adv7533_DeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:338    .text.adv7533_DeInit:00000000 adv7533_DeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:346    .text.ADV7533_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:352    .text.ADV7533_Init:00000000 ADV7533_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:365    .text.ADV7533_PowerOn:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:371    .text.ADV7533_PowerOn:00000000 ADV7533_PowerOn
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:385    .text.ADV7533_PowerDown:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:391    .text.ADV7533_PowerDown:00000000 ADV7533_PowerDown
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:406    .text.ADV7533_Configure:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:412    .text.ADV7533_Configure:00000000 ADV7533_Configure
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:553    .text.ADV7533_PatternEnable:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:559    .text.ADV7533_PatternEnable:00000000 ADV7533_PatternEnable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:582    .text.ADV7533_PatternDisable:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:588    .text.ADV7533_PatternDisable:00000000 ADV7533_PatternDisable
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:603    .data.adv7533_drv:00000000 adv7533_drv
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccprBQ2f.s:600    .data.adv7533_drv:00000000 $d
 
 UNDEFINED SYMBOLS
 HDMI_IO_Read

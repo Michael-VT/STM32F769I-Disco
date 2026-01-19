@@ -1,6 +1,8 @@
 #ifndef __FONTS_H
 #define __FONTS_H
 
+#include <stdint.h>
+
 typedef struct _tFont {
   const uint8_t *table;
   uint16_t Width;

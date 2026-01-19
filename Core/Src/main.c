@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery.h"
+#include "core_cm7.h"
+
 //#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_lcd.h"
 //#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.h"
 //#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_ts.h"
@@ -64,6 +66,7 @@ UART_HandleTypeDef huart5;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MPU_Config(void); // Added Prototype
 void MX_GPIO_Init(void);
 void MX_CRC_Init(void);
 void MX_DMA2D_Init(void);
@@ -89,9 +92,11 @@ void StartDefaultTask(void *argument);
  * @retval int
  */
 int main(void) {
-
   /* USER CODE BEGIN 1 */
-
+  // Disable Caches during debugging to avoid hangs
+  SCB_DisableICache();
+  SCB_DisableDCache();
+  MPU_Config();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -112,12 +117,13 @@ int main(void) {
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_UART5_Init();
-  MX_LTDC_Init();
-  MX_DMA2D_Init();
-  MX_FMC_Init();
-  MX_DSIHOST_DSI_Init();
+  // MX_LTDC_Init();   // Handled by BSP_LCD_Init
+  // MX_DMA2D_Init();  // Will init AFTER BSP_LCD_Init in FreeRTOS task
+  // MX_FMC_Init();    // Handled by BSP_SDRAM_Init
+  // MX_DSIHOST_DSI_Init(); // Handled by BSP_LCD_Init
   MX_I2C1_Init();
   MX_CRC_Init();
   /* MX_TouchGFX_Init(); */
@@ -327,3 +333,31 @@ void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
+
+/**
+ * @brief  Configure the MPU attributes for SDRAM.
+ */
+void MPU_Config(void) {
+  MPU_Region_InitTypeDef MPU_InitStruct;
+
+  /* Disable the MPU */
+  HAL_MPU_Disable();
+
+  /* Configure the MPU attributes for SDRAM */
+  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+  MPU_InitStruct.BaseAddress = 0xC0000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_16MB;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE; // Stable for now
+  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+  MPU_InitStruct.SubRegionDisable = 0x00;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+  /* Enable the MPU */
+  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+}

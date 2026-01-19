@@ -89,7 +89,8 @@ void NMI_Handler(void) {
  */
 void HardFault_Handler(void) {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+  extern uint8_t CDC_Transmit_HS(uint8_t * Buf, uint16_t Len);
+  CDC_Transmit_HS((uint8_t *)"\r\n!!! HARD FAULT !!!\r\n", 23);
   /* USER CODE END HardFault_IRQn 0 */
   while (1) {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
