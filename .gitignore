@@ -1,6 +1,8 @@
 Debug/
 github/
 foto/
+.DS_Store
+*.old
 *.o
 *.cu
 *.cyclo
