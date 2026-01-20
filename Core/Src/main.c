@@ -62,6 +62,7 @@ volatile uint32_t UartRxHead = 0;
 volatile uint32_t UartRxTail = 0;
 uint8_t UartRxByte;
 UART_HandleTypeDef huart5;
+RTC_HandleTypeDef hrtc;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -76,6 +77,7 @@ void MX_LTDC_Init(void);
 void MX_QUADSPI_Init(void);
 void MX_USB_DEVICE_Init(void);
 void MX_UART5_Init(void);
+void MX_RTC_Init(void);
 void MX_FREERTOS_Init(void);
 void StartDefaultTask(void *argument);
 /* USER CODE BEGIN PFP */
@@ -119,6 +121,12 @@ int main(void) {
   /* Initialize all configured peripherals */
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  // v1.23 HEARTBEAT: Proof of Life
+  HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_SET);
+  HAL_Delay(500);
+  HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_Delay(500);
+  HAL_GPIO_WritePin(GPIOJ, GPIO_PIN_13, GPIO_PIN_SET);
   MX_UART5_Init();
   // MX_LTDC_Init();   // Handled by BSP_LCD_Init
   // MX_DMA2D_Init();  // Will init AFTER BSP_LCD_Init in FreeRTOS task
@@ -267,6 +275,19 @@ void MX_UART5_Init(void) {
   huart5.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart5.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
   if (HAL_UART_Init(&huart5) != HAL_OK) {
+    Error_Handler();
+  }
+}
+
+void MX_RTC_Init(void) {
+  hrtc.Instance = RTC;
+  hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
+  hrtc.Init.AsynchPrediv = 127;
+  hrtc.Init.SynchPrediv = 255;
+  hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
+  hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+  hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
+  if (HAL_RTC_Init(&hrtc) != HAL_OK) {
     Error_Handler();
   }
 }

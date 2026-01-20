@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -38,309 +38,339 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 1
   38              		@ link register save eliminated.
   39 0000 0020     		movs	r0, #0
   40 0002 7047     		bx	lr
-  42              		.section	.text.CDC_Receive_HS,"ax",%progbits
+  42              		.section	.text.CDC_Control_HS,"ax",%progbits
   43              		.align	1
   44              		.syntax unified
   45              		.thumb
   46              		.thumb_func
-  48              	CDC_Receive_HS:
+  48              	CDC_Control_HS:
   49              		@ args = 0, pretend = 0, frame = 0
   50              		@ frame_needed = 0, uses_anonymous_args = 0
-  51 0000 38B5     		push	{r3, r4, r5, lr}
-  52 0002 0446     		mov	r4, r0
-  53 0004 6423     		movs	r3, #100
-  54 0006 0A88     		ldrh	r2, [r1]
-  55 0008 0146     		mov	r1, r0
-  56 000a 0648     		ldr	r0, .L5
-  57 000c FFF7FEFF 		bl	HAL_UART_Transmit
-  58 0010 054D     		ldr	r5, .L5+4
-  59 0012 2146     		mov	r1, r4
-  60 0014 2846     		mov	r0, r5
-  61 0016 FFF7FEFF 		bl	USBD_CDC_SetRxBuffer
-  62 001a 2846     		mov	r0, r5
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 2
+  51 0000 08B5     		push	{r3, lr}
+  52 0002 2028     		cmp	r0, #32
+  53 0004 0BD0     		beq	.L4
+  54 0006 2128     		cmp	r0, #33
+  55 0008 07D1     		bne	.L6
+  56 000a 1A4B     		ldr	r3, .L18
+  57 000c 5B68     		ldr	r3, [r3, #4]
+  58 000e 0B60     		str	r3, [r1]
+  59 0010 0023     		movs	r3, #0
+  60 0012 0B71     		strb	r3, [r1, #4]
+  61 0014 4B71     		strb	r3, [r1, #5]
+  62 0016 0823     		movs	r3, #8
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 2
 
 
-  63 001c FFF7FEFF 		bl	USBD_CDC_ReceivePacket
-  64 0020 0020     		movs	r0, #0
-  65 0022 38BD     		pop	{r3, r4, r5, pc}
-  66              	.L6:
-  67              		.align	2
-  68              	.L5:
-  69 0024 00000000 		.word	huart5
-  70 0028 00000000 		.word	hUsbDeviceHS
-  72              		.section	.text.CDC_Control_HS,"ax",%progbits
-  73              		.align	1
-  74              		.syntax unified
-  75              		.thumb
-  76              		.thumb_func
-  78              	CDC_Control_HS:
-  79              		@ args = 0, pretend = 0, frame = 0
-  80              		@ frame_needed = 0, uses_anonymous_args = 0
-  81 0000 08B5     		push	{r3, lr}
-  82 0002 2028     		cmp	r0, #32
-  83 0004 0BD0     		beq	.L8
-  84 0006 2128     		cmp	r0, #33
-  85 0008 07D1     		bne	.L10
-  86 000a 1A4B     		ldr	r3, .L22
-  87 000c 5B68     		ldr	r3, [r3, #4]
-  88 000e 0B60     		str	r3, [r1]
-  89 0010 0023     		movs	r3, #0
-  90 0012 0B71     		strb	r3, [r1, #4]
-  91 0014 4B71     		strb	r3, [r1, #5]
-  92 0016 0823     		movs	r3, #8
-  93 0018 8B71     		strb	r3, [r1, #6]
-  94              	.L10:
-  95 001a 0020     		movs	r0, #0
-  96 001c 08BD     		pop	{r3, pc}
-  97              	.L8:
-  98 001e 072A     		cmp	r2, #7
-  99 0020 FBD1     		bne	.L10
- 100 0022 0A68     		ldr	r2, [r1]
- 101 0024 134B     		ldr	r3, .L22
- 102 0026 5A60     		str	r2, [r3, #4]
- 103 0028 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
- 104 002a 072B     		cmp	r3, #7
- 105 002c 0FD0     		beq	.L19
- 106 002e 0022     		movs	r2, #0
- 107              	.L11:
- 108 0030 104B     		ldr	r3, .L22
- 109 0032 9A60     		str	r2, [r3, #8]
- 110 0034 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
- 111 0036 022B     		cmp	r3, #2
- 112 0038 0CD0     		beq	.L20
- 113 003a 0022     		movs	r2, #0
- 114              	.L12:
- 115 003c 0D4B     		ldr	r3, .L22
- 116 003e DA60     		str	r2, [r3, #12]
- 117 0040 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
- 118 0042 6BB1     		cbz	r3, .L16
- 119 0044 012B     		cmp	r3, #1
- 120 0046 08D0     		beq	.L21
- 121 0048 4FF48063 		mov	r3, #1024
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 3
+  63 0018 8B71     		strb	r3, [r1, #6]
+  64              	.L6:
+  65 001a 0020     		movs	r0, #0
+  66 001c 08BD     		pop	{r3, pc}
+  67              	.L4:
+  68 001e 072A     		cmp	r2, #7
+  69 0020 FBD1     		bne	.L6
+  70 0022 0A68     		ldr	r2, [r1]
+  71 0024 134B     		ldr	r3, .L18
+  72 0026 5A60     		str	r2, [r3, #4]
+  73 0028 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+  74 002a 072B     		cmp	r3, #7
+  75 002c 0FD0     		beq	.L15
+  76 002e 0022     		movs	r2, #0
+  77              	.L7:
+  78 0030 104B     		ldr	r3, .L18
+  79 0032 9A60     		str	r2, [r3, #8]
+  80 0034 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+  81 0036 022B     		cmp	r3, #2
+  82 0038 0CD0     		beq	.L16
+  83 003a 0022     		movs	r2, #0
+  84              	.L8:
+  85 003c 0D4B     		ldr	r3, .L18
+  86 003e DA60     		str	r2, [r3, #12]
+  87 0040 4B79     		ldrb	r3, [r1, #5]	@ zero_extendqisi2
+  88 0042 6BB1     		cbz	r3, .L12
+  89 0044 012B     		cmp	r3, #1
+  90 0046 08D0     		beq	.L17
+  91 0048 4FF48063 		mov	r3, #1024
+  92 004c 09E0     		b	.L9
+  93              	.L15:
+  94 004e 4FF08052 		mov	r2, #268435456
+  95 0052 EDE7     		b	.L7
+  96              	.L16:
+  97 0054 4FF40052 		mov	r2, #8192
+  98 0058 F0E7     		b	.L8
+  99              	.L17:
+ 100 005a 4FF4C063 		mov	r3, #1536
+ 101 005e 00E0     		b	.L9
+ 102              	.L12:
+ 103 0060 0023     		movs	r3, #0
+ 104              	.L9:
+ 105 0062 0448     		ldr	r0, .L18
+ 106 0064 0361     		str	r3, [r0, #16]
+ 107 0066 FFF7FEFF 		bl	HAL_UART_Init
+ 108 006a 0028     		cmp	r0, #0
+ 109 006c D5D0     		beq	.L6
+ 110 006e FFF7FEFF 		bl	Error_Handler
+ 111 0072 D2E7     		b	.L6
+ 112              	.L19:
+ 113              		.align	2
+ 114              	.L18:
+ 115 0074 00000000 		.word	huart5
+ 117              		.section	.text.CDC_Init_HS,"ax",%progbits
+ 118              		.align	1
+ 119              		.syntax unified
+ 120              		.thumb
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 3
 
 
- 122 004c 09E0     		b	.L13
- 123              	.L19:
- 124 004e 4FF08052 		mov	r2, #268435456
- 125 0052 EDE7     		b	.L11
- 126              	.L20:
- 127 0054 4FF40052 		mov	r2, #8192
- 128 0058 F0E7     		b	.L12
- 129              	.L21:
- 130 005a 4FF4C063 		mov	r3, #1536
- 131 005e 00E0     		b	.L13
- 132              	.L16:
- 133 0060 0023     		movs	r3, #0
- 134              	.L13:
- 135 0062 0448     		ldr	r0, .L22
- 136 0064 0361     		str	r3, [r0, #16]
- 137 0066 FFF7FEFF 		bl	HAL_UART_Init
- 138 006a 0028     		cmp	r0, #0
- 139 006c D5D0     		beq	.L10
- 140 006e FFF7FEFF 		bl	Error_Handler
- 141 0072 D2E7     		b	.L10
- 142              	.L23:
- 143              		.align	2
- 144              	.L22:
- 145 0074 00000000 		.word	huart5
- 147              		.section	.text.CDC_Init_HS,"ax",%progbits
- 148              		.align	1
- 149              		.syntax unified
- 150              		.thumb
- 151              		.thumb_func
- 153              	CDC_Init_HS:
- 154              		@ args = 0, pretend = 0, frame = 0
- 155              		@ frame_needed = 0, uses_anonymous_args = 0
- 156 0000 10B5     		push	{r4, lr}
- 157 0002 064C     		ldr	r4, .L26
- 158 0004 0022     		movs	r2, #0
- 159 0006 0649     		ldr	r1, .L26+4
- 160 0008 2046     		mov	r0, r4
- 161 000a FFF7FEFF 		bl	USBD_CDC_SetTxBuffer
- 162 000e 0549     		ldr	r1, .L26+8
- 163 0010 2046     		mov	r0, r4
- 164 0012 FFF7FEFF 		bl	USBD_CDC_SetRxBuffer
- 165 0016 0020     		movs	r0, #0
- 166 0018 10BD     		pop	{r4, pc}
- 167              	.L27:
- 168 001a 00BF     		.align	2
- 169              	.L26:
- 170 001c 00000000 		.word	hUsbDeviceHS
- 171 0020 00000000 		.word	UserTxBufferHS
- 172 0024 00000000 		.word	UserRxBufferHS
- 174              		.section	.text.CDC_Transmit_HS,"ax",%progbits
- 175              		.align	1
- 176              		.global	CDC_Transmit_HS
- 177              		.syntax unified
- 178              		.thumb
- 179              		.thumb_func
- 181              	CDC_Transmit_HS:
- 182              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 4
+ 121              		.thumb_func
+ 123              	CDC_Init_HS:
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126 0000 10B5     		push	{r4, lr}
+ 127 0002 064C     		ldr	r4, .L22
+ 128 0004 0022     		movs	r2, #0
+ 129 0006 0649     		ldr	r1, .L22+4
+ 130 0008 2046     		mov	r0, r4
+ 131 000a FFF7FEFF 		bl	USBD_CDC_SetTxBuffer
+ 132 000e 0549     		ldr	r1, .L22+8
+ 133 0010 2046     		mov	r0, r4
+ 134 0012 FFF7FEFF 		bl	USBD_CDC_SetRxBuffer
+ 135 0016 0020     		movs	r0, #0
+ 136 0018 10BD     		pop	{r4, pc}
+ 137              	.L23:
+ 138 001a 00BF     		.align	2
+ 139              	.L22:
+ 140 001c 00000000 		.word	hUsbDeviceHS
+ 141 0020 00000000 		.word	UserTxBufferHS
+ 142 0024 00000000 		.word	UserRxBufferHS
+ 144              		.section	.text.CDC_Transmit_HS,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	CDC_Transmit_HS
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	CDC_Transmit_HS:
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154 0000 094B     		ldr	r3, .L32
+ 155 0002 D3F8BC32 		ldr	r3, [r3, #700]
+ 156 0006 D3F81432 		ldr	r3, [r3, #532]
+ 157 000a 0BB1     		cbz	r3, .L31
+ 158 000c 0120     		movs	r0, #1
+ 159 000e 7047     		bx	lr
+ 160              	.L31:
+ 161 0010 10B5     		push	{r4, lr}
+ 162 0012 054C     		ldr	r4, .L32
+ 163 0014 0A46     		mov	r2, r1
+ 164 0016 0146     		mov	r1, r0
+ 165 0018 2046     		mov	r0, r4
+ 166 001a FFF7FEFF 		bl	USBD_CDC_SetTxBuffer
+ 167 001e 2046     		mov	r0, r4
+ 168 0020 FFF7FEFF 		bl	USBD_CDC_TransmitPacket
+ 169 0024 10BD     		pop	{r4, pc}
+ 170              	.L33:
+ 171 0026 00BF     		.align	2
+ 172              	.L32:
+ 173 0028 00000000 		.word	hUsbDeviceHS
+ 175              		.section	.rodata.CDC_Receive_HS.str1.4,"aMS",%progbits,1
+ 176              		.align	2
+ 177              	.LC0:
+ 178 0000 41544456 		.ascii	"ATDV?\000"
+ 178      3F00
+ 179 0006 0000     		.align	2
+ 180              	.LC1:
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 4
 
 
- 183              		@ frame_needed = 0, uses_anonymous_args = 0
- 184 0000 094B     		ldr	r3, .L36
- 185 0002 D3F8BC32 		ldr	r3, [r3, #700]
- 186 0006 D3F81432 		ldr	r3, [r3, #532]
- 187 000a 0BB1     		cbz	r3, .L35
- 188 000c 0120     		movs	r0, #1
- 189 000e 7047     		bx	lr
- 190              	.L35:
- 191 0010 10B5     		push	{r4, lr}
- 192 0012 054C     		ldr	r4, .L36
- 193 0014 0A46     		mov	r2, r1
- 194 0016 0146     		mov	r1, r0
- 195 0018 2046     		mov	r0, r4
- 196 001a FFF7FEFF 		bl	USBD_CDC_SetTxBuffer
- 197 001e 2046     		mov	r0, r4
- 198 0020 FFF7FEFF 		bl	USBD_CDC_TransmitPacket
- 199 0024 10BD     		pop	{r4, pc}
- 200              	.L37:
- 201 0026 00BF     		.align	2
- 202              	.L36:
- 203 0028 00000000 		.word	hUsbDeviceHS
- 205              		.section	.text.VCP_Read,"ax",%progbits
- 206              		.align	1
- 207              		.global	VCP_Read
- 208              		.syntax unified
- 209              		.thumb
- 210              		.thumb_func
- 212              	VCP_Read:
- 213              		@ args = 0, pretend = 0, frame = 0
- 214              		@ frame_needed = 0, uses_anonymous_args = 0
- 215              		@ link register save eliminated.
- 216 0000 8446     		mov	ip, r0
- 217 0002 0020     		movs	r0, #0
- 218 0004 8842     		cmp	r0, r1
- 219 0006 17D2     		bcs	.L47
- 220 0008 10B4     		push	{r4}
- 221              	.L44:
- 222 000a 0C4B     		ldr	r3, .L48
- 223 000c 1A68     		ldr	r2, [r3]
- 224 000e 0C4B     		ldr	r3, .L48+4
- 225 0010 1B68     		ldr	r3, [r3]
- 226 0012 9A42     		cmp	r2, r3
- 227 0014 0DD0     		beq	.L38
- 228 0016 094A     		ldr	r2, .L48
- 229 0018 1368     		ldr	r3, [r2]
- 230 001a 0A4C     		ldr	r4, .L48+8
- 231 001c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
- 232 001e 0CF80030 		strb	r3, [ip, r0]
- 233 0022 1368     		ldr	r3, [r2]
- 234 0024 0133     		adds	r3, r3, #1
- 235 0026 C3F30A03 		ubfx	r3, r3, #0, #11
- 236 002a 1360     		str	r3, [r2]
- 237 002c 0130     		adds	r0, r0, #1
- 238 002e 8842     		cmp	r0, r1
- 239 0030 EBD3     		bcc	.L44
- 240              	.L38:
- 241 0032 5DF8044B 		ldr	r4, [sp], #4
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 5
+ 181 0008 0D0A762E 		.ascii	"\015\012v.1.35.01 2026.01.20\015\012\000"
+ 181      312E3335 
+ 181      2E303120 
+ 181      32303236 
+ 181      2E30312E 
+ 182              		.section	.text.CDC_Receive_HS,"ax",%progbits
+ 183              		.align	1
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 188              	CDC_Receive_HS:
+ 189              		@ args = 0, pretend = 0, frame = 0
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191 0000 38B5     		push	{r3, r4, r5, lr}
+ 192 0002 0446     		mov	r4, r0
+ 193 0004 6423     		movs	r3, #100
+ 194 0006 0A88     		ldrh	r2, [r1]
+ 195 0008 0146     		mov	r1, r0
+ 196 000a 0C48     		ldr	r0, .L38
+ 197 000c FFF7FEFF 		bl	HAL_UART_Transmit
+ 198 0010 0522     		movs	r2, #5
+ 199 0012 0B49     		ldr	r1, .L38+4
+ 200 0014 2046     		mov	r0, r4
+ 201 0016 FFF7FEFF 		bl	strncmp
+ 202 001a 48B1     		cbz	r0, .L37
+ 203              	.L35:
+ 204 001c 094D     		ldr	r5, .L38+8
+ 205 001e 2146     		mov	r1, r4
+ 206 0020 2846     		mov	r0, r5
+ 207 0022 FFF7FEFF 		bl	USBD_CDC_SetRxBuffer
+ 208 0026 2846     		mov	r0, r5
+ 209 0028 FFF7FEFF 		bl	USBD_CDC_ReceivePacket
+ 210 002c 0020     		movs	r0, #0
+ 211 002e 38BD     		pop	{r3, r4, r5, pc}
+ 212              	.L37:
+ 213 0030 1821     		movs	r1, #24
+ 214 0032 0548     		ldr	r0, .L38+12
+ 215 0034 FFF7FEFF 		bl	CDC_Transmit_HS
+ 216 0038 F0E7     		b	.L35
+ 217              	.L39:
+ 218 003a 00BF     		.align	2
+ 219              	.L38:
+ 220 003c 00000000 		.word	huart5
+ 221 0040 00000000 		.word	.LC0
+ 222 0044 00000000 		.word	hUsbDeviceHS
+ 223 0048 08000000 		.word	.LC1
+ 225              		.section	.text.VCP_Read,"ax",%progbits
+ 226              		.align	1
+ 227              		.global	VCP_Read
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 232              	VCP_Read:
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 0, uses_anonymous_args = 0
+ 235              		@ link register save eliminated.
+ 236 0000 8446     		mov	ip, r0
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 5
 
 
- 242 0036 7047     		bx	lr
- 243              	.L47:
- 244 0038 7047     		bx	lr
- 245              	.L49:
- 246 003a 00BF     		.align	2
- 247              	.L48:
- 248 003c 00000000 		.word	UserRxRingTail
- 249 0040 00000000 		.word	UserRxRingHead
- 250 0044 00000000 		.word	UserRxRingBuffer
- 252              		.global	USBD_Interface_fops_HS
- 253              		.section	.data.USBD_Interface_fops_HS,"aw"
- 254              		.align	2
- 257              	USBD_Interface_fops_HS:
- 258 0000 00000000 		.word	CDC_Init_HS
- 259 0004 00000000 		.word	CDC_DeInit_HS
- 260 0008 00000000 		.word	CDC_Control_HS
- 261 000c 00000000 		.word	CDC_Receive_HS
- 262 0010 00000000 		.word	CDC_TransmitCplt_HS
- 263              		.global	UserTxBufferHS
- 264              		.section	.bss.UserTxBufferHS,"aw",%nobits
- 265              		.align	2
- 268              	UserTxBufferHS:
- 269 0000 00000000 		.space	2048
- 269      00000000 
- 269      00000000 
- 269      00000000 
- 269      00000000 
- 270              		.global	UserRxBufferHS
- 271              		.section	.bss.UserRxBufferHS,"aw",%nobits
- 272              		.align	2
- 275              	UserRxBufferHS:
- 276 0000 00000000 		.space	2048
- 276      00000000 
- 276      00000000 
- 276      00000000 
- 276      00000000 
- 277              		.global	UserRxRingTail
- 278              		.section	.bss.UserRxRingTail,"aw",%nobits
- 279              		.align	2
- 282              	UserRxRingTail:
- 283 0000 00000000 		.space	4
- 284              		.global	UserRxRingHead
- 285              		.section	.bss.UserRxRingHead,"aw",%nobits
- 286              		.align	2
- 289              	UserRxRingHead:
- 290 0000 00000000 		.space	4
- 291              		.global	UserRxRingBuffer
- 292              		.section	.bss.UserRxRingBuffer,"aw",%nobits
- 293              		.align	2
- 296              	UserRxRingBuffer:
- 297 0000 00000000 		.space	2048
- 297      00000000 
- 297      00000000 
- 297      00000000 
- 297      00000000 
- 298              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s 			page 6
+ 237 0002 0020     		movs	r0, #0
+ 238 0004 8842     		cmp	r0, r1
+ 239 0006 17D2     		bcs	.L49
+ 240 0008 10B4     		push	{r4}
+ 241              	.L46:
+ 242 000a 0C4B     		ldr	r3, .L50
+ 243 000c 1A68     		ldr	r2, [r3]
+ 244 000e 0C4B     		ldr	r3, .L50+4
+ 245 0010 1B68     		ldr	r3, [r3]
+ 246 0012 9A42     		cmp	r2, r3
+ 247 0014 0DD0     		beq	.L40
+ 248 0016 094A     		ldr	r2, .L50
+ 249 0018 1368     		ldr	r3, [r2]
+ 250 001a 0A4C     		ldr	r4, .L50+8
+ 251 001c E35C     		ldrb	r3, [r4, r3]	@ zero_extendqisi2
+ 252 001e 0CF80030 		strb	r3, [ip, r0]
+ 253 0022 1368     		ldr	r3, [r2]
+ 254 0024 0133     		adds	r3, r3, #1
+ 255 0026 C3F30A03 		ubfx	r3, r3, #0, #11
+ 256 002a 1360     		str	r3, [r2]
+ 257 002c 0130     		adds	r0, r0, #1
+ 258 002e 8842     		cmp	r0, r1
+ 259 0030 EBD3     		bcc	.L46
+ 260              	.L40:
+ 261 0032 5DF8044B 		ldr	r4, [sp], #4
+ 262 0036 7047     		bx	lr
+ 263              	.L49:
+ 264 0038 7047     		bx	lr
+ 265              	.L51:
+ 266 003a 00BF     		.align	2
+ 267              	.L50:
+ 268 003c 00000000 		.word	UserRxRingTail
+ 269 0040 00000000 		.word	UserRxRingHead
+ 270 0044 00000000 		.word	UserRxRingBuffer
+ 272              		.global	USBD_Interface_fops_HS
+ 273              		.section	.data.USBD_Interface_fops_HS,"aw"
+ 274              		.align	2
+ 277              	USBD_Interface_fops_HS:
+ 278 0000 00000000 		.word	CDC_Init_HS
+ 279 0004 00000000 		.word	CDC_DeInit_HS
+ 280 0008 00000000 		.word	CDC_Control_HS
+ 281 000c 00000000 		.word	CDC_Receive_HS
+ 282 0010 00000000 		.word	CDC_TransmitCplt_HS
+ 283              		.global	UserTxBufferHS
+ 284              		.section	.bss.UserTxBufferHS,"aw",%nobits
+ 285              		.align	2
+ 288              	UserTxBufferHS:
+ 289 0000 00000000 		.space	2048
+ 289      00000000 
+ 289      00000000 
+ 289      00000000 
+ 289      00000000 
+ 290              		.global	UserRxBufferHS
+ 291              		.section	.bss.UserRxBufferHS,"aw",%nobits
+ 292              		.align	2
+ 295              	UserRxBufferHS:
+ 296 0000 00000000 		.space	2048
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 6
+
+
+ 296      00000000 
+ 296      00000000 
+ 296      00000000 
+ 296      00000000 
+ 297              		.global	UserRxRingTail
+ 298              		.section	.bss.UserRxRingTail,"aw",%nobits
+ 299              		.align	2
+ 302              	UserRxRingTail:
+ 303 0000 00000000 		.space	4
+ 304              		.global	UserRxRingHead
+ 305              		.section	.bss.UserRxRingHead,"aw",%nobits
+ 306              		.align	2
+ 309              	UserRxRingHead:
+ 310 0000 00000000 		.space	4
+ 311              		.global	UserRxRingBuffer
+ 312              		.section	.bss.UserRxRingBuffer,"aw",%nobits
+ 313              		.align	2
+ 316              	UserRxRingBuffer:
+ 317 0000 00000000 		.space	2048
+ 317      00000000 
+ 317      00000000 
+ 317      00000000 
+ 317      00000000 
+ 318              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_cdc_if.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:17     .text.CDC_DeInit_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:22     .text.CDC_DeInit_HS:00000000 CDC_DeInit_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:30     .text.CDC_TransmitCplt_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:35     .text.CDC_TransmitCplt_HS:00000000 CDC_TransmitCplt_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:43     .text.CDC_Receive_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:48     .text.CDC_Receive_HS:00000000 CDC_Receive_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:69     .text.CDC_Receive_HS:00000024 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:73     .text.CDC_Control_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:78     .text.CDC_Control_HS:00000000 CDC_Control_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:145    .text.CDC_Control_HS:00000074 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:148    .text.CDC_Init_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:153    .text.CDC_Init_HS:00000000 CDC_Init_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:170    .text.CDC_Init_HS:0000001c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:268    .bss.UserTxBufferHS:00000000 UserTxBufferHS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:275    .bss.UserRxBufferHS:00000000 UserRxBufferHS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:175    .text.CDC_Transmit_HS:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:181    .text.CDC_Transmit_HS:00000000 CDC_Transmit_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:203    .text.CDC_Transmit_HS:00000028 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:206    .text.VCP_Read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:212    .text.VCP_Read:00000000 VCP_Read
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:248    .text.VCP_Read:0000003c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:282    .bss.UserRxRingTail:00000000 UserRxRingTail
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:289    .bss.UserRxRingHead:00000000 UserRxRingHead
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:296    .bss.UserRxRingBuffer:00000000 UserRxRingBuffer
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:257    .data.USBD_Interface_fops_HS:00000000 USBD_Interface_fops_HS
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:254    .data.USBD_Interface_fops_HS:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:265    .bss.UserTxBufferHS:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:272    .bss.UserRxBufferHS:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:279    .bss.UserRxRingTail:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:286    .bss.UserRxRingHead:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//cchF8ZYi.s:293    .bss.UserRxRingBuffer:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:17     .text.CDC_DeInit_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:22     .text.CDC_DeInit_HS:00000000 CDC_DeInit_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:30     .text.CDC_TransmitCplt_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:35     .text.CDC_TransmitCplt_HS:00000000 CDC_TransmitCplt_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:43     .text.CDC_Control_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:48     .text.CDC_Control_HS:00000000 CDC_Control_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:115    .text.CDC_Control_HS:00000074 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:118    .text.CDC_Init_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:123    .text.CDC_Init_HS:00000000 CDC_Init_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:140    .text.CDC_Init_HS:0000001c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:288    .bss.UserTxBufferHS:00000000 UserTxBufferHS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:295    .bss.UserRxBufferHS:00000000 UserRxBufferHS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:145    .text.CDC_Transmit_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:151    .text.CDC_Transmit_HS:00000000 CDC_Transmit_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:173    .text.CDC_Transmit_HS:00000028 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:176    .rodata.CDC_Receive_HS.str1.4:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:183    .text.CDC_Receive_HS:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:188    .text.CDC_Receive_HS:00000000 CDC_Receive_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:220    .text.CDC_Receive_HS:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:226    .text.VCP_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:232    .text.VCP_Read:00000000 VCP_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:268    .text.VCP_Read:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:302    .bss.UserRxRingTail:00000000 UserRxRingTail
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:309    .bss.UserRxRingHead:00000000 UserRxRingHead
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:316    .bss.UserRxRingBuffer:00000000 UserRxRingBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:277    .data.USBD_Interface_fops_HS:00000000 USBD_Interface_fops_HS
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:274    .data.USBD_Interface_fops_HS:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:285    .bss.UserTxBufferHS:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:292    .bss.UserRxBufferHS:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:299    .bss.UserRxRingTail:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:306    .bss.UserRxRingHead:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccpb2E1n.s:313    .bss.UserRxRingBuffer:00000000 $d
 
 UNDEFINED SYMBOLS
-HAL_UART_Transmit
-USBD_CDC_SetRxBuffer
-USBD_CDC_ReceivePacket
-huart5
-hUsbDeviceHS
 HAL_UART_Init
 Error_Handler
+huart5
 USBD_CDC_SetTxBuffer
+USBD_CDC_SetRxBuffer
+hUsbDeviceHS
 USBD_CDC_TransmitPacket
+HAL_UART_Transmit
+strncmp
+USBD_CDC_ReceivePacket

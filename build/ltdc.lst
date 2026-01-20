@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 1
   56 004a 80F83530 		strb	r3, [r0, #53]
   57 004e 80F83630 		strb	r3, [r0, #54]
   58 0052 FFF7FEFF 		bl	HAL_LTDC_Init
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s 			page 2
 
 
   59 0056 28BB     		cbnz	r0, .L5
@@ -70,14 +70,14 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 1
   65 0062 0392     		str	r2, [sp, #12]
   66 0064 4FF4F073 		mov	r3, #480
   67 0068 0493     		str	r3, [sp, #16]
-  68 006a 0220     		movs	r0, #2
+  68 006a 0120     		movs	r0, #1
   69 006c 0590     		str	r0, [sp, #20]
   70 006e FF20     		movs	r0, #255
   71 0070 0690     		str	r0, [sp, #24]
   72 0072 0792     		str	r2, [sp, #28]
-  73 0074 4FF4C060 		mov	r0, #1536
+  73 0074 4FF48060 		mov	r0, #1024
   74 0078 0890     		str	r0, [sp, #32]
-  75 007a 0720     		movs	r0, #7
+  75 007a 0520     		movs	r0, #5
   76 007c 0990     		str	r0, [sp, #36]
   77 007e 4FF04040 		mov	r0, #-1073741824
   78 0082 0A90     		str	r0, [sp, #40]
@@ -118,14 +118,14 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 1
  115 0002 A6B0     		sub	sp, sp, #152
  116 0004 0446     		mov	r4, r0
  117 0006 9022     		movs	r2, #144
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s 			page 3
 
 
  118 0008 0021     		movs	r1, #0
  119 000a 02A8     		add	r0, sp, #8
  120 000c FFF7FEFF 		bl	memset
  121 0010 2268     		ldr	r2, [r4]
- 122 0012 154B     		ldr	r3, .L15
+ 122 0012 134B     		ldr	r3, .L15
  123 0014 9A42     		cmp	r2, r3
  124 0016 01D0     		beq	.L13
  125              	.L9:
@@ -135,100 +135,95 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 1
  129              	.L13:
  130 001c 0823     		movs	r3, #8
  131 001e 0293     		str	r3, [sp, #8]
- 132 0020 C023     		movs	r3, #192
- 133 0022 0793     		str	r3, [sp, #28]
- 134 0024 0223     		movs	r3, #2
- 135 0026 0993     		str	r3, [sp, #36]
- 136 0028 0323     		movs	r3, #3
- 137 002a 0893     		str	r3, [sp, #32]
- 138 002c 0123     		movs	r3, #1
- 139 002e 0A93     		str	r3, [sp, #40]
- 140 0030 0C93     		str	r3, [sp, #48]
- 141 0032 02A8     		add	r0, sp, #8
- 142 0034 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
- 143 0038 90B9     		cbnz	r0, .L14
- 144              	.L11:
- 145 003a 0C4B     		ldr	r3, .L15+4
- 146 003c 5A6C     		ldr	r2, [r3, #68]
- 147 003e 42F08062 		orr	r2, r2, #67108864
- 148 0042 5A64     		str	r2, [r3, #68]
- 149 0044 5B6C     		ldr	r3, [r3, #68]
- 150 0046 03F08063 		and	r3, r3, #67108864
- 151 004a 0193     		str	r3, [sp, #4]
- 152 004c 019B     		ldr	r3, [sp, #4]
- 153 004e 0022     		movs	r2, #0
- 154 0050 0521     		movs	r1, #5
- 155 0052 5820     		movs	r0, #88
- 156 0054 FFF7FEFF 		bl	HAL_NVIC_SetPriority
- 157 0058 5820     		movs	r0, #88
- 158 005a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
- 159 005e DBE7     		b	.L9
- 160              	.L14:
- 161 0060 FFF7FEFF 		bl	Error_Handler
- 162 0064 E9E7     		b	.L11
- 163              	.L16:
- 164 0066 00BF     		.align	2
- 165              	.L15:
- 166 0068 00680140 		.word	1073833984
- 167 006c 00380240 		.word	1073887232
- 169              		.section	.text.HAL_LTDC_MspDeInit,"ax",%progbits
- 170              		.align	1
- 171              		.global	HAL_LTDC_MspDeInit
- 172              		.syntax unified
- 173              		.thumb
- 174              		.thumb_func
- 176              	HAL_LTDC_MspDeInit:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 4
+ 132 0020 4FF4C073 		mov	r3, #384
+ 133 0024 0793     		str	r3, [sp, #28]
+ 134 0026 0723     		movs	r3, #7
+ 135 0028 0993     		str	r3, [sp, #36]
+ 136 002a 02A8     		add	r0, sp, #8
+ 137 002c FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 138 0030 90B9     		cbnz	r0, .L14
+ 139              	.L11:
+ 140 0032 0C4B     		ldr	r3, .L15+4
+ 141 0034 5A6C     		ldr	r2, [r3, #68]
+ 142 0036 42F08062 		orr	r2, r2, #67108864
+ 143 003a 5A64     		str	r2, [r3, #68]
+ 144 003c 5B6C     		ldr	r3, [r3, #68]
+ 145 003e 03F08063 		and	r3, r3, #67108864
+ 146 0042 0193     		str	r3, [sp, #4]
+ 147 0044 019B     		ldr	r3, [sp, #4]
+ 148 0046 0022     		movs	r2, #0
+ 149 0048 0521     		movs	r1, #5
+ 150 004a 5820     		movs	r0, #88
+ 151 004c FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 152 0050 5820     		movs	r0, #88
+ 153 0052 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 154 0056 DFE7     		b	.L9
+ 155              	.L14:
+ 156 0058 FFF7FEFF 		bl	Error_Handler
+ 157 005c E9E7     		b	.L11
+ 158              	.L16:
+ 159 005e 00BF     		.align	2
+ 160              	.L15:
+ 161 0060 00680140 		.word	1073833984
+ 162 0064 00380240 		.word	1073887232
+ 164              		.section	.text.HAL_LTDC_MspDeInit,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	HAL_LTDC_MspDeInit
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 171              	HAL_LTDC_MspDeInit:
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174 0000 08B5     		push	{r3, lr}
+ 175 0002 0268     		ldr	r2, [r0]
+ 176 0004 064B     		ldr	r3, .L21
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s 			page 4
 
 
- 177              		@ args = 0, pretend = 0, frame = 0
- 178              		@ frame_needed = 0, uses_anonymous_args = 0
- 179 0000 08B5     		push	{r3, lr}
- 180 0002 0268     		ldr	r2, [r0]
- 181 0004 064B     		ldr	r3, .L21
- 182 0006 9A42     		cmp	r2, r3
- 183 0008 00D0     		beq	.L20
- 184              	.L17:
- 185 000a 08BD     		pop	{r3, pc}
- 186              	.L20:
- 187 000c 054A     		ldr	r2, .L21+4
- 188 000e 536C     		ldr	r3, [r2, #68]
- 189 0010 23F08063 		bic	r3, r3, #67108864
- 190 0014 5364     		str	r3, [r2, #68]
- 191 0016 5820     		movs	r0, #88
- 192 0018 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
- 193 001c F5E7     		b	.L17
- 194              	.L22:
- 195 001e 00BF     		.align	2
- 196              	.L21:
- 197 0020 00680140 		.word	1073833984
- 198 0024 00380240 		.word	1073887232
- 200              		.global	hltdc
- 201              		.section	.bss.hltdc,"aw",%nobits
- 202              		.align	2
- 205              	hltdc:
- 206 0000 00000000 		.space	168
- 206      00000000 
- 206      00000000 
- 206      00000000 
- 206      00000000 
- 207              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s 			page 5
+ 177 0006 9A42     		cmp	r2, r3
+ 178 0008 00D0     		beq	.L20
+ 179              	.L17:
+ 180 000a 08BD     		pop	{r3, pc}
+ 181              	.L20:
+ 182 000c 054A     		ldr	r2, .L21+4
+ 183 000e 536C     		ldr	r3, [r2, #68]
+ 184 0010 23F08063 		bic	r3, r3, #67108864
+ 185 0014 5364     		str	r3, [r2, #68]
+ 186 0016 5820     		movs	r0, #88
+ 187 0018 FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 188 001c F5E7     		b	.L17
+ 189              	.L22:
+ 190 001e 00BF     		.align	2
+ 191              	.L21:
+ 192 0020 00680140 		.word	1073833984
+ 193 0024 00380240 		.word	1073887232
+ 195              		.global	hltdc
+ 196              		.section	.bss.hltdc,"aw",%nobits
+ 197              		.align	2
+ 200              	hltdc:
+ 201 0000 00000000 		.space	168
+ 201      00000000 
+ 201      00000000 
+ 201      00000000 
+ 201      00000000 
+ 202              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ltdc.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:17     .text.MX_LTDC_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:23     .text.MX_LTDC_Init:00000000 MX_LTDC_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:101    .text.MX_LTDC_Init:000000b0 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:205    .bss.hltdc:00000000 hltdc
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:105    .text.HAL_LTDC_MspInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:111    .text.HAL_LTDC_MspInit:00000000 HAL_LTDC_MspInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:166    .text.HAL_LTDC_MspInit:00000068 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:170    .text.HAL_LTDC_MspDeInit:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:176    .text.HAL_LTDC_MspDeInit:00000000 HAL_LTDC_MspDeInit
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:197    .text.HAL_LTDC_MspDeInit:00000020 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccUO7nST.s:202    .bss.hltdc:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:17     .text.MX_LTDC_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:23     .text.MX_LTDC_Init:00000000 MX_LTDC_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:101    .text.MX_LTDC_Init:000000b0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:200    .bss.hltdc:00000000 hltdc
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:105    .text.HAL_LTDC_MspInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:111    .text.HAL_LTDC_MspInit:00000000 HAL_LTDC_MspInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:161    .text.HAL_LTDC_MspInit:00000060 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:165    .text.HAL_LTDC_MspDeInit:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:171    .text.HAL_LTDC_MspDeInit:00000000 HAL_LTDC_MspDeInit
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:192    .text.HAL_LTDC_MspDeInit:00000020 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccJwAxfm.s:197    .bss.hltdc:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

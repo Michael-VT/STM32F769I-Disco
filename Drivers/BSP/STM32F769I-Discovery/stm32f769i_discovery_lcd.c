@@ -841,7 +841,7 @@ void BSP_LCD_LayerDefaultInit(uint16_t LayerIndex, uint32_t FB_Address) {
   Layercfg.WindowX1 = BSP_LCD_GetXSize();
   Layercfg.WindowY0 = 0;
   Layercfg.WindowY1 = BSP_LCD_GetYSize();
-  Layercfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+  Layercfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
   Layercfg.FBStartAdress = FB_Address;
   Layercfg.Alpha = 255;
   Layercfg.Alpha0 = 0;
@@ -1774,9 +1774,13 @@ __weak void BSP_LCD_MspInit(void) {
  * @param  RGB_Code: Pixel color in ARGB mode (8-8-8-8)
  */
 void BSP_LCD_DrawPixel(uint16_t Xpos, uint16_t Ypos, uint32_t RGB_Code) {
-  /* Write data value to all SDRAM memory */
-  *(__IO uint32_t *)(hltdc_discovery.LayerCfg[ActiveLayer].FBStartAdress +
-                     (4 * (Ypos * BSP_LCD_GetXSize() + Xpos))) = RGB_Code;
+  uint32_t fb_addr = hltdc_discovery.LayerCfg[ActiveLayer].FBStartAdress;
+  uint8_t *pPixel =
+      (uint8_t *)(fb_addr + 3 * (Ypos * BSP_LCD_GetXSize() + Xpos));
+
+  pPixel[0] = (uint8_t)(RGB_Code >> 16); // R
+  pPixel[1] = (uint8_t)(RGB_Code >> 8);  // G
+  pPixel[2] = (uint8_t)(RGB_Code);       // B
 }
 
 /**

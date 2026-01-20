@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
   57              		.align	1
   58              		.syntax unified
   59              		.thumb
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 2
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 2
 
 
   60              		.thumb_func
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  115 0056 7047     		bx	lr
  116              	.L10:
  117              		.align	2
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 3
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 3
 
 
  118              	.L9:
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  176              		@ args = 0, pretend = 0, frame = 0
  177              		@ frame_needed = 0, uses_anonymous_args = 0
  178 0000 08B5     		push	{r3, lr}
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 4
 
 
  179 0002 0268     		ldr	r2, [r0]
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  237 001c FFF7FEFF 		bl	HAL_PWR_EnableBkUpAccess
  238 0020 2F4B     		ldr	r3, .L41
  239 0022 1A6C     		ldr	r2, [r3, #64]
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 5
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 5
 
 
  240 0024 42F08052 		orr	r2, r2, #268435456
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  294 00a8 9022     		movs	r2, #144
  295 00aa 0021     		movs	r1, #0
  296 00ac 2046     		mov	r0, r4
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 6
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 6
 
 
  297 00ae FFF7FEFF 		bl	memset
@@ -358,7 +358,7 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  353              	.L46:
  354 002a FFF7FEFF 		bl	Error_Handler
  355              	.L48:
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 7
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 7
 
 
  356 002e 00BF     		.align	2
@@ -417,99 +417,120 @@ ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 1
  413 000e FFF7FEFF 		bl	HAL_Init
  414 0012 FFF7FEFF 		bl	SystemClock_Config
  415 0016 FFF7FEFF 		bl	MX_GPIO_Init
- 416 001a FFF7FEFF 		bl	MX_UART5_Init
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 8
+ 416 001a 174C     		ldr	r4, .L54
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 8
 
 
- 417 001e FFF7FEFF 		bl	MX_I2C1_Init
- 418 0022 FFF7FEFF 		bl	MX_CRC_Init
- 419 0026 064B     		ldr	r3, .L54
- 420 0028 1A68     		ldr	r2, [r3]
- 421 002a 1368     		ldr	r3, [r2]
- 422 002c 43F02003 		orr	r3, r3, #32
- 423 0030 1360     		str	r3, [r2]
- 424 0032 FFF7FEFF 		bl	osKernelInitialize
- 425 0036 FFF7FEFF 		bl	MX_FREERTOS_Init
- 426 003a FFF7FEFF 		bl	osKernelStart
- 427              	.L52:
- 428 003e FEE7     		b	.L52
- 429              	.L55:
- 430              		.align	2
- 431              	.L54:
- 432 0040 00000000 		.word	huart5
- 434              		.global	huart5
- 435              		.section	.bss.huart5,"aw",%nobits
- 436              		.align	2
- 439              	huart5:
- 440 0000 00000000 		.space	112
- 440      00000000 
- 440      00000000 
- 440      00000000 
- 440      00000000 
- 441              		.global	UartRxByte
- 442              		.section	.bss.UartRxByte,"aw",%nobits
- 445              	UartRxByte:
- 446 0000 00       		.space	1
- 447              		.global	UartRxTail
- 448              		.section	.bss.UartRxTail,"aw",%nobits
- 449              		.align	2
- 452              	UartRxTail:
- 453 0000 00000000 		.space	4
- 454              		.global	UartRxHead
- 455              		.section	.bss.UartRxHead,"aw",%nobits
- 456              		.align	2
- 459              	UartRxHead:
- 460 0000 00000000 		.space	4
- 461              		.global	UartRxBuffer
- 462              		.section	.bss.UartRxBuffer,"aw",%nobits
- 463              		.align	2
- 466              	UartRxBuffer:
- 467 0000 00000000 		.space	2048
- 467      00000000 
- 467      00000000 
- 467      00000000 
- 467      00000000 
- 468              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 9
+ 417 001c 0122     		movs	r2, #1
+ 418 001e 4FF40051 		mov	r1, #8192
+ 419 0022 2046     		mov	r0, r4
+ 420 0024 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 421 0028 4FF4FA70 		mov	r0, #500
+ 422 002c FFF7FEFF 		bl	HAL_Delay
+ 423 0030 0022     		movs	r2, #0
+ 424 0032 4FF40051 		mov	r1, #8192
+ 425 0036 2046     		mov	r0, r4
+ 426 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 427 003c 4FF4FA70 		mov	r0, #500
+ 428 0040 FFF7FEFF 		bl	HAL_Delay
+ 429 0044 0122     		movs	r2, #1
+ 430 0046 4FF40051 		mov	r1, #8192
+ 431 004a 2046     		mov	r0, r4
+ 432 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 433 0050 FFF7FEFF 		bl	MX_UART5_Init
+ 434 0054 FFF7FEFF 		bl	MX_I2C1_Init
+ 435 0058 FFF7FEFF 		bl	MX_CRC_Init
+ 436 005c 074B     		ldr	r3, .L54+4
+ 437 005e 1A68     		ldr	r2, [r3]
+ 438 0060 1368     		ldr	r3, [r2]
+ 439 0062 43F02003 		orr	r3, r3, #32
+ 440 0066 1360     		str	r3, [r2]
+ 441 0068 FFF7FEFF 		bl	osKernelInitialize
+ 442 006c FFF7FEFF 		bl	MX_FREERTOS_Init
+ 443 0070 FFF7FEFF 		bl	osKernelStart
+ 444              	.L52:
+ 445 0074 FEE7     		b	.L52
+ 446              	.L55:
+ 447 0076 00BF     		.align	2
+ 448              	.L54:
+ 449 0078 00240240 		.word	1073882112
+ 450 007c 00000000 		.word	huart5
+ 452              		.global	huart5
+ 453              		.section	.bss.huart5,"aw",%nobits
+ 454              		.align	2
+ 457              	huart5:
+ 458 0000 00000000 		.space	112
+ 458      00000000 
+ 458      00000000 
+ 458      00000000 
+ 458      00000000 
+ 459              		.global	UartRxByte
+ 460              		.section	.bss.UartRxByte,"aw",%nobits
+ 463              	UartRxByte:
+ 464 0000 00       		.space	1
+ 465              		.global	UartRxTail
+ 466              		.section	.bss.UartRxTail,"aw",%nobits
+ 467              		.align	2
+ 470              	UartRxTail:
+ 471 0000 00000000 		.space	4
+ 472              		.global	UartRxHead
+ 473              		.section	.bss.UartRxHead,"aw",%nobits
+ 474              		.align	2
+ 477              	UartRxHead:
+ 478 0000 00000000 		.space	4
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 9
+
+
+ 479              		.global	UartRxBuffer
+ 480              		.section	.bss.UartRxBuffer,"aw",%nobits
+ 481              		.align	2
+ 484              	UartRxBuffer:
+ 485 0000 00000000 		.space	2048
+ 485      00000000 
+ 485      00000000 
+ 485      00000000 
+ 485      00000000 
+ 486              		.ident	"GCC: (Arm GNU Toolchain 14.2.Rel1 (Build arm-14.52)) 14.2.1 20241119"
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:17     .text.SCB_DisableICache:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:22     .text.SCB_DisableICache:00000000 SCB_DisableICache
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:54     .text.SCB_DisableICache:00000024 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:57     .text.SCB_DisableDCache:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:62     .text.SCB_DisableDCache:00000000 SCB_DisableDCache
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:119    .text.SCB_DisableDCache:00000058 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:122    .text.UART_Read:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:128    .text.UART_Read:00000000 UART_Read
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:164    .text.UART_Read:0000003c $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:452    .bss.UartRxTail:00000000 UartRxTail
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:459    .bss.UartRxHead:00000000 UartRxHead
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:466    .bss.UartRxBuffer:00000000 UartRxBuffer
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:169    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:175    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:191    .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:194    .text.Error_Handler:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:200    .text.Error_Handler:00000000 Error_Handler
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:215    .text.SystemClock_Config:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:221    .text.SystemClock_Config:00000000 SystemClock_Config
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:321    .text.SystemClock_Config:000000e0 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:325    .text.MX_UART5_Init:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:331    .text.MX_UART5_Init:00000000 MX_UART5_Init
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:358    .text.MX_UART5_Init:00000030 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:439    .bss.huart5:00000000 huart5
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:362    .text.MPU_Config:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:368    .text.MPU_Config:00000000 MPU_Config
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:399    .text.main:00000000 $t
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:405    .text.main:00000000 main
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:432    .text.main:00000040 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:436    .bss.huart5:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:445    .bss.UartRxByte:00000000 UartRxByte
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:446    .bss.UartRxByte:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:449    .bss.UartRxTail:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:456    .bss.UartRxHead:00000000 $d
-/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s:463    .bss.UartRxBuffer:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:17     .text.SCB_DisableICache:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:22     .text.SCB_DisableICache:00000000 SCB_DisableICache
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:54     .text.SCB_DisableICache:00000024 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:57     .text.SCB_DisableDCache:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:62     .text.SCB_DisableDCache:00000000 SCB_DisableDCache
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:119    .text.SCB_DisableDCache:00000058 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:122    .text.UART_Read:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:128    .text.UART_Read:00000000 UART_Read
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:164    .text.UART_Read:0000003c $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:470    .bss.UartRxTail:00000000 UartRxTail
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:477    .bss.UartRxHead:00000000 UartRxHead
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:484    .bss.UartRxBuffer:00000000 UartRxBuffer
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:169    .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:175    .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:191    .text.HAL_TIM_PeriodElapsedCallback:00000014 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:194    .text.Error_Handler:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:200    .text.Error_Handler:00000000 Error_Handler
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:215    .text.SystemClock_Config:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:221    .text.SystemClock_Config:00000000 SystemClock_Config
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:321    .text.SystemClock_Config:000000e0 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:325    .text.MX_UART5_Init:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:331    .text.MX_UART5_Init:00000000 MX_UART5_Init
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:358    .text.MX_UART5_Init:00000030 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:457    .bss.huart5:00000000 huart5
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:362    .text.MPU_Config:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:368    .text.MPU_Config:00000000 MPU_Config
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:399    .text.main:00000000 $t
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:405    .text.main:00000000 main
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:449    .text.main:00000078 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:454    .bss.huart5:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:463    .bss.UartRxByte:00000000 UartRxByte
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:464    .bss.UartRxByte:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:467    .bss.UartRxTail:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:474    .bss.UartRxHead:00000000 $d
+/var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s:481    .bss.UartRxBuffer:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick
@@ -526,11 +547,13 @@ HAL_MPU_ConfigRegion
 HAL_MPU_Enable
 HAL_Init
 MX_GPIO_Init
+HAL_GPIO_WritePin
+HAL_Delay
 MX_I2C1_Init
 MX_CRC_Init
+ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccv8PHol.s 			page 11
+
+
 osKernelInitialize
 MX_FREERTOS_Init
-ARM GAS  /var/folders/0f/x4_g94q9649fs6s33cksjfb00000gn/T//ccQdAXC0.s 			page 10
-
-
 osKernelStart

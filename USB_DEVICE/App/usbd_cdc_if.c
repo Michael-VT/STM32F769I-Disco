@@ -276,7 +276,6 @@ static int8_t CDC_Control_HS(uint8_t cmd, uint8_t *pbuf, uint16_t length) {
  *         before transfer is complete on CDC interface (ie. using DMA
  * controller) it will result in receiving more data while previous ones are
  * still not sent.
- *
  * @param  Buf: Buffer of data to be received
  * @param  Len: Number of data received (in bytes)
  * @retval Result of the operation: USBD_OK if all operations are OK else
@@ -286,6 +285,12 @@ static int8_t CDC_Receive_HS(uint8_t *Buf, uint32_t *Len) {
   /* USER CODE BEGIN 11 */
   // Forward received data to UART5
   HAL_UART_Transmit(&huart5, Buf, *Len, 100);
+
+  // v1.35: Handle Version Request ATDV?
+  if (strncmp((char *)Buf, "ATDV?", 5) == 0) {
+    const char *ver = "\r\nv.1.35.01 2026.01.20\r\n";
+    CDC_Transmit_HS((uint8_t *)ver, strlen(ver));
+  }
 
   // Original RingBuffer code (optional to keep or remove, removing for bridge
   // efficiency)

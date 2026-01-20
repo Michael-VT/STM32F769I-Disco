@@ -1,4 +1,6 @@
 Debug/
+github/
+foto/
 *.o
 *.cu
 *.cyclo
