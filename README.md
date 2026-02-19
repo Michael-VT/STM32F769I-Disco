@@ -1,5 +1,8 @@
 # 🎮 STM32F769I-Discovery Firmware
 
+![Amber Terminal Screenshot](blob/main/screenshorts/kit_screen.jpg)
+<img src="blob/main/screenshorts/kit_screen.jpg" alt="Описание" width="300"/>
+
 <div align="center">
 
 ![STM32](https://img.shields.io/badge/STM32-STM32F769NIH6-blue?logo=stmicroelectronics)
