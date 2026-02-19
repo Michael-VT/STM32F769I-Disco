@@ -1,7 +1,7 @@
 # 🎮 STM32F769I-Discovery Firmware
 
-![Amber Terminal Screenshot](blob/main/screenshorts/kit_screen.jpg)
-<img src="blob/main/screenshorts/kit_screen.jpg" alt="Описание" width="300"/>
+![Amber Terminal Screenshot](screenshorts/kit_screen.jpg)
+<img src="screenshorts/kit_screen.jpg" alt="Описание" width="300"/>
 
 <div align="center">
 
@@ -518,3 +518,4 @@ For issues, questions, or suggestions:
 ![Fork](https://img.shields.io/github/forks/Michael-VT/STM32F769I-Discovery?style=social)
 
 </div>
+
