@@ -19,6 +19,7 @@ test_results_*
 SUMMARY.md
 LICENSE.txt
 !kit_screen.jpg
+"TestF Debug.launch"
 *.chm
 *.out
 *.rb
