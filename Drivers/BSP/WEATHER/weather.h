@@ -23,12 +23,12 @@ extern "C" {
 #define WEATHER_API_PORT      80
 #define WEATHER_API_PATH     "/data/2.5/weather"
 
-/* WiFi credentials from openweathermap.py */
-#define WIFI_SSID     "MEO-EDC8ED"
-#define WIFI_PASSWORD "2668EB941B"
-#define WEATHER_CITY  "Peniche"
+/* WiFi credentials - Update with your network settings */
+#define WIFI_SSID     "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define WEATHER_CITY  "Your_City"  // Update with your city name for weather
 #define WEATHER_UNITS "metric"
-#define WEATHER_APPID  "f8af9ff257bfdb3ad6b6640c0325ad5b"  // Your API key from openweathermap.py
+#define WEATHER_APPID  "YOUR_OPENWEATHERMAP_API_KEY"  // Get free API key at openweathermap.org
 
 /* Weather data structure */
 typedef struct {

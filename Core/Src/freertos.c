@@ -45,9 +45,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-// WiFi credentials for ESP8266
-#define WIFI_SSID     "MEO-EDC8ED"
-#define WIFI_PASSWORD "2668EB941B"
+// WiFi credentials for ESP8266 - Update with your network settings
+#define WIFI_SSID     "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/

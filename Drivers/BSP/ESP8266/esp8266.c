@@ -869,8 +869,8 @@ ESP8266_StatusTypeDef ESP8266_NTPSync(const char *ntpServer, uint32_t *unixTimes
 ESP8266_StatusTypeDef ESP8266_GetWeather(char *response, uint16_t maxSize) {
   // OpenWeatherMap API configuration
   const char *OWM_HOST = "api.openweathermap.org";
-  const char *OWM_API_KEY = "f8af9ff257bfdb3ad6b6640c0325ad5b";
-  const char *OWM_CITY = "Peniche";  // City in Portugal
+  const char *OWM_API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";  // Get free API key at openweathermap.org
+  const char *OWM_CITY = "Your_City";  // Update with your city name
   const char *OWM_UNITS = "metric";  // Use Celsius
 
   // Build URL: http://api.openweathermap.org/data/2.5/weather?q=Peniche&units=metric&APPID=xxx
