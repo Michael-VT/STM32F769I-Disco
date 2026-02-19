@@ -18,6 +18,7 @@ test_results_*
 *Debug.launch
 SUMMARY.md
 LICENSE.txt
+!kit_screen.jpg
 *.chm
 *.out
 *.rb
