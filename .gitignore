@@ -11,6 +11,8 @@ github/
 pdb/
 profiles/
 utr/
+!screenshorts/
+!kit_screen.jpg
 CloudeCode*
 chatgpt*
 login*
