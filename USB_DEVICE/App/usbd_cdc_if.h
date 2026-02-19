@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : usbd_cdc_if.h
-  * @version        : v1.0_Cube
-  * @brief          : Header for usbd_cdc_if.c file.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : usbd_cdc_if.h
+ * @version        : v1.0_Cube
+ * @brief          : Header for usbd_cdc_if.c file.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -109,7 +109,9 @@ extern USBD_CDC_ItfTypeDef USBD_Interface_fops_HS;
 uint8_t CDC_Transmit_HS(uint8_t* Buf, uint16_t Len);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
-
+uint32_t VCP_Read(uint8_t *pBuf, uint32_t Len);
+uint8_t CDC_GetPendingCommand(void);
+void CDC_ProcessPendingCommand(uint8_t testId);
 /* USER CODE END EXPORTED_FUNCTIONS */
 
 /**

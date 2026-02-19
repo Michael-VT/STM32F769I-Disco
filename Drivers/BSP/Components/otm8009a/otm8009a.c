@@ -80,9 +80,11 @@ const uint8_t lcdRegData25[] = {0xFF,0xFF,0xFF,0xFF};
 const uint8_t lcdRegData27[] = {0x00, 0x00, 0x03, 0x1F, OTM8009A_CMD_CASET};
 /*
   * XS[15:0] = 0x000 = 0, XE[15:0] = 0x1DF = 479 for portrait mode : apply to CASET
-  * YS[15:0] = 0x000 = 0, YE[15:0] = 0x1DF = 479 for landscape mode : apply to PASET
- */
-const uint8_t lcdRegData28[] = {0x00, 0x00, 0x01, 0xDF, OTM8009A_CMD_PASET};
+  * YS[15:0] = 0x000 = 0, YE[15:0] = 0x1D7 = 471 for landscape mode : apply to PASET
+  * CRITICAL FIX v0.1.100: Display is 472 pixels (per otm8009a_fixed.h), so YE=471 (0x1D7) NOT 479 (0x1DF)
+  * Previous fix v0.1.99 incorrectly used YE=479 (0x1DF) for 480-pixel display
+  */
+const uint8_t lcdRegData28[] = {0x00, 0x00, 0x01, 0xD7, OTM8009A_CMD_PASET};
 
 
 const uint8_t ShortRegData1[]  = {OTM8009A_CMD_NOP, 0x00};
@@ -379,7 +381,7 @@ uint8_t OTM8009A_Init(uint32_t ColorCoding, uint32_t orientation)
 
   switch(ColorCoding)
   {
-  case OTM8009A_FORMAT_RBG565 :
+  case OTM8009A_FORMAT_RGB565 :
     /* Set Pixel color format to RGB565 */
     DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData37);
     break;
@@ -424,14 +426,7 @@ uint8_t OTM8009A_Init(uint32_t ColorCoding, uint32_t orientation)
   /* Send Command GRAM memory write (no parameters) : this initiates frame write via other DSI commands sent by */
   /* DSI host from LTDC incoming pixels in video mode */
   DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData45);
-  /* Grok Start */
-  /* Send Command Display On */
-  DSI_IO_WriteCmd(0, (uint8_t *)ShortRegData44);
 
-  /* Включаем Tearing Effect (TEON) — без этого часто тёмный экран */
-//  HAL_DSI_ShortWrite(&hdsi, 0, DSI_DCS_SHORT_PKT_WRITE_P1, 0x35, 0x00);
-  OTM8009A_IO_Delay(50);
-  /* Grok End */
   return 0;
 }
 

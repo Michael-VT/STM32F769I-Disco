@@ -70,7 +70,6 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
   if(pcdHandle->Instance==USB_OTG_HS)
   {
   /* USER CODE BEGIN USB_OTG_HS_MspInit 0 */
-
   /* USER CODE END USB_OTG_HS_MspInit 0 */
 
     __HAL_RCC_GPIOB_CLK_ENABLE();
@@ -131,6 +130,22 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
     /* Peripheral clock enable */
     __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
     __HAL_RCC_USB_OTG_HS_ULPI_CLK_ENABLE();
+
+  /* USER CODE BEGIN USB_OTG_HS_MspInit 1 */
+    /* ULPI PHY Configuration for STM32F769I-Discovery (USB3300 PHY) */
+    /* Configure GCCFG register AFTER clock is enabled */
+    #define USB_OTG_HS_GLOBAL_BASE   0x40040000UL
+    #define USB_OTG_GCCFG_OFFSET     0x38U
+    #define GCCFG_REG                (*(volatile uint32_t *)(USB_OTG_HS_GLOBAL_BASE + USB_OTG_GCCFG_OFFSET))
+    #define GCCFG_NOVBUSSENS_BIT     (1U << 21)  /* Disable VBUS sensing */
+
+    /* FIX v0.1.101: Increase PHY stabilization delay for reliable USB enumeration
+     * The USB3300 ULPI PHY requires sufficient time to stabilize after clock enable.
+     * 10ms is not enough - increase to 50ms and add additional delay before USB start. */
+    /* Configure GCCFG: Disable VBUS sensing for device mode */
+    GCCFG_REG |= GCCFG_NOVBUSSENS_BIT;
+    HAL_Delay(50);  /* Wait for PHY to stabilize - increased from 10ms */
+  /* USER CODE END USB_OTG_HS_MspInit 1 */
 
     /* Peripheral interrupt init */
     HAL_NVIC_SetPriority(OTG_HS_IRQn, 5, 0);
@@ -293,11 +308,7 @@ void HAL_PCD_SuspendCallback(PCD_HandleTypeDef *hpcd)
   __HAL_PCD_GATE_PHYCLOCK(hpcd);
   /* Enter in STOP mode. */
   /* USER CODE BEGIN 2 */
-  if (hpcd->Init.low_power_enable)
-  {
-    /* Set SLEEPDEEP bit and SleepOnExit of Cortex System Control Register. */
-    SCB->SCR |= (uint32_t)((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
-  }
+
   /* USER CODE END 2 */
 }
 
@@ -396,10 +407,12 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
 
   hpcd_USB_OTG_HS.Instance = USB_OTG_HS;
   hpcd_USB_OTG_HS.Init.dev_endpoints = 9;
-  hpcd_USB_OTG_HS.Init.speed = PCD_SPEED_FULL;
+  hpcd_USB_OTG_HS.Init.speed = PCD_SPEED_HIGH;  /* CRITICAL FIX v0.1.98: ULPI PHY only supports HIGH SPEED (480 Mbps), not FULL SPEED */
   hpcd_USB_OTG_HS.Init.dma_enable = DISABLE;
   hpcd_USB_OTG_HS.Init.phy_itface = USB_OTG_ULPI_PHY;
   hpcd_USB_OTG_HS.Init.Sof_enable = DISABLE;
+  // CRITICAL: Disable low power mode completely - prevents SLEEPDEEP issues
+  // LPM (Link Power Management) callbacks can interfere with SWD debug access
   hpcd_USB_OTG_HS.Init.low_power_enable = DISABLE;
   hpcd_USB_OTG_HS.Init.lpm_enable = DISABLE;
   hpcd_USB_OTG_HS.Init.vbus_sensing_enable = DISABLE;
@@ -678,9 +691,6 @@ void HAL_PCDEx_LPM_Callback(PCD_HandleTypeDef *hpcd, PCD_LPM_MsgTypeDef msg)
     if (hpcd->Init.low_power_enable)
     {
       SystemClockConfig_Resume();
-
-      /* Reset SLEEPDEEP bit of Cortex System Control Register. */
-      SCB->SCR &= (uint32_t)~((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
     }
     __HAL_PCD_UNGATE_PHYCLOCK(hpcd);
     USBD_LL_Resume(hpcd->pData);
@@ -689,13 +699,6 @@ void HAL_PCDEx_LPM_Callback(PCD_HandleTypeDef *hpcd, PCD_LPM_MsgTypeDef msg)
   case PCD_LPM_L1_ACTIVE:
     __HAL_PCD_GATE_PHYCLOCK(hpcd);
     USBD_LL_Suspend(hpcd->pData);
-
-    /* Enter in STOP mode. */
-    if (hpcd->Init.low_power_enable)
-    {
-      /* Set SLEEPDEEP bit and SleepOnExit of Cortex System Control Register. */
-      SCB->SCR |= (uint32_t)((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
-    }
     break;
   }
 }

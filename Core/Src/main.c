@@ -1,42 +1,46 @@
 /* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+/** Cooperate V0.0.1
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-//#include "../Components/otm8009a/otm8009a.h"
-#include "../../Drivers/BSP/Components/otm8009a/otm8009a.h"
-//#include "otm8009a.h"
-#include "../../Drivers/BSP/Components/otm8009a/otm8009a.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_lcd.h"
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "crc.h"
+#include "dma2d.h"
+#include "dsihost.h"
+#include "i2c.h"
+#include "ltdc.h"
+#include "rtc.h"
 #include "usb_device.h"
+#include "gpio.h"
+#include "fmc.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-/* Includes ------------------------------------------------------------------*/
-#include "stm32f7xx_hal.h"
-//#include <stm32f769i_discovery.h>
-//#include <stm32f769i_discovery_lcd>
-//#include <stm32f769i_discovery_sdram.h>
-#include "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_ts.h"
+#include "esp8266.h"
+#include "usbd_cdc_if.h"
+#include "stm32f769i_discovery_lcd.h"
+#include "stm32f769i_discovery_sdram.h"
+#include <stdio.h>
+#include <string.h>
+// TouchGFX - use stub declarations (implementations in app_touchgfx.c)
+extern void MX_TouchGFX_Init(void);
+extern void MX_TouchGFX_PreOSInit(void);
+extern void MX_TouchGFX_Process(void);
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,39 +60,31 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-DMA2D_HandleTypeDef hdma2d;
-
-DSI_HandleTypeDef hdsi;
-
-I2C_HandleTypeDef hi2c1;
-
-LTDC_HandleTypeDef hltdc;
-
-SDRAM_HandleTypeDef hsdram1;
-
-/* Definitions for defaultTask */
-osThreadId_t defaultTaskHandle;
-const osThreadAttr_t defaultTask_attributes = {
-  .name = "defaultTask",
-  .stack_size = 4096 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
-};
 /* USER CODE BEGIN PV */
-
+#define UART_RX_BUFFER_SIZE 2048
+volatile uint8_t UartRxBuffer[UART_RX_BUFFER_SIZE];
+volatile uint32_t UartRxHead = 0;
+volatile uint32_t UartRxTail = 0;
+uint8_t UartRxByte;
+UART_HandleTypeDef huart5;
+// hrtc is defined in rtc.c
+extern RTC_HandleTypeDef hrtc;
+// hltdc_discovery is defined in stm32f769i_discovery_lcd.c
+extern LTDC_HandleTypeDef hltdc_discovery;
+// Mutex to protect UART5 transmission (shared between USB CDC and ESP8266 driver)
+osMutexId_t uart5MutexId;
+// Mutex to protect USB CDC transmission (shared between multiple tasks)
+osMutexId_t cdcTransmitMutexId;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_LTDC_Init(void);
-static void MX_DMA2D_Init(void);
-static void MX_FMC_Init(void);
-static void MX_DSIHOST_DSI_Init(void);
-static void MX_I2C1_Init(void);
-void StartDefaultTask(void *argument);
-
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-
+void MX_UART5_Init(void);
+uint32_t UART_Read(uint8_t *pBuf, uint32_t Len);
+HAL_StatusTypeDef UART5_Transmit(uint8_t *pData, uint16_t Size, uint32_t Timeout);
+uint8_t CDC_Transmit_ThreadSafe(uint8_t *Buf, uint16_t Len);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -104,7 +100,13 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  // Caches enabled for USB OTG HS ULPI PHY to work properly
+  // SCB_DisableICache();
+  // SCB_DisableDCache();
+//  BSP_LCD_Init();
+//  BSP_LCD_Clear(LCD_COLOR_WHITE);
+//  BSP_LCD_DisplayStringAtLine(5, (uint8_t *)"Hello STM32F769I-DISCO");
+//  MPU_Config();
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -113,6 +115,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -124,81 +127,222 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_LTDC_Init();
-  MX_DMA2D_Init();
-  MX_FMC_Init();
-  MX_DSIHOST_DSI_Init();
+  // LTDC and DSI will be initialized by BSP_LCD_Init() - DO NOT call here
+  // MX_LTDC_Init();
+  MX_DMA2D_Init();  // DMA2D is used by BSP LCD for graphics operations
+  MX_FMC_Init();  // FMC for SDRAM - needed before LCD
+  // MX_DSIHOST_DSI_Init(); // NOT USED - BSP_LCD_InitEx() handles DSI initialization
   MX_I2C1_Init();
-
+  MX_CRC_Init();
+  MX_RTC_Init();
+  // TouchGFX disabled - needs framework library
+  // MX_TouchGFX_Init();
+  // /* Call PreOsInit function */
+  // MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
-  uint32_t ts_status = TS_OK;
-  uint8_t lcd_status = LCD_OK;
+  // uint32_t ts_status = TS_OK;
+  // uint8_t lcd_status = LCD_OK;
+  // BSP_LCD_Init();
+  // ts_status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
+  // while (ts_status != LCD_OK)
+  //   ;
+  // while (lcd_status != LCD_OK)
+  //   ;
+
+  // BSP_LCD_SetBrightness(100);
+  // BSP_LCD_Init();
+  // BSP_LCD_LayerDefaultInit(0, 0xC0000000);
+  // BSP_LCD_SelectLayer(0);
+  // BSP_LCD_Clear(0xFFFFFFFF);
+  // BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+  // BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  // BSP_LCD_DisplayStringAt(0, 10, (uint8_t *)"Disply STM32F769I-DISKO!",
+  //                         CENTER_MODE);
+
+  // BSP_SDRAM_Init();
+  // BSP_LCD_Init();
+  // BSP_LCD_LayerDefaultInit(0, SDRAM_DEVICE_ADDR);
+  // BSP_LCD_SelectLayer(0);
+
+  // NOTE: htim1 usage was weird in original code, commented out to avoid crash
+  // HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+
+  // ========================================
+  // LCD PANEL DETECTION AND DIAGNOSTIC
+  // ========================================
+  // The STM32F769I-DISCO board has been manufactured with TWO different LCD panels:
+  // 1. OTM8009A (KoD) - Original panels: HSYNC=2, HBP=34, HFP=34, 800x472 resolution
+  // 2. NT35510 (TechShine) - Newer panels: HSYNC=120, HBP=150, HFP=150, 800x480 resolution
+  // These require VERY DIFFERENT timing parameters!
+
+  // Read panel IDs to detect which panel is installed
+  uint16_t otm_id = OTM8009A_ReadID();
+  uint16_t nt35510_id = NT35510_ReadID();
+
+  // Determine panel type from ID responses
+  int is_otm8009a = (otm_id == 0x40);  // OTM8009A_ID
+  int is_nt35510 = (nt35510_id == 0x80);  // NT35510_ID
+
+  const char *panel_type_str = "UNKNOWN";
+  if (is_nt35510) {
+    panel_type_str = "NT35510 (TechShine)";
+  } else if (is_otm8009a) {
+    panel_type_str = "OTM8009A (KoD)";
+  } else {
+    panel_type_str = "Project EQ 2026\/01\/19 10:30 v0.1.85";
+  }
+
+  char diag_buf[512];
+  snprintf(diag_buf, sizeof(diag_buf),
+           "\r\n========================================\r\n"
+           "LCD PANEL DETECTION\r\n"
+           "========================================\r\n"
+           "OTM8009A ID: 0x%02X (expected: 0x40)\r\n"
+           "NT35510 ID: 0x%02X (expected: 0x80)\r\n"
+           "Detected Panel: %s\r\n"
+           "========================================\r\n",
+           otm_id,
+           nt35510_id,
+           panel_type_str
+  );
+  CDC_Transmit_HS((uint8_t *)diag_buf, strlen(diag_buf));
+  HAL_Delay(500);
+
+  // Initialize LCD with auto-detected panel
   BSP_LCD_Init();
-  ts_status = BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
-  while(ts_status != LCD_OK);
-  while(lcd_status != LCD_OK);
+  HAL_Delay(200);
 
-  /* Эти три строки = всё, что нужно для дисплея на вашей плате */
-//  BSP_LCD_Init();           // полная инициализация OTM8009A + SDRAM Normal Mode
-//  BSP_LCD_LayerDefaultInit(0, 0xC0000000);
-//  BSP_LCD_SelectLayer(0);
-//  BSP_LCD_Clear(LCD_COLOR_WHITE);
-//  BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
-//  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-  BSP_LCD_SetBrightness(100);
-  BSP_LCD_Init();                    // ← теперь видит функцию
-  BSP_LCD_LayerDefaultInit(0, 0xC0000000);
+  // Initialize only Layer 0, disable Layer 1 to prevent duplicate image
+  BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);
   BSP_LCD_SelectLayer(0);
-//  BSP_LCD_Clear(LCD_COLOR_WHITE); // Grock
-  // Важно: в ARGB8888 белый цвет = 0xFFFFFFFF, а не 0xFFFF!
-  BSP_LCD_Clear(0xFFFFFFFF);  // вместо LCD_COLOR_WHITE
-  BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
-  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
-  BSP_LCD_DisplayStringAt(0, 10, (uint8_t*)"Hello from FreeRTOS!", CENTER_MODE);
+  BSP_LCD_SetTransparency(0, 255);
 
-  // Инициализация дисплея (как раньше)
-  BSP_SDRAM_Init();
+  // NOTE: As of v0.1.67, BSP_LCD_LayerDefaultInit() properly fixes both:
+  // 1. LTDC window positions (prevents HAL from adding AHBP offset)
+  // 2. CFBLR pitch (prevents HAL from adding +3 to pitch)
+  // No additional fixes needed here - doing so would overwrite the correct values!
+
+  extern LTDC_HandleTypeDef hltdc_discovery;
+  uint32_t lcd_height = BSP_LCD_GetYSize();  // 472 for OTM8009A, 480 for NT35510
+
+  // CRITICAL FIX v0.1.45: Ensure LTDC TWCR register is correctly set
+  // The TWCR register should contain TotalWidth in upper bits and TotalHeight in lower bits
+  // Sometimes the LTDC timing is correct in Init struct but not written to hardware
+  uint32_t expected_twcr = (hltdc_discovery.Init.TotalWidth << 16U) | hltdc_discovery.Init.TotalHeigh;
+  uint32_t actual_twcr = LTDC->TWCR;
+  snprintf(diag_buf, sizeof(diag_buf),
+           "LTDC TWCR: Expected=0x%08lX, Actual=0x%08lX (TotalW=%lu, TotalH=%lu)\r\n",
+           expected_twcr, actual_twcr, hltdc_discovery.Init.TotalWidth, hltdc_discovery.Init.TotalHeigh);
+  CDC_Transmit_HS((uint8_t *)diag_buf, strlen(diag_buf));
+  if (actual_twcr != expected_twcr) {
+    snprintf(diag_buf, sizeof(diag_buf), "!!! TWCR MISMATCH - Fixing !!!\r\n");
+    CDC_Transmit_HS((uint8_t *)diag_buf, strlen(diag_buf));
+    LTDC->TWCR = expected_twcr;
+    __HAL_LTDC_RELOAD_CONFIG(&hltdc_discovery);
+  }
+
+  // Output panel timing info
+  snprintf(diag_buf, sizeof(diag_buf),
+           "LCD Size: %lux%lu\r\n"
+           "Panel Type: %s\r\n",
+           BSP_LCD_GetXSize(), lcd_height,
+           panel_type_str
+  );
+  CDC_Transmit_HS((uint8_t *)diag_buf, strlen(diag_buf));
+
+  // Layer 1 is now properly disabled in BSP_LCD_Init (stm32f769i_discovery_lcd.c)
+
   HAL_Delay(100);
-  BSP_LCD_Init();
-  BSP_LCD_LayerDefaultInit(0, SDRAM_DEVICE_ADDR);
-  BSP_LCD_SelectLayer(0);
-  TIM_HandleTypeDef        htim1;
-  // Включаем PWM подсветку (TIM1-CH3N на PI9)
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);  // Запуск PWM
-  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 500);  // 50% яркость (измените на 999 для 100%)
+
+  BSP_LCD_DisplayOn();
+  HAL_Delay(200);
+
+  // Static test image - colored bars to verify LCD works
+  BSP_LCD_SetFont(&Font24);
+  BSP_LCD_Clear(LCD_COLOR_WHITE);
+  BSP_LCD_SetBackColor(LCD_COLOR_WHITE);
+
+  // Draw title bar
+  BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  BSP_LCD_FillRect(0, 0, BSP_LCD_GetXSize(), 50);
+
+  // Draw panel type in center - CRITICAL for debugging
+  BSP_LCD_SetTextColor(LCD_COLOR_RED);
+  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize()/2 - 36, (uint8_t *)"STM32F769I-DISCO", CENTER_MODE);
+  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize()/2, (uint8_t *)panel_type_str, CENTER_MODE);
+
+  // Draw resolution at bottom
+  BSP_LCD_SetTextColor(LCD_COLOR_BLUE);
+  char res_buf[32];
+  snprintf(res_buf, sizeof(res_buf), "%lux%lu", BSP_LCD_GetXSize(), lcd_height);
+  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() - 30, (uint8_t *)res_buf, CENTER_MODE);
+
+  HAL_Delay(1000);
+
+  // Initialize UART5 for ESP8266 communication
+  // Note: RXNE interrupt will be enabled in DefaultTask after FreeRTOS starts
+  // to ensure mutexes are initialized and scheduler is running
+  MX_UART5_Init();
+
+  // BSP_LCD_Clear(LCD_COLOR_WHITE);
+  // BSP_LCD_SetTextColor(LCD_COLOR_BLACK);
+  // BSP_LCD_DisplayStringAt(0, 240, (uint8_t *)"STM32F769I-DISCO DSI WORKS!",
+  //                         CENTER_MODE);
+
+  // DEBUG: Read LTDC Layer 0 configuration registers
+  extern LTDC_HandleTypeDef hltdc_discovery;
+  uint32_t cfblr = LTDC_LAYER(&hltdc_discovery, 0)->CFBLR;
+  uint32_t whpcr = LTDC_LAYER(&hltdc_discovery, 0)->WHPCR;
+  uint32_t wvpcr = LTDC_LAYER(&hltdc_discovery, 0)->WVPCR;
+  uint32_t cr = LTDC_LAYER(&hltdc_discovery, 0)->CR;
+
+  // Also read LTDC timing registers
+  uint32_t bpcr = hltdc_discovery.Instance->BPCR;
+  uint32_t awcr = hltdc_discovery.Instance->AWCR;
+  uint32_t twcr = hltdc_discovery.Instance->TWCR;
+  uint32_t gcr = hltdc_discovery.Instance->GCR;
+
+  char debug_buf[512];
+  snprintf(debug_buf, sizeof(debug_buf),
+           "\r\n=== LTDC TIMING REGISTERS ===\r\n"
+           "BPCR: 0x%04lx (AHBP=%lu, AVBP=%lu)\r\n"
+           "AWCR: 0x%04lx (AAW=%lu, AAH=%lu)\r\n"
+           "TWCR: 0x%04lx (TOTALW=%lu, TOTALH=%lu)\r\n"
+           "GCR: 0x%04lx (HSPOL=%lu, VSPOL=%lu, DEPOL=%lu, PCPOL=%lu)\r\n"
+           "\r\n=== LTDC LAYER 0 ===\r\n"
+           "CFBLR: 0x%08lx (LineLen=%lu, Pitch=%lu)\r\n"
+           "WHPCR: 0x%08lx (WindowX0=%lu, WindowX1=%lu)\r\n"
+           "WVPCR: 0x%08lx (WindowY0=%lu, WindowY1=%lu)\r\n"
+           "CR: 0x%08lx (LEN=%lu)\r\n"
+           "\r\n=== PANEL TYPE INFO ===\r\n"
+           "OTM8009A timing: HSYNC=2, HBP=34, HFP=34, VSYNC=1, VBP=15, VFP=16\r\n"
+           "NT35510 timing:  HSYNC=120, HBP=150, HFP=150, VSYNC=2, VBP=34, VFP=34\r\n"
+           "Detected: %s\r\n",
+           bpcr, (bpcr & 0x7FF), ((bpcr >> 16) & 0x7FF),
+           awcr, (awcr & 0xFFF), ((awcr >> 16) & 0xFFF),
+           twcr, (twcr & 0xFFF), ((twcr >> 16) & 0xFFF),
+           gcr, (gcr & 1), ((gcr >> 1) & 1), ((gcr >> 2) & 1), ((gcr >> 3) & 1),
+           cfblr,
+           ((cfblr >> 16) & 0x1FFF),              // CFBLL (line length)
+           (cfblr & 0x1FFF),                      // CFBP (pitch)
+           whpcr,
+           (whpcr & 0x1FFF),              // WHSTPOS (window X0)
+           ((whpcr >> 16) & 0x1FFF),      // WHSPPOS (window X1)
+           wvpcr,
+           (wvpcr & 0x1FFF),              // WVSTPOS (window Y0)
+           ((wvpcr >> 16) & 0x1FFF),      // WVSPPOS (window Y1)
+           cr,
+           (uint32_t)((cr & LTDC_LxCR_LEN) ? 1 : 0),   // LEN (layer enable)
+           panel_type_str
+  );
+  CDC_Transmit_HS((uint8_t *)debug_buf, strlen(debug_buf));
+  HAL_Delay(100);
 
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();
-
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
-
-  /* Create the thread(s) */
-  /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
-
-  /* USER CODE BEGIN RTOS_EVENTS */
-  /* add events, ... */
-  /* USER CODE END RTOS_EVENTS */
+  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
 
   /* Start scheduler */
   osKernelStart();
@@ -207,8 +351,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -237,10 +380,12 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI
+                              |RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 25;
@@ -276,766 +421,75 @@ void SystemClock_Config(void)
   HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_1);
 }
 
-/**
-  * @brief DMA2D Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DMA2D_Init(void)
-{
+/* USER CODE BEGIN 4 */
 
-  /* USER CODE BEGIN DMA2D_Init 0 */
+// UART_Read function for ESP8266 driver - reads from ring buffer
+uint32_t UART_Read(uint8_t *pBuf, uint32_t Len) {
+  uint32_t count = 0;
 
-  /* USER CODE END DMA2D_Init 0 */
-
-  /* USER CODE BEGIN DMA2D_Init 1 */
-
-  /* USER CODE END DMA2D_Init 1 */
-  hdma2d.Instance = DMA2D;
-  hdma2d.Init.Mode = DMA2D_M2M;
-  hdma2d.Init.ColorMode = DMA2D_OUTPUT_ARGB8888;
-  hdma2d.Init.OutputOffset = 0;
-  hdma2d.LayerCfg[1].InputOffset = 0;
-  hdma2d.LayerCfg[1].InputColorMode = DMA2D_INPUT_ARGB8888;
-  hdma2d.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
-  hdma2d.LayerCfg[1].InputAlpha = 0;
-  hdma2d.LayerCfg[1].AlphaInverted = DMA2D_REGULAR_ALPHA;
-  hdma2d.LayerCfg[1].RedBlueSwap = DMA2D_RB_REGULAR;
-  if (HAL_DMA2D_Init(&hdma2d) != HAL_OK)
-  {
-    Error_Handler();
+  // First, try to read from ring buffer (filled by interrupt)
+  while (count < Len && UartRxTail != UartRxHead) {
+    pBuf[count++] = UartRxBuffer[UartRxTail];
+    UartRxTail = (UartRxTail + 1) % UART_RX_BUFFER_SIZE;
   }
-  if (HAL_DMA2D_ConfigLayer(&hdma2d, 1) != HAL_OK)
-  {
-    Error_Handler();
+
+  // POLLING FALLBACK: If ring buffer is empty but RXNE flag is set,
+  // read directly from RDR register (helps diagnose interrupt issues)
+  if (count == 0 && __HAL_UART_GET_FLAG(&huart5, UART_FLAG_RXNE)) {
+    // Data is available but interrupt didn't catch it - read directly
+    pBuf[count++] = (uint8_t)(huart5.Instance->RDR & 0xFF);
   }
-  /* USER CODE BEGIN DMA2D_Init 2 */
 
-  /* USER CODE END DMA2D_Init 2 */
-
+  return count;
 }
 
-/**
-  * @brief DSIHOST Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DSIHOST_DSI_Init(void)
-{
-
-  /* USER CODE BEGIN DSIHOST_Init 0 */
-
-  /* USER CODE END DSIHOST_Init 0 */
-
-  DSI_PLLInitTypeDef PLLInit = {0};
-  DSI_HOST_TimeoutTypeDef HostTimeouts = {0};
-  DSI_PHY_TimerTypeDef PhyTimings = {0};
-  DSI_VidCfgTypeDef VidCfg = {0};
-
-  /* USER CODE BEGIN DSIHOST_Init 1 */
-
-  /* USER CODE END DSIHOST_Init 1 */
-  hdsi.Instance = DSI;
-  hdsi.Init.AutomaticClockLaneControl = DSI_AUTO_CLK_LANE_CTRL_DISABLE;
-  hdsi.Init.TXEscapeCkdiv = 4;
-  hdsi.Init.NumberOfLanes = DSI_ONE_DATA_LANE;
-  PLLInit.PLLNDIV = 20;
-  PLLInit.PLLIDF = DSI_PLL_IN_DIV1;
-  PLLInit.PLLODF = DSI_PLL_OUT_DIV1;
-  if (HAL_DSI_Init(&hdsi, &PLLInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  HostTimeouts.TimeoutCkdiv = 1;
-  HostTimeouts.HighSpeedTransmissionTimeout = 0;
-  HostTimeouts.LowPowerReceptionTimeout = 0;
-  HostTimeouts.HighSpeedReadTimeout = 0;
-  HostTimeouts.LowPowerReadTimeout = 0;
-  HostTimeouts.HighSpeedWriteTimeout = 0;
-  HostTimeouts.HighSpeedWritePrespMode = DSI_HS_PM_DISABLE;
-  HostTimeouts.LowPowerWriteTimeout = 0;
-  HostTimeouts.BTATimeout = 0;
-  if (HAL_DSI_ConfigHostTimeouts(&hdsi, &HostTimeouts) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  PhyTimings.ClockLaneHS2LPTime = 28;
-  PhyTimings.ClockLaneLP2HSTime = 33;
-  PhyTimings.DataLaneHS2LPTime = 15;
-  PhyTimings.DataLaneLP2HSTime = 25;
-  PhyTimings.DataLaneMaxReadTime = 0;
-  PhyTimings.StopWaitTime = 0;
-  if (HAL_DSI_ConfigPhyTimer(&hdsi, &PhyTimings) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_DSI_ConfigFlowControl(&hdsi, DSI_FLOW_CONTROL_BTA) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_DSI_SetLowPowerRXFilter(&hdsi, 10000) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_DSI_ConfigErrorMonitor(&hdsi, HAL_DSI_ERROR_NONE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  VidCfg.VirtualChannelID = 0;
-  VidCfg.ColorCoding = DSI_RGB888;
-  VidCfg.LooselyPacked = DSI_LOOSELY_PACKED_DISABLE;
-  VidCfg.Mode = DSI_VID_MODE_NB_PULSES;
-  VidCfg.PacketSize = 1;
-  VidCfg.NumberOfChunks = 800;
-  VidCfg.NullPacketSize = 0;
-  VidCfg.HSPolarity = DSI_HSYNC_ACTIVE_LOW;
-  VidCfg.VSPolarity = DSI_VSYNC_ACTIVE_LOW;
-  VidCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
-  VidCfg.HorizontalSyncActive = 1;
-  VidCfg.HorizontalBackPorch = 63;
-  VidCfg.HorizontalLine = 1158;
-  VidCfg.VerticalSyncActive = 1;
-  VidCfg.VerticalBackPorch = 28;
-  VidCfg.VerticalFrontPorch = 13;
-  VidCfg.VerticalActive = 480;
-  VidCfg.LPCommandEnable = DSI_LP_COMMAND_DISABLE;
-  VidCfg.LPLargestPacketSize = 0;
-  VidCfg.LPVACTLargestPacketSize = 0;
-  VidCfg.LPHorizontalFrontPorchEnable = DSI_LP_HFP_DISABLE;
-  VidCfg.LPHorizontalBackPorchEnable = DSI_LP_HBP_DISABLE;
-  VidCfg.LPVerticalActiveEnable = DSI_LP_VACT_DISABLE;
-  VidCfg.LPVerticalFrontPorchEnable = DSI_LP_VFP_DISABLE;
-  VidCfg.LPVerticalBackPorchEnable = DSI_LP_VBP_DISABLE;
-  VidCfg.LPVerticalSyncActiveEnable = DSI_LP_VSYNC_DISABLE;
-  VidCfg.FrameBTAAcknowledgeEnable = DSI_FBTAA_DISABLE;
-  if (HAL_DSI_ConfigVideoMode(&hdsi, &VidCfg) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_DSI_SetGenericVCID(&hdsi, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN DSIHOST_Init 2 */
-
-  /* USER CODE END DSIHOST_Init 2 */
-
-}
-
-/**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C1_Init(void)
-{
-
-  /* USER CODE BEGIN I2C1_Init 0 */
-
-  /* USER CODE END I2C1_Init 0 */
-
-  /* USER CODE BEGIN I2C1_Init 1 */
-
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x20404768;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
-
-}
-
-/**
-  * @brief LTDC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_LTDC_Init(void)
-{
-
-  /* USER CODE BEGIN LTDC_Init 0 */
-
-  /* USER CODE END LTDC_Init 0 */
-
-  LTDC_LayerCfgTypeDef pLayerCfg = {0};
-
-  /* USER CODE BEGIN LTDC_Init 1 */
-
-  /* USER CODE END LTDC_Init 1 */
-  hltdc.Instance = LTDC;
-  hltdc.Init.HSPolarity = LTDC_HSPOLARITY_AL;
-  hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
-  hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
-  hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IIPC;
-  hltdc.Init.HorizontalSync = 0;
-  hltdc.Init.VerticalSync = 0;
-  hltdc.Init.AccumulatedHBP = 48;
-  hltdc.Init.AccumulatedVBP = 28;
-  hltdc.Init.AccumulatedActiveW = 848;
-  hltdc.Init.AccumulatedActiveH = 508;
-  hltdc.Init.TotalWidth = 888;
-  hltdc.Init.TotalHeigh = 521;
-  hltdc.Init.Backcolor.Blue = 0;
-  hltdc.Init.Backcolor.Green = 0;
-  hltdc.Init.Backcolor.Red = 0;
-  if (HAL_LTDC_Init(&hltdc) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  pLayerCfg.WindowX0 = 0;
-  pLayerCfg.WindowX1 = 800;
-  pLayerCfg.WindowY0 = 0;
-  pLayerCfg.WindowY1 = 480;
-//  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
-  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
-  pLayerCfg.Alpha = 255;
-  pLayerCfg.Alpha0 = 0;
-  pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
-  pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA;
-  pLayerCfg.FBStartAdress = 0xC0000000;
-  pLayerCfg.ImageWidth = 800;
-  pLayerCfg.ImageHeight = 480;
-  pLayerCfg.Backcolor.Blue = 0;
-  pLayerCfg.Backcolor.Green = 0;
-  pLayerCfg.Backcolor.Red = 0;
-
-
-  if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN LTDC_Init 2 */
-
-  /* USER CODE END LTDC_Init 2 */
-
-}
-
-/* FMC initialization function */
-static void MX_FMC_Init(void)
-{
-
-  /* USER CODE BEGIN FMC_Init 0 */
-
-  /* USER CODE END FMC_Init 0 */
-
-  FMC_SDRAM_TimingTypeDef SdramTiming = {0};
-
-  /* USER CODE BEGIN FMC_Init 1 */
-
-  /* USER CODE END FMC_Init 1 */
-
-  /** Perform the SDRAM1 memory initialization sequence
-  */
-  hsdram1.Instance = FMC_SDRAM_DEVICE;
-  /* hsdram1.Init */
-  hsdram1.Init.SDBank = FMC_SDRAM_BANK1;
-  hsdram1.Init.ColumnBitsNumber = FMC_SDRAM_COLUMN_BITS_NUM_8;
-  hsdram1.Init.RowBitsNumber = FMC_SDRAM_ROW_BITS_NUM_13;
-  hsdram1.Init.MemoryDataWidth = FMC_SDRAM_MEM_BUS_WIDTH_16;
-  hsdram1.Init.InternalBankNumber = FMC_SDRAM_INTERN_BANKS_NUM_2;
-  hsdram1.Init.CASLatency = FMC_SDRAM_CAS_LATENCY_1;
-  hsdram1.Init.WriteProtection = FMC_SDRAM_WRITE_PROTECTION_DISABLE;
-  hsdram1.Init.SDClockPeriod = FMC_SDRAM_CLOCK_DISABLE;
-  hsdram1.Init.ReadBurst = FMC_SDRAM_RBURST_DISABLE;
-  hsdram1.Init.ReadPipeDelay = FMC_SDRAM_RPIPE_DELAY_0;
-  /* SdramTiming */
-  SdramTiming.LoadToActiveDelay = 16;
-  SdramTiming.ExitSelfRefreshDelay = 16;
-  SdramTiming.SelfRefreshTime = 16;
-  SdramTiming.RowCycleDelay = 16;
-  SdramTiming.WriteRecoveryTime = 16;
-  SdramTiming.RPDelay = 16;
-  SdramTiming.RCDDelay = 16;
-
-  if (HAL_SDRAM_Init(&hsdram1, &SdramTiming) != HAL_OK)
-  {
-    Error_Handler( );
-  }
-
-  /* USER CODE BEGIN FMC_Init 2 */
-
-  /* USER CODE END FMC_Init 2 */
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
+void MX_UART5_Init(void) {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  /* USER CODE BEGIN MX_GPIO_Init_1 */
 
-  /* USER CODE END MX_GPIO_Init_1 */
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOE_CLK_ENABLE();
-  __HAL_RCC_GPIOG_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
+  // Enable GPIO clocks for UART5 pins
   __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOJ_CLK_ENABLE();
-  __HAL_RCC_GPIOI_CLK_ENABLE();
-  __HAL_RCC_GPIOK_CLK_ENABLE();
-  __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOJ, LD_USER1_Pin|DSI_RESET_Pin|LD_USER2_Pin, GPIO_PIN_RESET);
+  // Enable UART5 clock
+  __HAL_RCC_UART5_CLK_ENABLE();
 
-  /*Configure GPIO pins : SAI1_FSA_Pin SAI1_SDB_Pin SAI1_SCKA_Pin SAI1_SDA_Pin */
-  GPIO_InitStruct.Pin = SAI1_FSA_Pin|SAI1_SDB_Pin|SAI1_SCKA_Pin|SAI1_SDA_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF6_SAI1;
-  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : QSPI_D2_Pin */
-  GPIO_InitStruct.Pin = QSPI_D2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
-  HAL_GPIO_Init(QSPI_D2_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : RMII_TXD1_Pin RMII_TXD0_Pin RMII_TX_EN_Pin */
-  GPIO_InitStruct.Pin = RMII_TXD1_Pin|RMII_TXD0_Pin|RMII_TX_EN_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : uSD_D3_Pin uSD_D2_Pin */
-  GPIO_InitStruct.Pin = uSD_D3_Pin|uSD_D2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF10_SDMMC2;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : uSD_CMD_Pin uSD_CLK_Pin */
-  GPIO_InitStruct.Pin = uSD_CMD_Pin|uSD_CLK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_SDMMC2;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : WIFI_RX_Pin */
-  GPIO_InitStruct.Pin = WIFI_RX_Pin;
+  // Configure UART5 TX (PC12) and RX (PD2) pins
+  GPIO_InitStruct.Pin = GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
-  HAL_GPIO_Init(WIFI_RX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : CEC_Pin */
-  GPIO_InitStruct.Pin = CEC_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF4_CEC;
-  HAL_GPIO_Init(CEC_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : AUDIO_SDA_Pin */
-  GPIO_InitStruct.Pin = AUDIO_SDA_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_I2C4;
-  HAL_GPIO_Init(AUDIO_SDA_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : QSPI_NCS_Pin */
-  GPIO_InitStruct.Pin = QSPI_NCS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF10_QUADSPI;
-  HAL_GPIO_Init(QSPI_NCS_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : LD_USER1_Pin DSI_RESET_Pin LD_USER2_Pin */
-  GPIO_InitStruct.Pin = LD_USER1_Pin|DSI_RESET_Pin|LD_USER2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Audio_INT_Pin WIFI_RST_Pin ARD_D8_Pin ARD_D7_Pin
-                           ARD_D4_Pin ARD_D2_Pin */
-  GPIO_InitStruct.Pin = Audio_INT_Pin|WIFI_RST_Pin|ARD_D8_Pin|ARD_D7_Pin
-                          |ARD_D4_Pin|ARD_D2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : DFSDM_DATIN5_Pin */
-  GPIO_InitStruct.Pin = DFSDM_DATIN5_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF3_DFSDM1;
-  HAL_GPIO_Init(DFSDM_DATIN5_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : QSPI_D1_Pin QSPI_D0_Pin */
-  GPIO_InitStruct.Pin = QSPI_D1_Pin|QSPI_D0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : ARD_D13_SCK_Pin */
-  GPIO_InitStruct.Pin = ARD_D13_SCK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
-  HAL_GPIO_Init(ARD_D13_SCK_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : NC4_Pin NC5_Pin uSD_Detect_Pin LCD_BL_CTRL_Pin */
-  GPIO_InitStruct.Pin = NC4_Pin|NC5_Pin|uSD_Detect_Pin|LCD_BL_CTRL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : NC3_Pin NC2_Pin NC1_Pin NC8_Pin
-                           NC7_Pin */
-  GPIO_InitStruct.Pin = NC3_Pin|NC2_Pin|NC1_Pin|NC8_Pin
-                          |NC7_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOK, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SPDIF_RX_Pin */
-  GPIO_InitStruct.Pin = SPDIF_RX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF7_SPDIFRX;
-  HAL_GPIO_Init(SPDIF_RX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : uSD_D1_Pin uSD_D0_Pin */
-  GPIO_InitStruct.Pin = uSD_D1_Pin|uSD_D0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_SDMMC2;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : RMII_RXER_Pin OTG_FS_OverCurrent_Pin */
-  GPIO_InitStruct.Pin = RMII_RXER_Pin|OTG_FS_OverCurrent_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : DFSDM_CKOUT_Pin */
-  GPIO_InitStruct.Pin = DFSDM_CKOUT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF3_DFSDM1;
-  HAL_GPIO_Init(DFSDM_CKOUT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SPI2_NSS_Pin */
-  GPIO_InitStruct.Pin = SPI2_NSS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
-  HAL_GPIO_Init(SPI2_NSS_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : WIFI_TX_Pin */
-  GPIO_InitStruct.Pin = WIFI_TX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
-  HAL_GPIO_Init(WIFI_TX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : VCP_RX_Pin */
-  GPIO_InitStruct.Pin = VCP_RX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-  HAL_GPIO_Init(VCP_RX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : VCP_TX_Pin */
-  GPIO_InitStruct.Pin = VCP_TX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-  HAL_GPIO_Init(VCP_TX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : CEC_CLK_Pin */
-  GPIO_InitStruct.Pin = CEC_CLK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
-  HAL_GPIO_Init(CEC_CLK_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : LCD_INT_Pin */
-  GPIO_InitStruct.Pin = LCD_INT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(LCD_INT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : ARD_D5_PWM_Pin */
-  GPIO_InitStruct.Pin = ARD_D5_PWM_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
-  HAL_GPIO_Init(ARD_D5_PWM_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : ARD_D0_RX_Pin ARDUINO_TX_D1_Pin */
-  GPIO_InitStruct.Pin = ARD_D0_RX_Pin|ARDUINO_TX_D1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF8_USART6;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SAI1_MCLKA_Pin */
-  GPIO_InitStruct.Pin = SAI1_MCLKA_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF6_SAI1;
-  HAL_GPIO_Init(SAI1_MCLKA_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : EXT_SDA_Pin EXT_SCL_Pin */
-  GPIO_InitStruct.Pin = EXT_SDA_Pin|EXT_SCL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : ARD_D6_PWM_Pin */
-  GPIO_InitStruct.Pin = ARD_D6_PWM_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF3_TIM11;
-  HAL_GPIO_Init(ARD_D6_PWM_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : ARD_D3_PWM_Pin */
-  GPIO_InitStruct.Pin = ARD_D3_PWM_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF3_TIM10;
-  HAL_GPIO_Init(ARD_D3_PWM_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : ARDUINO_A1_Pin ARDUINO_A2_Pin ARDUINO_A3_Pin */
-  GPIO_InitStruct.Pin = ARDUINO_A1_Pin|ARDUINO_A2_Pin|ARDUINO_A3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : RMII_MDC_Pin RMII_RXD0_Pin RMII_RXD1_Pin */
-  GPIO_InitStruct.Pin = RMII_MDC_Pin|RMII_RXD0_Pin|RMII_RXD1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : ARD_A2_Pin */
-  GPIO_InitStruct.Pin = ARD_A2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(ARD_A2_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PB2 */
   GPIO_InitStruct.Pin = GPIO_PIN_2;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  GPIO_InitStruct.Alternate = GPIO_AF8_UART5;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : AUDIO_SCL_Pin */
-  GPIO_InitStruct.Pin = AUDIO_SCL_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF4_I2C4;
-  HAL_GPIO_Init(AUDIO_SCL_GPIO_Port, &GPIO_InitStruct);
+  // Configure UART5
+  huart5.Instance = UART5;
+  huart5.Init.BaudRate = 500000;  // ESP8266 is running at 500K baud!
+  huart5.Init.WordLength = UART_WORDLENGTH_8B;
+  huart5.Init.StopBits = UART_STOPBITS_1;
+  huart5.Init.Parity = UART_PARITY_NONE;
+  huart5.Init.Mode = UART_MODE_TX_RX;
+  huart5.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart5.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart5.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart5.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart5) != HAL_OK) {
+    Error_Handler();
+  }
 
-  /*Configure GPIO pin : QSPI_D3_Pin */
-  GPIO_InitStruct.Pin = QSPI_D3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
-  HAL_GPIO_Init(QSPI_D3_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : RMII_REF_CLK_Pin RMII_MDIO_Pin RMII_CRS_DV_Pin */
-  GPIO_InitStruct.Pin = RMII_REF_CLK_Pin|RMII_MDIO_Pin|RMII_CRS_DV_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : B_USER_Pin */
-  GPIO_InitStruct.Pin = B_USER_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B_USER_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : ARD_A1_Pin ARD_A0_Pin */
-  GPIO_InitStruct.Pin = ARD_A1_Pin|ARD_A0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SPDIF_TX_Pin */
-  GPIO_InitStruct.Pin = SPDIF_TX_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF10_SAI2;
-  HAL_GPIO_Init(SPDIF_TX_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PH7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_7;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : ARDUINO_PWM_D6_Pin */
-  GPIO_InitStruct.Pin = ARDUINO_PWM_D6_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF9_TIM12;
-  HAL_GPIO_Init(ARDUINO_PWM_D6_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : ARDUINO_MISO_D12_Pin ARDUINO_MOSI_PWM_D11_Pin */
-  GPIO_InitStruct.Pin = ARDUINO_MISO_D12_Pin|ARDUINO_MOSI_PWM_D11_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
-
-  /* USER CODE END MX_GPIO_Init_2 */
+  // Enable UART5 interrupt in NVIC
+  HAL_NVIC_SetPriority(UART5_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(UART5_IRQn);
 }
 
-/* USER CODE BEGIN 4 */
-
+// MX_RTC_Init is defined in rtc.c
 /* USER CODE END 4 */
-
-/* USER CODE BEGIN Header_StartDefaultTask */
-/**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
-{
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
-  /* USER CODE BEGIN 5 */
-  /* USER CODE BEGIN StartDefaultTask */
-  DMA2D->FGMAR = 0xC0000000;           // адрес фреймбуфера
-  DMA2D->FGOR = 0;
-  DMA2D->NLR = (480 << 16) | 800;
-  DMA2D->FGPFCCR = DMA2D_RGB565;
-  DMA2D->FGOR = 0;
-  DMA2D->FGCOLR = 0xFFFF;              // белый цвет
-  DMA2D->CR = DMA2D_R2M | DMA2D_CR_START;
-  while (DMA2D->CR & DMA2D_CR_START) {}   // ждём окончания
-
-  osDelay(200);  // Ждём DSI/SDRAM
-
-  // Заливка белым через DMA2D (исправленный код)
-  DMA2D->OPFCCR = DMA2D_OUTPUT_RGB565;  // Формат
-  DMA2D->OCOLR = 0xFFFFFFFF;  // Белый ARGB
-  DMA2D->OMAR = 0xC0000000;  // Адрес фреймбуфера
-  DMA2D->OOR = 0;  // Offset
-  DMA2D->NLR = (480 << 16) | 800;  // Высота << 16 | Ширина
-  DMA2D->CR = DMA2D_M2M | DMA2D_CR_START;  // Запуск (DMA2D_CR_START!)
-  while (DMA2D->CR & DMA2D_CR_START) {}  // Ждём
-
-  osDelay(100);   // даём FMC время
-
-  /* ---------- КРИТИЧЕСКИ ВАЖНО: принудительно переводим SDRAM в Normal Mode ---------- */
-  FMC_Bank5_6->SDCMR = (3 << 9)   // Mode Register: Normal Mode command
-                     | (1 << 0);  // CTB1 – SDRAM Bank 1
-  /* ждём, пока команда выполнится (NRFS бит в SDSR) */
-  while (FMC_Bank5_6->SDSR & FMC_SDSR_BUSY) { osDelay(1); }
-  osDelay(10);
-
-  /* ---------- Теперь можно безопасно писать в SDRAM ---------- */
-
-  /* 1. Выход из сна + включение дисплея (OTM8009A) */
-  HAL_DSI_ShortWrite(&hdsi, 0, DSI_DCS_SHORT_PKT_WRITE_P0, 0x11, 0x00); // Exit Sleep
-  osDelay(120);
-  HAL_DSI_ShortWrite(&hdsi, 0, DSI_DCS_SHORT_PKT_WRITE_P0, 0x29, 0x00); // Display ON
-  osDelay(20);
-
-  /* 2. Заливка белым — теперь 100% безопасно */
-  volatile uint16_t *fb = (uint16_t*)0xC0000000;
-  for (uint32_t i = 0; i < 800 * 480; i++)
-  {
-    fb[i] = 0xFFFF;   // белый RGB565
-  }
-
-  osDelay(20);
-
-  /* USER CODE END StartDefaultTask */
-  /* Infinite loop */
-  for(;;)
-  {
-	osDelay(500);
-    HAL_GPIO_TogglePin(GPIOJ, GPIO_PIN_13);  // Красный LD1 мигает
-
-  }
-  /* USER CODE END 5 */
-}
 
 /**
   * @brief  Period elapsed callback in non blocking mode
@@ -1060,6 +514,78 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 
 /**
+  * @brief  Thread-safe UART5 transmit function
+  * @param  pData: Pointer to data buffer
+  * @param  Size: Amount of data elements (u8/u16 etc) to be sent
+  * @param  Timeout: Timeout duration
+  * @retval HAL status
+  * @note   Uses mutex to protect concurrent access from ESP8266_SendCommand and CDC_Receive_HS
+  */
+HAL_StatusTypeDef UART5_Transmit(uint8_t *pData, uint16_t Size, uint32_t Timeout)
+{
+  HAL_StatusTypeDef status;
+
+  // If mutex exists (FreeRTOS running), use it to protect transmission
+  if (uart5MutexId != NULL)
+  {
+    if (osMutexAcquire(uart5MutexId, Timeout) == osOK)
+    {
+      status = HAL_UART_Transmit(&huart5, pData, Size, Timeout);
+      osMutexRelease(uart5MutexId);
+    }
+    else
+    {
+      status = HAL_ERROR;
+    }
+  }
+  else
+  {
+    // FreeRTOS not running yet, call directly
+    status = HAL_UART_Transmit(&huart5, pData, Size, Timeout);
+  }
+
+  return status;
+}
+
+/**
+  * @brief  Thread-safe USB CDC transmit function
+  * @param  Buf: Buffer of data to be sent
+  * @param  Len: Number of data to be sent (in bytes)
+  * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
+  * @note   Uses mutex to protect concurrent access from DisplayTask, DebugTask, DefaultTask
+  */
+uint8_t CDC_Transmit_ThreadSafe(uint8_t *Buf, uint16_t Len)
+{
+  uint8_t result;
+
+  // CRITICAL FIX: Check if we're in interrupt context by attempting non-blocking mutex acquire
+  // If mutex exists (FreeRTOS running), use it to protect transmission
+  if (cdcTransmitMutexId != NULL)
+  {
+    // Try to acquire mutex with zero timeout (non-blocking)
+    // This allows the function to work from interrupt context or when mutex is busy
+    if (osMutexAcquire(cdcTransmitMutexId, 0) == osOK)
+    {
+      result = CDC_Transmit_HS(Buf, Len);
+      osMutexRelease(cdcTransmitMutexId);
+    }
+    else
+    {
+      // Mutex busy or we're in interrupt context - try direct transmission
+      // This is safe for USB CDC since it has internal buffering
+      result = CDC_Transmit_HS(Buf, Len);
+    }
+  }
+  else
+  {
+    // FreeRTOS not running yet, call directly
+    result = CDC_Transmit_HS(Buf, Len);
+  }
+
+  return result;
+}
+
+/**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
@@ -1068,8 +594,7 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
+  while (1) {
   }
   /* USER CODE END Error_Handler_Debug */
 }
@@ -1084,7 +609,8 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
+  /* User can add his own implementation to report the file name and line
+     number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }

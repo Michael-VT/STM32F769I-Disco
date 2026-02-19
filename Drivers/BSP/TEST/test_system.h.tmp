@@ -1,0 +1,143 @@
+/**
+ ******************************************************************************
+ * @file    test_system.h
+ * @brief   Test system header for STM32F769I-Discovery
+ * @author  STM32F769I-Discovery Project
+ * @date    2025
+ *
+ * @details Test system that can be triggered via ATSTn commands from USB CDC
+ *          Provides comprehensive testing of all hardware and software features
+ ******************************************************************************
+ */
+
+#ifndef __TEST_SYSTEM_H
+#define __TEST_SYSTEM_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "main.h"
+
+/* Test Status Codes */
+typedef enum {
+  TEST_OK = 0,
+  TEST_ERROR,
+  TEST_TIMEOUT,
+  TEST_NOT_SUPPORTED
+} TestStatus_TypeDef;
+
+/* Test Result Structure */
+typedef struct {
+  const char *testName;
+  TestStatus_TypeDef status;
+  const char *details;
+} TestResult_TypeDef;
+
+/* Test IDs - ATSTn commands */
+typedef enum {
+  TEST_ID_ESP_WEATHER = 0,      // ATST0 - ESP8266 weather test
+  TEST_ID_DISPLAY = 1,           // ATST1 - Display graphics/text test
+  TEST_ID_LEDS = 2,              // ATST2 - LED test
+  TEST_ID_RTC = 3,               // ATST3 - RTC time test
+  TEST_ID_WIFI = 4,              // ATST4 - WiFi connection test
+  TEST_ID_NTP = 5,               // ATST5 - NTP time sync test
+  TEST_ID_HTTP = 6,              // ATST6 - HTTP request test
+  TEST_ID_AUDIO = 7,             // ATST7 - Audio codec test
+  TEST_ID_SDRAM = 8,             // ATST8 - SDRAM test
+  TEST_ID_TOUCH = 9,             // ATST9 - Touchscreen test
+  TEST_ID_ALL = 10,              // ATST10 - Run all tests
+  TEST_ID_HELP = 99              // ATST? or ATHelp - Show help
+  TEST_ID_PANEL_DETECT = 149     // ATST149 - LCD panel detection diagnostic
+} TestID_TypeDef;
+
+/* Function Prototypes */
+
+/**
+ * @brief Process ATSTn command from USB CDC
+ * @param testId Test ID (0-10, or 99 for help)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_ProcessCommand(uint8_t testId);
+
+/**
+ * @brief Run ESP8266 weather test (ATST0)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_ESP_Weather(void);
+
+/**
+ * @brief Run display graphics/text test (ATST1)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_Display(void);
+
+/**
+ * @brief Run LED test (ATST2)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_LEDs(void);
+
+/**
+ * @brief Run RTC time test (ATST3)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_RTC(void);
+
+/**
+ * @brief Run WiFi connection test (ATST4)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_WiFi(void);
+
+/**
+ * @brief Run NTP time sync test (ATST5)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_NTP(void);
+
+/**
+ * @brief Run HTTP request test (ATST6)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_HTTP(void);
+
+/**
+ * @brief Run audio codec test (ATST7)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_Audio(void);
+
+/**
+ * @brief Run SDRAM test (ATST8)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_SDRAM(void);
+
+/**
+ * @brief Run touchscreen test (ATST9)
+ * @retval TestStatus_TypeDef Test result
+ */
+TestStatus_TypeDef TEST_Touch(void);
+
+/**
+ * @brief Run all tests (ATST10)
+ * @retval TestStatus_TypeDef Test result (returns OK if all tests pass)
+ */
+TestStatus_TypeDef TEST_RunAll(void);
+
+/**
+ * @brief Show test help information
+ */
+void TEST_ShowHelp(void);
+
+/**
+ * @brief Initialize test system
+ */
+void TEST_Init(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __TEST_SYSTEM_H */

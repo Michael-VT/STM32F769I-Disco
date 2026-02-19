@@ -31,6 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stm32f7xx_hal_uart.h"
 
 /* USER CODE END Includes */
 

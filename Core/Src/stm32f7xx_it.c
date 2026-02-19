@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32f7xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32f7xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -41,7 +41,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+extern UART_HandleTypeDef huart5;
+#define UART_RX_BUFFER_SIZE 2048
+extern volatile uint8_t UartRxBuffer[UART_RX_BUFFER_SIZE];
+extern volatile uint32_t UartRxHead;
+extern volatile uint32_t UartRxTail;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,8 +60,12 @@
 
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_OTG_HS;
-extern LTDC_HandleTypeDef hltdc;
+extern LTDC_HandleTypeDef hltdc_discovery;  // From BSP LCD driver
+extern RTC_HandleTypeDef hrtc;
 extern TIM_HandleTypeDef htim6;
+
+// Alias hltdc to hltdc_discovery since Core/Src/ltdc.c is excluded
+#define hltdc hltdc_discovery
 
 /* USER CODE BEGIN EV */
 
@@ -75,8 +83,7 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-   while (1)
-  {
+  while (1) {
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
@@ -87,7 +94,8 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+  extern uint8_t CDC_Transmit_HS(uint8_t * Buf, uint16_t Len);
+  CDC_Transmit_HS((uint8_t *)"\r\n!!! HARD FAULT !!!\r\n", 23);
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
@@ -162,6 +170,34 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles RTC wake-up interrupt through EXTI line 22.
+  */
+void RTC_WKUP_IRQHandler(void)
+{
+  /* USER CODE BEGIN RTC_WKUP_IRQn 0 */
+
+  /* USER CODE END RTC_WKUP_IRQn 0 */
+  HAL_RTCEx_WakeUpTimerIRQHandler(&hrtc);
+  /* USER CODE BEGIN RTC_WKUP_IRQn 1 */
+
+  /* USER CODE END RTC_WKUP_IRQn 1 */
+}
+
+/**
+  * @brief This function handles RTC alarms (A and B) interrupt through EXTI line 17.
+  */
+void RTC_Alarm_IRQHandler(void)
+{
+  /* USER CODE BEGIN RTC_Alarm_IRQn 0 */
+
+  /* USER CODE END RTC_Alarm_IRQn 0 */
+  HAL_RTC_AlarmIRQHandler(&hrtc);
+  /* USER CODE BEGIN RTC_Alarm_IRQn 1 */
+
+  /* USER CODE END RTC_Alarm_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM6 global interrupt, DAC1 and DAC2 underrun error interrupts.
   */
 void TIM6_DAC_IRQHandler(void)
@@ -204,5 +240,36 @@ void LTDC_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+
+/**
+  * @brief This function handles UART5 global interrupt.
+  */
+void UART5_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART5_IRQn 0 */
+  // Process RXNE interrupt manually to store in ring buffer
+  if (__HAL_UART_GET_FLAG(&huart5, UART_FLAG_RXNE) &&
+      __HAL_UART_GET_IT_SOURCE(&huart5, UART_IT_RXNE)) {
+    /* Read received byte - this also clears RXNE flag */
+    uint8_t byte = (uint8_t)(huart5.Instance->RDR & (uint8_t)0x00FF);
+
+    /* Store in ring buffer if not full */
+    uint32_t next = (UartRxHead + 1) % UART_RX_BUFFER_SIZE;
+    if (next != UartRxTail) {
+      UartRxBuffer[UartRxHead] = byte;
+      UartRxHead = next;
+    }
+    // Clear RXNE flag after reading (should already be cleared by read, but be safe)
+    __HAL_UART_SEND_REQ(&huart5, UART_RXDATA_FLUSH_REQUEST);
+  }
+
+  /* USER CODE END UART5_IRQn 0 */
+
+  /* Call HAL UART IRQHandler for other events (error, TX, etc.) */
+  HAL_UART_IRQHandler(&huart5);
+  /* USER CODE BEGIN UART5_IRQn 1 */
+
+  /* USER CODE END UART5_IRQn 1 */
+}
 
 /* USER CODE END 1 */
